@@ -9,13 +9,14 @@ public final class HomePageUITest extends BaeldungBaseTest {
 
     // tests
 
-    @Test(timeout = 30000)
+    @Test
     public final void whenLoggedInAsAdmin_thenAdminPage() {
         // When
         final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
 
         // Then
         assertTrue(driver.isHere());
+        assertTrue(driver.containsPartialText("Powered"));
     }
 
 }

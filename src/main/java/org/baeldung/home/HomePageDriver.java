@@ -12,11 +12,11 @@ public final class HomePageDriver extends BlogBaseDriver<HomePageDriver> {
 
     // API
 
-    //
+    // template methods
 
     @Override
     public final HomePageDriver wait(final int seconds) {
-        Selenium2Utils.Wait.tryWaitForElementFoundById(driver, "", seconds);
+        Selenium2Utils.Wait.tryWaitForElementFoundById(getWebDriver(), "", seconds);
         return this;
     }
 

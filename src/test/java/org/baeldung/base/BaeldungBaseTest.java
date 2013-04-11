@@ -3,6 +3,8 @@ package org.baeldung.base;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.selenium.base.AbstractBaseTest;
 import org.selenium.setup.DriverType;
@@ -15,6 +17,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { SeleniumConfig.class })
 public abstract class BaeldungBaseTest extends AbstractBaseTest {
+
+    @Rule
+    public Timeout globalTimeout = new Timeout(300000); // 300 sec
 
     public BaeldungBaseTest() {
         super();
