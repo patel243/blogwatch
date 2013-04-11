@@ -17,6 +17,10 @@ public final class HomePageUITest extends BaeldungBaseTest {
         // Then
         assertTrue(driver.isHere());
         assertTrue(driver.containsPartialText("Powered"));
+        assertTrue(driver.containsLinkText("About"));
+        assertTrue(driver.containsLinkText("Persistence with Spring series"));
+        assertTrue(driver.containsLinkText("REST with Spring series"));
+        assertTrue(driver.containsLinkText("Some Other Page"));
     }
 
 }
