@@ -1,5 +1,6 @@
 package org.baeldung.home;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.baeldung.base.BaeldungBaseTest;
@@ -17,10 +18,10 @@ public final class HomePageUITest extends BaeldungBaseTest {
         // Then
         assertTrue(driver.isHere());
         assertTrue(driver.containsPartialText("Powered"));
-        assertTrue(driver.containsLinkText("About"));
         assertTrue(driver.containsLinkText("Persistence with Spring series"));
         assertTrue(driver.containsLinkText("REST with Spring series"));
-        assertTrue(driver.containsLinkText("Some Other Page"));
+        assertFalse(driver.containsLinkText("Some Other Page"));
+        assertTrue(driver.containsLinkText("About"));
     }
 
 }
