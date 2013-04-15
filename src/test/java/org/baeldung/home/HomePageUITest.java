@@ -3,7 +3,9 @@ package org.baeldung.home;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.baeldung.article.ArticlePageDriver;
 import org.baeldung.base.BaeldungBaseTest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public final class HomePageUITest extends BaeldungBaseTest {
@@ -11,7 +13,7 @@ public final class HomePageUITest extends BaeldungBaseTest {
     // tests
 
     @Test
-    public final void whenLoggedInAsAdmin_thenAdminPage() {
+    public final void whenOnHomepage_thenHomepageCorrect() {
         // When
         final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
 
@@ -22,6 +24,28 @@ public final class HomePageUITest extends BaeldungBaseTest {
         assertTrue(driver.containsLinkText("REST with Spring series"));
         assertFalse(driver.containsLinkText("Some Other Page"));
         assertTrue(driver.containsLinkText("About"));
+    }
+
+    @Test
+    @Ignore("after Phase 4 from Bogdan")
+    public final void whenOnHomepage_thenReadFullStoryAndCommentLinksNotDisplayed() {
+        // When
+        final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
+        driver.wait(1);
+
+        // Then
+        assertFalse(driver.containsLinkText("Read full story"));
+        assertFalse(driver.containsPartialLinkText(" Comments"));
+    }
+
+    @Test
+    public final void givenOnHomepage_whenNavigatingToArticle_thenNoExceptions() {
+        // When
+        final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
+        final ArticlePageDriver articlePageDriver = driver.toArticle("Multipart Upload on S3 with jclouds");
+
+        // Then
+        assertTrue(articlePageDriver.isHere());
     }
 
 }

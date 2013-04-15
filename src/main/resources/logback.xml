@@ -9,14 +9,6 @@
       </encoder>
    </appender>
 
-   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-      <file>/var/log/blog/baeldung.log</file>
-      <encoder>
-         <pattern>%date [%thread] %-5level %logger{36} - %message%n
-         </pattern>
-      </encoder>
-   </appender>
-
    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
       <!-- deny all events with a level below ERROR -->
       <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -73,7 +65,6 @@
 
    <!-- root -->
    <root level="WARN">
-      <!-- <appender-ref ref="FILE"/> -->
       <appender-ref ref="STDOUT"/>
       <!-- <appender-ref ref="EMAIL" /> -->
    </root>
