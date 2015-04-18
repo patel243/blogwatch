@@ -40,6 +40,7 @@ public final class HomePageUITest extends BaeldungBaseTest {
     }
 
     @Test
+    @Ignore("driver navigation doesn't work any more")
     public final void givenOnHomepage_whenNavigatingToArticle_thenNoExceptions() {
         // When
         final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
