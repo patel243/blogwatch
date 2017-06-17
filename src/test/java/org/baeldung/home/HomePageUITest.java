@@ -1,53 +1,32 @@
 package org.baeldung.home;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.baeldung.article.ArticlePageDriver;
-import org.baeldung.base.BaeldungBaseTest;
-import org.junit.Ignore;
+import org.baeldung.config.MainConfig;
+import org.baeldung.site.home.HomePageDriver;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
-public final class HomePageUITest extends BaeldungBaseTest {
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = { MainConfig.class })
+public final class HomePageUITest {
 
-    // tests
-
-    @Test
-    @Ignore("fails with htmlunit - investigate")
-    public final void whenOnHomepage_thenHomepageCorrect() {
-        // When
-        final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
-
-        // Then
-        assertTrue(driver.isHere());
-        assertTrue(driver.containsPartialText("Powered"));
-        assertTrue(driver.containsLinkText("Persistence with Spring series"));
-        assertTrue(driver.containsLinkText("REST with Spring series"));
-        assertFalse(driver.containsLinkText("Some Other Page"));
-        assertTrue(driver.containsLinkText("About"));
-    }
+    @Autowired
+    HomePageDriver homePageDriver;
 
     @Test
-    @Ignore("after Phase 4 from Bogdan")
-    public final void whenOnHomepage_thenReadFullStoryAndCommentLinksNotDisplayed() {
-        // When
-        final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
-        driver.wait(1);
+    public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
+        homePageDriver.getWebDriver().findElement(By.xpath("//div[@id='tve_editor']/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div/div/a/span[2]")).click();
+        homePageDriver.getWebDriver().findElement(By.xpath("//div[@id='tve_editor']/div/div/div/div/div/div[3]/div/a/span[2]")).click();
 
-        // Then
-        assertFalse(driver.containsLinkText("Read full story"));
-        assertFalse(driver.containsPartialLinkText(" Comments"));
-    }
+        assertTrue(homePageDriver.getWebDriver().findElement(By.xpath("//div[@id='tve_editor']/div/div/div[2]/form/div/div[2]/input")).isDisplayed()); // email field
+        assertTrue(homePageDriver.getWebDriver().findElement(By.xpath("//div[@id='tve_editor']/div/div/div[2]/form/div/div[4]/button")).isDisplayed()); // subscribe button
 
-    @Test
-    @Ignore("driver navigation doesn't work any more")
-    public final void givenOnHomepage_whenNavigatingToArticle_thenNoExceptions() {
-        // When
-        final HomePageDriver driver = new HomePageDriver(getWebDriver()).navigateToCurrent();
-        final ArticlePageDriver articlePageDriver = driver.toArticle("Multipart Upload on S3 with jclouds");
-
-        // Then
-        assertTrue(articlePageDriver.isHere());
+        homePageDriver.quiet();
     }
 
 }
