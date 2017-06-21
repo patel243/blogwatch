@@ -15,7 +15,11 @@ public abstract class BlogBaseDriver {
 
     @PostConstruct
     public void setDriver() {
-        this.seleniumConfig.getDriver().get(getPageURL());
+        this.seleniumConfig.getDriver();
+    }
+    
+    public void loadPage(){
+        this.getWebDriver().get(this.getPageURL());
     }
 
     public void closeWindow() {

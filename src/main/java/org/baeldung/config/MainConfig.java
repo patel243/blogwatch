@@ -27,9 +27,7 @@ public class MainConfig {
     public static void main(final String[] args) {
 
         final ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig.class);
-        final HomePageDriver test = ctx.getBean(HomePageDriver.class);
-        test.printHomePageTitle();
-        test.quiet();
+        final HomePageDriver test = ctx.getBean(HomePageDriver.class);        
 
     }
 
