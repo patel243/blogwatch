@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
@@ -15,8 +16,15 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 public class MainConfig {
 
     @Bean
-    public SeleniumConfig seleniumConfig() {
-        return new SeleniumConfig();
+    @Profile("headless-browser")
+    public SeleniumHeadlessBrowserConfig seleniumHeadlessBrowserConfig() {
+        return new SeleniumHeadlessBrowserConfig();
+    }
+
+    @Bean
+    @Profile("ui-browser")
+    public SeleniumUIBrowserConfig seleniumUIBrowserConfig() {
+        return new SeleniumUIBrowserConfig();
     }
 
     @Bean
@@ -27,7 +35,7 @@ public class MainConfig {
     public static void main(final String[] args) {
 
         final ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig.class);
-        final HomePageDriver test = ctx.getBean(HomePageDriver.class);        
+        final HomePageDriver test = ctx.getBean(HomePageDriver.class);
 
     }
 

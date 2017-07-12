@@ -14,7 +14,7 @@ public abstract class BlogBaseDriver {
     private SeleniumConfig seleniumConfig;
 
     @PostConstruct
-    public void setDriver() {
+    public void setDriver() {       
         this.seleniumConfig.getDriver();
     }
     

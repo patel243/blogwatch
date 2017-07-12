@@ -17,7 +17,6 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>3.4.0</version>
-			<scope>runtime</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.seleniumhq.selenium</groupId>
@@ -98,13 +97,13 @@
 		</dependency>
 
 		<!-- test scoped -->
-		
+
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${org.springframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
 			<scope>test</scope>
-        </dependency>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -148,11 +147,6 @@
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
@@ -162,11 +156,39 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+			</plugin>
+
 		</plugins>
 	</build>
 
+	<profiles>
+	
+		<profile>
+			<id>headless-browser</id>
+			<!-- <activation>
+				<activeByDefault>true</activeByDefault>
+			</activation> -->
+			<properties>
+				<spring.profiles.active>headless-browser</spring.profiles.active>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>ui-browser</id>
+			<properties>
+				<spring.profiles.active>ui-browser</spring.profiles.active>
+			</properties>
+		</profile>
+		
+	</profiles>
+
 	<properties>
-	   <org.springframework-version>4.3.9.RELEASE</org.springframework-version>
+		<org.springframework-version>4.3.9.RELEASE</org.springframework-version>
+		<spring.profiles.active>headless-browser</spring.profiles.active>
 
 		<!-- commons and utils -->
 		<commons-lang3.version>3.5</commons-lang3.version>
@@ -184,6 +206,7 @@
 		<!-- maven plugins -->
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+		<spring-boot-maven-plugin.version>1.5.4.RELEASE</spring-boot-maven-plugin.version>
 
 	</properties>
 
