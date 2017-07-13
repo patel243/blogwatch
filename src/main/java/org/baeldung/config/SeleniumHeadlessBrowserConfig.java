@@ -8,11 +8,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
-    public SeleniumHeadlessBrowserConfig() {        
+    @Override
+    public void openNewWindow(){
         final Capabilities capabilities = DesiredCapabilities.htmlUnit();
         driver = new HtmlUnitDriver(capabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }    
+    }
 
 
 }

@@ -9,12 +9,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class SeleniumUIBrowserConfig extends SeleniumConfig {
 
-    public SeleniumUIBrowserConfig() {
-        final Capabilities capabilities = DesiredCapabilities.firefox();        
-        driver = new FirefoxDriver(capabilities);        
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
-
     static {
         System.setProperty("webdriver.gecko.driver", findFile("/geckodriver.exe"));
     }
@@ -26,6 +20,13 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
                 return path + filename;
         }
         return "";
+    }
+    
+    @Override
+    public void openNewWindow(){
+        final Capabilities capabilities = DesiredCapabilities.firefox();        
+        driver = new FirefoxDriver(capabilities);        
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 

@@ -19,7 +19,15 @@ public abstract class BlogBaseDriver {
     }
     
     public void loadPage(){
-        this.getWebDriver().get(this.getPageURL());
+        this.getWebDriver().get(this.getPageURL());       
+    }
+    
+    public void openNewWindow(){
+        seleniumConfig.openNewWindow();
+    }
+    public void openNewWindowAndLoadPage(){
+        this.openNewWindow();
+        this.loadPage();
     }
 
     public void closeWindow() {
