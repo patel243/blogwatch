@@ -26,8 +26,8 @@ public final class HomePageUITest {
     
     @Test
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
-        homePageDriver.openNewWindow();
-        homePageDriver.loadPage();
+        homePageDriver.openNewWindowAndLoadPage();
+        
         homePageDriver.clickNewsletterButton();
         
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
@@ -39,8 +39,7 @@ public final class HomePageUITest {
     
     @Test
     public final void javaWeeklyLinksMatchWithLinkText() {
-        homePageDriver.openNewWindow();
-        homePageDriver.loadPage();
+        homePageDriver.openNewWindowAndLoadPage();
         
         List<WebElement> javaWeeklyElements =  this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
         String expectedLink;
