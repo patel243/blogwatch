@@ -1,10 +1,12 @@
 package org.baeldung.home;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.baeldung.config.MainConfig;
+import org.baeldung.site.guide.SpringMicroservicesGuidePage;
 import org.baeldung.site.home.HomePageDriver;
 import org.baeldung.site.home.NewsLettersubscriptionPage;
 import org.junit.Test;
@@ -13,6 +15,8 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.jayway.restassured.RestAssured;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { MainConfig.class })
@@ -24,7 +28,10 @@ public final class HomePageUITest {
     @Autowired
     NewsLettersubscriptionPage newsLettersubscriptionPage;
     
-    @Test
+    @Autowired
+    SpringMicroservicesGuidePage springMicroservicesGuidePage;
+    
+    @Test    
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
         homePageDriver.openNewWindowAndLoadPage();
         
@@ -37,7 +44,7 @@ public final class HomePageUITest {
         homePageDriver.quiet();
     }
     
-    @Test
+    @Test  
     public final void javaWeeklyLinksMatchWithLinkText() {
         homePageDriver.openNewWindowAndLoadPage();
         
@@ -57,6 +64,19 @@ public final class HomePageUITest {
         
         homePageDriver.quiet();
         
-    }       
+    } 
+    
+    @Test
+    public final void verifyImagesInSpringMicroservicesGuidePage() {
+        this.springMicroservicesGuidePage.openNewWindowAndLoadPage();
+        
+        springMicroservicesGuidePage.clickAccessTheGuideButton();
+                
+        assertEquals(200,RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
+        assertEquals(200,RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
+       
+        
+        springMicroservicesGuidePage.quiet();
+    }
 
 }
