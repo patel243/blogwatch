@@ -18,7 +18,7 @@ public class HomePageDriver extends BlogBaseDriver {
     private String homePageURL;
 
     public void clickNewsletterButton() {
-        this.getWebDriver().findElement(By.xpath("//div[@id='tve_editor']/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div/div/a/span[2]")).click();
+        this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div/div[2]/div/div/div[1]/div/div[1]/div[2]/div[3]/div/div[2]/div/div/div/a/span[2]/span")).click();
     } 
     
     public List<WebElement> getAllJavaWeeklyIssueLinkElements(){

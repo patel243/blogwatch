@@ -12,15 +12,15 @@ public class SpringMicroservicesGuidePage extends BlogBaseDriver {
     private String SpringMicroservicesGuideURL;
     
     public void clickAccessTheGuideButton() {
-        this.getWebDriver().findElement(By.xpath("//div[@id='tve_editor']/div[2]/div/div[3]/div/div/div/div[2]/div[2]/div/a")).click();
+        this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div[2]/div/div[3]/div[2]/div/div/div/div[3]/div/div/a")).click();
     }
     
     public String findFirstImagePath(){
-        return this.getWebDriver().findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/article/div/div/div/div/div/div[1]/div[1]/div/span/img")).getAttribute("src");
+        return this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div/div[2]/div/div[1]/div/div/span/img")).getAttribute("src");
     }
     
     public String find2ndImagePath(){
-        return this.getWebDriver().findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/article/div/div/div/div/div/div[1]/div[2]/div/span/img")).getAttribute("src");
+        return this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div/div[2]/div/div[2]/div/div[3]/span/img")).getAttribute("src");
     }
 
     @Override
