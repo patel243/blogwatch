@@ -12,6 +12,9 @@ import org.baeldung.site.home.NewsLettersubscriptionPage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -40,7 +43,7 @@ public final class HomePageUITest {
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
         assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed()); 
         assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed()); 
-        
+              	
         homePageDriver.quiet();
     }
     
@@ -74,9 +77,24 @@ public final class HomePageUITest {
                 
         assertEquals(200,RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
         assertEquals(200,RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
-       
         
         springMicroservicesGuidePage.quiet();
     }
 
+    @Test
+    //@Ignore
+    public final void whenHomePageLoaded_then2JavaScriptMessagesInConsole() {
+    	
+    	homePageDriver.openNewWindowAndLoadPage();                
+        
+    	LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
+    	int items = 0;
+        for(LogEntry logEntry: browserLogentries) {
+        	//System.out.println("Custom-->"+logEntry.getMessage());
+        	items++;
+        }
+        assertEquals(2,items);
+        homePageDriver.quiet();
+    }
+    
 }

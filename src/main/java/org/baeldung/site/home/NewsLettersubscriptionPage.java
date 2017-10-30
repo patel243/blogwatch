@@ -13,14 +13,14 @@ public class NewsLettersubscriptionPage extends BlogBaseDriver{
     private String pageURL;
     
     public void clickGetAccessToTheLatestIssuesButton() {
-        this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div[1]/div/div/div/div/div[3]/div/a/span[2]")).click();
+        this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[1]/div/div/div/div/div[3]/div/a/span[2]")).click();
     }
     
     public WebElement findEmailFieldInSubscriptionPopup() {
-        return this.getWebDriver().findElement(By.xpath("//*[@id='drip-email']"));
+        return this.getWebDriver().findElement(By.xpath(".//*[@id='drip-email']"));
     }
     public WebElement findSubscripbeButtonInSubscriptionPopup() {
-        return this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div[3]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
+        return this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[3]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
     }
 
     @Override

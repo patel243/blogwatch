@@ -3,9 +3,10 @@ package org.baeldung.config;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+
 
 public class SeleniumUIBrowserConfig extends SeleniumConfig {
 
@@ -23,8 +24,8 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
     }
     
     @Override
-    public void openNewWindow(){
-        final Capabilities capabilities = DesiredCapabilities.firefox();        
+    public void openNewWindow(){    	
+        final DesiredCapabilities  capabilities = DesiredCapabilities.firefox();        
         driver = new FirefoxDriver(capabilities);        
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
