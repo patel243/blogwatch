@@ -15,7 +15,7 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
     }
 
     static private String findFile(final String filename) {
-        final String paths[] = { "", "bin/", "target/classes" }; // drivers are in bin/ directory
+        final String paths[] = { "", "bin/win/", "target/classes" }; // drivers are in bin/ directory
         for (final String path : paths) {
             if (new File(path + filename).exists())
                 return path + filename;

@@ -175,19 +175,27 @@
 	<profiles>
 	
 		<profile>
-			<id>headless-browser</id>
+			<id>headless-browser-windows</id>
 			<!-- <activation>
 				<activeByDefault>true</activeByDefault>
 			</activation> -->
 			<properties>
 				<spring.profiles.active>headless-browser</spring.profiles.active>
+				<target.env>win</target.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>headless-browser-linux</id>			
+			<properties>
+				<spring.profiles.active>headless-browser</spring.profiles.active>
+				<target.env>linux</target.env>
 			</properties>
 		</profile>
 		
 		<profile>
-			<id>ui-browser</id>
+			<id>ui-browser-windows</id>
 			<properties>
-				<spring.profiles.active>ui-browser</spring.profiles.active>
+				<spring.profiles.active>ui-browser</spring.profiles.active>				
 			</properties>
 		</profile>
 		
