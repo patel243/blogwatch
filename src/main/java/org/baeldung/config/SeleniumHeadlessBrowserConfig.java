@@ -1,5 +1,6 @@
 package org.baeldung.config;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -24,13 +25,20 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
     	
     	DesiredCapabilities caps = new DesiredCapabilities();
     	caps.setJavascriptEnabled(true);                
-    	caps.setCapability("takesScreenshot", true);  
+    	caps.setCapability("takesScreenshot", true);      	
     	if (Utils.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())){
 	    	caps.setCapability(
 	    	                    PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
 	    	                    "bin/"+ this.getTargetEnv() +"/phantomjs.exe"
 	    	                    );  
     	}else {
+    		
+    		File file = new File("bin/"+ this.getTargetEnv() +"/phantomjs");
+    		
+    		file.setExecutable(true, false);
+            file.setReadable(true, false);
+            file.setWritable(true, false);
+            
     		caps.setCapability(
                     PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
                     "bin/"+ this.getTargetEnv() +"/phantomjs"
