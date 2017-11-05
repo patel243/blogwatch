@@ -34,11 +34,11 @@ public final class HomePageUITest {
     @Autowired
     SpringMicroservicesGuidePage springMicroservicesGuidePage;
     
-    @Test    
+    @Test          
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
         homePageDriver.openNewWindowAndLoadPage();
         
-        homePageDriver.clickNewsletterButton();
+        homePageDriver.clickNewsletterButton();      
         
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
         assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed()); 
@@ -47,7 +47,7 @@ public final class HomePageUITest {
         homePageDriver.quiet();
     }
     
-    @Test  
+   @Test     
     public final void javaWeeklyLinksMatchWithLinkText() {
         homePageDriver.openNewWindowAndLoadPage();
         
@@ -56,12 +56,15 @@ public final class HomePageUITest {
         String issueNumber;
         for (WebElement webElement: javaWeeklyElements ){
             issueNumber = webElement.getText().replaceAll("\\D+","");
-            if (issueNumber.length()>0){
-                expectedLink= (this.homePageDriver.getPageURL()+"java-weekly-")+issueNumber;
+            if (issueNumber.length()>0){            	
+                expectedLink= (this.homePageDriver.getPageURL()+"/java-weekly-")+issueNumber;
+                
+                System.out.println("expectedLink-->"+expectedLink);
+                System.out.println("actual  Link-->"+webElement.getAttribute("href"));
+                
                 assertTrue(expectedLink.equals(webElement.getAttribute("href").toString()));
                 
-                //System.out.println("expectedLink-->"+expectedLink);
-                //System.out.println("actual  Link-->"+webElement.getAttribute("href"));
+               
             }
         }
         
@@ -69,7 +72,7 @@ public final class HomePageUITest {
         
     } 
     
-    @Test
+    @Test        
     public final void verifyImagesInSpringMicroservicesGuidePage() {
         this.springMicroservicesGuidePage.openNewWindowAndLoadPage();
         
@@ -81,8 +84,7 @@ public final class HomePageUITest {
         springMicroservicesGuidePage.quiet();
     }
 
-    @Test
-    //@Ignore
+    @Test    
     public final void whenHomePageLoaded_then2JavaScriptMessagesInConsole() {
     	
     	homePageDriver.openNewWindowAndLoadPage();                

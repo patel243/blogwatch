@@ -23,7 +23,7 @@ public class NewsLettersubscriptionPage extends BlogBaseDriver{
 	@Override
 	@Value("${site.home.page.newsletter.subscription.url}")
 	protected void setPageURL(String pageURL) {
-		this.pageURL = pageURL;		
+		this.pageURL = this.getBaseURL() + pageURL;		
 	}
     
     

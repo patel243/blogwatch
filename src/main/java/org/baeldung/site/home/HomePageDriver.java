@@ -15,7 +15,7 @@ import com.google.common.collect.Streams;
 public class HomePageDriver extends BlogBaseDriver {
         
     public void clickNewsletterButton() {
-        this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div/div[2]/div/div/div[1]/div/div[1]/div[2]/div[3]/div/div[2]/div/div/div/a/span[2]/span")).click();
+        this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div/div[2]/div/div/div[1]/div/div[1]/div[2]/div[3]/div/div[2]/div/div/div/a/span[2]/span")).click();
     } 
     
     public List<WebElement> getAllJavaWeeklyIssueLinkElements(){
@@ -24,8 +24,8 @@ public class HomePageDriver extends BlogBaseDriver {
                        .collect(Collectors.toList());        
       }
         
-	@Override
-	@Value("${site.home.page.url}")
+	@Override	
+	@Value("${base.url}")
 	protected void setPageURL(String pageURL) {
 		this.pageURL = pageURL;		
 	}    

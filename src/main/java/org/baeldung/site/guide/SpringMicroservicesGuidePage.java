@@ -23,7 +23,7 @@ public class SpringMicroservicesGuidePage extends BlogBaseDriver {
 	@Override
 	@Value("${site.guide.spring.microservices}")
 	protected void setPageURL(String pageURL) {
-		this.pageURL = pageURL;		
+		this.pageURL = this.getBaseURL() + pageURL;		
 	}
 
     
