@@ -21,7 +21,7 @@ public class ContentOnPageUITest {
     @Autowired
     SitePage blogPage;
 
-    @Test
+    @Test    
     public final void whenPageLoads_thenContentDivExists() {
 
         List<String> URLs = new ArrayList<String>();
@@ -32,12 +32,14 @@ public class ContentOnPageUITest {
                 blogPage.setPageURL(blogPage.getBaseURL() + URL);
                 blogPage.openNewWindowAndLoadPage();
                 assertTrue(blogPage.findContentDiv().isDisplayed());
+                blogPage.quiet();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assert.fail();
-        } finally {
             blogPage.quiet();
+        } finally {
+            //blogPage.quiet();
         }
     }
 
