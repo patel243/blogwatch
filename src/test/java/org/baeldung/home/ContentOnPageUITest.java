@@ -14,34 +14,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-
-
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { MainConfig.class })
 public class ContentOnPageUITest {
-	
-	@Autowired
+
+    @Autowired
     SitePage blogPage;
-	
-	@Test    
+
+    @Test
     public final void whenPageLoads_thenContentDivExists() {
-				
-		List<String> URLs = new ArrayList<String>();		
-		URLs.add("/rest-with-spring-series/");
-		URLs.add("/persistence-with-spring-series/");
-		try {
-			for (String URL: URLs) {
-				blogPage.setPageURL(blogPage.getBaseURL()+ URL); 
-				blogPage.openNewWindowAndLoadPage();
-		        assertTrue(blogPage.findContentDiv().isDisplayed());                       	
-		        blogPage.quiet();
-			}
-		}catch(Exception e) {
-			blogPage.quiet();
-			System.out.println(e.getMessage());
-			Assert.fail();						
-		}
+
+        List<String> URLs = new ArrayList<String>();
+        URLs.add("/rest-with-spring-series/");
+        URLs.add("/persistence-with-spring-series/");
+        try {
+            for (String URL : URLs) {
+                blogPage.setPageURL(blogPage.getBaseURL() + URL);
+                blogPage.openNewWindowAndLoadPage();
+                assertTrue(blogPage.findContentDiv().isDisplayed());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assert.fail();
+        } finally {
+            blogPage.quiet();
+        }
     }
 
 }

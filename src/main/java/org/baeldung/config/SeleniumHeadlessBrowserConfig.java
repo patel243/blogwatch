@@ -11,7 +11,7 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
     @Override
     public void openNewWindow() {
-    	
+
         /*final Capabilities capabilities = DesiredCapabilities.htmlUnit();
         
         driver = new HtmlUnitDriver(capabilities) {
@@ -22,33 +22,25 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
                 return webClient;
             }
         };*/
-    	
-    	DesiredCapabilities caps = new DesiredCapabilities();
-    	caps.setJavascriptEnabled(true);                
-    	caps.setCapability("takesScreenshot", true);      	
-    	if (Utils.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())){
-	    	caps.setCapability(
-	    	                    PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-	    	                    "bin/"+ this.getTargetEnv() +"/phantomjs.exe"
-	    	                    );  
-    	}else {
-    		
-    		File file = new File("bin/"+ this.getTargetEnv() +"/phantomjs");
-    		
-    		file.setExecutable(true, false);
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setJavascriptEnabled(true);
+        //caps.setCapability("takesScreenshot", true);
+        if (Utils.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())) {
+            caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs.exe");
+        } else {
+
+            File file = new File("bin/" + this.getTargetEnv() + "/phantomjs");
+
+            file.setExecutable(true, false);
             file.setReadable(true, false);
             file.setWritable(true, false);
-            
-    		caps.setCapability(
-                    PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-                    "bin/"+ this.getTargetEnv() +"/phantomjs"
-                    );  
-    	}
-    	
-    	 driver = new  PhantomJSDriver(caps);
 
-         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs");
+        }
+
+        driver = new PhantomJSDriver(caps);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
-
 
 }

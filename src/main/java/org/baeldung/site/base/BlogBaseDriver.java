@@ -11,25 +11,26 @@ public abstract class BlogBaseDriver {
 
     @Autowired
     private SeleniumConfig seleniumConfig;
-    
+
     @Value("${base.url}")
     private String baseURL;
-    
+
     protected String pageURL;
 
     @PostConstruct
-    public void setDriver() {       
+    public void setDriver() {
         this.seleniumConfig.getDriver();
     }
-    
-    public void loadPage(){
-        this.getWebDriver().get(this.pageURL);       
+
+    public void loadPage() {
+        this.getWebDriver().get(this.pageURL);
     }
-    
-    public void openNewWindow(){
+
+    public void openNewWindow() {
         seleniumConfig.openNewWindow();
     }
-    public void openNewWindowAndLoadPage(){
+
+    public void openNewWindowAndLoadPage() {
         this.openNewWindow();
         this.loadPage();
     }
@@ -50,14 +51,14 @@ public abstract class BlogBaseDriver {
         return seleniumConfig.getDriver();
     }
 
-	public String getPageURL() {
-		return pageURL;
-	}
+    public String getPageURL() {
+        return pageURL;
+    }
 
-	protected abstract void setPageURL(String pageURL);
+    protected abstract void setPageURL(String pageURL);
 
-	public String getBaseURL() {
-		return baseURL;
-	}		
-    
+    public String getBaseURL() {
+        return baseURL;
+    }
+
 }

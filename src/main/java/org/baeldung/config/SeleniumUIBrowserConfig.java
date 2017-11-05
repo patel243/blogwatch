@@ -6,8 +6,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-
-
 public class SeleniumUIBrowserConfig extends SeleniumConfig {
 
     static {
@@ -22,13 +20,12 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
         }
         return "";
     }
-    
+
     @Override
-    public void openNewWindow(){    	
-        final DesiredCapabilities  capabilities = DesiredCapabilities.firefox();        
-        driver = new FirefoxDriver(capabilities);        
+    public void openNewWindow() {
+        final DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        driver = new FirefoxDriver(capabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
-
 
 }
