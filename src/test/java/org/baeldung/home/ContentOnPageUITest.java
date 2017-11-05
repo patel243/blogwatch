@@ -7,11 +7,15 @@ import java.util.List;
 
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
+
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { MainConfig.class })
@@ -26,12 +30,17 @@ public class ContentOnPageUITest {
 		List<String> URLs = new ArrayList<String>();		
 		URLs.add("/rest-with-spring-series/");
 		URLs.add("/persistence-with-spring-series/");
-		
-		for (String URL: URLs) {
-			blogPage.setPageURL(blogPage.getBaseURL()+ URL); 
-			blogPage.openNewWindowAndLoadPage();
-	        assertTrue(blogPage.findContentDiv().isDisplayed());                       	
-	        blogPage.quiet();
+		try {
+			for (String URL: URLs) {
+				blogPage.setPageURL(blogPage.getBaseURL()+ URL); 
+				blogPage.openNewWindowAndLoadPage();
+		        assertTrue(blogPage.findContentDiv().isDisplayed());                       	
+		        blogPage.quiet();
+			}
+		}catch(Exception e) {
+			blogPage.quiet();
+			System.out.println(e.getMessage());
+			Assert.fail();						
 		}
     }
 
