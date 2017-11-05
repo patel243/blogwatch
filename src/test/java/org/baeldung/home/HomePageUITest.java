@@ -9,7 +9,6 @@ import org.baeldung.config.MainConfig;
 import org.baeldung.site.guide.SpringMicroservicesGuidePage;
 import org.baeldung.site.home.HomePageDriver;
 import org.baeldung.site.home.NewsLettersubscriptionPage;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebElement;
@@ -83,7 +82,7 @@ public final class HomePageUITest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public final void whenHomePageLoaded_then2JavaScriptMessagesInConsole() {
     	
     	homePageDriver.openNewWindowAndLoadPage();                
