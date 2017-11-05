@@ -182,6 +182,7 @@
 			<properties>
 				<spring.profiles.active>headless-browser</spring.profiles.active>
 				<target.env>win</target.env>
+				<base.url>http://www.baeldung.com</base.url>
 			</properties>
 		</profile>
 		<profile>
@@ -189,13 +190,15 @@
 			<properties>
 				<spring.profiles.active>headless-browser</spring.profiles.active>
 				<target.env>linux</target.env>
+				<base.url>http://www.baeldung.com</base.url>
 			</properties>
 		</profile>
 		
 		<profile>
 			<id>ui-browser-windows</id>
 			<properties>
-				<spring.profiles.active>ui-browser</spring.profiles.active>				
+				<spring.profiles.active>ui-browser</spring.profiles.active>	
+				<base.url>http://www.baeldung.com</base.url>			
 			</properties>
 		</profile>
 		
