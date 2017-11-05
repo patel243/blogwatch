@@ -13,10 +13,7 @@ import com.google.common.collect.Streams;
 
 @Component
 public class HomePageDriver extends BlogBaseDriver {
-    
-    @Value("${site.home.page.url}")
-    private String homePageURL;
-
+        
     public void clickNewsletterButton() {
         this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div/div[2]/div/div/div[1]/div/div[1]/div[2]/div[3]/div/div[2]/div/div/div/a/span[2]/span")).click();
     } 
@@ -26,10 +23,11 @@ public class HomePageDriver extends BlogBaseDriver {
                               this.getWebDriver().findElements(By.partialLinkText("The Java ﻿Weekly")).stream())
                        .collect(Collectors.toList());        
       }
-    
-    @Override
-    public String getPageURL() {
-        return this.homePageURL;
-    }    
+        
+	@Override
+	@Value("${site.home.page.url}")
+	protected void setPageURL(String pageURL) {
+		this.pageURL = pageURL;		
+	}    
     
 }

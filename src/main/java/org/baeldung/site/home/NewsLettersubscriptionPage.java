@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NewsLettersubscriptionPage extends BlogBaseDriver{
-    
-    @Value("${site.home.page.newsletter.subscription.url}")
-    private String pageURL;
+public class NewsLettersubscriptionPage extends BlogBaseDriver{           
     
     public void clickGetAccessToTheLatestIssuesButton() {
         this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[1]/div/div/div/div/div[3]/div/a/span[2]")).click();
@@ -23,10 +20,12 @@ public class NewsLettersubscriptionPage extends BlogBaseDriver{
         return this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[3]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
     }
 
-    @Override
-    protected String getPageURL() {
-        return this.pageURL;
-    }
+	@Override
+	@Value("${site.home.page.newsletter.subscription.url}")
+	protected void setPageURL(String pageURL) {
+		this.pageURL = pageURL;		
+	}
+    
     
     
 
