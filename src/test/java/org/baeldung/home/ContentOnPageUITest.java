@@ -22,9 +22,7 @@ public class ContentOnPageUITest {
 	
 	@Test    
     public final void whenPageLoads_thenContentDivExists() {
-		
-		String baseURL = "http://www.baeldung.com";
-		
+				
 		List<String> URLs = new ArrayList<String>();		
 		URLs.add("/rest-with-spring-series/");
 		URLs.add("/persistence-with-spring-series/");
