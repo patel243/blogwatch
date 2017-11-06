@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ContentOnPageUITest {
 
     @Autowired
-    SitePage blogPage;
+    SitePage page;
 
     @Test
     public final void whenPageLoads_thenContentDivExists() {
@@ -31,15 +31,15 @@ public class ContentOnPageUITest {
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
-                blogPage.setPageURL(blogPage.getBaseURL() + URL);
-                blogPage.openNewWindowAndLoadPage();
-                assertTrue(blogPage.findContentDiv().isDisplayed());
-                blogPage.quiet();
+                page.setPageURL(page.getBaseURL() + URL);
+                page.openNewWindowAndLoadPage();
+                assertTrue(page.findContentDiv().isDisplayed());
+                page.quiet();
             });
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            blogPage.quiet();
+            page.quiet();
             Assert.fail();           
         } finally {
             if (null != URLs) {
