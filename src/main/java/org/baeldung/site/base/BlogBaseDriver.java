@@ -40,7 +40,10 @@ public abstract class BlogBaseDriver {
     }
 
     public void quiet() {
-        this.seleniumConfig.getDriver().quit();
+        if (null != this.seleniumConfig.getDriver())  {      
+            this.seleniumConfig.getDriver().quit();
+        }
+        
     }
 
     public String getTitle() {

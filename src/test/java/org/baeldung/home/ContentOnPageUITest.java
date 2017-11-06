@@ -2,8 +2,10 @@ package org.baeldung.home;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
@@ -21,25 +23,28 @@ public class ContentOnPageUITest {
     @Autowired
     SitePage blogPage;
 
-    @Test    
+    @Test
     public final void whenPageLoads_thenContentDivExists() {
-
-        List<String> URLs = new ArrayList<String>();
-        URLs.add("/rest-with-spring-series/");
-        URLs.add("/persistence-with-spring-series/");
+        Stream<String> URLs = null;
         try {
-            for (String URL : URLs) {
+            
+            File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
+            URLs = Files.lines(Paths.get(file.getAbsolutePath()));
+            URLs.forEach(URL -> {
                 blogPage.setPageURL(blogPage.getBaseURL() + URL);
                 blogPage.openNewWindowAndLoadPage();
                 assertTrue(blogPage.findContentDiv().isDisplayed());
                 blogPage.quiet();
-            }
+            });
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            Assert.fail();
             blogPage.quiet();
+            Assert.fail();           
         } finally {
-            //blogPage.quiet();
+            if (null != URLs) {
+                URLs.close();
+            }
         }
     }
 
