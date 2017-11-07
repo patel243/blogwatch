@@ -1,2 +1,10 @@
-/rest-with-spring-series/
 /persistence-with-spring-series/
+/rest-with-spring-series/
+/spring-security-registration
+/spring-security-authentication-and-registration
+/spring-rest-api-query-search-language-tutorial
+/vavr-tutorial
+/security-spring
+/java-tutorial
+/jackson
+/httpclient-guide

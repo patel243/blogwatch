@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.baeldung.config.MainConfig;
@@ -27,18 +30,25 @@ public class ContentOnPageUITest {
     public final void whenPageLoads_thenContentDivExists() {
         Stream<String> URLs = null;
         try {
-            
+            List<String> urlsWithNoContent= new ArrayList<String>();
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
+                try {
                 page.setPageURL(page.getBaseURL() + URL);
                 page.openNewWindowAndLoadPage();
                 assertTrue(page.findContentDiv().isDisplayed());
                 page.quiet();
+                }
+                catch (Exception e){
+                    urlsWithNoContent.add(page.getBaseURL() + URL);
+                    page.quiet();                                     
+                }
             });
-            
-        } catch (Exception e) {            
-            page.quiet();
+            if (urlsWithNoContent.size()>0) {
+                Assert.fail("URL with No content--->"+urlsWithNoContent.stream().collect(Collectors.joining("\n")));
+            }
+        } catch (Exception e) {                        
             Assert.fail(e.getMessage());           
         } finally {
             if (null != URLs) {
