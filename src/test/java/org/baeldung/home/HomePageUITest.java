@@ -47,9 +47,8 @@ public final class HomePageUITest {
             assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
             assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            Assert.fail();
+        } catch (Exception e) {            
+            Assert.fail(e.getMessage());
         } finally {
             newsLettersubscriptionPage.quiet();
             homePageDriver.quiet();
@@ -76,9 +75,8 @@ public final class HomePageUITest {
                     assertTrue(expectedLink.equals(webElement.getAttribute("href").toString()));
                 }
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            Assert.fail();
+        } catch (Exception e) {            
+            Assert.fail(e.getMessage());
         } finally {
             homePageDriver.quiet();
         }
@@ -92,9 +90,8 @@ public final class HomePageUITest {
             springMicroservicesGuidePage.clickAccessTheGuideButton();
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            Assert.fail();
+        } catch (Exception e) {            
+            Assert.fail(e.getMessage());
         } finally {
             springMicroservicesGuidePage.quiet();
         }
@@ -112,9 +109,8 @@ public final class HomePageUITest {
                 items++;
             }
             assertEquals(2, items);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            Assert.fail();
+        } catch (Exception e) {            
+            Assert.fail(e.getMessage());
         } finally {
             homePageDriver.quiet();
         }

@@ -37,10 +37,9 @@ public class ContentOnPageUITest {
                 page.quiet();
             });
             
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {            
             page.quiet();
-            Assert.fail();           
+            Assert.fail(e.getMessage());           
         } finally {
             if (null != URLs) {
                 URLs.close();
