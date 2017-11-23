@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.guide.SpringMicroservicesGuidePage;
@@ -44,6 +45,7 @@ public final class HomePageUITest {
             homePageDriver.clickNewsletterButton();
 
             newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
+            System.out.print("Tag Name-->"+newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().getTagName());
             assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
             assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
 
@@ -97,18 +99,20 @@ public final class HomePageUITest {
         }
     }
 
-    @Test
-    public final void whenHomePageLoaded_then2JavaScriptMessagesInConsole() {
+    @Test 
+    public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
         try {
             homePageDriver.openNewWindowAndLoadPage();
-
+            
             LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
             int items = 0;
-            for (LogEntry logEntry : browserLogentries) {
-                // System.out.println("Custom-->"+logEntry.getMessage());
-                items++;
+            for (LogEntry logEntry : browserLogentries) {                       
+                if (logEntry.getLevel().equals(Level.SEVERE)) {
+                    //System.out.println("Custom-->"+logEntry.getMessage());
+                    items++;
+                }
             }
-            assertEquals(2, items);
+            assertEquals(0, items);
         } catch (Exception e) {            
             Assert.fail(e.getMessage());
         } finally {
