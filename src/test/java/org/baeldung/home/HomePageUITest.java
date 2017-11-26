@@ -45,7 +45,7 @@ public final class HomePageUITest {
             homePageDriver.clickNewsletterButton();
 
             newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
-            System.out.print("Tag Name-->"+newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().getTagName());
+            System.out.print("is displayed-->"+newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
             assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
             assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
 
