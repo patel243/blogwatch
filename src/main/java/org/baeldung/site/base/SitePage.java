@@ -15,4 +15,8 @@ public class SitePage extends BlogBaseDriver {
     public WebElement findContentDiv() {
         return this.getWebDriver().findElement(By.xpath(".//section[1]/div[contains(@class, 'short_box short_start')][1]"));
     }
+    
+    public WebElement findPopupCloseButton() {
+        return this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[1][contains(@class, 'tve_ea_thrive_leads_form_close')]"));
+    }
 }
