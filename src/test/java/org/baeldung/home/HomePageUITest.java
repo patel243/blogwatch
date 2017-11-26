@@ -43,7 +43,7 @@ public final class HomePageUITest {
             homePageDriver.openNewWindowAndLoadPage();
 
             homePageDriver.clickNewsletterButton();
-
+            Thread.sleep(1000);
             newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
             System.out.print("is displayed-->"+newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
             assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
