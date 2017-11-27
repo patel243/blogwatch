@@ -2,7 +2,9 @@ package org.baeldung.site.base;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.baeldung.config.SeleniumConfig;
+import org.baeldung.config.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +15,7 @@ public abstract class BlogBaseDriver {
     private SeleniumConfig seleniumConfig;
 
     @Value("${base.url}")
-    private String baseURL;
+    private String baseURL;        
 
     protected String pageURL;
 
@@ -61,7 +63,15 @@ public abstract class BlogBaseDriver {
     protected abstract void setPageURL(String pageURL);
 
     public String getBaseURL() {
+        if (StringUtils.isEmpty(this.baseURL)) {
+            return GlobalConstants.BAELDUNG_HOME_PAGE_URL;
+        }
         return baseURL;
     }
+
+    public boolean isLaunchFlag() {
+        return Boolean.parseBoolean(System.getenv(GlobalConstants.LAUNCH_FLAG));
+    } 
+    
 
 }

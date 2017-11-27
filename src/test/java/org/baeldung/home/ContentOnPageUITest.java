@@ -36,10 +36,10 @@ public class ContentOnPageUITest {
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
-                try {
+                try {                   
                     page.setPageURL(page.getBaseURL() + URL);
                     page.openNewWindowAndLoadPage();
-                    assertTrue(page.findContentDiv().isDisplayed());
+                    assertTrue(page.findContentDiv().isDisplayed());                    
                     page.quiet();
                 } catch (Exception e) {
                     urlsWithNoContent.add(page.getBaseURL() + URL);
@@ -59,8 +59,13 @@ public class ContentOnPageUITest {
     }
     
     @Test
-    public final void whenPageWithPopup_thenPopHasCloseButton() {
+    public final void whenPageWithPopup_thenPopupHasCloseButton() {
         try {
+            System.out.println(page.isLaunchFlag());
+            if (page.isLaunchFlag())
+            {
+                return;
+            }
             page.setPageURL(page.getBaseURL() + "/rest-with-spring-series/");
             page.openNewWindowAndLoadPage();                       
             WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 40);
