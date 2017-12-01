@@ -86,7 +86,7 @@ public final class HomePageUITest {
     }
 
     @Test
-    public final void verifyImagesInSpringMicroservicesGuidePage() {
+    public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         try {
             this.springMicroservicesGuidePage.openNewWindowAndLoadPage();
             springMicroservicesGuidePage.clickAccessTheGuideButton();
