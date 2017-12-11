@@ -1,5 +1,6 @@
 package org.baeldung.home;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -10,11 +11,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
+import org.baeldung.config.GlobalConstants;
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,13 +73,34 @@ public class ContentOnPageUITest {
             page.setPageURL(page.getBaseURL() + "/rest-with-spring-series/");
             page.openNewWindowAndLoadPage();                       
             WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 40);
-            wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));            
-            page.quiet();
+            wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));                        
         } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
             page.quiet();
 
+        }
+
+    }
+    
+    //<pre> tags in article generates HTML table with div having value either 1 or blank or space
+    @Test
+    public final void whenPageLods_thenNoEmptyDivs() {
+        try {            
+            page.setPageURL(page.getBaseURL() + "/jackson-serialize-dates/");
+            page.openNewWindowAndLoadPage();                                   
+            List<WebElement>  potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
+            potentiallyEmptyDivs.forEach(webElement->{
+                //System.out.println("value="+webElement.getText()+"=");
+               // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
+                assertFalse(StringUtils.isBlank(webElement.getText()));
+                assertFalse(webElement.getText().equals(GlobalConstants.STRING_WITH_SINGLE_SPACE));
+            });
+            
+        } catch (Exception e) {
+            Assert.fail(e.getMessage());
+        } finally {
+            page.quiet();
         }
 
     }
