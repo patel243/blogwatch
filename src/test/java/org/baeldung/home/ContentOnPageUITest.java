@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.baeldung.config.GlobalConstants;
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
 import org.junit.Assert;
@@ -93,8 +92,7 @@ public class ContentOnPageUITest {
             potentiallyEmptyDivs.forEach(webElement->{
                 //System.out.println("value="+webElement.getText()+"=");
                // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
-                assertFalse(StringUtils.isBlank(webElement.getText()));
-                assertFalse(webElement.getText().equals(GlobalConstants.STRING_WITH_SINGLE_SPACE));
+                assertFalse(StringUtils.isBlank(webElement.getText().trim()));               
             });
             
         } catch (Exception e) {
