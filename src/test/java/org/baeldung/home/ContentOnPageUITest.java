@@ -45,8 +45,7 @@ public class ContentOnPageUITest {
                     page.loadPage();
                     assertTrue(page.findContentDiv().isDisplayed());                                        
                 } catch (Exception e) {
-                    urlsWithNoContent.add(page.getBaseURL() + URL);
-                    page.quiet();
+                    urlsWithNoContent.add(page.getBaseURL() + URL);                    
                 }
             });
             if (urlsWithNoContent.size() > 0) {
@@ -86,21 +85,39 @@ public class ContentOnPageUITest {
     //<pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
     public final void whenPageLods_thenNoEmptyDivs() {
-        try {            
-            page.setPageURL(page.getBaseURL() + "/jackson-serialize-dates/");
-            page.openNewWindowAndLoadPage();                                   
-            List<WebElement>  potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
-            potentiallyEmptyDivs.forEach(webElement->{
-                //System.out.println("value="+webElement.getText()+"=");
-               // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
-                assertFalse(StringUtils.isBlank(webElement.getText().trim()));               
+        
+        Stream<String> URLs = null;
+        try {
+            List<String> urlsWithEmptyDivs = new ArrayList<String>();
+            File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
+            URLs = Files.lines(Paths.get(file.getAbsolutePath()));
+            page.openNewWindow();
+            URLs.forEach(URL -> {
+                try {              
+                    System.out.println("Page="+URL);
+                    page.setPageURL(page.getBaseURL() + URL);
+                    page.loadPage();
+                    List<WebElement>  potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
+                    potentiallyEmptyDivs.forEach(webElement->{
+                        //System.out.println("value="+webElement.getText()+"=");
+                       // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
+                        assertFalse(StringUtils.isBlank(webElement.getText().trim()));               
+                    });                                     
+                } catch (Exception e) {
+                    urlsWithEmptyDivs.add(page.getBaseURL() + URL);                   
+                }
             });
-            
+            if (urlsWithEmptyDivs.size() > 0) {
+                Assert.fail("URL with No content--->" + urlsWithEmptyDivs.stream().collect(Collectors.joining("\n")));
+            }
         } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
             page.quiet();
-        }
+            if (null != URLs) {
+                URLs.close();
+            }
+        }                
 
     }
 
