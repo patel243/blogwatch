@@ -88,9 +88,8 @@ public final class HomePageUITest {
     @Test
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         try {
-            homePageDriver.openNewWindowAndLoadPage();
-            springMicroservicesGuidePage.clickAccessTheGuideButton();
-            Thread.sleep(1000);
+            this.springMicroservicesGuidePage.openNewWindowAndLoadPage();
+            springMicroservicesGuidePage.clickAccessTheGuideButton();            
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
         } catch (Exception e) {
