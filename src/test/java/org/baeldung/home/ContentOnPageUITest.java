@@ -38,12 +38,12 @@ public class ContentOnPageUITest {
             List<String> urlsWithNoContent = new ArrayList<String>();
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
+            page.openNewWindow();
             URLs.forEach(URL -> {
-                try {                   
+                try {                      
                     page.setPageURL(page.getBaseURL() + URL);
-                    page.openNewWindowAndLoadPage();
-                    assertTrue(page.findContentDiv().isDisplayed());                    
-                    page.quiet();
+                    page.loadPage();
+                    assertTrue(page.findContentDiv().isDisplayed());                                        
                 } catch (Exception e) {
                     urlsWithNoContent.add(page.getBaseURL() + URL);
                     page.quiet();
@@ -55,6 +55,7 @@ public class ContentOnPageUITest {
         } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
+            page.quiet();
             if (null != URLs) {
                 URLs.close();
             }

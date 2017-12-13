@@ -90,6 +90,7 @@ public final class HomePageUITest {
         try {
             homePageDriver.openNewWindowAndLoadPage();
             springMicroservicesGuidePage.clickAccessTheGuideButton();
+            Thread.sleep(1000);
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
         } catch (Exception e) {
@@ -103,7 +104,7 @@ public final class HomePageUITest {
     public final void whenHomePageLods_thenItContainsCategories() {
         try {
             homePageDriver.openNewWindowAndLoadPage();
-            assertTrue( homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());            
+            assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());            
         } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
