@@ -5,7 +5,9 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.baeldung.config.SeleniumConfig;
 import org.baeldung.config.GlobalConstants;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -73,5 +75,8 @@ public abstract class BlogBaseDriver {
         return Boolean.parseBoolean(System.getenv(GlobalConstants.LAUNCH_FLAG));
     } 
     
+    public WebElement findCategoriesContainerInPageFooter() {        
+        return this.getWebDriver().findElement(By.id("menu-categories"));
+    } 
 
 }

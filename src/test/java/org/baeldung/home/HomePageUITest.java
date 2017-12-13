@@ -45,11 +45,11 @@ public final class HomePageUITest {
             homePageDriver.clickNewsletterButton();
             Thread.sleep(1000);
             newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
-            System.out.print("is displayed-->"+newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
+            System.out.print("is displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
             assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
             assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
 
-        } catch (Exception e) {            
+        } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
             newsLettersubscriptionPage.quiet();
@@ -77,7 +77,7 @@ public final class HomePageUITest {
                     assertTrue(expectedLink.equals(webElement.getAttribute("href").toString()));
                 }
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
             homePageDriver.quiet();
@@ -88,32 +88,44 @@ public final class HomePageUITest {
     @Test
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         try {
-            this.springMicroservicesGuidePage.openNewWindowAndLoadPage();
+            homePageDriver.openNewWindowAndLoadPage();
             springMicroservicesGuidePage.clickAccessTheGuideButton();
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
-        } catch (Exception e) {            
+        } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
             springMicroservicesGuidePage.quiet();
         }
     }
 
-    @Test 
+    @Test
+    public final void whenHomePageLods_thenItContainsCategories() {
+        try {
+            homePageDriver.openNewWindowAndLoadPage();
+            assertTrue( homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());            
+        } catch (Exception e) {
+            Assert.fail(e.getMessage());
+        } finally {
+            springMicroservicesGuidePage.quiet();
+        }
+    }
+
+    @Test
     public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
         try {
             homePageDriver.openNewWindowAndLoadPage();
-            
+
             LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
             int items = 0;
-            for (LogEntry logEntry : browserLogentries) {                       
+            for (LogEntry logEntry : browserLogentries) {
                 if (logEntry.getLevel().equals(Level.SEVERE)) {
-                    //System.out.println("Custom-->"+logEntry.getMessage());
+                    // System.out.println("Custom-->"+logEntry.getMessage());
                     items++;
                 }
             }
             assertEquals(0, items);
-        } catch (Exception e) {            
+        } catch (Exception e) {
             Assert.fail(e.getMessage());
         } finally {
             homePageDriver.quiet();
