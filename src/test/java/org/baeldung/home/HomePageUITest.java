@@ -10,7 +10,9 @@ import org.baeldung.config.MainConfig;
 import org.baeldung.site.guide.SpringMicroservicesGuidePage;
 import org.baeldung.site.home.HomePageDriver;
 import org.baeldung.site.home.NewsLettersubscriptionPage;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebElement;
@@ -35,12 +37,17 @@ public final class HomePageUITest {
 
     @Autowired
     SpringMicroservicesGuidePage springMicroservicesGuidePage;
+    
+    @Before
+    public void loadNewWindow() {
+        homePageDriver.openNewWindow();
+    }
 
     @Test
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
 
         try {
-            homePageDriver.openNewWindowAndLoadPage();
+            homePageDriver.loadPage();
 
             homePageDriver.clickNewsletterButton();
             Thread.sleep(1000);
@@ -51,17 +58,13 @@ public final class HomePageUITest {
 
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {
-            newsLettersubscriptionPage.quiet();
-            homePageDriver.quiet();
         }
-
     }
 
     @Test
     public final void javaWeeklyLinksMatchWithLinkText() {
         try {
-            homePageDriver.openNewWindowAndLoadPage();
+            homePageDriver.loadPage();
 
             List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
             String expectedLink;
@@ -79,30 +82,25 @@ public final class HomePageUITest {
             }
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {
-            homePageDriver.quiet();
         }
-
     }
 
     @Test
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         try {
-            this.springMicroservicesGuidePage.openNewWindowAndLoadPage();
+            this.springMicroservicesGuidePage.loadPage();
             springMicroservicesGuidePage.clickAccessTheGuideButton();            
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {
-            springMicroservicesGuidePage.quiet();
         }
     }
 
     @Test
     public final void whenHomePageLods_thenItContainsCategories() {
         try {
-            homePageDriver.openNewWindowAndLoadPage();
+            homePageDriver.loadPage();
             assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());            
         } catch (Exception e) {
             Assert.fail(e.getMessage());
@@ -114,7 +112,7 @@ public final class HomePageUITest {
     @Test
     public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
         try {
-            homePageDriver.openNewWindowAndLoadPage();
+            homePageDriver.loadPage();
 
             LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
             int items = 0;
@@ -127,9 +125,12 @@ public final class HomePageUITest {
             assertEquals(0, items);
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {
-            homePageDriver.quiet();
         }
+    }
+    
+    @After
+    public void closeWindow() {
+        homePageDriver.quiet();
     }
 
 }

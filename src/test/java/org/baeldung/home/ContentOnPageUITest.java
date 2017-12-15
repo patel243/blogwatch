@@ -14,7 +14,9 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebElement;
@@ -30,6 +32,11 @@ public class ContentOnPageUITest {
 
     @Autowired
     SitePage page;
+    
+    @Before
+    public void loadNewWindow() {
+        page.openNewWindow();
+    }
 
     @Test
     public final void whenPageLoads_thenContentDivExists() {
@@ -37,8 +44,7 @@ public class ContentOnPageUITest {
         try {
             List<String> urlsWithNoContent = new ArrayList<String>();
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
-            URLs = Files.lines(Paths.get(file.getAbsolutePath()));
-            page.openNewWindow();
+            URLs = Files.lines(Paths.get(file.getAbsolutePath()));            
             URLs.forEach(URL -> {
                 try {                      
                     page.setPageURL(page.getBaseURL() + URL);
@@ -53,8 +59,7 @@ public class ContentOnPageUITest {
             }
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {
-            page.quiet();
+        } finally {          
             if (null != URLs) {
                 URLs.close();
             }
@@ -70,16 +75,12 @@ public class ContentOnPageUITest {
                 return;
             }
             page.setPageURL(page.getBaseURL() + "/rest-with-spring-series/");
-            page.openNewWindowAndLoadPage();                       
+            page.loadPage();                       
             WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 40);
             wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));                        
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {
-            page.quiet();
-
-        }
-
+        } 
     }
     
     //<pre> tags in article generates HTML table with div having value either 1 or blank or space
@@ -90,8 +91,7 @@ public class ContentOnPageUITest {
         try {
             List<String> urlsWithEmptyDivs = new ArrayList<String>();
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
-            URLs = Files.lines(Paths.get(file.getAbsolutePath()));
-            page.openNewWindow();
+            URLs = Files.lines(Paths.get(file.getAbsolutePath()));            
             URLs.forEach(URL -> {
                 try {              
                     System.out.println("Page="+URL);
@@ -112,13 +112,15 @@ public class ContentOnPageUITest {
             }
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {
-            page.quiet();
+        } finally {           
             if (null != URLs) {
                 URLs.close();
             }
         }                
-
     }
-
+    
+    @After
+    public void closeWindow() {
+        page.quiet();
+    }    
 }
