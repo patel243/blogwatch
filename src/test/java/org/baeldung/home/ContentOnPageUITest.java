@@ -111,7 +111,7 @@ public class ContentOnPageUITest {
                 Assert.fail("URL with No content--->" + urlsWithEmptyDivs.stream().collect(Collectors.joining("\n")));
             }
         } catch (Exception e) {
-            System.out.println("error message-->" + e.getMessage());
+            e.printStackTrace();
             Assert.fail(e.getMessage());
         } finally {
             if (null != URLs) {
