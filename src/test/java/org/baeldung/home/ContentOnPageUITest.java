@@ -32,7 +32,7 @@ public class ContentOnPageUITest {
 
     @Autowired
     SitePage page;
-    
+
     @Before
     public void loadNewWindow() {
         page.openNewWindow();
@@ -44,14 +44,14 @@ public class ContentOnPageUITest {
         try {
             List<String> urlsWithNoContent = new ArrayList<String>();
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
-            URLs = Files.lines(Paths.get(file.getAbsolutePath()));            
+            URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
-                try {                      
+                try {
                     page.setPageURL(page.getBaseURL() + URL);
                     page.loadPage();
-                    assertTrue(page.findContentDiv().isDisplayed());                                        
+                    assertTrue(page.findContentDiv().isDisplayed());
                 } catch (Exception e) {
-                    urlsWithNoContent.add(page.getBaseURL() + URL);                    
+                    urlsWithNoContent.add(page.getBaseURL() + URL);
                 }
             });
             if (urlsWithNoContent.size() > 0) {
@@ -59,52 +59,51 @@ public class ContentOnPageUITest {
             }
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {          
+        } finally {
             if (null != URLs) {
                 URLs.close();
             }
         }
     }
-    
+
     @Test
     public final void whenPageWithPopup_thenPopupHasCloseButton() {
         try {
             System.out.println(page.isLaunchFlag());
-            if (page.isLaunchFlag())
-            {
+            if (page.isLaunchFlag()) {
                 return;
             }
             page.setPageURL(page.getBaseURL() + "/rest-with-spring-series/");
-            page.loadPage();                       
+            page.loadPage();
             WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 40);
-            wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));                        
+            wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } 
+        }
     }
-    
-    //<pre> tags in article generates HTML table with div having value either 1 or blank or space
+
+    // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
     public final void whenPageLods_thenNoEmptyDivs() {
-        
+
         Stream<String> URLs = null;
         try {
             List<String> urlsWithEmptyDivs = new ArrayList<String>();
             File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
-            URLs = Files.lines(Paths.get(file.getAbsolutePath()));            
+            URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
-                try {              
-                    System.out.println("Page="+URL);
+                try {
+                    System.out.println("Page=" + URL);
                     page.setPageURL(page.getBaseURL() + URL);
                     page.loadPage();
-                    List<WebElement>  potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
-                    potentiallyEmptyDivs.forEach(webElement->{
-                        //System.out.println("value="+webElement.getText()+"=");
-                       // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
-                        assertFalse(StringUtils.isBlank(webElement.getText().trim()));               
-                    });                                     
+                    List<WebElement> potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
+                    potentiallyEmptyDivs.forEach(webElement -> {
+                        // System.out.println("value="+webElement.getText()+"=");
+                        // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
+                        assertFalse(StringUtils.isBlank(webElement.getText().trim()));
+                    });
                 } catch (Exception e) {
-                    urlsWithEmptyDivs.add(page.getBaseURL() + URL);                   
+                    urlsWithEmptyDivs.add(page.getBaseURL() + URL);
                 }
             });
             if (urlsWithEmptyDivs.size() > 0) {
@@ -112,15 +111,15 @@ public class ContentOnPageUITest {
             }
         } catch (Exception e) {
             Assert.fail(e.getMessage());
-        } finally {           
+        } finally {
             if (null != URLs) {
                 URLs.close();
             }
-        }                
+        }
     }
-    
+
     @After
     public void closeWindow() {
         page.quiet();
-    }    
+    }
 }
