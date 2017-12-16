@@ -35,7 +35,7 @@
 					<artifactId>selenium-safari-driver</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency>				
 
 		<!-- Spring -->
 
@@ -64,6 +64,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>${jdom.version}</version>
 		</dependency>
 
 		<!-- logging -->
@@ -131,13 +137,13 @@
 			<version>${mockito.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>com.jayway.restassured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest-assured.version}</version>
-            <scope>test</scope>
-        </dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -173,12 +179,10 @@
 	</build>
 
 	<profiles>
-	
+
 		<profile>
 			<id>headless-browser-windows</id>
-			<!-- <activation>
-				<activeByDefault>true</activeByDefault>
-			</activation> -->
+			<!-- <activation> <activeByDefault>true</activeByDefault> </activation> -->
 			<properties>
 				<spring.profiles.active>headless-browser</spring.profiles.active>
 				<target.env>win</target.env>
@@ -186,22 +190,22 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>headless-browser-linux</id>			
+			<id>headless-browser-linux</id>
 			<properties>
 				<spring.profiles.active>headless-browser</spring.profiles.active>
 				<target.env>linux</target.env>
 				<base.url>http://www.baeldung.com</base.url>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>ui-browser-windows</id>
 			<properties>
-				<spring.profiles.active>ui-browser</spring.profiles.active>	
-				<base.url>http://www.baeldung.com</base.url>			
+				<spring.profiles.active>ui-browser</spring.profiles.active>
+				<base.url>http://www.baeldung.com</base.url>
 			</properties>
 		</profile>
-		
+
 	</profiles>
 
 	<properties>
@@ -211,6 +215,7 @@
 		<!-- commons and utils -->
 		<commons-lang3.version>3.5</commons-lang3.version>
 		<guava.version>21.0</guava.version>
+		<jdom.version>2.0.2</jdom.version>
 
 		<!-- logging -->
 		<org.slf4j.version>1.7.25</org.slf4j.version>

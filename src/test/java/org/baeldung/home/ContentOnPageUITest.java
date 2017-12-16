@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
+import org.baeldung.config.GlobalConstants;
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
 import org.junit.After;
@@ -43,7 +44,7 @@ public class ContentOnPageUITest {
         Stream<String> URLs = null;
         try {
             List<String> urlsWithNoContent = new ArrayList<String>();
-            File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
+            File file = new File(getClass().getClassLoader().getResource(GlobalConstants.SAMPLE_ARTICLES_FILE_NAME).getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
                 try {
@@ -89,7 +90,7 @@ public class ContentOnPageUITest {
         Stream<String> URLs = null;
         try {
             List<String> urlsWithEmptyDivs = new ArrayList<String>();
-            File file = new File(getClass().getClassLoader().getResource("url-list-to-check-content.txt").getPath());
+            File file = new File(getClass().getClassLoader().getResource(GlobalConstants.SAMPLE_ARTICLES_FILE_NAME).getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
                 try {
