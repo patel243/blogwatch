@@ -16,4 +16,6 @@ public class GlobalConstants {
     public static String ALL_PAGES_FILE_NAME = "all-pages.txt";
     public static String SAMPLE_PAGES_FILE_NAME = "sample-pages.txt";
     
+    public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH = "./blog-url-list/";
+    
 }

@@ -44,7 +44,7 @@ public class ContentOnPageUITest {
         Stream<String> URLs = null;
         try {
             List<String> urlsWithNoContent = new ArrayList<String>();
-            File file = new File(getClass().getClassLoader().getResource(GlobalConstants.SAMPLE_ARTICLES_FILE_NAME).getPath());
+            File file = new File(getClass().getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.SAMPLE_ARTICLES_FILE_NAME).getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
                 try {
@@ -90,7 +90,7 @@ public class ContentOnPageUITest {
         Stream<String> URLs = null;
         try {
             List<String> urlsWithEmptyDivs = new ArrayList<String>();
-            File file = new File(getClass().getClassLoader().getResource(GlobalConstants.SAMPLE_ARTICLES_FILE_NAME).getPath());
+            File file = new File(getClass().getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.SAMPLE_ARTICLES_FILE_NAME).getPath());
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
                 try {
