@@ -120,6 +120,20 @@ public class ContentOnPageUITest {
         }
     }
 
+    @Test
+    public final void givePageWithNoTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
+        try {
+            page.setPageURL(page.getBaseURL() + "/java-weekly-sponsorship/");
+            page.loadPage();
+            List<WebElement> pageWithNoTitleInBody = page.pagesWithNotitleTextInBody();
+            if (pageWithNoTitleInBody.size() > 0) {
+                Assert.fail("Page found with '[No Title]: ID' text in body, URL:->" + page.getPageURL());
+            }
+        } catch (Exception e) {
+            Assert.fail(e.getMessage());
+        }
+    }
+
     @After
     public void closeWindow() {
         page.quiet();
