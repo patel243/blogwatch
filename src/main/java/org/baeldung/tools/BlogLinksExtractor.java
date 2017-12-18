@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.baeldung.config.GlobalConstants;
 import org.baeldung.config.SeleniumHeadlessBrowserConfig;
@@ -51,8 +53,8 @@ public class BlogLinksExtractor {
         // Document document = saxBuilder.build(new ByteArrayInputStream(webDriver.getPageSource().getBytes()));
         HttpURLConnection conn;
         try {
-            URL url = new URL(GlobalConstants.PAGES_SITEMAP_URL);
-            conn = (HttpURLConnection) url.openConnection();
+            URL pageURL = new URL(GlobalConstants.PAGES_SITEMAP_URL);
+            conn = (HttpURLConnection) pageURL.openConnection();
             conn.setRequestProperty("User-Agent", "Mozilla 5.0");
 
             SAXBuilder saxBuilder = new SAXBuilder();
@@ -60,12 +62,16 @@ public class BlogLinksExtractor {
             Namespace defaultNamespace = document.getRootElement().getNamespace();
             List<Element> urlElements = document.getRootElement().getChildren("url", defaultNamespace);
 
-            File file = new File(System.getenv("resources.siteurl.path") + GlobalConstants.ALL_PAGES_FILE_NAME);
+            File file = new File(System.getenv(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE) + GlobalConstants.ALL_PAGES_FILE_NAME);
             Path allpagesFilePath = Paths.get(file.getAbsolutePath());
-            Files.write(allpagesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+            // Files.write(allpagesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
             urlElements.forEach(urlNode -> {
                 try {
-                    Files.write(allpagesFilePath, (urlNode.getChild("loc", defaultNamespace).getText().substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length()) + "\n").getBytes(), StandardOpenOption.APPEND);
+                    String url = urlNode.getChild("loc", defaultNamespace).getText().substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
+                    if (!urlAlreadyAvailable(allpagesFilePath, url)) {
+                        System.out.println("New Page URL found->" + url);
+                        Files.write(allpagesFilePath, (url + "\n").getBytes(), StandardOpenOption.APPEND);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -75,26 +81,33 @@ public class BlogLinksExtractor {
         }
     }
 
+    private boolean urlAlreadyAvailable(Path allpagesFilePath, String url) throws IOException {
+        try (Stream<String> lines = Files.lines(allpagesFilePath)) {
+            Optional<String> hasPassword = lines.filter(s -> s.contains(url)).findFirst();
+            if (hasPassword.isPresent()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void createArticlesList() {
         webDriver.get(GlobalConstants.FULL_ARCHIVE_URL);
         List<WebElement> archiveURLElemets = webDriver.findElements(By.xpath("//ul[contains(@class, 'car-list')]//a"));
-        try {
-
-            File file = new File(System.getenv("resources.siteurl.path") + GlobalConstants.ALL_ARTICLES_FILE_NAME);
-            Path allArtilcesFilePath = Paths.get(file.getAbsolutePath());
-            Files.write(allArtilcesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-            archiveURLElemets.forEach(anchorTag -> {
-                try {
+        File file = new File(System.getenv(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE) + GlobalConstants.ALL_ARTICLES_FILE_NAME);
+        Path allArtilcesFilePath = Paths.get(file.getAbsolutePath());
+        // Files.write(allArtilcesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+        archiveURLElemets.forEach(anchorTag -> {
+            try {
+                String url = anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
+                if (!urlAlreadyAvailable(allArtilcesFilePath, url)) {
+                    System.out.println("New Page URL found->" + url);
                     Files.write(allArtilcesFilePath, (anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length()) + "\n").getBytes(), StandardOpenOption.APPEND);
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
-            });
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 

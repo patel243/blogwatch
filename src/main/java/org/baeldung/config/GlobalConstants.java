@@ -18,4 +18,6 @@ public class GlobalConstants {
     
     public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH = "./blog-url-list/";
     
+    public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
+    
 }
