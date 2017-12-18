@@ -7,4 +7,4 @@ blogwatch
 - ui browser has been configured with Firefox and tested with Firefox version 56.0 (64 bit) on windows 
 - javascript message tests only work in headless browser as geckodriver is an implementation of W3C WebDriver which doesn’t specify a log interface at the moment, so this is expected behaviour.
 - BaseURL can be switched by setting base.url property using mavn, for example -Dbase.url=http://www.baeldung.com
-	
+- BlogLinksExtractor updated articles and pages URLs. To use it, set environment variable named blog-url-list. It's value should be absolute path to resources/blog-url-list directory.

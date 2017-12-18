@@ -23,6 +23,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class BlogLinksExtractor {
+    
+    //set environment variable named blog-url-list. It's value should be absolute path to resources/blog-url-list directory.
 
     SeleniumHeadlessBrowserConfig headLessBrowser;
     WebDriver webDriver;
