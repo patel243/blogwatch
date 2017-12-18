@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import com.google.common.util.concurrent.RateLimiter;
+
 @Configuration
 @ComponentScan("org.baeldung.site")
 @PropertySource({ "classpath:smoke-${smokeTarget:dev}.properties" })
@@ -27,6 +29,11 @@ public class MainConfig {
         return new SeleniumUIBrowserConfig();
     }
 
+    @Bean
+    public  RateLimiter createRateLimiter() {
+        return  RateLimiter.create(1);
+    }
+    
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();

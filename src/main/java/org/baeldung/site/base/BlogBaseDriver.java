@@ -11,10 +11,15 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.google.common.util.concurrent.RateLimiter;
+
 public abstract class BlogBaseDriver {
 
     @Autowired
     private SeleniumConfig seleniumConfig;
+    
+    @Autowired
+    RateLimiter rateLimiter;
 
     @Value("${base.url}")
     private String baseURL;        
@@ -26,7 +31,12 @@ public abstract class BlogBaseDriver {
         this.seleniumConfig.getDriver();
     }
 
-    public void loadPage() {
+    public void loadPage() {        
+        this.getWebDriver().get(this.pageURL);
+    }
+    
+    public void loadPageWithThrottling() { 
+        rateLimiter.acquire();
         this.getWebDriver().get(this.pageURL);
     }
 

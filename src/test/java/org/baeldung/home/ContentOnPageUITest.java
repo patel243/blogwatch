@@ -49,7 +49,8 @@ public class ContentOnPageUITest {
             URLs.forEach(URL -> {
                 try {
                     page.setPageURL(page.getBaseURL() + URL);
-                    page.loadPage();
+                    //page.loadPage();
+                    page.loadPageWithThrottling();
                     assertTrue(page.findContentDiv().isDisplayed());
                 } catch (Exception e) {
                     urlsWithNoContent.add(page.getBaseURL() + URL);
@@ -96,7 +97,8 @@ public class ContentOnPageUITest {
                 try {
                     System.out.println("Page=" + URL);
                     page.setPageURL(page.getBaseURL() + URL);
-                    page.loadPage();
+                    //page.loadPage();
+                    page.loadPageWithThrottling();
                     List<WebElement> potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
                     potentiallyEmptyDivs.forEach(webElement -> {
                         // System.out.println("value="+webElement.getText()+"=");
