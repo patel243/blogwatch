@@ -1402,3 +1402,6 @@
 /integration-testing-with-the-maven-cargo-plugin
 /integration-testing-a-rest-api
 /testing-the-java-service-layer
+/java-polymorphism
+/lucene
+/custom-logback-appender
