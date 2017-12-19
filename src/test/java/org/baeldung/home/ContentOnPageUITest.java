@@ -1,7 +1,8 @@
 package org.baeldung.home;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -15,26 +16,25 @@ import org.apache.commons.lang3.StringUtils;
 import org.baeldung.config.GlobalConstants;
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { MainConfig.class })
 public class ContentOnPageUITest {
 
     @Autowired
     SitePage page;
 
-    @Before
+    @BeforeEach
     public void loadNewWindow() {
         page.openNewWindow();
     }
@@ -49,7 +49,7 @@ public class ContentOnPageUITest {
             URLs.forEach(URL -> {
                 try {
                     page.setPageURL(page.getBaseURL() + URL);
-                    //page.loadPage();
+                    // page.loadPage();
                     page.loadPageWithThrottling();
                     assertTrue(page.findContentDiv().isDisplayed());
                 } catch (Exception e) {
@@ -57,10 +57,10 @@ public class ContentOnPageUITest {
                 }
             });
             if (urlsWithNoContent.size() > 0) {
-                Assert.fail("URL with No content--->" + urlsWithNoContent.stream().collect(Collectors.joining("\n")));
+                fail("URL with No content--->" + urlsWithNoContent.stream().collect(Collectors.joining("\n")));
             }
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         } finally {
             if (null != URLs) {
                 URLs.close();
@@ -80,7 +80,7 @@ public class ContentOnPageUITest {
             WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 40);
             wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         }
     }
 
@@ -97,7 +97,7 @@ public class ContentOnPageUITest {
                 try {
                     System.out.println("Page=" + URL);
                     page.setPageURL(page.getBaseURL() + URL);
-                    //page.loadPage();
+                    // page.loadPage();
                     page.loadPageWithThrottling();
                     List<WebElement> potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
                     potentiallyEmptyDivs.forEach(webElement -> {
@@ -110,11 +110,11 @@ public class ContentOnPageUITest {
                 }
             });
             if (urlsWithEmptyDivs.size() > 0) {
-                Assert.fail("URL with No content--->" + urlsWithEmptyDivs.stream().collect(Collectors.joining("\n")));
+                fail("URL with No content--->" + urlsWithEmptyDivs.stream().collect(Collectors.joining("\n")));
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         } finally {
             if (null != URLs) {
                 URLs.close();
@@ -129,14 +129,14 @@ public class ContentOnPageUITest {
             page.loadPage();
             List<WebElement> pageWithNoTitleInBody = page.pagesWithNotitleTextInBody();
             if (pageWithNoTitleInBody.size() > 0) {
-                Assert.fail("Page found with '[No Title]: ID' text in body, URL:->" + page.getPageURL());
+                fail("Page found with '[No Title]: ID' text in body, URL:->" + page.getPageURL());
             }
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         }
     }
 
-    @After
+    @AfterEach
     public void closeWindow() {
         page.quiet();
     }

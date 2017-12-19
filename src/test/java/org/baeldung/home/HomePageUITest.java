@@ -1,7 +1,8 @@
 package org.baeldung.home;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -10,22 +11,21 @@ import org.baeldung.config.MainConfig;
 import org.baeldung.site.guide.SpringMicroservicesGuidePage;
 import org.baeldung.site.home.HomePageDriver;
 import org.baeldung.site.home.NewsLettersubscriptionPage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.jayway.restassured.RestAssured;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { MainConfig.class })
 public final class HomePageUITest {
 
@@ -37,8 +37,8 @@ public final class HomePageUITest {
 
     @Autowired
     SpringMicroservicesGuidePage springMicroservicesGuidePage;
-    
-    @Before
+
+    @BeforeEach
     public void loadNewWindow() {
         homePageDriver.openNewWindow();
     }
@@ -57,7 +57,7 @@ public final class HomePageUITest {
             assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
 
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ public final class HomePageUITest {
                 }
             }
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         }
     }
 
@@ -89,11 +89,11 @@ public final class HomePageUITest {
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         try {
             this.springMicroservicesGuidePage.loadPage();
-            springMicroservicesGuidePage.clickAccessTheGuideButton();            
+            springMicroservicesGuidePage.clickAccessTheGuideButton();
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
             assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         }
     }
 
@@ -101,9 +101,9 @@ public final class HomePageUITest {
     public final void whenHomePageLods_thenItContainsCategories() {
         try {
             homePageDriver.loadPage();
-            assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());            
+            assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         } finally {
             springMicroservicesGuidePage.quiet();
         }
@@ -124,11 +124,11 @@ public final class HomePageUITest {
             }
             assertEquals(0, items);
         } catch (Exception e) {
-            Assert.fail(e.getMessage());
+            fail(e.getMessage());
         }
     }
-    
-    @After
+
+    @AfterEach
     public void closeWindow() {
         homePageDriver.quiet();
     }
