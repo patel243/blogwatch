@@ -7,12 +7,14 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.List;
 import java.util.logging.Level;
 
+import org.baeldung.config.GlobalConstants;
 import org.baeldung.config.MainConfig;
 import org.baeldung.site.guide.SpringMicroservicesGuidePage;
 import org.baeldung.site.home.HomePageDriver;
 import org.baeldung.site.home.NewsLettersubscriptionPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebElement;
@@ -43,7 +45,8 @@ public final class HomePageUITest {
         homePageDriver.openNewWindow();
     }
 
-    @Test
+    @Test    
+    @Tag(GlobalConstants.SINGLE_URL)
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
 
         try {
@@ -62,6 +65,7 @@ public final class HomePageUITest {
     }
 
     @Test
+    @Tag(GlobalConstants.SINGLE_URL)
     public final void javaWeeklyLinksMatchWithLinkText() {
         try {
             homePageDriver.loadPage();
@@ -86,6 +90,7 @@ public final class HomePageUITest {
     }
 
     @Test
+    @Tag(GlobalConstants.SINGLE_URL)
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         try {
             this.springMicroservicesGuidePage.loadPage();
@@ -98,7 +103,8 @@ public final class HomePageUITest {
     }
 
     @Test
-    public final void whenHomePageLods_thenItContainsCategories() {
+    @Tag(GlobalConstants.SINGLE_URL)
+    public final void whenHomePageLods_thenItContainsCategoriesInFooterMenu() {
         try {
             homePageDriver.loadPage();
             assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
@@ -110,6 +116,7 @@ public final class HomePageUITest {
     }
 
     @Test
+    @Tag(GlobalConstants.SINGLE_URL)
     public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
         try {
             homePageDriver.loadPage();

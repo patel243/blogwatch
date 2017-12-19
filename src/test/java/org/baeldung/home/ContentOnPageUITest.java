@@ -18,6 +18,7 @@ import org.baeldung.config.MainConfig;
 import org.baeldung.site.base.SitePage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebElement;
@@ -40,6 +41,7 @@ public class ContentOnPageUITest {
     }
 
     @Test
+    @Tag(GlobalConstants.MULTI_URL)
     public final void whenPageLoads_thenContentDivExists() {
         Stream<String> URLs = null;
         try {
@@ -69,6 +71,7 @@ public class ContentOnPageUITest {
     }
 
     @Test
+    @Tag(GlobalConstants.SINGLE_URL)
     public final void whenPageWithPopup_thenPopupHasCloseButton() {
         try {
             System.out.println(page.isLaunchFlag());
@@ -86,6 +89,7 @@ public class ContentOnPageUITest {
 
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
+    @Tag(GlobalConstants.MULTI_URL)
     public final void whenPageLods_thenNoEmptyDivs() {
 
         Stream<String> URLs = null;
@@ -122,7 +126,8 @@ public class ContentOnPageUITest {
         }
     }
 
-    @Test
+    @Test    
+    @Tag(GlobalConstants.SINGLE_URL)
     public final void givePageWithNoTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
         try {
             page.setPageURL(page.getBaseURL() + "/java-weekly-sponsorship/");
