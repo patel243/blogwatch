@@ -101,7 +101,7 @@ public class ContentOnPageUITest {
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
                 try {
-                    //System.out.println("Page=" + URL);
+                    // System.out.println("Page=" + URL);
                     page.setPageURL(page.getBaseURL() + URL);
                     // page.loadPage();
                     page.loadPageWithThrottling();
@@ -148,7 +148,7 @@ public class ContentOnPageUITest {
     public final void givenTheURL_thenPageLoadsSuccessfully() {
         Stream<String> allArticlesFileContent = null;
         Stream<String> allPagesFileContent = null;
-       page.getWebDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MICROSECONDS);
+        page.getWebDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MICROSECONDS);
         try {
             List<String> badURLs = new ArrayList<String>();
             File allArticlesFile = new File(getClass().getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_ARTICLES_FILE_NAME).getPath());
@@ -156,18 +156,17 @@ public class ContentOnPageUITest {
             allArticlesFileContent = Files.lines(Paths.get(allArticlesFile.getAbsolutePath()));
             allPagesFileContent = Files.lines(Paths.get(allPagesFile.getAbsolutePath()));
             Stream.concat(allArticlesFileContent, allPagesFileContent).forEach(URL -> {
-                try {                    
+                try {
                     page.setPageURL(page.getBaseURL() + URL);
                     page.loadPageWithThrottling();
-                    try {                        
-                        if (page.findPageNotFoundElement().isDisplayed()) {                            
+                    try {
+                        if (page.findPageNotFoundElement().isDisplayed()) {
                             badURLs.add(page.getBaseURL() + URL);
                         }
-                    } catch (NoSuchElementException e) {                       
+                    } catch (NoSuchElementException e) {
                         //
-                        System.out.println("URL OK =" + URL);
-                    }                    
-                } catch (Exception e) {                      
+                    }
+                } catch (Exception e) {
                     badURLs.add(page.getBaseURL() + URL);
                 }
             });
