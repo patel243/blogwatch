@@ -179,8 +179,8 @@ public class ContentOnPageUITest {
             if (null != allPagesFileContent) {
                 allPagesFileContent.close();
             }
-            if (null != allPagesFileContent) {
-                allPagesFileContent.close();
+            if (null != allArticlesFileContent) {
+                allArticlesFileContent.close();
             }
         }
     }
