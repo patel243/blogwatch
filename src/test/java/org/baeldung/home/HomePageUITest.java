@@ -46,7 +46,7 @@ public final class HomePageUITest {
     }
 
     @Test    
-    @Tag(GlobalConstants.SINGLE_URL)
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
 
         try {
@@ -65,7 +65,7 @@ public final class HomePageUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.SINGLE_URL)
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void javaWeeklyLinksMatchWithLinkText() {
         try {
             homePageDriver.loadPage();
@@ -90,7 +90,7 @@ public final class HomePageUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.SINGLE_URL)
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         try {
             this.springMicroservicesGuidePage.loadPage();
@@ -103,7 +103,7 @@ public final class HomePageUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.SINGLE_URL)
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLods_thenItContainsCategoriesInFooterMenu() {
         try {
             homePageDriver.loadPage();
@@ -116,7 +116,7 @@ public final class HomePageUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.SINGLE_URL)
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
         try {
             homePageDriver.loadPage();

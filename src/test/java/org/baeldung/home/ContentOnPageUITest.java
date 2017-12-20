@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -41,7 +43,7 @@ public class ContentOnPageUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.MULTI_URL)
+    @Tag(GlobalConstants.TAG_MULTI_URL)
     public final void whenPageLoads_thenContentDivExists() {
         Stream<String> URLs = null;
         try {
@@ -71,7 +73,7 @@ public class ContentOnPageUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.SINGLE_URL)
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenPageWithPopup_thenPopupHasCloseButton() {
         try {
             System.out.println(page.isLaunchFlag());
@@ -89,7 +91,7 @@ public class ContentOnPageUITest {
 
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
-    @Tag(GlobalConstants.MULTI_URL)
+    @Tag(GlobalConstants.TAG_MULTI_URL)
     public final void whenPageLods_thenNoEmptyDivs() {
 
         Stream<String> URLs = null;
@@ -99,7 +101,7 @@ public class ContentOnPageUITest {
             URLs = Files.lines(Paths.get(file.getAbsolutePath()));
             URLs.forEach(URL -> {
                 try {
-                    System.out.println("Page=" + URL);
+                    //System.out.println("Page=" + URL);
                     page.setPageURL(page.getBaseURL() + URL);
                     // page.loadPage();
                     page.loadPageWithThrottling();
@@ -126,8 +128,8 @@ public class ContentOnPageUITest {
         }
     }
 
-    @Test    
-    @Tag(GlobalConstants.SINGLE_URL)
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void givePageWithNoTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
         try {
             page.setPageURL(page.getBaseURL() + "/java-weekly-sponsorship/");
@@ -138,6 +140,49 @@ public class ContentOnPageUITest {
             }
         } catch (Exception e) {
             fail(e.getMessage());
+        }
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_ALL_URLS)
+    public final void givenTheURL_thenPageLoadsSuccessfully() {
+        Stream<String> allArticlesFileContent = null;
+        Stream<String> allPagesFileContent = null;
+       page.getWebDriver().manage().timeouts().implicitlyWait(0, TimeUnit.MICROSECONDS);
+        try {
+            List<String> badURLs = new ArrayList<String>();
+            File allArticlesFile = new File(getClass().getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_ARTICLES_FILE_NAME).getPath());
+            File allPagesFile = new File(getClass().getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_PAGES_FILE_NAME).getPath());
+            allArticlesFileContent = Files.lines(Paths.get(allArticlesFile.getAbsolutePath()));
+            allPagesFileContent = Files.lines(Paths.get(allPagesFile.getAbsolutePath()));
+            Stream.concat(allArticlesFileContent, allPagesFileContent).forEach(URL -> {
+                try {                    
+                    page.setPageURL(page.getBaseURL() + URL);
+                    page.loadPageWithThrottling();
+                    try {                        
+                        if (page.findPageNotFoundElement().isDisplayed()) {                            
+                            badURLs.add(page.getBaseURL() + URL);
+                        }
+                    } catch (NoSuchElementException e) {                       
+                        //
+                        System.out.println("URL OK =" + URL);
+                    }                    
+                } catch (Exception e) {                      
+                    badURLs.add(page.getBaseURL() + URL);
+                }
+            });
+            if (badURLs.size() > 0) {
+                fail("URLs found with potential 404--->" + badURLs.stream().collect(Collectors.joining("\n")));
+            }
+        } catch (Exception e) {
+            fail(e.getMessage());
+        } finally {
+            if (null != allPagesFileContent) {
+                allPagesFileContent.close();
+            }
+            if (null != allPagesFileContent) {
+                allPagesFileContent.close();
+            }
         }
     }
 

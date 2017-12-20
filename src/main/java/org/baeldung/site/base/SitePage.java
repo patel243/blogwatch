@@ -29,4 +29,13 @@ public class SitePage extends BlogBaseDriver {
     public List<WebElement> pagesWithNotitleTextInBody() {
         return this.getWebDriver().findElements(By.xpath("//*[contains(text(), '[No Title]: ID')]"));
     }
+    
+    public WebElement findBodyElement() {
+        return this.getWebDriver().findElement(By.xpath("//body"));
+    }
+    
+    public WebElement findPageNotFoundElement() {
+        return this.getWebDriver().findElement(By.id("post-not-found"));
+    }
+    
 }
