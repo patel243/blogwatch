@@ -1405,3 +1405,8 @@
 /java-polymorphism
 /lucene
 /custom-logback-appender
+/junit-5-test-annotation
+/spring-eclipselink
+/java-word-frequency
+/jdbc-batch-processing
+/new-spring-boot-2
