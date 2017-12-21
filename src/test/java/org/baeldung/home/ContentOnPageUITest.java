@@ -109,7 +109,7 @@ public class ContentOnPageUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_ALL_URLS)
-    public final void givenAlltheArticleURLs_whenArtilesLoads_thenPageLoadsSuccessfully() throws IOException {
+    public final void givenAlltheArticleURLs_whenArtileLoads_thenItDoesNotThrow404() throws IOException {
         page.configureImplicitWait(0, TimeUnit.MICROSECONDS);
         List<String> badURLs = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
@@ -134,7 +134,7 @@ public class ContentOnPageUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_ALL_URLS)
-    public final void givenAllthePageURUsL_whenPageLoads_thenPageLoadsSuccessfully() throws IOException {
+    public final void givenAllThePageURLs_whenPageLoads_thenItDoesNotThrow404() throws IOException {
         page.configureImplicitWait(0, TimeUnit.MICROSECONDS);
         List<String> badURLs = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
