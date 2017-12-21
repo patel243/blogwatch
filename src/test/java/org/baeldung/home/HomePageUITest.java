@@ -2,7 +2,6 @@ package org.baeldung.home;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -45,94 +44,65 @@ public final class HomePageUITest {
         homePageDriver.openNewWindow();
     }
 
-    @Test    
+    @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() {
-
-        try {
-            homePageDriver.loadPage();
-
-            homePageDriver.clickNewsletterButton();
-            Thread.sleep(1000);
-            newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
-            System.out.print("is displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
-            assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
-            assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
-
-        } catch (Exception e) {
-            fail(e.getMessage());
-        }
+    public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() throws InterruptedException {
+        homePageDriver.loadPage();
+        homePageDriver.clickNewsletterButton();
+        Thread.sleep(1000);
+        newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
+        System.out.print("is displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
+        assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
+        assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
     }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void javaWeeklyLinksMatchWithLinkText() {
-        try {
-            homePageDriver.loadPage();
-
-            List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
-            String expectedLink;
-            String issueNumber;
-            for (WebElement webElement : javaWeeklyElements) {
-                issueNumber = webElement.getText().replaceAll("\\D+", "");
-                if (issueNumber.length() > 0) {
-                    expectedLink = (this.homePageDriver.getPageURL() + "/java-weekly-") + issueNumber;
-
-                    System.out.println("expectedLink-->" + expectedLink);
-                    System.out.println("actual  Link-->" + webElement.getAttribute("href"));
-
-                    assertTrue(expectedLink.equals(webElement.getAttribute("href").toString()));
-                }
+        homePageDriver.loadPage();
+        List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
+        String expectedLink;
+        String issueNumber;
+        for (WebElement webElement : javaWeeklyElements) {
+            issueNumber = webElement.getText().replaceAll("\\D+", "");
+            if (issueNumber.length() > 0) {
+                expectedLink = (this.homePageDriver.getPageURL() + "/java-weekly-") + issueNumber;
+                System.out.println("expectedLink-->" + expectedLink);
+                System.out.println("actual  Link-->" + webElement.getAttribute("href"));
+                assertTrue(expectedLink.equals(webElement.getAttribute("href").toString()));
             }
-        } catch (Exception e) {
-            fail(e.getMessage());
         }
     }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
-        try {
-            this.springMicroservicesGuidePage.loadPage();
-            springMicroservicesGuidePage.clickAccessTheGuideButton();
-            assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
-            assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
-        } catch (Exception e) {
-            fail(e.getMessage());
-        }
+        this.springMicroservicesGuidePage.loadPage();
+        springMicroservicesGuidePage.clickAccessTheGuideButton();
+        assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
+        assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
     }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLods_thenItContainsCategoriesInFooterMenu() {
-        try {
-            homePageDriver.loadPage();
-            assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
-        } catch (Exception e) {
-            fail(e.getMessage());
-        } finally {
-            springMicroservicesGuidePage.quiet();
-        }
+        homePageDriver.loadPage();
+        assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
     }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
-        try {
-            homePageDriver.loadPage();
-
-            LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
-            int items = 0;
-            for (LogEntry logEntry : browserLogentries) {
-                if (logEntry.getLevel().equals(Level.SEVERE)) {
-                    // System.out.println("Custom-->"+logEntry.getMessage());
-                    items++;
-                }
+        homePageDriver.loadPage();
+        LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
+        int items = 0;
+        for (LogEntry logEntry : browserLogentries) {
+            if (logEntry.getLevel().equals(Level.SEVERE)) {
+                // System.out.println("Custom-->"+logEntry.getMessage());
+                items++;
             }
-            assertEquals(0, items);
-        } catch (Exception e) {
-            fail(e.getMessage());
         }
+        assertEquals(0, items);
     }
 
     @AfterEach

@@ -1,5 +1,7 @@
 package org.baeldung.site.base;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
@@ -88,5 +90,9 @@ public abstract class BlogBaseDriver {
     public WebElement findCategoriesContainerInPageFooter() {        
         return this.getWebDriver().findElement(By.id("menu-categories"));
     } 
+    
+    public void configureImplicitWait(long time, TimeUnit unit) {
+        getWebDriver().manage().timeouts().implicitlyWait(time, unit);
+    }
 
 }
