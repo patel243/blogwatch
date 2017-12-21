@@ -16,6 +16,7 @@ import org.baeldung.config.GlobalConstants;
 import org.baeldung.config.SeleniumHeadlessBrowserConfig;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 import org.openqa.selenium.By;
@@ -29,7 +30,7 @@ public class BlogLinksExtractor {
     SeleniumHeadlessBrowserConfig headLessBrowser;
     WebDriver webDriver;
 
-    public static void main(String... args) {
+    public static void main(String... args) throws Exception {
 
         BlogLinksExtractor siteMapReader = new BlogLinksExtractor();
         siteMapReader.initize();
@@ -50,11 +51,10 @@ public class BlogLinksExtractor {
         webDriver = headLessBrowser.getDriver();
     }
 
-    private void createPagesList() {
+    private void createPagesList() throws JDOMException, IOException {
         // webDriver.get(GlobalConstants.PAGES_SITEMAP_URL);
         // Document document = saxBuilder.build(new ByteArrayInputStream(webDriver.getPageSource().getBytes()));
-        HttpURLConnection conn;
-        try {
+        HttpURLConnection conn;        
             URL pageURL = new URL(GlobalConstants.PAGES_SITEMAP_URL);
             conn = (HttpURLConnection) pageURL.openConnection();
             conn.setRequestProperty("User-Agent", "Mozilla 5.0");
@@ -77,10 +77,7 @@ public class BlogLinksExtractor {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            });        
     }
 
     private boolean urlAlreadyAvailable(Path allpagesFilePath, String url) throws IOException {
