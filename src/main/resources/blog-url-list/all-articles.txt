@@ -1410,3 +1410,4 @@
 /java-word-frequency
 /jdbc-batch-processing
 /new-spring-boot-2
+/java-array-contains-value
