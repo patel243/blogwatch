@@ -1,4 +1,4 @@
-package org.baeldung.home;
+package com.baeldung.home;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,11 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.baeldung.config.GlobalConstants;
-import org.baeldung.config.MainConfig;
-import org.baeldung.site.guide.SpringMicroservicesGuidePage;
-import org.baeldung.site.home.HomePageDriver;
-import org.baeldung.site.home.NewsLettersubscriptionPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -24,6 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baeldung.config.GlobalConstants;
+import com.baeldung.config.MainConfig;
+import com.baeldung.site.guide.SpringMicroservicesGuidePage;
+import com.baeldung.site.home.HomePageDriver;
+import com.baeldung.site.home.NewsLettersubscriptionPage;
 import com.jayway.restassured.RestAssured;
 
 @ExtendWith(SpringExtension.class)

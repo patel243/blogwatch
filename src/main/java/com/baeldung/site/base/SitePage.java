@@ -1,4 +1,4 @@
-package org.baeldung.site.base;
+package com.baeldung.site.base;
 
 import java.util.List;
 

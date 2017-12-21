@@ -1,4 +1,4 @@
-package org.baeldung.config;
+package com.baeldung.config;
 
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Value;

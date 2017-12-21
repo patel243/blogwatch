@@ -1,4 +1,4 @@
-package org.baeldung.tools;
+package com.baeldung.tools;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import org.baeldung.config.GlobalConstants;
-import org.baeldung.config.SeleniumHeadlessBrowserConfig;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -22,6 +20,9 @@ import org.jdom2.input.SAXBuilder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.baeldung.config.GlobalConstants;
+import com.baeldung.config.SeleniumHeadlessBrowserConfig;
 
 public class BlogLinksExtractor {
     

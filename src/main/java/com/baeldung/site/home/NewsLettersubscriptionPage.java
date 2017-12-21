@@ -1,10 +1,11 @@
-package org.baeldung.site.home;
+package com.baeldung.site.home;
 
-import org.baeldung.site.base.BlogBaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import com.baeldung.site.base.BlogBaseDriver;
 
 @Component
 public class NewsLettersubscriptionPage extends BlogBaseDriver {

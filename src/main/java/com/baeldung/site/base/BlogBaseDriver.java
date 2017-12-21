@@ -1,18 +1,18 @@
-package org.baeldung.site.base;
+package com.baeldung.site.base;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
-import org.baeldung.config.SeleniumConfig;
-import org.baeldung.config.GlobalConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.baeldung.config.GlobalConstants;
+import com.baeldung.config.SeleniumConfig;
 import com.google.common.util.concurrent.RateLimiter;
 
 public abstract class BlogBaseDriver {

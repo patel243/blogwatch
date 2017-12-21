@@ -1,4 +1,4 @@
-package org.baeldung.config;
+package com.baeldung.config;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

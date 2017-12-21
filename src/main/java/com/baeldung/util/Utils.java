@@ -1,4 +1,4 @@
-package org.baeldung.util;
+package com.baeldung.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-import org.baeldung.config.GlobalConstants;
+import com.baeldung.config.GlobalConstants;
 
 public class Utils {
 

@@ -1,4 +1,4 @@
-package org.baeldung.home;
+package com.baeldung.home;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,10 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.baeldung.config.GlobalConstants;
-import org.baeldung.config.MainConfig;
-import org.baeldung.site.base.SitePage;
-import org.baeldung.util.Utils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -28,6 +24,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import com.baeldung.config.GlobalConstants;
+import com.baeldung.config.MainConfig;
+import com.baeldung.site.base.SitePage;
+import com.baeldung.util.Utils;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { MainConfig.class })
