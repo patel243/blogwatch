@@ -19,7 +19,7 @@ public class NewsLettersubscriptionPage extends BlogBaseDriver {
     }
 
     public WebElement findSubscripbeButtonInSubscriptionPopup() {
-        //return this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[3]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
+        // return this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[3]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
         return this.getWebDriver().findElement(By.xpath("//*[@id=\"tve_editor\"]/div[2]/div[2]/div[2]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
     }
 

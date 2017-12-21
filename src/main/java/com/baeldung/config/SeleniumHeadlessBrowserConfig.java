@@ -25,7 +25,7 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true);
-        //caps.setCapability("takesScreenshot", true);
+        // caps.setCapability("takesScreenshot", true);
         if (GlobalConstants.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())) {
             caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs.exe");
         } else {

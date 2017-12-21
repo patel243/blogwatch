@@ -19,12 +19,12 @@ public abstract class BlogBaseDriver {
 
     @Autowired
     private SeleniumConfig seleniumConfig;
-    
+
     @Autowired
     RateLimiter rateLimiter;
 
     @Value("${base.url}")
-    private String baseURL;        
+    private String baseURL;
 
     protected String pageURL;
 
@@ -33,11 +33,11 @@ public abstract class BlogBaseDriver {
         this.seleniumConfig.getDriver();
     }
 
-    public void loadPage() {        
+    public void loadPage() {
         this.getWebDriver().get(this.pageURL);
     }
-    
-    public void loadPageWithThrottling() { 
+
+    public void loadPageWithThrottling() {
         rateLimiter.acquire();
         this.getWebDriver().get(this.pageURL);
     }
@@ -56,10 +56,10 @@ public abstract class BlogBaseDriver {
     }
 
     public void quiet() {
-        if (null != this.seleniumConfig.getDriver())  {      
+        if (null != this.seleniumConfig.getDriver()) {
             this.seleniumConfig.getDriver().quit();
         }
-        
+
     }
 
     public String getTitle() {
@@ -85,12 +85,12 @@ public abstract class BlogBaseDriver {
 
     public boolean isLaunchFlag() {
         return Boolean.parseBoolean(System.getenv(GlobalConstants.LAUNCH_FLAG));
-    } 
-    
-    public WebElement findCategoriesContainerInPageFooter() {        
+    }
+
+    public WebElement findCategoriesContainerInPageFooter() {
         return this.getWebDriver().findElement(By.id("menu-categories"));
-    } 
-    
+    }
+
     public void configureImplicitWait(long time, TimeUnit unit) {
         getWebDriver().manage().timeouts().implicitlyWait(time, unit);
     }

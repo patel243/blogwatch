@@ -25,8 +25,8 @@ import com.baeldung.config.GlobalConstants;
 import com.baeldung.config.SeleniumHeadlessBrowserConfig;
 
 public class BlogLinksExtractor {
-    
-    //set environment variable named blog-url-list. It's value should be absolute path to resources/blog-url-list directory.
+
+    // set environment variable named blog-url-list. It's value should be absolute path to resources/blog-url-list directory.
 
     SeleniumHeadlessBrowserConfig headLessBrowser;
     WebDriver webDriver;
@@ -55,30 +55,30 @@ public class BlogLinksExtractor {
     private void createPagesList() throws JDOMException, IOException {
         // webDriver.get(GlobalConstants.PAGES_SITEMAP_URL);
         // Document document = saxBuilder.build(new ByteArrayInputStream(webDriver.getPageSource().getBytes()));
-        HttpURLConnection conn;        
-            URL pageURL = new URL(GlobalConstants.PAGES_SITEMAP_URL);
-            conn = (HttpURLConnection) pageURL.openConnection();
-            conn.setRequestProperty("User-Agent", "Mozilla 5.0");
+        HttpURLConnection conn;
+        URL pageURL = new URL(GlobalConstants.PAGES_SITEMAP_URL);
+        conn = (HttpURLConnection) pageURL.openConnection();
+        conn.setRequestProperty("User-Agent", "Mozilla 5.0");
 
-            SAXBuilder saxBuilder = new SAXBuilder();
-            Document document = saxBuilder.build(conn.getInputStream());
-            Namespace defaultNamespace = document.getRootElement().getNamespace();
-            List<Element> urlElements = document.getRootElement().getChildren("url", defaultNamespace);
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = saxBuilder.build(conn.getInputStream());
+        Namespace defaultNamespace = document.getRootElement().getNamespace();
+        List<Element> urlElements = document.getRootElement().getChildren("url", defaultNamespace);
 
-            File file = new File(System.getenv(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE) + GlobalConstants.ALL_PAGES_FILE_NAME);
-            Path allpagesFilePath = Paths.get(file.getAbsolutePath());
-            // Files.write(allpagesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-            urlElements.forEach(urlNode -> {
-                try {
-                    String url = urlNode.getChild("loc", defaultNamespace).getText().substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
-                    if (!urlAlreadyAvailable(allpagesFilePath, url)) {
-                        System.out.println("New Page URL found->" + url);
-                        Files.write(allpagesFilePath, (url + "\n").getBytes(), StandardOpenOption.APPEND);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+        File file = new File(System.getenv(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE) + GlobalConstants.ALL_PAGES_FILE_NAME);
+        Path allpagesFilePath = Paths.get(file.getAbsolutePath());
+        // Files.write(allpagesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+        urlElements.forEach(urlNode -> {
+            try {
+                String url = urlNode.getChild("loc", defaultNamespace).getText().substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
+                if (!urlAlreadyAvailable(allpagesFilePath, url)) {
+                    System.out.println("New Page URL found->" + url);
+                    Files.write(allpagesFilePath, (url + "\n").getBytes(), StandardOpenOption.APPEND);
                 }
-            });        
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private boolean urlAlreadyAvailable(Path allpagesFilePath, String url) throws IOException {

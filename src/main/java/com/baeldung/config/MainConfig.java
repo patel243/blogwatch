@@ -30,10 +30,10 @@ public class MainConfig {
     }
 
     @Bean
-    public  RateLimiter createRateLimiter() {
-        return  RateLimiter.create(1);
+    public RateLimiter createRateLimiter() {
+        return RateLimiter.create(1);
     }
-    
+
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
