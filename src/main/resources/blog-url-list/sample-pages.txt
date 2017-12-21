@@ -1,0 +1,8 @@
+/spring-tutorial
+/thank-you-jw
+/the-basics-of-rest-with-spring-webinar/
+/thank-you-javarevisited
+/rest-course-thank-you
+/privacy-policy
+/rest-with-spring-affiliates
+/java-web-weekly/
