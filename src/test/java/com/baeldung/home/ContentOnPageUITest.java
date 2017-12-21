@@ -35,7 +35,7 @@ import com.baeldung.util.Utils;
 public class ContentOnPageUITest {
 
     @Autowired
-    SitePage page;
+    private SitePage page;
 
     @BeforeEach
     public void loadNewWindow() {

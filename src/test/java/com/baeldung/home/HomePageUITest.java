@@ -31,13 +31,13 @@ import com.jayway.restassured.RestAssured;
 public final class HomePageUITest {
 
     @Autowired
-    HomePageDriver homePageDriver;
+    private HomePageDriver homePageDriver;
 
     @Autowired
-    NewsLettersubscriptionPage newsLettersubscriptionPage;
+    private NewsLettersubscriptionPage newsLettersubscriptionPage;
 
     @Autowired
-    SpringMicroservicesGuidePage springMicroservicesGuidePage;
+    private SpringMicroservicesGuidePage springMicroservicesGuidePage;
 
     @BeforeEach
     public void loadNewWindow() {

@@ -21,7 +21,7 @@ public abstract class BlogBaseDriver {
     private SeleniumConfig seleniumConfig;
 
     @Autowired
-    RateLimiter rateLimiter;
+    private RateLimiter rateLimiter;
 
     @Value("${base.url}")
     private String baseURL;
