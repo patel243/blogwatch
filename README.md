@@ -2,7 +2,7 @@ blogwatch
 =========
 
 - three Maven profiles are available, "headless-browser-windows", "headless-browser-linux" and "ui-brower-windows" for running tests using Maven. 
-- for running JUnits test from IDE, we need to set following three properties. This can be set as environment variable in eclipse run configuration. 
+- for running tests from IDE, we need to set following three properties. This can be set as environment variable in Eclipse run configuration. 
   - spring.profiles.active - environment variable to either "headless-browser" and "ui-browser"
   - target.env - environment variable should be set to "win" or "linux" for headless browser
   - base.url - to target base URL, for example http://baeldung.com
