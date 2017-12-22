@@ -11,7 +11,7 @@ Running Tests from the IDE - Setup
 To run tests from the IDE, we need to set following three properties: 
   - _spring.profiles.active_ - environment variable to either "headless-browser" and "ui-browser"
   - _target.env_ - environment variable should be set to "win" or "linux" for headless browser
-  - _base.url_ - to target base URL, for example http://baeldung.com
+  - _base.url_ - to target base URL, for example _http://www.baeldung.com_
 
 These can be set as environment variables via the Eclipse run configuration. 
 Set environment variable "LAUNCH_FLAG" to either true or false to set launch mode. 
