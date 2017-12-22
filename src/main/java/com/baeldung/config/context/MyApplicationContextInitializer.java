@@ -19,19 +19,15 @@ public class MyApplicationContextInitializer implements ApplicationContextInitia
         final String activeProfiles = environment.getProperty(GlobalConstants.ENV_PROPERTY_SPRING_PROFILE);
         final String baseURL = environment.getProperty(GlobalConstants.ENV_PROPERTY_BASE_URL);
         final String targetEnv = environment.getProperty(GlobalConstants.ENV_PROPERTY_TARGET_ENV);
-
+        
         if (StringUtils.isBlank(activeProfiles)) {
             environment.setActiveProfiles(GlobalConstants.DEFAULT_SPRING_PROFILE);
         }
-
         if (StringUtils.isBlank(baseURL)) {
             System.setProperty(GlobalConstants.ENV_PROPERTY_BASE_URL, GlobalConstants.BAELDUNG_HOME_PAGE_URL);
         }
-
         if (StringUtils.isBlank(targetEnv)) {
             System.setProperty(GlobalConstants.ENV_PROPERTY_TARGET_ENV, GlobalConstants.TARGET_ENV_WINDOWS);
         }
-
     }
-
 }
