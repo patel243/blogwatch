@@ -14,7 +14,7 @@ public class MyApplicationContextInitializer implements ApplicationContextInitia
     }
 
     @Override
-    public void initialize(ConfigurableApplicationContext applicationContext) {        
+    public void initialize(ConfigurableApplicationContext applicationContext) {
         final ConfigurableEnvironment environment = applicationContext.getEnvironment();
         final String activeProfiles = environment.getProperty(GlobalConstants.ENV_PROPERTY_SPRING_PROFILE);
         final String baseURL = environment.getProperty(GlobalConstants.ENV_PROPERTY_BASE_URL);

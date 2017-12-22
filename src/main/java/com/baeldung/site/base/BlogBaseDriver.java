@@ -75,7 +75,7 @@ public abstract class BlogBaseDriver {
 
     protected abstract void setPageURL(String pageURL);
 
-    public String getBaseURL() {        
+    public String getBaseURL() {
         return baseURL;
     }
 

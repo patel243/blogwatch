@@ -26,7 +26,7 @@ import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 
 @ExtendWith(SpringExtension.class)
-public class ContentOnPageUITest extends BaseUITest {      
+public class ContentOnPageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_MULTI_URL)
@@ -35,7 +35,7 @@ public class ContentOnPageUITest extends BaseUITest {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
                 try {
-                    //System.out.println(URL);
+                    // System.out.println(URL);
                     page.setPageURL(page.getBaseURL() + URL);
                     page.loadPageWithThrottling();
                     assertTrue(page.findContentDiv().isDisplayed());
@@ -144,5 +144,4 @@ public class ContentOnPageUITest extends BaseUITest {
         }
     }
 
-    
 }
