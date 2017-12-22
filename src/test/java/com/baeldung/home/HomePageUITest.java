@@ -16,6 +16,7 @@ import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.site.guide.SpringMicroservicesGuidePage;
 import com.baeldung.site.home.HomePageDriver;
@@ -23,7 +24,7 @@ import com.baeldung.site.home.NewsLettersubscriptionPage;
 import com.jayway.restassured.RestAssured;
 
 @ExtendWith(SpringExtension.class)
-public final class HomePageUITest {
+public final class HomePageUITest extends BaseUITest {
 
     @Autowired
     private HomePageDriver homePageDriver;
@@ -93,6 +94,6 @@ public final class HomePageUITest {
             }
         }
         assertEquals(0, items);
-    }    
+    }
 
 }
