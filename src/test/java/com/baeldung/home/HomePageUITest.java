@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,18 +14,15 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.config.GlobalConstants;
-import com.baeldung.config.MainConfig;
 import com.baeldung.site.guide.SpringMicroservicesGuidePage;
 import com.baeldung.site.home.HomePageDriver;
 import com.baeldung.site.home.NewsLettersubscriptionPage;
 import com.jayway.restassured.RestAssured;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { MainConfig.class })
 public final class HomePageUITest {
 
     @Autowired
@@ -38,11 +33,6 @@ public final class HomePageUITest {
 
     @Autowired
     private SpringMicroservicesGuidePage springMicroservicesGuidePage;
-
-    @BeforeEach
-    public void loadNewWindow() {
-        homePageDriver.openNewWindow();
-    }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
@@ -103,11 +93,6 @@ public final class HomePageUITest {
             }
         }
         assertEquals(0, items);
-    }
-
-    @AfterEach
-    public void closeWindow() {
-        homePageDriver.quiet();
-    }
+    }    
 
 }

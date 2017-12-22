@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.config.GlobalConstants;
-import com.baeldung.config.SeleniumConfig;
+import com.baeldung.config.application.SeleniumConfig;
 import com.google.common.util.concurrent.RateLimiter;
 
 public abstract class BlogBaseDriver {
@@ -76,10 +75,7 @@ public abstract class BlogBaseDriver {
 
     protected abstract void setPageURL(String pageURL);
 
-    public String getBaseURL() {
-        if (StringUtils.isEmpty(this.baseURL)) {
-            return GlobalConstants.BAELDUNG_HOME_PAGE_URL;
-        }
+    public String getBaseURL() {        
         return baseURL;
     }
 

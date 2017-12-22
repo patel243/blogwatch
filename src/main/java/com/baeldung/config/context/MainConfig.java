@@ -1,4 +1,4 @@
-package com.baeldung.config;
+package com.baeldung.config.context;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import com.baeldung.config.application.SeleniumHeadlessBrowserConfig;
+import com.baeldung.config.application.SeleniumUIBrowserConfig;
 import com.baeldung.site.home.HomePageDriver;
 import com.google.common.util.concurrent.RateLimiter;
 

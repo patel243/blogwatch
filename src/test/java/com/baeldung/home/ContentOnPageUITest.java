@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,26 +19,14 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
-import com.baeldung.config.MainConfig;
-import com.baeldung.site.base.SitePage;
 import com.baeldung.util.Utils;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { MainConfig.class })
-public class ContentOnPageUITest {
-
-    @Autowired
-    private SitePage page;
-
-    @BeforeEach
-    public void loadNewWindow() {
-        page.openNewWindow();
-    }
+public class ContentOnPageUITest extends BaseUITest {      
 
     @Test
     @Tag(GlobalConstants.TAG_MULTI_URL)
@@ -158,8 +144,5 @@ public class ContentOnPageUITest {
         }
     }
 
-    @AfterEach
-    public void closeWindow() {
-        page.quiet();
-    }
+    
 }

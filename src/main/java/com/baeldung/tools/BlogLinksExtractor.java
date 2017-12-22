@@ -22,7 +22,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.baeldung.config.GlobalConstants;
-import com.baeldung.config.SeleniumHeadlessBrowserConfig;
+import com.baeldung.config.application.SeleniumHeadlessBrowserConfig;
 
 public class BlogLinksExtractor {
 

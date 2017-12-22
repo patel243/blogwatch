@@ -1,4 +1,4 @@
-package com.baeldung.config;
+package com.baeldung.config.application;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import com.baeldung.config.GlobalConstants;
 
 public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
