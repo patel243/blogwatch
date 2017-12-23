@@ -16,7 +16,7 @@ import com.google.common.util.concurrent.RateLimiter;
 
 @Configuration
 @ComponentScan("com.baeldung.site")
-@PropertySource({ "classpath:smoke-${smokeTarget:dev}.properties" })
+@PropertySource({ "classpath:blog.properties" })
 public class MainConfig {
 
     @Bean

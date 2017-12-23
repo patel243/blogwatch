@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class SitePage extends BlogBaseDriver {
 
     @Override
-    public void setPageURL(String pageURL) {
-        this.pageURL = pageURL;
+    public void setUrl(String pageURL) {
+        this.url = pageURL;
     }
 
     public WebElement findContentDiv() {
@@ -34,8 +34,12 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElement(By.xpath("//body"));
     }
 
-    public WebElement findPageNotFoundElement() {
-        return this.getWebDriver().findElement(By.id("post-not-found"));
+    public boolean pageNotFoundElementDisplayed() {
+        try {
+            return this.getWebDriver().findElement(By.id("post-not-found")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

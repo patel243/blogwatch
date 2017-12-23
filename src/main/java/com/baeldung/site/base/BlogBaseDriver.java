@@ -25,20 +25,20 @@ public abstract class BlogBaseDriver {
     @Value("${base.url}")
     private String baseURL;
 
-    protected String pageURL;
+    protected String url;
 
     @PostConstruct
     public void setDriver() {
         this.seleniumConfig.getDriver();
     }
 
-    public void loadPage() {
-        this.getWebDriver().get(this.pageURL);
+    public void loadUrl() {
+        this.getWebDriver().get(this.url);
     }
 
-    public void loadPageWithThrottling() {
+    public void loadUrlWithThrottling() {
         rateLimiter.acquire();
-        this.getWebDriver().get(this.pageURL);
+        this.getWebDriver().get(this.url);
     }
 
     public void openNewWindow() {
@@ -47,7 +47,7 @@ public abstract class BlogBaseDriver {
 
     public void openNewWindowAndLoadPage() {
         this.openNewWindow();
-        this.loadPage();
+        this.loadUrl();
     }
 
     public void closeWindow() {
@@ -69,11 +69,11 @@ public abstract class BlogBaseDriver {
         return seleniumConfig.getDriver();
     }
 
-    public String getPageURL() {
-        return pageURL;
+    public String getUrl() {
+        return url;
     }
 
-    protected abstract void setPageURL(String pageURL);
+    protected abstract void setUrl(String url);
 
     public String getBaseURL() {
         return baseURL;

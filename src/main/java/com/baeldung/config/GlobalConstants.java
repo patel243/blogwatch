@@ -31,9 +31,30 @@ public class GlobalConstants {
 
     public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
 
-    // tags
+    /**
+     * Tests using this tag should target a single URL. Refer to url local/class variable. 
+     */
     public static final String TAG_SINGLE_URL = "singleURL";
-    public static final String TAG_MULTI_URL = "multiURL";
-    public static final String TAG_ALL_URLS = "allURLs";
+    
+    /**
+     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/sample-articles.txt
+     */
+    public static final String TAG_SAMPLE_ARTICLES = "sampleArticles";
+    
+    /**
+     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/sample-pages.txt
+     */
+    public static final String TAG_SAMPLE_PAGES = "samplePages";
+    
+    /**
+     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/all-articles.txt
+     */
+    public static final String TAG_ALL_ARTICLE = "allArticles";
+    
+    /**
+     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/all-pages.txt
+     */
+    public static final String TAG_ALL_PAGES = "allPages";
+   
 
 }

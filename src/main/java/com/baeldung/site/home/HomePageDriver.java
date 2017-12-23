@@ -24,8 +24,8 @@ public class HomePageDriver extends BlogBaseDriver {
 
     @Override
     @Value("${base.url}")
-    protected void setPageURL(String pageURL) {
-        this.pageURL = pageURL;
+    protected void setUrl(String url) {
+        this.url = url;
     }
 
 }

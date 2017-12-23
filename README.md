@@ -35,9 +35,13 @@ _BlogLinksExtractor_ updates articles and pages URLs. To use it, set environment
 
 ### JUnit Tags
 
-Following tags for available for running tests selectively. Refer Java docs in _GlobalConstants.java_ for details
+Following tags are available for running tests selectively. Refer Java docs in _GlobalConstants.java_ for details
   - _singleURL_
   - _sampleArticles_
   - _samplePages_
   - _sampleArticles_
   - _samplePages_
+  
+ ### Launch Mode
+ 
+ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch mode. Default is _false_

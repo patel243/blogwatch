@@ -1,4 +1,4 @@
-package com.baeldung.home;
+package com.baeldung.page;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,10 +18,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
-import com.baeldung.site.guide.SpringMicroservicesGuidePage;
 import com.baeldung.site.home.HomePageDriver;
 import com.baeldung.site.home.NewsLettersubscriptionPage;
-import com.jayway.restassured.RestAssured;
 
 @ExtendWith(SpringExtension.class)
 public final class HomePageUITest extends BaseUITest {
@@ -31,14 +29,11 @@ public final class HomePageUITest extends BaseUITest {
 
     @Autowired
     private NewsLettersubscriptionPage newsLettersubscriptionPage;
-
-    @Autowired
-    private SpringMicroservicesGuidePage springMicroservicesGuidePage;
-
+    
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() throws InterruptedException {
-        homePageDriver.loadPage();
+        homePageDriver.loadUrl();
         homePageDriver.clickNewsletterButton();
         Thread.sleep(1000);
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
@@ -50,41 +45,32 @@ public final class HomePageUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void javaWeeklyLinksMatchWithLinkText() {
-        homePageDriver.loadPage();
+        homePageDriver.loadUrl();
         List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
         String expectedLink;
         String issueNumber;
         for (WebElement webElement : javaWeeklyElements) {
             issueNumber = webElement.getText().replaceAll("\\D+", "");
             if (issueNumber.length() > 0) {
-                expectedLink = (this.homePageDriver.getPageURL() + "/java-weekly-") + issueNumber;
+                expectedLink = (this.homePageDriver.getUrl() + "/java-weekly-") + issueNumber;
                 System.out.println("expectedLink-->" + expectedLink);
                 System.out.println("actual  Link-->" + webElement.getAttribute("href"));
                 assertTrue(expectedLink.equals(webElement.getAttribute("href").toString()));
             }
         }
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
-        this.springMicroservicesGuidePage.loadPage();
-        springMicroservicesGuidePage.clickAccessTheGuideButton();
-        assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
-        assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
-    }
+    }    
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLods_thenItContainsCategoriesInFooterMenu() {
-        homePageDriver.loadPage();
+        homePageDriver.loadUrl();
         assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
     }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
-        homePageDriver.loadPage();
+        homePageDriver.loadUrl();
         LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
         int items = 0;
         for (LogEntry logEntry : browserLogentries) {
