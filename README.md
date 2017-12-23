@@ -6,6 +6,7 @@ This project contains UI tests for baeldung.com
 
 The project uses Selenium framework. The tests can be run in GUI or headless mode. UI browser has been configured with Firefox using gecodriver and tested with Firefox 56.0 (64 bit) on Windows. Headless mode works with PhantomJS. 
 
+
 ### Running Tests from the IDE
 
 The default configuration executes tests with headless mode in windows environment and target URL is http://www.baeldung.com. The configuration can be changed using following properties:
@@ -28,10 +29,12 @@ The target URL for all profiles is http://baeldung.com. The can be changed using
 
 - _base.url_ - to target base URL, for example _http://www.baeldung.com_
 
+
 ### Update Lists of Posts and Pages
 
 
 _BlogLinksExtractor_ updates articles and pages URLs. To use it, set environment variable named _blog-url-list_. It's value should be absolute path to resources/blog-url-list directory. _BlogLinksExtractor_ should be run as Java application. 
+
 
 ### JUnit Tags
 
@@ -41,7 +44,8 @@ Following tags are available for running tests selectively. Refer Java docs in _
   - _samplePages_
   - _sampleArticles_
   - _samplePages_
-  
- ### Launch Mode
+
+
+### Launch Mode
  
- Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch mode. Default is _false_
+Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch mode. Default is _false_
