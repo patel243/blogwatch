@@ -45,3 +45,7 @@ Following tags are available for running tests selectively. Refer Java docs in _
  ### Launch Mode
  
  Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch mode. Default is _false_
+ 
+ ### On Jenkins
+ 
+ The tests are running here, [on Jenkins](https://rest-security.ci.cloudbees.com/job/site-monitor/job/site-watch/)
