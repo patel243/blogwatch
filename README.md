@@ -2,6 +2,7 @@
 
 This project contains UI tests for baeldung.com
 
+
 ### Overview
 
 The project uses Selenium framework. The tests can be run in GUI or headless mode. UI browser has been configured with Firefox using gecodriver and tested with Firefox 56.0 (64 bit) on Windows. Headless mode works with PhantomJS. 
@@ -49,6 +50,7 @@ Following tags are available for running tests selectively. Refer Java docs in _
 ### Launch Mode
  
 Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch mode. Default is _false_
+
 
 ### On Jenkins
  
