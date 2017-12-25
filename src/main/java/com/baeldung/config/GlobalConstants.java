@@ -55,6 +55,10 @@ public class GlobalConstants {
      * Tests using this tag should target all the URLs listed in /resources/blog-url-list/all-pages.txt
      */
     public static final String TAG_ALL_PAGES = "allPages";
-   
+    
+    //pages
+    
+    public static final String PAGE_WITH_POPUP = "/rest-with-spring-series/"; 
+    public static final String PAGE_WITH_BLANK_TITLE = "/java-weekly-sponsorship/"; 
 
 }

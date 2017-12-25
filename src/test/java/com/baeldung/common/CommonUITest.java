@@ -28,25 +28,27 @@ public class CommonUITest extends BaseUITest {
     public final void whenPageLoads_thenContentDivExists() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
-                // System.out.println(URL);
                 page.setUrl(page.getBaseURL() + URL);
+
                 page.loadUrlWithThrottling();
+
                 if (!page.findContentDiv().isDisplayed()) {
-                    fail("Page found with without content div. URL->" + URL);
-                }                
+                    fail("Page found with no content div. URL->" + URL);
+                }
             });
         }
     }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void whenPageWithPopup_thenPopupHasCloseButton() {
-        String url = "/rest-with-spring-series/";
+    public final void givenPageWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
         if (page.isLaunchFlag()) {
             return;
-        }
-        page.setUrl(page.getBaseURL() + url);
+        }        
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_POPUP);        
+
         page.loadUrl();
+
         WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 40);
         wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));
     }
@@ -54,17 +56,19 @@ public class CommonUITest extends BaseUITest {
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
     @Tag(GlobalConstants.TAG_SAMPLE_ARTICLES)
-    public final void whenPageLods_thenNoEmptyDivs() throws IOException {
+    public final void givenThePage_whenPageLods_thenPageHasNoEmptyDivs() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
+
                 page.loadUrlWithThrottling();
                 List<WebElement> potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
+
                 potentiallyEmptyDivs.forEach(webElement -> {
-                    // System.out.println("value="+webElement.getText()+"=");
-                    // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));                    
-                    if(StringUtils.isBlank(webElement.getText().trim())) {
-                        fail("Page found with empty DIV. URL-->"+ URL);
+                    //logger.debug("value="+webElement.getText()+"=");
+                    // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
+                    if (StringUtils.isBlank(webElement.getText().trim())) {
+                        fail("Page found with empty DIV. URL-->" + URL);
                     }
                 });
             });
@@ -73,11 +77,12 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void givePageWithNoTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
-        String url = "/java-weekly-sponsorship/";
-        page.setUrl(page.getBaseURL() + url);
+    public final void giveThePageWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_BLANK_TITLE);
+
         page.loadUrl();
         List<WebElement> pageWithNoTitleInBody = page.pagesWithNotitleTextInBody();
+
         if (pageWithNoTitleInBody.size() > 0) {
             fail("Page found with '[No Title]: ID' text in body, URL:->" + page.getUrl());
         }
@@ -90,10 +95,12 @@ public class CommonUITest extends BaseUITest {
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
+
                 page.loadUrlWithThrottling();
+
                 if (page.pageNotFoundElementDisplayed()) {
-                    fail("Article with potential 404-->"+ URL);
-                }                
+                    fail("Article with potential 404-->" + URL);
+                }
             });
         }
     }
@@ -105,10 +112,12 @@ public class CommonUITest extends BaseUITest {
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
+
                 page.loadUrlWithThrottling();
+
                 if (page.pageNotFoundElementDisplayed()) {
-                    fail("Page with potential 404-->"+ URL);
-                }                 
+                    fail("Page with potential 404-->" + URL);
+                }
             });
         }
     }

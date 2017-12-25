@@ -1,7 +1,5 @@
 <configuration>
 
-    <variable resource="launchpad-${launchpadTarget}.properties" />
-
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%date [%thread] %-5level %logger{36} - %message%n
@@ -9,64 +7,14 @@
         </encoder>
     </appender>
 
-    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
-        <!-- deny all events with a level below ERROR -->
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>ERROR</level>
-        </filter>
-        <smtpHost>email-smtp.us-east-1.amazonaws.com</smtpHost>
-        <username>AKIAJI6XLSOAQX3IW6HQ</username>
-        <password>AuSWMdcNObKqGGT550SR/6vDrgh50vxgFrqZHwR2tTED</password>
-        <SSL>true</SSL>
-        <to>hanriseldon@gmail.com</to>
-        <from>info@applieddatalabs.com</from>
-        <subject>${launchpad.origin}: %logger{20} - %m</subject>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>smoke - |${launchpad.origin}| %date [%thread] %-5level
-                %logger{36} - %message%n</pattern>
-        </layout>
-        <cyclicBufferTracker class="ch.qos.logback.core.spi.CyclicBufferTracker">
-            <bufferSize>1000</bufferSize>
-        </cyclicBufferTracker>
-    </appender>
-
-
-    <!-- UI -->
-    <logger name="com.gargoylesoftware.htmlunit" level="ERROR" />
-    <logger name="org.openqa" level="INFO" />
-    <logger name="org.selenium" level="WARN" />
-
-    <!-- logback itself -->
-    <logger name="ch.qos.logback.classic" level="WARN" />
-
-    <!-- Spring -->
-    <logger name="org.springframework" level="WARN" />
-
-    <logger name="org.springframework.security" level="WARN" /> <!-- to debug security related issues (DEBUG) -->
-
-    <logger name="org.springframework.transaction" level="WARN" />
-
-    <logger name="org.springframework.web.servlet" level="WARN" />
-    <logger name="org.springframework.web.servlet.mvc" level="WARN" /> <!-- some serialization issues are at trace level here: org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod -->
 
     <!-- launchpad - our service -->
-    <logger name="org.rest.common" level="INFO" />
-    <logger name="org.rest.common.cloud" level="DEBUG" />
-
-    <logger name="com.launchpad.provisioning.client" level="DEBUG" />
-    <logger name="com.launchpad.provisioning.cloud" level="DEBUG" />
-    <logger name="com.launchpad.provisioning.persistence.setup" level="INFO" /> <!-- to follow if setup is being executed -->
-    <logger name="com.launchpad.provisioning.workflow" level="INFO" />
-
-    <!-- selenium -->
-    <logger name="org.apache.http.impl.conn" level="WARN" />
-
-    <!-- others -->
+    <logger name="com.baeldung" level="DEBUG" />
 
     <!-- root -->
     <root level="WARN">
         <appender-ref ref="STDOUT" />
-        <!-- <appender-ref ref="EMAIL" /> -->
     </root>
+
 
 </configuration>

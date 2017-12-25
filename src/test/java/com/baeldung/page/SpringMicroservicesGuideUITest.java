@@ -23,7 +23,9 @@ public final class SpringMicroservicesGuideUITest extends BaseUITest {
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         this.springMicroservicesGuidePage.loadUrl();
+        
         springMicroservicesGuidePage.clickAccessTheGuideButton();
+        
         assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
         assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
     }
