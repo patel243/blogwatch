@@ -44,8 +44,8 @@ public class CommonUITest extends BaseUITest {
     public final void givenPageWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
         if (page.isLaunchFlag()) {
             return;
-        }        
-        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_POPUP);        
+        }
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_POPUP);
 
         page.loadUrl();
 
@@ -65,7 +65,7 @@ public class CommonUITest extends BaseUITest {
                 List<WebElement> potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
 
                 potentiallyEmptyDivs.forEach(webElement -> {
-                    //logger.debug("value="+webElement.getText()+"=");
+                    // logger.debug("value="+webElement.getText()+"=");
                     // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
                     if (StringUtils.isBlank(webElement.getText().trim())) {
                         fail("Page found with empty DIV. URL-->" + URL);

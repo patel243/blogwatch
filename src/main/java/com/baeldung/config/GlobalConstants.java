@@ -35,30 +35,30 @@ public class GlobalConstants {
      * Tests using this tag should target a single URL. Refer to url local/class variable. 
      */
     public static final String TAG_SINGLE_URL = "singleURL";
-    
+
     /**
      * Tests using this tag should target all the URLs listed in /resources/blog-url-list/sample-articles.txt
      */
     public static final String TAG_SAMPLE_ARTICLES = "sampleArticles";
-    
+
     /**
      * Tests using this tag should target all the URLs listed in /resources/blog-url-list/sample-pages.txt
      */
     public static final String TAG_SAMPLE_PAGES = "samplePages";
-    
+
     /**
      * Tests using this tag should target all the URLs listed in /resources/blog-url-list/all-articles.txt
      */
     public static final String TAG_ALL_ARTICLE = "allArticles";
-    
+
     /**
      * Tests using this tag should target all the URLs listed in /resources/blog-url-list/all-pages.txt
      */
     public static final String TAG_ALL_PAGES = "allPages";
-    
-    //pages
-    
-    public static final String PAGE_WITH_POPUP = "/rest-with-spring-series/"; 
-    public static final String PAGE_WITH_BLANK_TITLE = "/java-weekly-sponsorship/"; 
+
+    // pages
+
+    public static final String PAGE_WITH_POPUP = "/rest-with-spring-series/";
+    public static final String PAGE_WITH_BLANK_TITLE = "/java-weekly-sponsorship/";
 
 }

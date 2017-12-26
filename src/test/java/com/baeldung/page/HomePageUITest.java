@@ -29,17 +29,17 @@ public final class HomePageUITest extends BaseUITest {
 
     @Autowired
     private NewsLettersubscriptionPage newsLettersubscriptionPage;
-    
+
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenJavaWebWeeklySubscribePopup_thenEmailAndSubscribeElementsExist() throws InterruptedException {
         homePageDriver.loadUrl();
         homePageDriver.clickNewsletterButton();
         Thread.sleep(1000);
-        
+
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
         logger.info("is displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
-        
+
         assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
         assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
     }
@@ -49,7 +49,7 @@ public final class HomePageUITest extends BaseUITest {
     public final void givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText() {
         homePageDriver.loadUrl();
         List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
-        
+
         String expectedLink;
         String issueNumber;
         for (WebElement webElement : javaWeeklyElements) {
@@ -58,29 +58,29 @@ public final class HomePageUITest extends BaseUITest {
                 expectedLink = (this.homePageDriver.getUrl() + "/java-weekly-") + issueNumber;
                 logger.debug("expectedLink-->" + expectedLink);
                 logger.debug("actual  Link-->" + webElement.getAttribute("href"));
-                
+
                 assertTrue(expectedLink.equals(webElement.getAttribute("href").toString()));
             }
         }
-    }    
+    }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLods_thenItContainsCategoriesInFooterMenu() {
         homePageDriver.loadUrl();
-        
+
         assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
     }
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
-        homePageDriver.loadUrl();        
+        homePageDriver.loadUrl();
         LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
         int items = 0;
         for (LogEntry logEntry : browserLogentries) {
             if (logEntry.getLevel().equals(Level.SEVERE)) {
-                logger.debug("Custom-->"+logEntry.getMessage());
+                logger.debug("Custom-->" + logEntry.getMessage());
                 items++;
             }
         }

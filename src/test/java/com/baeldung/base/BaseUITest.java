@@ -13,7 +13,7 @@ import com.baeldung.site.base.SitePage;
 
 @ContextConfiguration(classes = { MainConfig.class }, initializers = MyApplicationContextInitializer.class)
 public class BaseUITest {
-    
+
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
