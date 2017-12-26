@@ -1,6 +1,6 @@
 package com.baeldung.page;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -74,17 +74,16 @@ public final class HomePageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void whenHomePageLoaded_thenZeroSevereMessagesInBrowserLog() {
+    public final void whenHomePageLoaded_thenNoSevereMessagesInBrowserLog() {
         homePageDriver.loadUrl();
+        
         LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
-        int items = 0;
+        
         for (LogEntry logEntry : browserLogentries) {
             if (logEntry.getLevel().equals(Level.SEVERE)) {
-                logger.debug("Custom-->" + logEntry.getMessage());
-                items++;
+                fail("Error with Severe Level-->" + logEntry.getMessage());                
             }
-        }
-        assertEquals(0, items);
+        }        
     }
 
 }
