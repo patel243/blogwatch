@@ -77,7 +77,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void giveThePageWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
+    public final void givenThePageWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
         page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_BLANK_TITLE);
 
         page.loadUrl();
