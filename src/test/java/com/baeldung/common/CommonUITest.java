@@ -1,5 +1,6 @@
 package com.baeldung.common;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
@@ -120,6 +121,17 @@ public class CommonUITest extends BaseUITest {
                 }
             });
         }
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenThePageWithSeriesPlugin_whenPageLoads_thenPluginLoadsProperly() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_SERIES_PLUGIN);
+
+        page.loadUrl();
+
+        assertTrue(page.seriesPluginElementDisplayed());
+
     }
 
 }

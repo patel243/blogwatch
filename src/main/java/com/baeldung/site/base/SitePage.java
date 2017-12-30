@@ -42,4 +42,12 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
+    public boolean seriesPluginElementDisplayed() {
+        try {
+            return this.getWebDriver().findElement(By.id("article-series-toggle")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
