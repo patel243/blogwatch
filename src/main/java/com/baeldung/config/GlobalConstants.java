@@ -60,6 +60,6 @@ public class GlobalConstants {
 
     public static final String ARTICLE_WITH_POPUP = "/rest-with-spring-series/";
     public static final String ARTICLE_WITH_BLANK_TITLE = "/java-weekly-sponsorship/";
-    public static final String ARTICLE_WITH_SERIES_PLUGIN = "/spring-security-registration/";
+    public static final String ARTICLE_WITH_SERIES = "/spring-security-registration/";
 
 }

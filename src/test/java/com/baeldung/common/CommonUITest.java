@@ -125,8 +125,8 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void givenTheArticleWithSeriesPlugin_whenPageLoads_thenPluginLoadsProperly() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_SERIES_PLUGIN);
+    public final void givenTheArticleWithSeries_whenPageLoads_thenPluginLoadsProperly() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_SERIES);
 
         page.loadUrl();
 
