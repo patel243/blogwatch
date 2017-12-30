@@ -1,6 +1,7 @@
 package com.baeldung.common;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
+import com.jayway.restassured.RestAssured;
 
 @ExtendWith(SpringExtension.class)
 public class CommonUITest extends BaseUITest {
@@ -131,6 +133,19 @@ public class CommonUITest extends BaseUITest {
         page.loadUrl();
 
         assertTrue(page.seriesPluginElementDisplayed());
+
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_PESISTENCE_EBOOK_DOWNLOAD);
+
+        page.loadUrl();
+
+        page.getPathOfPersistenceEBookImages().forEach(image -> {
+            assertEquals(200, RestAssured.given().get(image.getAttribute("src")).getStatusCode());
+        });
 
     }
 
