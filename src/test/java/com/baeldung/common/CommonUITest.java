@@ -26,7 +26,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SAMPLE_ARTICLES)
-    public final void whenPageLoads_thenContentDivExists() throws IOException {
+    public final void givenTheArticle_whenArticleLoads_thenContentDivExists() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
@@ -42,11 +42,11 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void givenPageWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
+    public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
         if (page.isLaunchFlag()) {
             return;
         }
-        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_POPUP);
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
 
         page.loadUrl();
 
@@ -57,7 +57,7 @@ public class CommonUITest extends BaseUITest {
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
     @Tag(GlobalConstants.TAG_SAMPLE_ARTICLES)
-    public final void givenThePage_whenPageLods_thenPageHasNoEmptyDivs() throws IOException {
+    public final void givenTheArticle_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
@@ -78,8 +78,8 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void givenThePageWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_BLANK_TITLE);
+    public final void givenTheArticleWithBlankTitle_whenArticleLoads_thenItDoesNotContainNotitleText() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_BLANK_TITLE);
 
         page.loadUrl();
         List<WebElement> pageWithNoTitleInBody = page.pagesWithNotitleTextInBody();
@@ -125,8 +125,8 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void givenThePageWithSeriesPlugin_whenPageLoads_thenPluginLoadsProperly() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_SERIES_PLUGIN);
+    public final void givenTheArticleWithSeriesPlugin_whenPageLoads_thenPluginLoadsProperly() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_SERIES_PLUGIN);
 
         page.loadUrl();
 
