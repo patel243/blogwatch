@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
@@ -146,6 +147,46 @@ public class CommonUITest extends BaseUITest {
         page.getPathOfPersistenceEBookImages().forEach(image -> {
             assertEquals(200, RestAssured.given().get(image.getAttribute("src")).getStatusCode());
         });
+
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_GOOGLE_ANALYTICS);
+
+        page.loadUrl();
+
+        List<WebElement> allScriptTags = page.getAllScriptTags();
+        AtomicInteger analyticsCodeCount = new AtomicInteger();
+        allScriptTags.forEach(scriptTag -> {
+            if (scriptTag.getAttribute("innerHTML").contains(GlobalConstants.GOOGLE_ANALYTICS_CODE_SEARCH_STRING)) {
+                analyticsCodeCount.getAndIncrement();
+            }
+        });
+        if (analyticsCodeCount.get() != 1) {
+            fail("Analytics code count-->" + analyticsCodeCount.get());
+        }
+
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_GOOGLE_ANALYTICS);
+
+        page.loadUrl();
+
+        List<WebElement> allScriptTags = page.getAllScriptTags();
+        AtomicInteger analyticsCodeCount = new AtomicInteger();
+        allScriptTags.forEach(scriptTag -> {
+            if (scriptTag.getAttribute("innerHTML").contains(GlobalConstants.GOOGLE_ANALYTICS_CODE_SEARCH_STRING)) {
+                analyticsCodeCount.getAndIncrement();
+            }
+        });
+        if (analyticsCodeCount.get() != 1) {
+            fail("Analytics code count-->" + analyticsCodeCount.get());
+        }
 
     }
 

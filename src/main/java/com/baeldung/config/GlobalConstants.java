@@ -63,4 +63,10 @@ public class GlobalConstants {
     public static final String ARTICLE_WITH_SERIES = "/spring-security-registration/";
     public static final String ARTICLE_WITH_PESISTENCE_EBOOK_DOWNLOAD = "/hibernate-spatial/";
 
+    // for Google Analytics
+
+    public static final String ARTICLE_WITH_GOOGLE_ANALYTICS = "/persistence-layer-with-spring-and-hibernate/";
+    public static final String PAGE_WITH_GOOGLE_ANALYTICS = "/rest-with-spring-course/";
+    public static final String GOOGLE_ANALYTICS_CODE_SEARCH_STRING = "https://www.google-analytics.com/analytics.js";
+
 }

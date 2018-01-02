@@ -1,5 +1,6 @@
 package com.baeldung.site.base;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
@@ -89,6 +90,10 @@ public abstract class BlogBaseDriver {
 
     public void configureImplicitWait(long time, TimeUnit unit) {
         getWebDriver().manage().timeouts().implicitlyWait(time, unit);
+    }
+
+    public List<WebElement> getAllScriptTags() {
+        return this.getWebDriver().findElements(By.tagName("script"));
     }
 
 }
