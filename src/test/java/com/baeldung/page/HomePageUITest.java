@@ -76,14 +76,14 @@ public final class HomePageUITest extends BaseUITest {
     @Tag(GlobalConstants.TAG_SINGLE_URL)
     public final void whenHomePageLoaded_thenNoSevereMessagesInBrowserLog() {
         homePageDriver.loadUrl();
-        
+
         LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
-        
+
         for (LogEntry logEntry : browserLogentries) {
             if (logEntry.getLevel().equals(Level.SEVERE)) {
-                fail("Error with Severe Level-->" + logEntry.getMessage());                
+                fail("Error with Severe Level-->" + logEntry.getMessage());
             }
-        }        
+        }
     }
 
 }

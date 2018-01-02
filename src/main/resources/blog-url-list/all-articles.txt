@@ -1427,3 +1427,12 @@
 /java-recursion
 /java-8-primitive-streams
 /java-weekly-208
+/java-default-annotations
+/java-orientdb
+/flyway-callbacks
+/hibernate-interceptor
+/jenkins-pipelines
+/gradle-fat-jar
+/java-binary-tree
+/java-influxdb
+/java-kafka-streams
