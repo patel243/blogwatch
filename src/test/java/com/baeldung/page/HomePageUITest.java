@@ -1,6 +1,7 @@
 package com.baeldung.page;
 
 import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -20,6 +21,8 @@ import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.site.home.HomePageDriver;
 import com.baeldung.site.home.NewsLettersubscriptionPage;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
 
 @ExtendWith(SpringExtension.class)
 public final class HomePageUITest extends BaseUITest {
@@ -84,6 +87,15 @@ public final class HomePageUITest extends BaseUITest {
                 fail("Error with Severe Level-->" + logEntry.getMessage());
             }
         }
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW() {
+        Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX);
+
+        assertEquals(301, response.getStatusCode());
+        assertEquals(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX, response.getHeader("Location").replaceAll("/$", ""));
     }
 
 }

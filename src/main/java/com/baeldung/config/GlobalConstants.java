@@ -63,6 +63,13 @@ public class GlobalConstants {
     public static final String ARTICLE_WITH_SERIES = "/spring-security-registration/";
     public static final String ARTICLE_WITH_PESISTENCE_EBOOK_DOWNLOAD = "/hibernate-spatial/";
 
+    // for redirection tests
+    public static String BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX = "http://baeldung.com";
+    public static String BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX = "http://www.baeldung.com";
+
+    public static String BAELDUNG_FEED_URL = "http://www.baeldung.com/feed/";
+    public static String BAELDUNG_FEED_FEEDBURNER_URL = "http://feeds.feedburner.com/Baeldung";
+
     // for Google Analytics
 
     public static final String ARTICLE_WITH_GOOGLE_ANALYTICS = "/persistence-layer-with-spring-and-hibernate/";

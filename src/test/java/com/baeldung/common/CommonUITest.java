@@ -23,6 +23,7 @@ import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
 
 @ExtendWith(SpringExtension.class)
 public class CommonUITest extends BaseUITest {
@@ -188,6 +189,15 @@ public class CommonUITest extends BaseUITest {
             fail("Analytics code count-->" + analyticsCodeCount.get());
         }
 
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner() {
+        Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_FEED_URL);
+
+        assertEquals(302, response.getStatusCode());
+        assertEquals(GlobalConstants.BAELDUNG_FEED_FEEDBURNER_URL, response.getHeader("Location").replaceAll("/$", ""));
     }
 
 }
