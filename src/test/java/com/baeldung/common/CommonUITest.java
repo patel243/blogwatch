@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -193,6 +194,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Disabled
     public final void givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner() {
         Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_FEED_URL);
 
