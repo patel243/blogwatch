@@ -85,7 +85,7 @@ public class CommonUITest extends BaseUITest {
 
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
-    @Tag("ON-DEMAND")
+    @Tag("onDemand")
     public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
         List<String> urlsWithNoContent = new ArrayList<String>();
         try (Stream<String> sampleArticlesList = Utils.fetchAllArtilcesList()) {
