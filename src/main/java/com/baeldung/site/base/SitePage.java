@@ -3,6 +3,7 @@ package com.baeldung.site.base;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Component;
 
@@ -52,6 +53,14 @@ public class SitePage extends BlogBaseDriver {
 
     public List<WebElement> getPathOfPersistenceEBookImages() {
         return this.getWebDriver().findElements(By.xpath("//*[@id='tve_editor']/div/div[1]/span/img"));
+    }
+
+    public boolean metaWithRobotsNoindexEists() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//meta[@name='robots'][contains(@content,'noindex')]")).isEnabled();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
 }

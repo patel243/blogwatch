@@ -76,4 +76,9 @@ public class GlobalConstants {
     public static final String PAGE_WITH_GOOGLE_ANALYTICS = "/rest-with-spring-course/";
     public static final String GOOGLE_ANALYTICS_CODE_SEARCH_STRING = "https://www.google-analytics.com/analytics.js";
 
+    // for testing noindex on category/tag
+
+    public static final String CATEGORY_URL = "/category/series/";
+    public static final String TAG_ARTICLE_URL = "/tag/activiti/";
+
 }

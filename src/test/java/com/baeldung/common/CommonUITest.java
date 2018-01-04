@@ -231,4 +231,24 @@ public class CommonUITest extends BaseUITest {
         assertEquals(GlobalConstants.BAELDUNG_FEED_FEEDBURNER_URL, response.getHeader("Location").replaceAll("/$", ""));
     }
 
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.CATEGORY_URL);
+
+        page.loadUrl();
+
+        assertTrue(page.metaWithRobotsNoindexEists());
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    public final void givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.TAG_ARTICLE_URL);
+
+        page.loadUrl();
+
+        assertTrue(page.metaWithRobotsNoindexEists());
+    }
+
 }
