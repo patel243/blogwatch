@@ -1436,3 +1436,6 @@
 /java-binary-tree
 /java-influxdb
 /java-kafka-streams
+/spring-data-java-8
+/java-tree-set
+/java-soft-references
