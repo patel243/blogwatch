@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -125,16 +124,9 @@ public class CommonUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_ALL_ARTICLE)
     public final void givenAllArticlesURLs_whenArticleLoads_thenItDoesNotThrow404() throws IOException {
-        page.configureImplicitWait(0, TimeUnit.MICROSECONDS);
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
-                page.setUrl(page.getBaseURL() + URL);
-
-                page.loadUrlWithThrottling();
-
-                if (page.pageNotFoundElementDisplayed()) {
-                    fail("Article with potential 404-->" + URL);
-                }
+                assertEquals(200, RestAssured.given().get(page.getBaseURL() + URL).getStatusCode(), "404 received from URL-->" + URL);
             });
         }
     }
@@ -142,16 +134,9 @@ public class CommonUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_ALL_PAGES)
     public final void givenAllPagesURLs_whenPageLoads_thenItDoesNotThrow404() throws IOException {
-        page.configureImplicitWait(0, TimeUnit.MICROSECONDS);
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
-                page.setUrl(page.getBaseURL() + URL);
-
-                page.loadUrlWithThrottling();
-
-                if (page.pageNotFoundElementDisplayed()) {
-                    fail("Page with potential 404-->" + URL);
-                }
+                assertEquals(200, RestAssured.given().get(page.getBaseURL() + URL).getStatusCode(), "404 received from URL-->" + URL);
             });
         }
     }
