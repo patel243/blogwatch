@@ -11,7 +11,7 @@ import com.baeldung.site.base.BlogBaseDriver;
 public class NewsLettersubscriptionPage extends BlogBaseDriver {
 
     public void clickGetAccessToTheLatestIssuesButton() {
-        this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[1]/div/div/div/div/div[3]/div/a/span[2]")).click();
+        this.getWebDriver().findElement(By.xpath("//a[contains(., 'Get access to the latest issues')]")).click();
     }
 
     public WebElement findEmailFieldInSubscriptionPopup() {
@@ -19,8 +19,7 @@ public class NewsLettersubscriptionPage extends BlogBaseDriver {
     }
 
     public WebElement findSubscripbeButtonInSubscriptionPopup() {
-        // return this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[3]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
-        return this.getWebDriver().findElement(By.xpath("//*[@id=\"tve_editor\"]/div[2]/div[2]/div[2]/div[1]/form/div[1]/div/div/div[2]/div/div/button"));
+        return this.getWebDriver().findElement(By.xpath("//button[@type='submit' and contains(., 'SUBSCRIBE')]"));
     }
 
     @Override
