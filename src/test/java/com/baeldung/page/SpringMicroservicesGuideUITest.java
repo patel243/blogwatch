@@ -1,10 +1,13 @@
 package com.baeldung.page;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -26,8 +29,11 @@ public final class SpringMicroservicesGuideUITest extends BaseUITest {
 
         springMicroservicesGuidePage.clickAccessTheGuideButton();
 
-        assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.findFirstImagePath()).getStatusCode());
-        assertEquals(200, RestAssured.given().get(springMicroservicesGuidePage.find2ndImagePath()).getStatusCode());
+        List<WebElement> elements = springMicroservicesGuidePage.findImages();
+        elements.forEach(element -> {
+            assertEquals(200, RestAssured.given().get(element.getAttribute("src")).getStatusCode());
+        });
+
     }
 
 }

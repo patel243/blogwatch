@@ -1,6 +1,9 @@
 package com.baeldung.site.guide;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,17 +13,11 @@ import com.baeldung.site.base.BlogBaseDriver;
 public class SpringMicroservicesGuidePage extends BlogBaseDriver {
 
     public void clickAccessTheGuideButton() {
-        this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div[2]/div/div[3]/div[2]/div/div/div/div[3]/div/div/a")).click();
+        this.getWebDriver().findElement(By.xpath("//a[contains(., 'ACCESS THE GUIDE')]")).click();
     }
 
-    public String findFirstImagePath() {
-        // return this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div/div[2]/div/div[1]/div/div/span/img")).getAttribute("src");
-        return this.getWebDriver().findElement(By.xpath("//*[@id=\"tve_editor\"]/div[2]/div[2]/div[1]/div/div[1]/div/div/span/img")).getAttribute("src");
-    }
-
-    public String find2ndImagePath() {
-        // return this.getWebDriver().findElement(By.xpath("//*[@id='tve_editor']/div/div[2]/div/div[2]/div/div[3]/span/img")).getAttribute("src");
-        return this.getWebDriver().findElement(By.xpath("//*[@id=\"tve_editor\"]/div[2]/div[2]/div[1]/div/div[2]/div/div[3]/span/img")).getAttribute("src");
+    public List<WebElement> findImages() {
+        return this.getWebDriver().findElements(By.xpath("//*[@id='tve_editor']//img"));
     }
 
     @Override
