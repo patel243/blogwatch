@@ -1439,3 +1439,15 @@
 /spring-data-java-8
 /java-tree-set
 /java-soft-references
+/docker-java-api
+/vraptor
+/java-date-regular-expressions
+/java-kth-largest-element
+/cockroachdb-java
+/java-treemap-vs-hashmap
+/java-string-joiner
+/jenkins-job-schedule
+/hibernate-5-multitenancy
+/java-thread-local-random
+/hibernate-5-spring
+/java-weekly-210

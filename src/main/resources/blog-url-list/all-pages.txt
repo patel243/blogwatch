@@ -62,3 +62,5 @@
 /learn-spring
 /full_archive
 /blogs-I-read
+/http-client-ebook
+/do-JSON-with-Jackson-ebook
