@@ -14,15 +14,13 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
     @Override
     public void openNewWindow() {
 
-        /*final Capabilities capabilities = DesiredCapabilities.htmlUnit();
-        
-        driver = new HtmlUnitDriver(capabilities) {
-            @Override
-            protected WebClient newWebClient(BrowserVersion version) {
-                WebClient webClient = super.newWebClient(version);
-                webClient.getOptions().setThrowExceptionOnScriptError(false);
-                return webClient;
-            }
+        /*driver = new HtmlUnitDriver(BrowserVersion.getDefault(), true){
+           @Override
+           protected WebClient newWebClient(BrowserVersion version) {
+               WebClient webClient = super.newWebClient(version);
+               webClient.getOptions().setThrowExceptionOnScriptError(false);
+               return webClient;
+           }
         };*/
 
         DesiredCapabilities caps = new DesiredCapabilities();
