@@ -7,10 +7,6 @@
 /webinar-the-basics-of-rest-with-spring
 /webinar
 /learn-spring-security-course
-/http-client-ebook-V2
-/rest-api-spring-guide-V2
-/spring-microservices-guide-V2
-/do-JSON-with-Jackson-ebook-V2
 /rest-with-spring-for-teams
 /rest-with-spring-course
 /course-upgrade
