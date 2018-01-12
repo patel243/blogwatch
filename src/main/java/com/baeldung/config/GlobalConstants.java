@@ -1,5 +1,7 @@
 package com.baeldung.config;
 
+import com.google.common.collect.ImmutableList;
+
 public class GlobalConstants {
 
     // env properties
@@ -56,12 +58,18 @@ public class GlobalConstants {
      */
     public static final String TAG_ALL_PAGES = "allPages";
 
+    /**
+     * Tests using this tag should run upto 5 URLs
+     */
+    public static final String TAG_MAX_URLS_5 = "max5URLs";
+
     // pages
 
     public static final String ARTICLE_WITH_POPUP = "/rest-with-spring-series/";
-    public static final String ARTICLE_WITH_BLANK_TITLE = "/java-weekly-sponsorship/";
     public static final String ARTICLE_WITH_SERIES = "/spring-security-registration/";
     public static final String ARTICLE_WITH_PESISTENCE_EBOOK_DOWNLOAD = "/hibernate-spatial/";
+
+    public static final ImmutableList<String> PAGES_WITH_BLANK_TITLE = ImmutableList.of("/java-weekly-sponsorship/", "/webinar-rest-with-spring-thank-you", "/webinar-api-security-thank-you", "/webinar-api-discoverability-thank-you", "/webinar-cqrs-thank-you");
 
     // for redirection tests
     public static String BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX = "http://baeldung.com";

@@ -1,5 +1,6 @@
 package com.baeldung.common;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -109,16 +110,15 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void givenTheArticleWithBlankTitle_whenArticleLoads_thenItDoesNotContainNotitleText() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_BLANK_TITLE);
+    @Tag(GlobalConstants.TAG_MAX_URLS_5)
+    public final void givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
+        GlobalConstants.PAGES_WITH_BLANK_TITLE.forEach(url -> {
+            page.setUrl(page.getBaseURL() + url);
 
-        page.loadUrl();
-        List<WebElement> pageWithNoTitleInBody = page.pagesWithNotitleTextInBody();
+            page.loadUrl();
 
-        if (pageWithNoTitleInBody.size() > 0) {
-            fail("Page found with '[No Title]: ID' text in body, URL:->" + page.getUrl());
-        }
+            assertFalse(page.pagesWithNotitleTextInBody().size() > 0);
+        });
     }
 
     @Test
