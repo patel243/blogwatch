@@ -39,9 +39,7 @@ public class CommonUITest extends BaseUITest {
 
                 page.loadUrlWithThrottling();
 
-                if (!page.findContentDiv().isDisplayed()) {
-                    fail("Page found with no content div. URL->" + URL);
-                }
+                assertTrue("Page found with no content div. URL->" + URL, page.findContentDiv().isDisplayed());
             });
         }
     }
@@ -74,9 +72,7 @@ public class CommonUITest extends BaseUITest {
                 potentiallyEmptyDivs.forEach(webElement -> {
                     // logger.debug("value="+webElement.getText()+"=");
                     // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
-                    if (StringUtils.isBlank(webElement.getText().trim())) {
-                        fail("Page found with empty DIV. URL-->" + URL);
-                    }
+                    assertFalse("Page found with empty DIV. URL-->" + URL, StringUtils.isBlank(webElement.getText().trim()));
                 });
             });
         }
@@ -117,7 +113,7 @@ public class CommonUITest extends BaseUITest {
 
             page.loadUrl();
 
-            assertFalse(page.pagesWithNotitleTextInBody().size() > 0);
+            assertFalse("page found with 'No Title' in body-->" + url, page.pagesWithNotitleTextInBody().size() > 0);
         });
     }
 
@@ -179,10 +175,8 @@ public class CommonUITest extends BaseUITest {
                 analyticsCodeCount.getAndIncrement();
             }
         });
-        if (analyticsCodeCount.get() != 1) {
-            fail("Analytics code count-->" + analyticsCodeCount.get());
-        }
 
+        assertTrue("Analytics code count-->" + analyticsCodeCount.get(), analyticsCodeCount.get() == 1);
     }
 
     @Test
@@ -199,10 +193,8 @@ public class CommonUITest extends BaseUITest {
                 analyticsCodeCount.getAndIncrement();
             }
         });
-        if (analyticsCodeCount.get() != 1) {
-            fail("Analytics code count-->" + analyticsCodeCount.get());
-        }
 
+        assertTrue("Analytics code count-->" + analyticsCodeCount.get(), analyticsCodeCount.get() == 1);
     }
 
     @Test
