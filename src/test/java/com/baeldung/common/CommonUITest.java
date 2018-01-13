@@ -32,7 +32,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_WEEKY)
-    public final void givenTheSampleArticleList_whenArticleLoads_thenContentDivExists() throws IOException {
+    public final void givenTheSampleArticleList_whenArticleLoads_thenIthasContent() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
@@ -62,8 +62,8 @@ public class CommonUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_MONTHLY)
     public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
-        try (Stream<String> sampleArticlesList = Utils.fetchAllArtilcesList()) {
-            sampleArticlesList.forEach(URL -> {
+        try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
+            allArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
 
                 page.loadUrlWithThrottling();
@@ -83,8 +83,8 @@ public class CommonUITest extends BaseUITest {
     @Tag("onDemand")
     public final void onDemand_givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
         List<String> urlsWithNoContent = new ArrayList<String>();
-        try (Stream<String> sampleArticlesList = Utils.fetchAllArtilcesList()) {
-            sampleArticlesList.forEach(URL -> {
+        try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
+            allArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
 
                 page.loadUrlWithThrottling();

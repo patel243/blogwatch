@@ -75,7 +75,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 13 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
 | 14 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
 | 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
-| 16 | givenTheSampleArticleList_whenArticleLoads_thenContentDivExists|weekly |
+| 16 | givenTheSampleArticleList_whenArticleLoads_thenIthasContent|weekly |
 | 17 | givenAllArticlesURLs_whenArticleLoads_thenItDoesNotThrow404 | bi-monthly |
 | 18 | givenAllPagesURLs_whenPageLoads_thenItDoesNotThrow404 | bi-monthly |
 | 19 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
