@@ -60,7 +60,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 
 | Test Name | Tag/Frequency |
 | --------- | ------------- |
-| givenJaveWeeklyLinkClickedOnHomePage_whenSubscriptionPopupLoads_thenItContainsEmailAndSubscribeElements | daily |
+| givenJavWebeWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements | daily |
 | givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText | daily |
 | givenOnHomePage_whenPageLods_thenItContainsCategoriesInFooterMenu | daily |
 | givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
