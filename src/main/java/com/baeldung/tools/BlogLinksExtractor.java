@@ -20,11 +20,15 @@ import org.jdom2.input.SAXBuilder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.config.application.SeleniumHeadlessBrowserConfig;
 
 public class BlogLinksExtractor {
+    
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     // set environment variable named blog-url-list. It's value should be absolute path to resources/blog-url-list directory.
 
@@ -72,7 +76,7 @@ public class BlogLinksExtractor {
             try {
                 String url = urlNode.getChild("loc", defaultNamespace).getText().substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
                 if (!urlAlreadyAvailable(allpagesFilePath, url)) {
-                    System.out.println("New Page URL found->" + url);
+                    logger.info("New Page found->" + url);
                     Files.write(allpagesFilePath, (url + "\n").getBytes(), StandardOpenOption.APPEND);
                 }
             } catch (IOException e) {
@@ -101,7 +105,7 @@ public class BlogLinksExtractor {
             try {
                 String url = anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
                 if (!urlAlreadyAvailable(allArtilcesFilePath, url)) {
-                    System.out.println("New Page URL found->" + url);
+                    logger.info("New Article found->" + url);
                     Files.write(allArtilcesFilePath, (anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length()) + "\n").getBytes(), StandardOpenOption.APPEND);
                 }
             } catch (IOException e) {
