@@ -23,7 +23,7 @@ public final class SpringMicroservicesGuideUITest extends BaseUITest {
     private SpringMicroservicesGuidePage springMicroservicesGuidePage;
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         this.springMicroservicesGuidePage.loadUrl();
 

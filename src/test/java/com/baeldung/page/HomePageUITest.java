@@ -34,7 +34,7 @@ public final class HomePageUITest extends BaseUITest {
     private NewsLettersubscriptionPage newsLettersubscriptionPage;
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenJaveWeeklyLinkClickedOnHomePage_whenSubscriptionPopupLoads_thenItContainsEmailAndSubscribeElements() throws InterruptedException {
         homePageDriver.loadUrl();
         homePageDriver.clickNewsletterButton();
@@ -48,7 +48,7 @@ public final class HomePageUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText() {
         homePageDriver.loadUrl();
         List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
@@ -68,16 +68,16 @@ public final class HomePageUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void whenHomePageLods_thenItContainsCategoriesInFooterMenu() {
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenOnHomePage_whenPageLods_thenItContainsCategoriesInFooterMenu() {
         homePageDriver.loadUrl();
 
         assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
-    public final void whenHomePageLoaded_thenNoSevereMessagesInBrowserLog() {
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenOnHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog() {
         homePageDriver.loadUrl();
 
         LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
@@ -90,7 +90,7 @@ public final class HomePageUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW() {
         Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX);
 

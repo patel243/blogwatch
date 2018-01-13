@@ -31,8 +31,8 @@ import com.jayway.restassured.response.Response;
 public class CommonUITest extends BaseUITest {
 
     @Test
-    @Tag(GlobalConstants.TAG_SAMPLE_ARTICLES)
-    public final void givenTheArticle_whenArticleLoads_thenContentDivExists() throws IOException {
+    @Tag(GlobalConstants.TAG_WEEKY)
+    public final void givenTheSampleArticleList_whenArticleLoads_thenContentDivExists() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
@@ -45,7 +45,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
         if (page.isLaunchFlag()) {
             return;
@@ -60,9 +60,9 @@ public class CommonUITest extends BaseUITest {
 
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
-    @Tag(GlobalConstants.TAG_SAMPLE_ARTICLES)
-    public final void givenTheSampleArticleList_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
-        try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
+    @Tag(GlobalConstants.TAG_MONTHLY)
+    public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
+        try (Stream<String> sampleArticlesList = Utils.fetchAllArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
 
@@ -81,7 +81,7 @@ public class CommonUITest extends BaseUITest {
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
     @Tag("onDemand")
-    public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
+    public final void onDemand_givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
         List<String> urlsWithNoContent = new ArrayList<String>();
         try (Stream<String> sampleArticlesList = Utils.fetchAllArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
@@ -106,7 +106,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_MAX_URLS_5)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
         GlobalConstants.PAGES_WITH_BLANK_TITLE.forEach(url -> {
             page.setUrl(page.getBaseURL() + url);
@@ -118,7 +118,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_ALL_ARTICLE)
+    @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenAllArticlesURLs_whenArticleLoads_thenItDoesNotThrow404() throws IOException {
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
@@ -128,7 +128,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_ALL_PAGES)
+    @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenAllPagesURLs_whenPageLoads_thenItDoesNotThrow404() throws IOException {
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
@@ -138,7 +138,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly() {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_SERIES);
 
@@ -149,7 +149,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed() {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_PESISTENCE_EBOOK_DOWNLOAD);
 
@@ -162,7 +162,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode() {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_GOOGLE_ANALYTICS);
 
@@ -180,7 +180,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode() {
         page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_GOOGLE_ANALYTICS);
 
@@ -198,7 +198,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner() {
         Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_FEED_URL);
 
@@ -207,7 +207,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta() {
         page.setUrl(page.getBaseURL() + GlobalConstants.CATEGORY_URL);
 
@@ -217,7 +217,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_SINGLE_URL)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta() {
         page.setUrl(page.getBaseURL() + GlobalConstants.TAG_ARTICLE_URL);
 

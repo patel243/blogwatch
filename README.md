@@ -55,3 +55,38 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 ### On Jenkins
  
  The tests are running here, [on Jenkins](https://rest-security.ci.cloudbees.com/job/site-monitor/job/site-watch/)
+ 
+### Tests
+
+| Test Name | Tag/Frequency |
+| --------- | ------------- |
+| givenJaveWeeklyLinkClickedOnHomePage_whenSubscriptionPopupLoads_thenItContainsEmailAndSubscribeElements | daily |
+| givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText | daily |
+| givenOnHomePage_whenPageLods_thenItContainsCategoriesInFooterMenu | daily |
+| givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
+| givenOnHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
+| givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
+| givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton | daily |
+| givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly | daily |
+| givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed | daily |
+| givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily |
+| givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily |
+| givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily |
+| givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
+| givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
+| givenTheSampleArticleList_whenArticleLoads_thenContentDivExists|weekly |
+| givenAllArticlesURLs_whenArticleLoads_thenItDoesNotThrow404 | bi-monthly |
+| givenAllPagesURLs_whenPageLoads_thenItDoesNotThrow404 | bi-monthly |
+| givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
+
+
+
+
+
+
+
+
+
+
+
+

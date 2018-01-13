@@ -34,34 +34,24 @@ public class GlobalConstants {
     public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
 
     /**
-     * Tests using this tag should target a single URL. Refer to url local/class variable. 
+     * Tests using this tag are executed daily on Jenkins 
      */
-    public static final String TAG_SINGLE_URL = "singleURL";
+    public static final String TAG_DAILY = "daily";
 
     /**
-     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/sample-articles.txt
+     * Tests using this tag are executed weekly on Jenkins 
      */
-    public static final String TAG_SAMPLE_ARTICLES = "sampleArticles";
+    public static final String TAG_WEEKY = "weekly";
 
     /**
-     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/sample-pages.txt
+     * Tests using this tag are executed bi-monthly
      */
-    public static final String TAG_SAMPLE_PAGES = "samplePages";
+    public static final String TAG_BI_MONTHLY = "bi-monthly";
 
     /**
-     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/all-articles.txt
+     * Tests using this tag are executed monthly on Jenkins
      */
-    public static final String TAG_ALL_ARTICLE = "allArticles";
-
-    /**
-     * Tests using this tag should target all the URLs listed in /resources/blog-url-list/all-pages.txt
-     */
-    public static final String TAG_ALL_PAGES = "allPages";
-
-    /**
-     * Tests using this tag should run upto 5 URLs
-     */
-    public static final String TAG_MAX_URLS_5 = "max5URLs";
+    public static final String TAG_MONTHLY = "monthly";
 
     // pages
 

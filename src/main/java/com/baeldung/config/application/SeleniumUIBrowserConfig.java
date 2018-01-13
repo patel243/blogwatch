@@ -22,9 +22,9 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
     }
 
     @Override
-    public void openNewWindow() {        
+    public void openNewWindow() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        //firefoxOptions.setHeadless(true);
+        // firefoxOptions.setHeadless(true);
         driver = new FirefoxDriver(firefoxOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
