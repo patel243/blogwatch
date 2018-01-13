@@ -35,7 +35,7 @@ public final class HomePageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenJaveWeeklyLinkClickedOnHomePage_whenSubscriptionPopupLoads_thenItContainsEmailAndSubscribeElements() throws InterruptedException {
+    public final void givenJavWebeWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements() throws InterruptedException {
         homePageDriver.loadUrl();
         homePageDriver.clickNewsletterButton();
         Thread.sleep(1000);
