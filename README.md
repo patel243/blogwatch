@@ -58,26 +58,27 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
  
 ### Tests
 
-| Test Name | Tag/Frequency |
-| --------- | ------------- |
-| givenJavWebeWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements | daily |
-| givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText | daily |
-| givenOnHomePage_whenPageLods_thenItContainsCategoriesInFooterMenu | daily |
-| givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
-| givenOnHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
-| givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
-| givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton | daily |
-| givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly | daily |
-| givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed | daily |
-| givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily |
-| givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily |
-| givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily |
-| givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
-| givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
-| givenTheSampleArticleList_whenArticleLoads_thenContentDivExists|weekly |
-| givenAllArticlesURLs_whenArticleLoads_thenItDoesNotThrow404 | bi-monthly |
-| givenAllPagesURLs_whenPageLoads_thenItDoesNotThrow404 | bi-monthly |
-| givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
+| Sr. | Test Name | Tag/Frequency |
+| --- | --------- | ------------- |
+| 1 | givenJavWebeWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements | daily |
+| 2 | givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText | daily |
+| 3 | givenOnHomePage_whenPageLods_thenItContainsCategoriesInFooterMenu | daily |
+| 4 | givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
+| 5 | givenOnHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
+| 6 | givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
+| 7 | givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton | daily |
+| 8 | givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly | daily |
+| 9 | givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed | daily |
+| 10 | givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily |
+| 11 | givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily |
+| 12 | givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily |
+| 13 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
+| 14 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
+| 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
+| 16 | givenTheSampleArticleList_whenArticleLoads_thenContentDivExists|weekly |
+| 17 | givenAllArticlesURLs_whenArticleLoads_thenItDoesNotThrow404 | bi-monthly |
+| 18 | givenAllPagesURLs_whenPageLoads_thenItDoesNotThrow404 | bi-monthly |
+| 19 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
 
 
 
