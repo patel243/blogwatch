@@ -32,7 +32,6 @@
 /java-web-weekly/
 /rest-with-spring-affiliates
 /2014-spring-development-report
-/rest-with-spring-course-archived
 /java-conferences-europe
 /follow
 /advertise
