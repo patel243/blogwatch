@@ -1451,3 +1451,14 @@
 /java-thread-local-random
 /hibernate-5-spring
 /java-weekly-210
+/maven-wrapper
+/spring-cloud-aws-messaging
+/spring-cloud-aws-rds
+/spring-cloud-aws-ec2
+/spring-cloud-aws-s3
+/java-weekly-211
+/java-primitives
+/java-weak-reference
+/java-phantom-reference
+/java-iterator
+/vavr-future
