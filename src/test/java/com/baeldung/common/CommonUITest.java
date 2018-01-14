@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -67,18 +66,13 @@ public class CommonUITest extends BaseUITest {
                 page.setUrl(page.getBaseURL() + URL);
 
                 page.loadUrlWithThrottling();
-                List<WebElement> potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
 
-                potentiallyEmptyDivs.forEach(webElement -> {
-                    // logger.debug("value="+webElement.getText()+"=");
-                    // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
-                    assertFalse("Page found with empty DIV. URL-->" + URL, StringUtils.isBlank(webElement.getText().trim()));
-                });
+                assertFalse("Page found with empty DIV. URL-->" + URL, page.findEmptyDivs().size() > 0);
             });
         }
     }
 
-    // <pre> tags in article generates HTML table with div having value either 1 or blank or space
+    // <pre> tags in article generates HTML table with div having a single non-breaking space or space(s)
     @Test
     @Tag("onDemand")
     public final void onDemand_givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
@@ -86,23 +80,20 @@ public class CommonUITest extends BaseUITest {
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
                 page.setUrl(page.getBaseURL() + URL);
-
                 page.loadUrlWithThrottling();
-                List<WebElement> potentiallyEmptyDivs = page.findPotentiallyEmptyDivs();
-                potentiallyEmptyDivs.forEach(webElement -> {
-                    // logger.debug("value="+webElement.getText()+"=");
-                    // assertFalse(webElement.getText().equals(GlobalConstants.NUMBER_ONE));
-                    if (StringUtils.isBlank(webElement.getText().trim())) {
-                        urlsWithNoContent.add(URL);
-                        logger.info("Page found with empty DIV. URL-->" + URL);
-                    }
-                });
-            });
 
-            if (urlsWithNoContent.size() > 0) {
-                fail("URL with No content--->" + urlsWithNoContent.stream().collect(Collectors.joining("\n")));
-            }
+                if (page.findEmptyDivs().size() > 0) {
+                    urlsWithNoContent.add(URL);
+                    logger.info("Page found with empty DIV. URL-->" + URL);
+                }
+
+            });
         }
+
+        if (urlsWithNoContent.size() > 0) {
+            fail("URL with No content--->" + urlsWithNoContent.stream().collect(Collectors.joining("\n")));
+        }
+
     }
 
     @Test
