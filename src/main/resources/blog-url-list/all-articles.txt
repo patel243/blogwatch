@@ -1009,7 +1009,6 @@
 /java-spring-2016-survey
 /spring-security-oauth2-refresh-token-angular-js
 /java-web-weekly-114
-/guide-to-jayway-jsonpath
 /java-web-weekly-113
 /java-executor-service-tutorial
 /spring-apache-camel-tutorial
