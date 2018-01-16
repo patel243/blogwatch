@@ -1462,4 +1462,3 @@
 /java-iterator
 /vavr-future
 /spring-security-5-oauth2-login
-/guide-to-jayway-jsonpath
