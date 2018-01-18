@@ -95,25 +95,25 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    public final void givenAllArticlesURLs_whenArticleLoads_thenItDoesNotThrow404() throws IOException {
-        List<String> urlsWithNo404 = new ArrayList<String>();
+    public final void givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK() throws IOException {
+        List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
                 if (HttpStatus.SC_OK != RestAssured.given().get(page.getBaseURL() + URL).getStatusCode()) {
-                    urlsWithNo404.add(URL);
+                    badURls.add(URL);
                 }
 
             });
         }
 
-        if (urlsWithNo404.size() > 0) {
-            fail("200OK Not received from URLs--->" + urlsWithNo404.stream().collect(Collectors.joining("\n")));
+        if (badURls.size() > 0) {
+            fail("200OK Not received from URLs--->" + badURls.stream().collect(Collectors.joining("\n")));
         }
     }
 
     @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    public final void givenAllPagesURLs_whenPageLoads_thenItDoesNotThrow404() throws IOException {
+    public final void givenAllPagesURLs_whenPageLoads_thenItReturns200OK() throws IOException {
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
                 assertEquals(200, RestAssured.given().get(page.getBaseURL() + URL).getStatusCode(), "200OK Not received from URL-->" + URL);
