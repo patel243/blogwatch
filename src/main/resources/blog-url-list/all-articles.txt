@@ -1462,3 +1462,8 @@
 /java-iterator
 /vavr-future
 /spring-security-5-oauth2-login
+/java-weekly-212
+/jenkins-custom-plugin
+/kotlin-try-with-resources
+/spring-ejb
+/guide-to-jayway-jsonpath

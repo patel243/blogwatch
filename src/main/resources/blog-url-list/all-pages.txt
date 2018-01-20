@@ -20,7 +20,6 @@
 /java8
 /contribution-guidelines
 /authors
-/start-here-old
 /spring-5
 /java-10
 /java-9
