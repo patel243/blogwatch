@@ -114,10 +114,17 @@ public class CommonUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenAllPagesURLs_whenPageLoads_thenItReturns200OK() throws IOException {
+        List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
-                assertEquals(200, RestAssured.given().get(page.getBaseURL() + URL).getStatusCode(), "200OK Not received from URL-->" + URL);
+                if (HttpStatus.SC_OK != RestAssured.given().get(page.getBaseURL() + URL).getStatusCode()) {
+                    badURls.add(URL);
+                }                
             });
+        }
+        
+        if (badURls.size() > 0) {
+            fail("200OK Not received from URLs--->" + badURls.stream().collect(Collectors.joining("\n")));
         }
     }
 
