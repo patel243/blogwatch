@@ -45,7 +45,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_DAILY)    
     public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
         if (page.isLaunchFlag()) {
             return;
@@ -53,8 +53,9 @@ public class CommonUITest extends BaseUITest {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
 
         page.loadUrl();
+        logger.info("Testing popup close button on-->"+page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
 
-        WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 40);
+        WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 60);
         wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));
     }
 
