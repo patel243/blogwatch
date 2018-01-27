@@ -27,7 +27,7 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//div[(contains(@class, 'line number1 index0 alt2')) and ((.='\u00a0')  or (normalize-space(.)=''))]"));
     }
 
-    public List<WebElement> pagesWithNotitleTextInBody() {
+    public List<WebElement> elementsWithNoTitleText() {
         return this.getWebDriver().findElements(By.xpath("//*[contains(text(), '[No Title]: ID')]"));
     }
 

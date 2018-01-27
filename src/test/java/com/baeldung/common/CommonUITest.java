@@ -88,7 +88,7 @@ public class CommonUITest extends BaseUITest {
 
             page.loadUrl();
 
-            assertFalse("page found with 'No Title' in body-->" + url, page.pagesWithNotitleTextInBody().size() > 0);
+            assertFalse("page found with 'No Title' in body-->" + url, page.elementsWithNoTitleText().size() > 0);
         });
     }
 
