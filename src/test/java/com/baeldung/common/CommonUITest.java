@@ -37,7 +37,7 @@ public class CommonUITest extends BaseUITest {
 
                 page.loadUrlWithThrottling();
 
-                assertTrue("Page found with no content div. URL->" + URL, page.findContentDiv().isDisplayed());
+                assertTrue("Page found with no content div. URL->" + URL, page.isContentDivDisplayed());
             });
         }
     }
@@ -88,7 +88,7 @@ public class CommonUITest extends BaseUITest {
 
             page.loadUrl();
 
-            assertFalse("page found with 'No Title' in body-->" + url, page.elementsWithNoTitleText().size() > 0);
+            assertFalse("page found with 'No Title' in body-->" + url, page.getCountOfElementsWithNotitleText() > 0);
         });
     }
 

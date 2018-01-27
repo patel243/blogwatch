@@ -19,6 +19,10 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElement(By.xpath(".//section[1]/div[contains(@class, 'short_box short_start')][1]"));
     }
 
+    public boolean isContentDivDisplayed() {
+        return findContentDiv().isDisplayed();
+    }
+
     public WebElement findPopupCloseButton() {
         return this.getWebDriver().findElement(By.xpath(".//*[@id='tve_editor']/div[1][contains(@class, 'tve_ea_thrive_leads_form_close')]"));
     }
@@ -27,8 +31,12 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//div[(contains(@class, 'line number1 index0 alt2')) and ((.='\u00a0')  or (normalize-space(.)=''))]"));
     }
 
-    public List<WebElement> elementsWithNoTitleText() {
+    public List<WebElement> elementsWithNotitleText() {
         return this.getWebDriver().findElements(By.xpath("//*[contains(text(), '[No Title]: ID')]"));
+    }
+
+    public int getCountOfElementsWithNotitleText() {
+        return elementsWithNotitleText().size();
     }
 
     public WebElement findBodyElement() {
