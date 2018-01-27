@@ -63,4 +63,8 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
+    public int getAnalyticsScriptCount() {
+        return this.getWebDriver().findElements(By.xpath("//script[contains(text(), 'https://www.google-analytics.com/analytics.js')]")).size();
+    }
+
 }

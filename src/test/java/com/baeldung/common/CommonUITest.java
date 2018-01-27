@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,7 +15,6 @@ import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -45,7 +43,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_DAILY)    
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
         if (page.isLaunchFlag()) {
             return;
@@ -53,7 +51,7 @@ public class CommonUITest extends BaseUITest {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
 
         page.loadUrl();
-        logger.info("Testing popup close button on-->"+page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
+        logger.info("Testing popup close button on-->" + page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
 
         WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 60);
         wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));
@@ -120,10 +118,10 @@ public class CommonUITest extends BaseUITest {
             allArticlesList.forEach(URL -> {
                 if (HttpStatus.SC_OK != RestAssured.given().get(page.getBaseURL() + URL).getStatusCode()) {
                     badURls.add(URL);
-                }                
+                }
             });
         }
-        
+
         if (badURls.size() > 0) {
             fail("200OK Not received from URLs--->" + badURls.stream().collect(Collectors.joining("\n")));
         }
@@ -160,15 +158,7 @@ public class CommonUITest extends BaseUITest {
 
         page.loadUrl();
 
-        List<WebElement> allScriptTags = page.getAllScriptTags();
-        AtomicInteger analyticsCodeCount = new AtomicInteger();
-        allScriptTags.forEach(scriptTag -> {
-            if (scriptTag.getAttribute("innerHTML").contains(GlobalConstants.GOOGLE_ANALYTICS_CODE_SEARCH_STRING)) {
-                analyticsCodeCount.getAndIncrement();
-            }
-        });
-
-        assertTrue("Analytics code count-->" + analyticsCodeCount.get(), analyticsCodeCount.get() == 1);
+        assertTrue(page.getAnalyticsScriptCount() == 1);
     }
 
     @Test
@@ -178,15 +168,7 @@ public class CommonUITest extends BaseUITest {
 
         page.loadUrl();
 
-        List<WebElement> allScriptTags = page.getAllScriptTags();
-        AtomicInteger analyticsCodeCount = new AtomicInteger();
-        allScriptTags.forEach(scriptTag -> {
-            if (scriptTag.getAttribute("innerHTML").contains(GlobalConstants.GOOGLE_ANALYTICS_CODE_SEARCH_STRING)) {
-                analyticsCodeCount.getAndIncrement();
-            }
-        });
-
-        assertTrue("Analytics code count-->" + analyticsCodeCount.get(), analyticsCodeCount.get() == 1);
+        assertTrue(page.getAnalyticsScriptCount() == 1);
     }
 
     @Test
