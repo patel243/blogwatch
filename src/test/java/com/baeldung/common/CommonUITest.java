@@ -200,4 +200,25 @@ public class CommonUITest extends BaseUITest {
         assertTrue(page.metaWithRobotsNoindexEists());
     }
 
+    @Test
+    @Tag(GlobalConstants.TAG_MONTHLY)
+    public final void givenAllTheArticles_whenArticleLods_thenAllTestsPass() throws IOException {
+
+        try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
+            allArticlesList.forEach(URL -> {
+                page.setUrl(page.getBaseURL() + URL);
+
+                page.loadUrlWithThrottling();
+
+                //givenTheSampleArticleList_whenArticleLoads_thenIthasContent
+                assertTrue("Page found with no content div. URL->" + URL, page.isContentDivDisplayed());
+
+                //givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText
+                assertFalse("page found with 'No Title' in body-->" + URL, page.getCountOfElementsWithNotitleText() > 0);
+
+            });
+        }
+
+    }
+
 }
