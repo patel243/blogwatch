@@ -92,7 +92,7 @@ public final class HomePageUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW() {
-        Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX);
+        Response response = RestAssured.given().redirects().follow(false).head(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX);
 
         assertEquals(301, response.getStatusCode());
         assertEquals(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX, response.getHeader("Location").replaceAll("/$", ""));

@@ -31,7 +31,7 @@ public final class SpringMicroservicesGuideUITest extends BaseUITest {
 
         List<WebElement> elements = springMicroservicesGuidePage.findImages();
         elements.forEach(element -> {
-            assertEquals(200, RestAssured.given().get(element.getAttribute("src")).getStatusCode());
+            assertEquals(200, RestAssured.given().head(element.getAttribute("src")).getStatusCode());
         });
 
     }

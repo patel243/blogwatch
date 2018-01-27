@@ -98,7 +98,7 @@ public class CommonUITest extends BaseUITest {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
-                if (HttpStatus.SC_OK != RestAssured.given().get(page.getBaseURL() + URL).getStatusCode()) {
+                if (HttpStatus.SC_OK != RestAssured.given().head(page.getBaseURL() + URL).getStatusCode()) {
                     badURls.add(URL);
                 }
 
@@ -116,7 +116,7 @@ public class CommonUITest extends BaseUITest {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
-                if (HttpStatus.SC_OK != RestAssured.given().get(page.getBaseURL() + URL).getStatusCode()) {
+                if (HttpStatus.SC_OK != RestAssured.given().head(page.getBaseURL() + URL).getStatusCode()) {
                     badURls.add(URL);
                 }
             });
@@ -146,7 +146,7 @@ public class CommonUITest extends BaseUITest {
         page.loadUrl();
 
         page.getPathOfPersistenceEBookImages().forEach(image -> {
-            assertEquals(200, RestAssured.given().get(image.getAttribute("src")).getStatusCode());
+            assertEquals(200, RestAssured.given().head(image.getAttribute("src")).getStatusCode());
         });
 
     }
