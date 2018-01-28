@@ -42,6 +42,7 @@ public class ExperimentalTest {
     public void loadNewWindow() throws IOException {
         page.openNewWindow();
         allArticlesList = fetchAllArtilcesAsList();
+        loadNextURL();
     }
 
     @AfterEach
@@ -62,21 +63,21 @@ public class ExperimentalTest {
     @Test
     @Tag("experimental")
     public final void givenAllArticleList_whenArticleLoads_thenIthasContent() throws IOException {
-        logger.info("givenTheSampleArticleList_whenArticleLoads_thenIthasContent");
+        logger.info("givenAllArticleList_whenArticleLoads_thenIthasContent");
         do {
-            assertTrue("Test givenTheSampleArticleList_whenArticleLoads_thenIthasContent failed. URL-->" + page.getUrl(), page.isContentDivDisplayed());
+            assertTrue("Test givenAllArticleList_whenArticleLoads_thenIthasContent failed. URL-->" + page.getUrl(), page.isContentDivDisplayed());            
         } while (loadNextURL());
     }
 
     @Test
     @Tag("experimental")
     public final void allTests() throws IOException {
-        while (loadNextURL()) {
+        do {
             loadNextUrl = false;
             givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv();
             givenAllArticleList_whenArticleLoads_thenIthasContent();
             loadNextUrl = true;
-        }
+        }while (loadNextURL());
     }
 
     private boolean loadNextURL() {
