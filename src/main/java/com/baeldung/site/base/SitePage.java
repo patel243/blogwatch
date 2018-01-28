@@ -20,7 +20,11 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean isContentDivDisplayed() {
-        return findContentDiv().isDisplayed();
+        try {
+            return findContentDiv().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public WebElement findPopupCloseButton() {
