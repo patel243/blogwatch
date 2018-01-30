@@ -14,10 +14,8 @@ import java.util.stream.Stream;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
@@ -25,7 +23,6 @@ import com.baeldung.util.Utils;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
-@ExtendWith(SpringExtension.class)
 public class CommonUITest extends BaseUITest {
 
     @Test

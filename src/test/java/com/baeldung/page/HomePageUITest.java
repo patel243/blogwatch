@@ -9,13 +9,11 @@ import java.util.logging.Level;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
@@ -24,7 +22,6 @@ import com.baeldung.site.home.NewsLettersubscriptionPage;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
-@ExtendWith(SpringExtension.class)
 public final class HomePageUITest extends BaseUITest {
 
     @Autowired
