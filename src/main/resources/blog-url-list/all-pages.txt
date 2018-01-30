@@ -62,3 +62,5 @@
 /blogs-I-read
 /http-client-ebook
 /do-JSON-with-Jackson-ebook
+/oauth-deep-dive
+/api-discoverability-webinar
