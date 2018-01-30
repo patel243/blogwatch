@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -57,6 +58,7 @@ public class CommonUITest extends BaseUITest {
     // <pre> tags in article generates HTML table with div having value either 1 or blank or space
     @Test
     @Tag(GlobalConstants.TAG_MONTHLY)
+    @Disabled
     public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
         List<String> urlsWithNoContent = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
@@ -91,6 +93,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
+    @Disabled
     public final void givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK() throws IOException {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
@@ -195,27 +198,6 @@ public class CommonUITest extends BaseUITest {
         page.loadUrl();
 
         assertTrue(page.metaWithRobotsNoindexEists());
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_MONTHLY)
-    public final void givenAllTheArticles_whenArticleLods_thenAllTestsPass() throws IOException {
-
-        try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
-            allArticlesList.forEach(URL -> {
-                page.setUrl(page.getBaseURL() + URL);
-
-                page.loadUrlWithThrottling();
-
-                //givenTheSampleArticleList_whenArticleLoads_thenIthasContent
-                assertTrue("Page found with no content div. URL->" + URL, page.isContentDivDisplayed());
-
-                //givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText
-                assertFalse("page found with 'No Title' in body-->" + URL, page.getCountOfElementsWithNotitleText() > 0);
-
-            });
-        }
-
     }
 
 }

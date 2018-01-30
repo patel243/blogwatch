@@ -1,12 +1,8 @@
 package com.baeldung.common;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ListIterator;
 
 import org.junit.jupiter.api.AfterEach;
@@ -16,32 +12,32 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.baeldung.config.GlobalConstants;
+import com.baeldung.base.BaseUITest;
 import com.baeldung.config.context.MainConfig;
 import com.baeldung.config.context.MyApplicationContextInitializer;
-import com.baeldung.site.base.SitePage;
+import com.baeldung.util.Utils;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 @ContextConfiguration(classes = { MainConfig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
-public class ExperimentalTest {
+public class AllArticlesUITest extends BaseUITest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     private ListIterator<String> allArticlesList;
+    Multimap<String, String> badURLs = ArrayListMultimap.create();
 
     boolean loadNextUrl = true;
-
-    @Autowired
-    protected SitePage page;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
         page.openNewWindow();
-        allArticlesList = fetchAllArtilcesAsList();
+        allArticlesList = Utils.fetchAllArtilcesAsListIterator();
+        badURLs.clear();
         loadNextURL();
     }
 
@@ -51,33 +47,38 @@ public class ExperimentalTest {
     }
 
     @Test
-    @Tag("experimental")
+    @Tag("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv")
     public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
-
-        logger.info("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv");
         do {
-            assertFalse("Test givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv failed. URL-->" + page.getUrl(), page.findEmptyDivs().size() > 0);
+            if (page.findEmptyDivs().size() > 0) {
+                badURLs.put("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv", page.getUrl());
+            }
         } while (loadNextURL());
     }
 
     @Test
-    @Tag("experimental")
+    @Tag("givenAllArticleList_whenArticleLoads_thenIthasContent")
     public final void givenAllArticleList_whenArticleLoads_thenIthasContent() throws IOException {
-        logger.info("givenAllArticleList_whenArticleLoads_thenIthasContent");
         do {
-            assertTrue("Test givenAllArticleList_whenArticleLoads_thenIthasContent failed. URL-->" + page.getUrl(), page.isContentDivDisplayed());            
+            if (!page.isContentDivDisplayed()) {
+                badURLs.put("givenAllArticleList_whenArticleLoads_thenIthasContent", page.getUrl());
+            }
         } while (loadNextURL());
     }
 
     @Test
-    @Tag("experimental")
-    public final void allTests() throws IOException {
+    @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
+    public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
         do {
             loadNextUrl = false;
             givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv();
             givenAllArticleList_whenArticleLoads_thenIthasContent();
             loadNextUrl = true;
-        }while (loadNextURL());
+        } while (loadNextURL());
+
+        if (badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
     }
 
     private boolean loadNextURL() {
@@ -92,11 +93,6 @@ public class ExperimentalTest {
 
         return true;
 
-    }
-
-    public ListIterator<String> fetchAllArtilcesAsList() throws IOException {
-        File file = new File(ExperimentalTest.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_ARTICLES_FILE_NAME).getPath());
-        return Files.readAllLines(Paths.get(file.getAbsolutePath())).listIterator();
     }
 
 }
