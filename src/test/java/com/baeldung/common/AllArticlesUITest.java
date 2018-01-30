@@ -58,6 +58,16 @@ public class AllArticlesUITest extends BaseUITest {
             }
         } while (loadNextURL());
     }
+    
+    @Test
+    @Tag("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd")
+    public final void givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd() throws IOException {
+        do {
+            if (page.findShortCodesAttheEndOfPage().size()>1) {
+                badURLs.put("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd", page.getUrl());
+            }
+        } while (loadNextURL());
+    }
 
     @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
@@ -66,6 +76,7 @@ public class AllArticlesUITest extends BaseUITest {
             loadNextUrl = false;
             givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv();
             givenAllArticleList_whenArticleLoads_thenIthasContent();
+            givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd();
             loadNextUrl = true;
         } while (loadNextURL());
 

@@ -79,4 +79,8 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//script[contains(text(), 'https://www.google-analytics.com/analytics.js')]")).size();
     }
 
+    public List<WebElement>  findShortCodesAttheEndOfPage() {
+        return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_end')]"));
+    }
+    
 }
