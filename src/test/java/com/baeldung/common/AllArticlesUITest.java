@@ -28,6 +28,7 @@ public class AllArticlesUITest extends BaseUITest {
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
+        logger.info("inside loadNewWindow()");
         page.openNewWindow();
         allArticlesList = Utils.fetchAllArtilcesAsListIterator();
         badURLs.clear();
