@@ -9,21 +9,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.base.BaseUITest;
-import com.baeldung.config.context.MainConfig;
-import com.baeldung.config.context.MyApplicationContextInitializer;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
-@ContextConfiguration(classes = { MainConfig.class }, initializers = MyApplicationContextInitializer.class)
-@ExtendWith(SpringExtension.class)
 public class AllArticlesUITest extends BaseUITest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
