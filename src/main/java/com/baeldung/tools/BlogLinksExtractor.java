@@ -87,7 +87,7 @@ public class BlogLinksExtractor {
 
     private boolean urlAlreadyAvailable(Path allpagesFilePath, String url) throws IOException {
         try (Stream<String> lines = Files.lines(allpagesFilePath)) {
-            Optional<String> hasPassword = lines.filter(s -> s.contains(url)).findFirst();
+            Optional<String> hasPassword = lines.filter(s -> (s+"/").contains(url+"/")).findFirst();
             if (hasPassword.isPresent()) {
                 return true;
             }
