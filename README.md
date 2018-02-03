@@ -75,10 +75,11 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 13 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
 | 14 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
 | 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
-| 16 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | bi-monthly |
-| 17 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
-| 18 | givenAllArticleList_whenArticleLoads_thenIthasContent|monthly |
-| 19 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
+| 16 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | weekly |
+| 17 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
+| 18 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
+| 19 | givenAllArticleList_whenArticleLoads_thenIthasContent|monthly |
+| 20 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
 
 
 
