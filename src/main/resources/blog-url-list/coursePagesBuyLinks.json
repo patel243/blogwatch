@@ -1,0 +1,43 @@
+{
+  "coursePages": [
+    {
+      "url": "/rest-with-spring-course",
+      "onClickCall": [
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy1');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy2');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_master');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_cert');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_live');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_master');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_bulk');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team2');"
+      ]
+    },
+    {
+      "url": "/learn-spring-security-course",
+      "onClickCall": [
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy1');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy2');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_master');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_cert');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_live');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_master');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_bulk');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team2');"
+      ]
+    },
+    {
+      "url": "/learn-spring-security-for-teams",
+      "onClickCall": [
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_small');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_medium');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_large');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_team_master');",
+           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_bulk');"
+      ]
+    }
+    
+  ]
+}

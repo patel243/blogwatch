@@ -79,8 +79,24 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//script[contains(text(), 'https://www.google-analytics.com/analytics.js')]")).size();
     }
 
-    public List<WebElement>  findShortCodesAttheEndOfPage() {
+    public List<WebElement> findShortCodesAttheEndOfPage() {
         return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_end')]"));
     }
-    
+
+    public boolean findAnchorWithGAEventCall(String gaEventCall) {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//a[@onclick=\"" + gaEventCall + "\"][contains(@class,'ga-custom-event')]")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean findGACustomScript() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//script[contains(text(),\"jQuery('.ga-custom-event').on('click', function(event)\")]")).isEnabled();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }

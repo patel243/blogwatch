@@ -21,6 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
@@ -199,6 +201,24 @@ public class CommonUITest extends BaseUITest {
         page.loadUrl();
 
         assertTrue(page.metaWithRobotsNoindexEists());
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_WEEKY)
+    @Tag("givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly")
+    public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
+
+        Multimap<String, String> testData = Utils.getCoursePagesBuyLinksTestData();
+        for (String urlKey : testData.keySet()) {
+            page.setUrl(page.getBaseURL() + urlKey);
+
+            page.loadUrl();
+
+            for (String gaEventCall : testData.get(urlKey)) {
+                assertTrue("couldn't find custom ga call" + gaEventCall + " with ga-custom-event class for url-->" + urlKey, page.findAnchorWithGAEventCall(gaEventCall));
+            }
+            assertTrue("ga-custom-event script not found on -->" + urlKey, page.findGACustomScript());
+        }
     }
 
 }
