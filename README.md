@@ -57,6 +57,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
  The tests are running here, [on Jenkins](https://rest-security.ci.cloudbees.com/job/site-monitor/job/site-watch/)
  
 ### Tests
+ The tests which are crossed out are disabled.
 
 | Sr. | Test Name | Tag/Frequency |
 | --- | --------- | ------------- |
