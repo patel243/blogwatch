@@ -55,6 +55,11 @@ public class GlobalConstants {
      */
     public static final String TAG_MONTHLY = "monthly";
 
+    /**
+     * Tests using this tag can be executed using on Demand genkins job.
+     */
+    public static final String GA_TRACKING = "ga-tracking";
+
     // pages
 
     public static final String ARTICLE_WITH_POPUP = "/rest-with-spring-series/";

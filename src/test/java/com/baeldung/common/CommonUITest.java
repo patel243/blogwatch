@@ -205,7 +205,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_WEEKY)
-    @Tag("givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly")
+    @Tag(GlobalConstants.GA_TRACKING)
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 
         Multimap<String, String> testData = Utils.getCoursePagesBuyLinksTestData();
