@@ -1487,3 +1487,12 @@
 /netty-exception-handling
 /javalite-rest
 /spring-security-method-security
+/javac
+/elasticsearch-tagging
+/tomcat-programmatic-setup
+/spring-test-programmatic-transactions
+/java-weekly-214
+/spring-cloud-app-starter
+/guava-memoizer
+/tomcat-change-port
+/spring-5-reactive-websockets
