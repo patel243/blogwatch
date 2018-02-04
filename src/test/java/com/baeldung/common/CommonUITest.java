@@ -215,7 +215,7 @@ public class CommonUITest extends BaseUITest {
             page.loadUrl();
 
             for (String gaEventCall : testData.get(urlKey)) {
-                assertTrue("couldn't find custom ga call" + gaEventCall + " with ga-custom-event class for url-->" + urlKey, page.findAnchorWithGAEventCall(gaEventCall));
+                assertTrue("couldn't find custom ga call: " + gaEventCall + " with ga-custom-event class for url-->" + urlKey, page.findAnchorWithGAEventCall(gaEventCall));
             }
             assertTrue("ga-custom-event script not found on -->" + urlKey, page.findGACustomScript());
         }
