@@ -27,7 +27,7 @@ import com.baeldung.config.GlobalConstants;
 import com.baeldung.config.application.SeleniumHeadlessBrowserConfig;
 
 public class BlogLinksExtractor {
-    
+
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     // set environment variable named blog-url-list. It's value should be absolute path to resources/blog-url-list directory.
@@ -87,7 +87,7 @@ public class BlogLinksExtractor {
 
     private boolean urlAlreadyAvailable(Path allpagesFilePath, String url) throws IOException {
         try (Stream<String> lines = Files.lines(allpagesFilePath)) {
-            Optional<String> hasPassword = lines.filter(s -> (s+"/").contains(url+"/")).findFirst();
+            Optional<String> hasPassword = lines.filter(s -> (s + "/").contains(url + "/")).findFirst();
             if (hasPassword.isPresent()) {
                 return true;
             }
@@ -104,7 +104,7 @@ public class BlogLinksExtractor {
         archiveURLElemets.forEach(anchorTag -> {
             try {
                 String url = anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
-                if (!urlAlreadyAvailable(allArtilcesFilePath, url)) {
+                if (!urlAlreadyAvailable(allArtilcesFilePath, url) && !isFlaggedArticle(url)) {
                     logger.info("New Article found->" + url);
                     Files.write(allArtilcesFilePath, (anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length()) + "\n").getBytes(), StandardOpenOption.APPEND);
                 }
@@ -113,6 +113,10 @@ public class BlogLinksExtractor {
             }
         });
 
+    }
+
+    private boolean isFlaggedArticle(String url) {
+        return GlobalConstants.flaggedArticles.stream().anyMatch(str -> str.equals(url + "/"));
     }
 
 }

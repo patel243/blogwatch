@@ -1,5 +1,9 @@
 package com.baeldung.config;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import com.google.common.collect.ImmutableList;
 
 public class GlobalConstants {
@@ -89,5 +93,8 @@ public class GlobalConstants {
     // JW articles
     public static final String ARTILCE_JAVA_WEB_WEEKLY = "java-web-weekly";
     public static final String ARTICLE_JAVA_WEEK_REVIEW = "-week-review";
+
+    // URL should not included in the article list due to 1- article is written for 2- it's a page
+    public static final List<String> flaggedArticles = Collections.unmodifiableList(Arrays.asList("/2016-week-review-2/", "/java-json/", "/guide-to-jayway-jsonpath/"));
 
 }
