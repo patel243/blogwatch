@@ -86,4 +86,8 @@ public class GlobalConstants {
     public static final String CATEGORY_URL = "/category/series/";
     public static final String TAG_ARTICLE_URL = "/tag/activiti/";
 
+    // JW artilces
+    public static final String ARTILCE_JAVA_WEB_WEEKLY = "java-web-weekly";
+    public static final String ARTICLE_JAVA_WEEK_REVIEW = "-week-review";
+
 }

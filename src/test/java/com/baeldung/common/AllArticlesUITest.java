@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.base.BaseUITest;
+import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -25,10 +26,12 @@ public class AllArticlesUITest extends BaseUITest {
     Multimap<String, String> badURLs = ArrayListMultimap.create();
 
     boolean loadNextUrl = true;
+    boolean allTestsFlag = false;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
         logger.info("inside loadNewWindow()");
+        allTestsFlag = false;
         page.openNewWindow();
         allArticlesList = Utils.fetchAllArtilcesAsListIterator();
         badURLs.clear();
@@ -48,31 +51,44 @@ public class AllArticlesUITest extends BaseUITest {
                 badURLs.put("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv", page.getUrl());
             }
         } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
     }
 
     @Test
     @Tag("givenAllArticleList_whenArticleLoads_thenIthasContent")
     public final void givenAllArticleList_whenArticleLoads_thenIthasContent() throws IOException {
         do {
-            if (!page.isContentDivDisplayed()) {
+            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && !page.isContentDivDisplayed()) {
                 badURLs.put("givenAllArticleList_whenArticleLoads_thenIthasContent", page.getUrl());
             }
         } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
     }
-    
+
     @Test
     @Tag("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd")
     public final void givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd() throws IOException {
         do {
-            if (page.findShortCodesAttheEndOfPage().size()>1) {
+            if (page.findShortCodesAttheEndOfPage().size() > 1) {
                 badURLs.put("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd", page.getUrl());
             }
         } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
     }
 
     @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
     public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
+        allTestsFlag = true;
         do {
             loadNextUrl = false;
             givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv();
