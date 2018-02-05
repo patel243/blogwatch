@@ -37,6 +37,16 @@
            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_team_master');",
            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_bulk');"
       ]
+    },
+    {
+      "url": "/rest-with-spring-for-teams",
+      "onClickCall": [
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_small');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_medium');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_large');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_team_master');",
+           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_bulk');"
+      ]
     }
     
   ]
