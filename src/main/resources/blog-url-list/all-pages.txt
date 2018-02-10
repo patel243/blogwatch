@@ -64,3 +64,4 @@
 /do-JSON-with-Jackson-ebook
 /oauth-deep-dive
 /api-discoverability-webinar
+/learn-spring-security-for-teams

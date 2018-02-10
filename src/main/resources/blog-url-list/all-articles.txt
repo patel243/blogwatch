@@ -1496,3 +1496,6 @@
 /guava-memoizer
 /tomcat-change-port
 /spring-5-reactive-websockets
+/java-weekly-215
+/java-wait-notify
+/assertj-custom-assertion
