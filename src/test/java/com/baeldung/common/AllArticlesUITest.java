@@ -92,9 +92,9 @@ public class AllArticlesUITest extends BaseUITest {
     @Tag("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv")
     public final void givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv() throws IOException {
         do {
-            List<WebElement> imgTags = page.findImagesPointingToInvalidEnv();
+            List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
+                badURLs.put("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
             }
         } while (loadNextURL());
 

@@ -51,7 +51,7 @@ public class AllPagesUITest extends BaseUITest {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnThePage();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
+                badURLs.put("givenAllThePages_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
             }
         } while (loadNextURL());
 

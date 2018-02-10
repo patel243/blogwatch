@@ -99,12 +99,14 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
-    public List<WebElement> findImagesPointingToInvalidEnv() {
-        return this.getWebDriver().findElements(By.xpath("//section//img[contains(@src, 'http') and not(contains(@src, '" + this.getBaseURL() + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
+    public List<WebElement> findImagesPointingToInvalidEnvOnTheArticle() {        
+        String baseURLWithOutHttp = this.getBaseURL().substring(6);        
+        return this.getWebDriver().findElements(By.xpath("//section//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
     }
     
     public List<WebElement> findImagesPointingToInvalidEnvOnThePage() {
-        return this.getWebDriver().findElements(By.xpath("//img[contains(@src, 'http') and not(contains(@src, '" + this.getBaseURL() + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
+        String baseURLWithOutHttp = this.getBaseURL().substring(6);        
+        return this.getWebDriver().findElements(By.xpath("//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
     }
 
 }
