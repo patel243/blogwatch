@@ -81,6 +81,8 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 18 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
 | 19 | givenAllArticleList_whenArticleLoads_thenIthasContent|monthly |
 | 20 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
+| 21 | givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd | monthly |
+| 22 | givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv | monthly |
 
 
 

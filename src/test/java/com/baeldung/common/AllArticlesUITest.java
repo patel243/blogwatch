@@ -3,12 +3,15 @@ package com.baeldung.common;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.ListIterator;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,6 +89,21 @@ public class AllArticlesUITest extends BaseUITest {
     }
 
     @Test
+    @Tag("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv")
+    public final void givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv() throws IOException {
+        do {
+            List<WebElement> imgTags = page.findImagesPointingToInvalidEnv();
+            if (imgTags.size() > 0) {
+                badURLs.put("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
+    }
+
+    @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
     public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;
@@ -94,6 +112,7 @@ public class AllArticlesUITest extends BaseUITest {
             givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv();
             givenAllArticleList_whenArticleLoads_thenIthasContent();
             givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd();
+            givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv();
             loadNextUrl = true;
         } while (loadNextURL());
 

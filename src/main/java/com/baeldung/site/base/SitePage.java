@@ -99,4 +99,8 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
+    public List<WebElement> findImagesPointingToInvalidEnv() {
+        return this.getWebDriver().findElements(By.xpath("//section//img[contains(@src, 'http') and not(contains(@src, '" + this.getBaseURL() + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
+    }
+
 }
