@@ -105,6 +105,7 @@ public class AllArticlesUITest extends BaseUITest {
 
     @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
+    @Tag("givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses")
     public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;
         do {

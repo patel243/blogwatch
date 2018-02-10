@@ -34,6 +34,11 @@ public class Utils {
         File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_ARTICLES_FILE_NAME).getPath());
         return Files.readAllLines(Paths.get(file.getAbsolutePath())).listIterator();
     }
+    
+    public static ListIterator<String> fetchAllPagesAsListIterator() throws IOException {
+        File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_PAGES_FILE_NAME).getPath());
+        return Files.readAllLines(Paths.get(file.getAbsolutePath())).listIterator();
+    }
 
     public static File getCoursePagesBuyLinksJsonAsFile() {
         return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_BUY_LINKS).getPath());
