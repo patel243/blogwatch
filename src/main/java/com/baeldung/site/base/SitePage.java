@@ -106,7 +106,7 @@ public class SitePage extends BlogBaseDriver {
     
     public List<WebElement> findImagesPointingToInvalidEnvOnThePage() {
         String baseURLWithOutHttp = this.getBaseURL().substring(6);        
-        return this.getWebDriver().findElements(By.xpath("//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
+        return this.getWebDriver().findElements(By.xpath("//article//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
     }
 
 }
