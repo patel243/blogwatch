@@ -46,8 +46,8 @@ public class AllPagesUITest extends BaseUITest {
     }
     
     @Test
-    @Tag("givenAllThePages_whenArticleLods_thenImagesPointToCorrectEnv")
-    public final void givenAllThePages_whenArticleLods_thenImagesPointToCorrectEnv() throws IOException {
+    @Tag("givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv")
+    public final void givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv() throws IOException {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnThePage();
             if (imgTags.size() > 0) {
@@ -67,7 +67,7 @@ public class AllPagesUITest extends BaseUITest {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
-            
+            givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv();
             loadNextUrl = true;
         } while (loadNextURL());
 
