@@ -78,7 +78,7 @@ public class AllArticlesUITest extends BaseUITest {
     @Tag("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd")
     public final void givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd() throws IOException {
         do {
-            if (page.findShortCodesAttheEndOfPage().size() != 1) {
+            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && page.findShortCodesAttheEndOfPage().size() != 1) {
                 badURLs.put("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd", page.getUrl());
             }
         } while (loadNextURL());
