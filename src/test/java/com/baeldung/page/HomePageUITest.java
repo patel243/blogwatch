@@ -94,5 +94,13 @@ public final class HomePageUITest extends BaseUITest {
         assertEquals(301, response.getStatusCode());
         assertEquals(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX, response.getHeader("Location").replaceAll("/$", ""));
     }
+    
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenOnTheHomePage_whenPageLods_thenItHasOneAboutMenuInTheFooter() {
+        homePageDriver.loadUrl();
+
+        assertTrue(homePageDriver.findAboutMenuInThePageFooter().size()==1);
+    }
 
 }
