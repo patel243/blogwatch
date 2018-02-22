@@ -66,10 +66,10 @@ public final class HomePageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenOnHomePage_whenPageLods_thenItContainsCategoriesInFooterMenu() {
+    public final void givenOnTheHomePage_whenPageLods_thenItContainsCategoriesInTheFooterMenu() {
         homePageDriver.loadUrl();
 
-        assertTrue(homePageDriver.findCategoriesContainerInPageFooter().isDisplayed());
+        assertTrue(homePageDriver.findCategoriesContainerInThePageFooter().isDisplayed());
     }
 
     @Test

@@ -84,7 +84,7 @@ public abstract class BlogBaseDriver {
         return Boolean.parseBoolean(System.getenv(GlobalConstants.LAUNCH_FLAG));
     }
 
-    public WebElement findCategoriesContainerInPageFooter() {
+    public WebElement findCategoriesContainerInThePageFooter() {
         return this.getWebDriver().findElement(By.id("menu-categories"));
     }
     

@@ -63,7 +63,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | --- | --------- | ------------- |
 | 1 | givenJavWebeWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements | daily |
 | 2 | givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText | daily |
-| 3 | givenOnHomePage_whenPageLods_thenItContainsCategoriesInFooterMenu | daily |
+| 3 | givenOnTheHomePage_whenPageLods_thenItContainsCategoriesInTheFooterMenu | daily |
 | 4 | givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
 | 5 | givenOnHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
 | 6 | givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
