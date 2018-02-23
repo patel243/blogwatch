@@ -87,9 +87,9 @@ public abstract class BlogBaseDriver {
     public WebElement findCategoriesContainerInThePageFooter() {
         return this.getWebDriver().findElement(By.id("menu-categories"));
     }
-    
+
     public List<WebElement> findAboutMenuInThePageFooter() {
-        return this.getWebDriver().findElements(By.id("menu-about"));
+        return this.getWebDriver().findElements(By.xpath("//h4[@class = 'widgettitle' and translate(text(),'ABOUT','about') = 'about']"));
     }
 
     public void configureImplicitWait(long time, TimeUnit unit) {
