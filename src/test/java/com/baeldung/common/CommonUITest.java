@@ -204,7 +204,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_WEEKY)
+    @Tag(GlobalConstants.TAG_DAILY)
     @Tag(GlobalConstants.GA_TRACKING)
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 

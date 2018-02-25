@@ -77,7 +77,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 14 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
 | 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
 | 16 | givenOnTheHomePage_whenPageLods_thenItHasOneAboutMenuInTheFooter | daily
-| 17 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | weekly |
+| 17 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
 | 18 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
 | 19 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
 | 20 | givenAllArticleList_whenArticleLoads_thenIthasContent|monthly |
