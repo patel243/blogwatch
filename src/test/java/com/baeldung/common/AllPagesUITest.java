@@ -3,8 +3,10 @@ package com.baeldung.common;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.AfterEach;
@@ -44,7 +46,7 @@ public class AllPagesUITest extends BaseUITest {
     public void closeWindow() {
         page.quiet();
     }
-    
+
     @Test
     @Tag("givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv")
     public final void givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv() throws IOException {
@@ -59,7 +61,7 @@ public class AllPagesUITest extends BaseUITest {
             fail("Failed test-->" + badURLs.toString());
         }
     }
-    
+
     @Test
     @Tag("givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses")
     @Tag("givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses")
@@ -72,7 +74,11 @@ public class AllPagesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            String testsResult = "";
+            for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
+                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n";
+            }
+            fail("Failed tests-->" + testsResult);
         }
     }
 
@@ -89,6 +95,5 @@ public class AllPagesUITest extends BaseUITest {
         return true;
 
     }
-
 
 }

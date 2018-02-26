@@ -80,11 +80,11 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 17 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
 | 18 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
 | 19 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
-| 20 | givenAllArticleList_whenArticleLoads_thenIthasContent|monthly |
+| 20 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|monthly |
+| 21 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | monthly |
 | 22 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
-| 23 | givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd | monthly |
-| 24 | givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv | monthly |
-| 25 | givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv | monthly |
+| 23 | givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv | monthly |
+| 24 | givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv | monthly |
 
 
 

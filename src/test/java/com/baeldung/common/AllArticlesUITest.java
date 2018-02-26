@@ -3,8 +3,10 @@ package com.baeldung.common;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.AfterEach;
@@ -61,11 +63,11 @@ public class AllArticlesUITest extends BaseUITest {
     }
 
     @Test
-    @Tag("givenAllArticleList_whenArticleLoads_thenIthasContent")
-    public final void givenAllArticleList_whenArticleLoads_thenIthasContent() throws IOException {
+    @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop")
+    public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
         do {
-            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && !page.isContentDivDisplayed()) {
-                badURLs.put("givenAllArticleList_whenArticleLoads_thenIthasContent", page.getUrl());
+            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
+                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop", page.getUrl());
             }
         } while (loadNextURL());
 
@@ -75,11 +77,11 @@ public class AllArticlesUITest extends BaseUITest {
     }
 
     @Test
-    @Tag("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd")
-    public final void givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd() throws IOException {
+    @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd")
+    public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
         do {
-            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && page.findShortCodesAttheEndOfPage().size() != 1) {
-                badURLs.put("givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd", page.getUrl());
+            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
+                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd", page.getUrl());
             }
         } while (loadNextURL());
 
@@ -94,7 +96,7 @@ public class AllArticlesUITest extends BaseUITest {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
+                badURLs.put("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + "\n )");
             }
         } while (loadNextURL());
 
@@ -111,14 +113,18 @@ public class AllArticlesUITest extends BaseUITest {
         do {
             loadNextUrl = false;
             givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv();
-            givenAllArticleList_whenArticleLoads_thenIthasContent();
-            givenAllArticleList_whenArticleLoads_thenIthasSingleShortCodeAtTheEnd();
+            givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
+            givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
             givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv();
             loadNextUrl = true;
         } while (loadNextURL());
 
         if (badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            String testsResult = "";
+            for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
+                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n";                
+            }
+            fail("Failed tests-->" + testsResult);
         }
     }
 

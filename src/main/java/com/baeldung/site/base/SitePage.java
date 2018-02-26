@@ -79,8 +79,12 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//script[contains(text(), 'https://www.google-analytics.com/analytics.js')]")).size();
     }
 
-    public List<WebElement> findShortCodesAttheEndOfPage() {
+    public List<WebElement> findShortCodesAtTheEndOfThePage() {
         return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_end')]"));
+    }
+
+    public List<WebElement> findShortCodesAtTheTopOfThePage() {
+        return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_start')]"));
     }
 
     public boolean findAnchorWithGAEventCall(String gaEventCall) {
@@ -99,14 +103,16 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
-    public List<WebElement> findImagesPointingToInvalidEnvOnTheArticle() {        
-        String baseURLWithOutHttp = this.getBaseURL().substring(6);        
-        return this.getWebDriver().findElements(By.xpath("//section//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
+    public List<WebElement> findImagesPointingToInvalidEnvOnTheArticle() {
+        String baseURLWithOutHttp = this.getBaseURL().substring(6);
+        return this.getWebDriver().findElements(By.xpath("//section//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp
+                + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org')) and not(contains(@src, 'https://s6.postimg.org'))]"));
     }
-    
+
     public List<WebElement> findImagesPointingToInvalidEnvOnThePage() {
-        String baseURLWithOutHttp = this.getBaseURL().substring(6);        
-        return this.getWebDriver().findElements(By.xpath("//article//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
+        String baseURLWithOutHttp = this.getBaseURL().substring(6);
+        return this.getWebDriver().findElements(By.xpath("//article//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp
+                + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
     }
 
 }
