@@ -1526,3 +1526,12 @@
 /java-observer-pattern
 /async-http-client
 /java-9-http-client
+/sonar-qube
+/java-type-casting
+/java-method-overload-override
+/eclipse-microprofile
+/infinispan
+/java-compare-strings
+/jpa-tagging
+/rxjava-2-flowable
+/spring-feature-flags
