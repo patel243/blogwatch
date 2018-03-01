@@ -380,7 +380,6 @@
 /java-9-optional
 /java-dining-philoshophers
 /java-regexp-escape-char
-/content-editor-job
 /java-stream-last-element
 /junit5-dynamic-tests
 /java-uuid
@@ -840,7 +839,6 @@
 /spring-cloud-data-flow-stream-processing
 /java-convert-string-to-int-or-integer
 /java-convert-char-to-string
-/technical-editor-job
 /hystrix-integration-with-spring-aop
 /spring-cloud-netflix-eureka
 /cachable-static-assets-with-spring-mvc
@@ -971,7 +969,6 @@
 /spring-channel-security-https
 /java-web-weekly-123
 /mockito-mock-methods
-/conferences-in-may-2016
 /java-web-weekly-122
 /intro-to-powermock
 /java-fork-join
@@ -1039,7 +1036,6 @@
 /2016-week-review-3
 /thymeleaf-in-spring-mvc
 /java-8-lambda-expressions-tips
-/video-creation-job
 /giveaway
 /2016-week-review-1
 /introduction-to-spring-batch
