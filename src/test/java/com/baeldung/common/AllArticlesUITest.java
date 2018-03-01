@@ -96,7 +96,7 @@ public class AllArticlesUITest extends BaseUITest {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + "\n )");
+                badURLs.put("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n");
             }
         } while (loadNextURL());
 
