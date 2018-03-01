@@ -1531,3 +1531,9 @@
 /jpa-tagging
 /rxjava-2-flowable
 /spring-feature-flags
+/reactor-combine-streams
+/java-detect-os
+/spring-cloud-task
+/java-google-cloud-storage
+/java-decimalformat
+/spring-cloud-security
