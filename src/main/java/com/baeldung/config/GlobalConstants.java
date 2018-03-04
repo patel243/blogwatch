@@ -95,6 +95,12 @@ public class GlobalConstants {
     public static final String ARTICLE_JAVA_WEEK_REVIEW = "-week-review";
 
     // URL should not included in the article list due to 1- article is written for 2- it's a page
-    public static final List<String> flaggedArticles = Collections.unmodifiableList(Arrays.asList("/2016-week-review-2/", "/java-json/", "/guide-to-jayway-jsonpath/","/conferences-in-may-2016/","/content-editor-job/","/video-creation-job/","/technical-editor-job/"));
+    public static final List<String> flaggedArticles = Collections
+            .unmodifiableList(Arrays.asList("/2016-week-review-2/", "/java-json/", "/guide-to-jayway-jsonpath/", "/conferences-in-may-2016/", "/content-editor-job/", "/video-creation-job/", "/technical-editor-job/"));
+
+    // drip related
+    public static final String DRIP_SUBSCRIPTION_QUERY_STRING = "?__s=sqyt7popv4fhmnszpxwr";
+    public static final String DRIP_CUTOM_FIELD = "job_role";
+    public static final String DRIP_CUTOM_FIELD_VALUE_ARCHITECT = "job_role=architect";
 
 }

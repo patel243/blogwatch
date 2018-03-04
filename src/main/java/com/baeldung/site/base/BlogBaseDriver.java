@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,10 @@ public abstract class BlogBaseDriver {
 
     public List<WebElement> getAllScriptTags() {
         return this.getWebDriver().findElements(By.tagName("script"));
+    }
+
+    public JavascriptExecutor getJavaScriptExecuter() {
+        return (JavascriptExecutor) this.getWebDriver();
     }
 
 }

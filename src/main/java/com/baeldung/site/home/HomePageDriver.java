@@ -1,6 +1,7 @@
 package com.baeldung.site.home;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
@@ -26,6 +27,29 @@ public class HomePageDriver extends BlogBaseDriver {
     @Value("${base.url}")
     protected void setUrl(String url) {
         this.url = url;
+    }
+
+    public WebElement getArchitectItemInTheSurveyPopup() {
+        return this.getWebDriver().findElement(By.xpath("//*[@id='survey-container']/ul/li[text() = 'Architect']"));
+    }
+
+    public String removeDripCutomJobRoleFieldAndGetSubscriberDetails() throws InterruptedException {
+        getJavaScriptExecuter().executeScript("_dcq.push(['identify',{job_role: '',success:function(payload){window.dripPayload=payload}}])");
+        Thread.sleep(3000);
+        Map<String, String> subscriberDetails = getDripPayloadFromBrowser();
+        return subscriberDetails == null ? null : subscriberDetails.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    private Map<String, String> getDripPayloadFromBrowser() {
+        return ((Map<String, String>) getJavaScriptExecuter().executeScript("return window.dripPayload"));
+    }
+
+    public String getSubscriberDetails() throws InterruptedException {
+        getJavaScriptExecuter().executeScript("_dcq.push(['identify',{success:function(payload){window.dripPayload=payload}}])");
+        Thread.sleep(3000);
+        Map<String, String> subscriberDetails = getDripPayloadFromBrowser();
+        return subscriberDetails == null ? null : subscriberDetails.toString();
     }
 
 }
