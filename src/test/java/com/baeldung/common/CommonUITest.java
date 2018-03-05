@@ -29,7 +29,7 @@ import com.jayway.restassured.response.Response;
 public class CommonUITest extends BaseUITest {
 
     @Test
-    @Tag(GlobalConstants.TAG_WEEKY)
+    @Tag(GlobalConstants.TAG_WEEKLY)
     @Disabled
     public final void givenTheSampleArticleList_whenArticleLoads_thenIthasContent() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {

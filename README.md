@@ -78,13 +78,14 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
 | 16 | givenOnTheHomePage_whenPageLods_thenItHasOneAboutMenuInTheFooter | daily
 | 17 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
-| 18 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
-| 19 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
-| 20 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|monthly |
-| 21 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | monthly |
-| 22 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
-| 23 | givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv | monthly |
-| 24 | givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv | monthly |
+| 18 | givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip | weekly |
+| 19 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
+| 20 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
+| 21 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|monthly |
+| 22 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | monthly |
+| 23 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
+| 24 | givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv | monthly |
+| 25 | givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv | monthly |
 
 
 

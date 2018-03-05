@@ -47,7 +47,7 @@ public class GlobalConstants {
     /**
      * Tests using this tag are executed weekly on Jenkins 
      */
-    public static final String TAG_WEEKY = "weekly";
+    public static final String TAG_WEEKLY = "weekly";
 
     /**
      * Tests using this tag are executed bi-monthly

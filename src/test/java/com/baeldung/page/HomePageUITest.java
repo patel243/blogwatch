@@ -104,7 +104,7 @@ public final class HomePageUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_WEEKY)
+    @Tag(GlobalConstants.TAG_WEEKLY)
     @Tag("dripSurvey")
     public final void givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip() throws InterruptedException {
 
