@@ -106,6 +106,10 @@ public final class HomePageUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_WEEKLY)
     @Tag("dripSurvey")
+    /**
+     * Tests fails on windows in headless mode. It works fine with UI browser in windows.
+     * The test works fine on Jenkins (Cloudbees) with headless mode. On Jenkins, it run on Linux. 
+     */
     public final void givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip() throws InterruptedException {
 
         // impersonate subscriber
@@ -131,7 +135,7 @@ public final class HomePageUITest extends BaseUITest {
         // impersonate subscriber again. This is required if the previous step throws JS error.
         homePageDriver.getWebDriver().get(homePageDriver.getBaseURL() + GlobalConstants.DRIP_SUBSCRIPTION_QUERY_STRING);
 
-        subscriberData = homePageDriver.getSubscriberDetails();
+        subscriberData = homePageDriver.getDripSubscriberDetails();
         logger.info(subscriberData);
 
         assertTrue(subscriberData.contains(GlobalConstants.DRIP_CUTOM_FIELD_VALUE_ARCHITECT), "Failed to set job role thorugh the survey");

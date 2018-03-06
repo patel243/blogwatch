@@ -99,7 +99,7 @@ public class GlobalConstants {
             .unmodifiableList(Arrays.asList("/2016-week-review-2/", "/java-json/", "/guide-to-jayway-jsonpath/", "/conferences-in-may-2016/", "/content-editor-job/", "/video-creation-job/", "/technical-editor-job/"));
 
     // drip related
-    public static final String DRIP_SUBSCRIPTION_QUERY_STRING = "?__s=sqyt7popv4fhmnszpxwr";
+    public static final String DRIP_SUBSCRIPTION_QUERY_STRING = "?__s=pt6zwpj2bqmwzhwxgqnf";
     public static final String DRIP_CUTOM_FIELD = "job_role";
     public static final String DRIP_CUTOM_FIELD_VALUE_ARCHITECT = "job_role=architect";
 

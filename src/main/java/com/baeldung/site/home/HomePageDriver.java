@@ -45,7 +45,7 @@ public class HomePageDriver extends BlogBaseDriver {
         return ((Map<String, String>) getJavaScriptExecuter().executeScript("return window.dripPayload"));
     }
 
-    public String getSubscriberDetails() throws InterruptedException {
+    public String getDripSubscriberDetails() throws InterruptedException {
         getJavaScriptExecuter().executeScript("_dcq.push(['identify',{success:function(payload){window.dripPayload=payload}}])");
         Thread.sleep(3000);
         Map<String, String> subscriberDetails = getDripPayloadFromBrowser();
