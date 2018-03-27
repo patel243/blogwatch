@@ -19,7 +19,7 @@ public class NewsLettersubscriptionPage extends BlogBaseDriver {
     }
 
     public WebElement findSubscripbeButtonInSubscriptionPopup() {
-        return this.getWebDriver().findElement(By.xpath("//button[@type='submit' and contains(., 'SUBSCRIBE')]"));
+        return this.getWebDriver().findElement(By.xpath("//button[@type='submit' and contains(translate(., 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 'SUBSCRIBE')]"));
     }
 
     @Override
