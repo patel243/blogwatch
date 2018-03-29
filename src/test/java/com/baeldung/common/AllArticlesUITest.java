@@ -106,11 +106,11 @@ public class AllArticlesUITest extends BaseUITest {
     }
     
     @Test
-    @Tag("givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists")
-    public final void givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists() throws IOException {
+    @Tag("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists")
+    public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
         do {           
             if (!page.findMetaDescriptionTag()) {
-                badURLs.put("givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists", page.getUrl());
+                badURLs.put("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists", page.getUrl());
             }
         } while (loadNextURL());
 
@@ -130,7 +130,7 @@ public class AllArticlesUITest extends BaseUITest {
             givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
             givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
             givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv();
-            givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists();
+            givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
             loadNextUrl = true;
         } while (loadNextURL());
 
