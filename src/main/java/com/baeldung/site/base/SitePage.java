@@ -115,4 +115,12 @@ public class SitePage extends BlogBaseDriver {
                 + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
     }
 
+    public boolean findMetaDescriptionTag() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//meta[@name = 'description']")).isEnabled();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }

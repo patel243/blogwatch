@@ -61,6 +61,20 @@ public class AllPagesUITest extends BaseUITest {
             fail("Failed test-->" + badURLs.toString());
         }
     }
+    
+    @Test
+    @Tag("givenAllPages_whenPageLods_thenTheMetaDescriptionExists")
+    public final void givenAllPages_whenPageLods_thenTheMetaDescriptionExists() throws IOException {
+        do {           
+            if (!page.findMetaDescriptionTag()) {
+                badURLs.put("givenAllPages_whenPageLods_thenTheMetaDescriptionExists", page.getUrl());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
+    }
 
     @Test
     @Tag("givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses")
@@ -70,6 +84,7 @@ public class AllPagesUITest extends BaseUITest {
         do {
             loadNextUrl = false;
             givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv();
+            givenAllPages_whenPageLods_thenTheMetaDescriptionExists();
             loadNextUrl = true;
         } while (loadNextURL());
 

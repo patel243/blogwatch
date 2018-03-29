@@ -86,6 +86,8 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 23 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
 | 24 | givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv | monthly |
 | 25 | givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv | monthly |
+| 26 | givenAllArticles_whenTheArticleLods_thenTheMetaDescriptionExists | monthly |
+| 27 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | monthly |
 
 
 

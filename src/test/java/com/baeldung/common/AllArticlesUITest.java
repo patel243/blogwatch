@@ -104,6 +104,20 @@ public class AllArticlesUITest extends BaseUITest {
             fail("Failed test-->" + badURLs.toString());
         }
     }
+    
+    @Test
+    @Tag("givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists")
+    public final void givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists() throws IOException {
+        do {           
+            if (!page.findMetaDescriptionTag()) {
+                badURLs.put("givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists", page.getUrl());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
+    }
 
     @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
@@ -116,6 +130,7 @@ public class AllArticlesUITest extends BaseUITest {
             givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
             givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
             givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv();
+            givenAllArticles_whenArticleLods_thenTheMetaDescriptionExists();
             loadNextUrl = true;
         } while (loadNextURL());
 
