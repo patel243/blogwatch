@@ -33,7 +33,7 @@ public final class HomePageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenJavWebeWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements() throws InterruptedException {
+    public final void givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements() throws InterruptedException {
         homePageDriver.loadUrl();
         homePageDriver.clickNewsletterButton();
         Thread.sleep(1000);
@@ -47,7 +47,7 @@ public final class HomePageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenOnHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithLinkText() {
+    public final void givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText() {
         homePageDriver.loadUrl();
         List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
 
@@ -75,7 +75,7 @@ public final class HomePageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenOnHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog() {
+    public final void givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog() {
         homePageDriver.loadUrl();
 
         LogEntries browserLogentries = homePageDriver.getWebDriver().manage().logs().get(LogType.BROWSER);
@@ -89,7 +89,7 @@ public final class HomePageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW() {
+    public final void givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW() {
         Response response = RestAssured.given().redirects().follow(false).head(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX);
 
         assertEquals(301, response.getStatusCode());
