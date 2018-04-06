@@ -39,7 +39,9 @@ public final class HomePageUITest extends BaseUITest {
         Thread.sleep(1000);
 
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
-        logger.info("is displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
+        logger.info("URL-->" + homePageDriver.getWebDriver().getCurrentUrl());        
+        
+        logger.info("Emial field displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
 
         assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
         assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
