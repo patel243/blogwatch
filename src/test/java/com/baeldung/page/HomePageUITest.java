@@ -32,7 +32,7 @@ public final class HomePageUITest extends BaseUITest {
     private NewsLettersubscriptionPage newsLettersubscriptionPage;
 
     @Test
-    @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_HOURLY)
     public final void givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements() throws InterruptedException {
         homePageDriver.loadUrl();
         homePageDriver.clickNewsletterButton();
