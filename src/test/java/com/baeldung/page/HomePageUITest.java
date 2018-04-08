@@ -44,9 +44,9 @@ public final class HomePageUITest extends BaseUITest {
 
         logger.info("URL-->" + homePageDriver.getWebDriver().getCurrentUrl());
 
-        logger.info("Emial field found on the page-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup() == null ? "false" : "true");
+        logger.info("Email field found on the page-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup());
 
-        logger.info("Emial field displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
+        logger.info("Email field displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
 
         assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
         assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
