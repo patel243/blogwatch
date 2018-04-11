@@ -36,7 +36,7 @@ public final class HomePageUITest extends BaseUITest {
     public final void givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements() throws InterruptedException {
         homePageDriver.loadUrl();
         homePageDriver.clickNewsletterButton();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
 
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
 
