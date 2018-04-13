@@ -66,7 +66,7 @@ public class AllArticlesUITest extends BaseUITest {
     @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop")
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
         do {
-            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
                 badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop", page.getUrl());
             }
         } while (loadNextURL());
@@ -80,7 +80,7 @@ public class AllArticlesUITest extends BaseUITest {
     @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd")
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
         do {
-            if (!page.getUrl().contains(GlobalConstants.ARTILCE_JAVA_WEB_WEEKLY) && !page.getUrl().contains(GlobalConstants.ARTICLE_JAVA_WEEK_REVIEW) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
                 badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd", page.getUrl());
             }
         } while (loadNextURL());
@@ -104,12 +104,12 @@ public class AllArticlesUITest extends BaseUITest {
             fail("Failed test-->" + badURLs.toString());
         }
     }
-    
+
     @Test
     @Tag("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists")
     public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
-        do {           
-            if (!page.findMetaDescriptionTag()) {
+        do {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !page.findMetaDescriptionTag()) {
                 badURLs.put("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists", page.getUrl());
             }
         } while (loadNextURL());
@@ -137,7 +137,7 @@ public class AllArticlesUITest extends BaseUITest {
         if (badURLs.size() > 0) {
             String testsResult = "";
             for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
-                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n";                
+                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n";
             }
             fail("Failed tests-->" + testsResult);
         }

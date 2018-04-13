@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.base.BaseUITest;
+import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -61,12 +62,12 @@ public class AllPagesUITest extends BaseUITest {
             fail("Failed test-->" + badURLs.toString());
         }
     }
-    
+
     @Test
     @Tag("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists")
     public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
-        do {           
-            if (!page.findMetaDescriptionTag()) {
+        do {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU) && !page.findMetaDescriptionTag()) {
                 badURLs.put("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists", page.getUrl());
             }
         } while (loadNextURL());

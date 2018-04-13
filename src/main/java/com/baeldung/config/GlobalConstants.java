@@ -38,7 +38,7 @@ public class GlobalConstants {
     public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
 
     public static String COURSE_PAGES_BUY_LINKS = "coursePagesBuyLinks.json";
-    
+
     /**
      * Tests using this tag are executed hourly on Jenkins 
      */
@@ -96,8 +96,7 @@ public class GlobalConstants {
     public static final String TAG_ARTICLE_URL = "/tag/activiti/";
 
     // JW articles
-    public static final String ARTILCE_JAVA_WEB_WEEKLY = "java-web-weekly";
-    public static final String ARTICLE_JAVA_WEEK_REVIEW = "-week-review";
+    public static final List<String> ARTILCE_JAVA_WEEKLY = Arrays.asList(new String[] { "java-web-weekly", "java-weekly", "-week-review" });
 
     // URL should not included in the article list due to 1- article is written for 2- it's a page
     public static final List<String> flaggedArticles = Collections
@@ -107,5 +106,8 @@ public class GlobalConstants {
     public static final String DRIP_SUBSCRIPTION_QUERY_STRING = "?__s=pt6zwpj2bqmwzhwxgqnf";
     public static final String DRIP_CUTOM_FIELD = "job_role";
     public static final String DRIP_CUTOM_FIELD_VALUE_ARCHITECT = "job_role=architect";
+
+    // thank-you page
+    public static final List<String> PAGES_THANK_YOU = Arrays.asList(new String[] { "thank-you", "thanks" });
 
 }
