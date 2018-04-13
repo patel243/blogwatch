@@ -63,7 +63,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | --- | --------- | ------------- |
 | 1 | givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements | hourly |
 | 2 | givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText | daily |
-| 3 | givenOnTheHomePage_whenPageLods_thenItContainsCategoriesInTheFooterMenu | daily |
+| 3 | givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu | daily |
 | 4 | givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
 | 5 | givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
 | 6 | givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
@@ -76,17 +76,17 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 13 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
 | 14 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
 | 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
-| 16 | givenOnTheHomePage_whenPageLods_thenItHasOneAboutMenuInTheFooter | daily
+| 16 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily
 | 17 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
 | 18 | givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip | weekly |
 | 19 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
 | 20 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
 | 21 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|monthly |
 | 22 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | monthly |
-| 23 | givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv | monthly |
-| 24 | givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv | monthly |
-| 25 | givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv | monthly |
-| 26 | givenAllArticles_whenTheArticleLods_thenTheMetaDescriptionExists | monthly |
+| 23 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | monthly |
+| 24 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | monthly |
+| 25 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | monthly |
+| 26 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | monthly |
 | 27 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | monthly |
 
 

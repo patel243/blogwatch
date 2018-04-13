@@ -49,11 +49,11 @@ public class AllArticlesUITest extends BaseUITest {
     }
 
     @Test
-    @Tag("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv")
-    public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
+    @Tag("givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv")
+    public final void givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
         do {
             if (page.findEmptyDivs().size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv", page.getUrl());
+                badURLs.put("givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv", page.getUrl());
             }
         } while (loadNextURL());
 
@@ -91,12 +91,13 @@ public class AllArticlesUITest extends BaseUITest {
     }
 
     @Test
-    @Tag("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv")
-    public final void givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv() throws IOException {
+    @Tag("givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv")
+    @Tag("givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv")
+    public final void givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n");
+                badURLs.put("givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n");
             }
         } while (loadNextURL());
 
@@ -107,6 +108,7 @@ public class AllArticlesUITest extends BaseUITest {
 
     @Test
     @Tag("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists")
+    @Tag("givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists")
     public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !page.findMetaDescriptionTag()) {
@@ -126,10 +128,10 @@ public class AllArticlesUITest extends BaseUITest {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
-            givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv();
+            givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv();
             givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
             givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
-            givenAllTheArticles_whenArticleLods_thenImagesPointToCorrectEnv();
+            givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
             givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
             loadNextUrl = true;
         } while (loadNextURL());

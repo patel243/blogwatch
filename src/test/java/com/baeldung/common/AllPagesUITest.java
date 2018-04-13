@@ -49,12 +49,13 @@ public class AllPagesUITest extends BaseUITest {
     }
 
     @Test
-    @Tag("givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv")
-    public final void givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv() throws IOException {
+    @Tag("givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv")
+    @Tag("givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv")
+    public final void givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnThePage();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllThePages_whenArticleLods_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
+                badURLs.put("givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
             }
         } while (loadNextURL());
 
@@ -65,6 +66,7 @@ public class AllPagesUITest extends BaseUITest {
 
     @Test
     @Tag("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists")
+    @Tag("givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists")
     public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU) && !page.findMetaDescriptionTag()) {
@@ -84,7 +86,7 @@ public class AllPagesUITest extends BaseUITest {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
-            givenAllThePages_whenPageLods_thenImagesPointToCorrectEnv();
+            givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv();
             givenAllPages_whenPageLoads_thenTheMetaDescriptionExists();
             loadNextUrl = true;
         } while (loadNextURL());

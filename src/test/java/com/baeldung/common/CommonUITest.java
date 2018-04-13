@@ -62,7 +62,7 @@ public class CommonUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_MONTHLY)
     @Disabled
-    public final void givenAllTheArticles_whenArticleLods_thenArticleHasNoEmptyDiv() throws IOException {
+    public final void givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
         List<String> urlsWithNoContent = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
