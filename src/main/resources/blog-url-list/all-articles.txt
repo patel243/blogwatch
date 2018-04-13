@@ -1630,3 +1630,5 @@
 /rest-assured-header-cookie-parameter
 /java-io-conversions
 /java-final
+/spring-lookup
+/junit-assert-exception
