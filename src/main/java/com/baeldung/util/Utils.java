@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Stream;
@@ -45,9 +46,9 @@ public class Utils {
         return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_BUY_LINKS).getPath());
     }
 
-    public static Multimap<String, String> getCoursePagesBuyLinksTestData() {
+    public static Multimap<String, List<String>> getCoursePagesBuyLinksTestData() {
 
-        Multimap<String, String> testData = ArrayListMultimap.create();
+        Multimap<String, List<String>> testData = ArrayListMultimap.create();
         try {
             ObjectMapper mapper = new ObjectMapper();
 
@@ -55,7 +56,11 @@ public class Utils {
             for (JsonNode topNode : pageJson.get("coursePages")) {
                 String urlKey = topNode.get("url").textValue();
                 for (JsonNode pageNode : topNode.get("onClickCall")) {
-                    testData.put(urlKey, pageNode.textValue());
+                    List<String> trackingCodes = new ArrayList<String>();
+                    for (JsonNode trackingCode : pageNode.get("trackingCode")) {
+                        trackingCodes.add(trackingCode.textValue());
+                    }
+                    testData.put(urlKey, trackingCodes);
                 }
             }
             return testData;

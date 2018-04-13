@@ -208,14 +208,14 @@ public class CommonUITest extends BaseUITest {
     @Tag(GlobalConstants.GA_TRACKING)
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 
-        Multimap<String, String> testData = Utils.getCoursePagesBuyLinksTestData();
+        Multimap<String, List<String>> testData = Utils.getCoursePagesBuyLinksTestData();
         for (String urlKey : testData.keySet()) {
             page.setUrl(page.getBaseURL() + urlKey);
 
             page.loadUrl();
 
-            for (String gaEventCall : testData.get(urlKey)) {
-                assertTrue("couldn't find custom ga call: " + gaEventCall + " with ga-custom-event class for url-->" + urlKey, page.findAnchorWithGAEventCall(gaEventCall));
+            for (List<String> trackingCodes : testData.get(urlKey)) {
+                assertTrue("couldn't find custom ga call: " + trackingCodes + " with ga-custom-event class for url-->" + urlKey, page.findAnchorWithGAEventCall(trackingCodes));
             }
             assertTrue("ga-custom-event script not found on -->" + urlKey, page.findGACustomScript());
         }

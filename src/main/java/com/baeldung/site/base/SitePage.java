@@ -87,9 +87,9 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_start')]"));
     }
 
-    public boolean findAnchorWithGAEventCall(String gaEventCall) {
+    public boolean findAnchorWithGAEventCall(List<String> trackingCodes) {
         try {
-            return this.getWebDriver().findElement(By.xpath("//a[@onclick=\"" + gaEventCall + "\"][contains(@class,'ga-custom-event')]")).isDisplayed();
+            return this.getWebDriver().findElement(By.xpath("//a[contains(@onclick,\"" + trackingCodes.get(0) + "\") and contains(@onclick,\"" + trackingCodes.get(1) + "\")][contains(@class,'ga-custom-event')]")).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }

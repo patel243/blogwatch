@@ -3,51 +3,190 @@
     {
       "url": "/rest-with-spring-course",
       "onClickCall": [
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy1');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy2');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_master');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_cert');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_live');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_master');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_bulk');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team2');"
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy1');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Master'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy2');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Certification'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_master');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Master'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_cert');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Certification'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_live');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Coaching'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_master');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'LSS'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_bulk');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Bulk'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Team'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team2');",
+            "javascript:_dcq.push(['track', 'RWS', {myProp: 'Team'}]);"
+          ]
+        }
       ]
     },
     {
       "url": "/learn-spring-security-course",
       "onClickCall": [
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy1');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy2');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_master');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_cert');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_live');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_master');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_bulk');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team2');"
-      ]
-    },
-    {
-      "url": "/learn-spring-security-for-teams",
-      "onClickCall": [
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_small');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_medium');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_large');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_team_master');",
-           "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_bulk');"
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy1');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Master'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy2');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Certification'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_master');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Master'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_cert');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Certification'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_live');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Coaching'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_master');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'RWS'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_bulk');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Bulk'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Team'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team2');",
+            "javascript:_dcq.push(['track', 'LSS', {myProp: 'Team'}]);"
+          ]
+        }
       ]
     },
     {
       "url": "/rest-with-spring-for-teams",
       "onClickCall": [
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_small');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_medium');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_large');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_team_master');",
-           "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_bulk');"
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_small');",
+            "javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Small'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_medium');",
+            "javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Medium'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_large');",
+            "javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Large'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_team_master');",
+            "javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'LSSTeam'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_bulk');",
+            "javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Bulk'}]);"
+          ]
+        }
+      ]
+    },
+	{
+      "url": "/learn-spring-security-for-teams",
+      "onClickCall": [
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_small');",
+            "javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Small'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_medium');",
+            "javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Medium'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_large');",
+            "javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Large'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_team_master');",
+            "javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'RWSTeam'}]);"
+          ]
+        },
+        {
+          "trackingCode": [
+            "javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_bulk');",
+            "javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Bulk'}]);"
+          ]
+        }
       ]
     }
-    
   ]
 }
