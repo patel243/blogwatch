@@ -137,11 +137,11 @@ public class AllArticlesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (badURLs.size() > 0) {
-            String testsResult = "";
+            String testsResult = "\n\n\n";
             for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
-                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n";
-            }
-            fail("Failed tests-->" + testsResult);
+                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n\n\n";
+            }            
+            fail("\n\nFailed tests-->" + testsResult);
         }
     }
 

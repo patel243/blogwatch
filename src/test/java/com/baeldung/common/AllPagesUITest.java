@@ -92,11 +92,11 @@ public class AllPagesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (badURLs.size() > 0) {
-            String testsResult = "";
+            String testsResult = "\n\n\n";
             for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
-                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n";
+                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n\n\n";
             }
-            fail("Failed tests-->" + testsResult);
+            fail("\n\nFailed tests-->" + testsResult);
         }
     }
 
