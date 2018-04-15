@@ -39,6 +39,8 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
             caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs");
         }
 
+        caps.setCapability("takesScreenshot", false);
+
         driver = new PhantomJSDriver(caps);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
