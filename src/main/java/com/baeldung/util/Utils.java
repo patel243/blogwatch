@@ -69,9 +69,10 @@ public class Utils {
         }
     }
 
-    public static boolean excludePage(String url, List<String> labelList) {
-        for (String label : labelList) {
-            if (url.contains(label)) {
+    public static boolean excludePage(String url, List<String> entryList) {
+        url = url + "/";
+        for (String entry : entryList) {
+            if (url.contains(entry)) {
                 return true;
             }
         }

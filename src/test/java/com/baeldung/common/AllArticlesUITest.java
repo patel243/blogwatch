@@ -111,7 +111,7 @@ public class AllArticlesUITest extends BaseUITest {
     @Tag("givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists")
     public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !page.findMetaDescriptionTag()) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST) && !page.findMetaDescriptionTag()) {
                 badURLs.put("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists", page.getUrl());
             }
         } while (loadNextURL());
@@ -140,7 +140,7 @@ public class AllArticlesUITest extends BaseUITest {
             String testsResult = "\n\n\n";
             for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
                 testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n\n\n";
-            }            
+            }
             fail("\n\nFailed tests-->" + testsResult);
         }
     }
