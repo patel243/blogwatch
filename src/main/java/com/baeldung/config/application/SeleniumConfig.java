@@ -1,9 +1,13 @@
 package com.baeldung.config.application;
 
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 public abstract class SeleniumConfig {
+
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("${target.env}")
     private String targetEnv;

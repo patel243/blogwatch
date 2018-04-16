@@ -24,6 +24,7 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
     @Override
     public void openNewWindow() {
+        logger.info("headlessBrowserName-->" + this.headlessBrowserName);
 
         if (GlobalConstants.HEADLESS_BROWSER_HTMLUNIT.equalsIgnoreCase(this.headlessBrowserName)) {
             driver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
