@@ -39,7 +39,6 @@
 /thank-you-jw
 /baeldung-company-info
 /contact
-/jacek-test-page-for-bael-1560/
 /thank-you
 /api-discoverability-with-spring-and-spring-hateoas-workshop/
 /api-discoverability-with-spring-and-spring-hateoas/
@@ -67,4 +66,3 @@
 /learn-spring-security-for-teams
 /rws-why
 /thanks-course-call
-/editors
