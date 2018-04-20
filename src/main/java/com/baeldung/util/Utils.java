@@ -1,5 +1,7 @@
 package com.baeldung.util;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -77,6 +79,10 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static void triggerTestFailure(String message) {
+        fail("\n\nFailed tests-->" + message + "\n\n");
     }
 
 }

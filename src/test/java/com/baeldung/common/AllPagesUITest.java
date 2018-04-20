@@ -1,7 +1,5 @@
 package com.baeldung.common;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -60,7 +58,7 @@ public class AllPagesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
 
@@ -75,7 +73,7 @@ public class AllPagesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
 
@@ -96,7 +94,7 @@ public class AllPagesUITest extends BaseUITest {
             for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
                 testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n\n\n";
             }
-            fail("\n\nFailed tests-->" + testsResult);
+            Utils.triggerTestFailure(testsResult);
         }
     }
 

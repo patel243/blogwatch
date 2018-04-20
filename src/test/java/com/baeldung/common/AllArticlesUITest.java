@@ -1,7 +1,5 @@
 package com.baeldung.common;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -59,7 +57,7 @@ public class AllArticlesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
 
@@ -73,7 +71,7 @@ public class AllArticlesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
 
@@ -87,7 +85,7 @@ public class AllArticlesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
 
@@ -103,7 +101,7 @@ public class AllArticlesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
 
@@ -118,32 +116,33 @@ public class AllArticlesUITest extends BaseUITest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
-    
+
     @Test
     @Tag("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle")
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
         String githubModuleLink = null;
         String articleRelativeURL = null;
+        List<WebElement> githubPageLinks = null;
         do {
-            List<WebElement> githubPageLinks = page.findLinksToTheGithubModule();
-            if (CollectionUtils.isNotEmpty(githubPageLinks)){ 
-                
-                githubModuleLink = githubPageLinks.get(githubPageLinks.size()-1).getAttribute("href");
+            githubPageLinks = page.findLinksToTheGithubModule();
+            if (CollectionUtils.isNotEmpty(githubPageLinks)) {
+
+                githubModuleLink = githubPageLinks.get(githubPageLinks.size() - 1).getAttribute("href");
                 articleRelativeURL = page.getRelativeUrl();
-                
+
                 page.getWebDriver().get(githubModuleLink);
                 if (!page.linkExistsInthePage(articleRelativeURL)) {
                     badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrl());
                 }
-            }                      
-                       
+            }
+
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            fail("Failed test-->" + badURLs.toString());
+            Utils.triggerTestFailure(badURLs.toString());
         }
     }
 
@@ -168,7 +167,7 @@ public class AllArticlesUITest extends BaseUITest {
             for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
                 testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n\n\n";
             }
-            fail("\n\nFailed tests-->" + testsResult);
+            Utils.triggerTestFailure(testsResult);
         }
     }
 
