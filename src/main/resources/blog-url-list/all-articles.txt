@@ -1647,3 +1647,15 @@
 /jvm-languages
 /java-8-localization
 /spring-boot-custom-error-page
+/java-weekly-225
+/core-maven-plugins
+/maven-site-plugin
+/maven-verifier-plugin
+/maven-clean-plugin
+/maven-deploy-plugin
+/maven-install-plugin
+/maven-failsafe-plugin
+/maven-surefire-plugin
+/maven-compiler-plugin
+/maven-resources-plugin
+/kotlin-filter-collection
