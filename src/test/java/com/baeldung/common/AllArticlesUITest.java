@@ -9,6 +9,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -120,6 +121,31 @@ public class AllArticlesUITest extends BaseUITest {
             fail("Failed test-->" + badURLs.toString());
         }
     }
+    
+    @Test
+    @Tag("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle")
+    public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
+        String githubModuleLink = null;
+        String articleRelativeURL = null;
+        do {
+            List<WebElement> githubPageLinks = page.findLinksToTheGithubModule();
+            if (CollectionUtils.isNotEmpty(githubPageLinks)){ 
+                
+                githubModuleLink = githubPageLinks.get(githubPageLinks.size()-1).getAttribute("href");
+                articleRelativeURL = page.getRelativeUrl();
+                
+                page.getWebDriver().get(githubModuleLink);
+                if (!page.linkExistsInthePage(articleRelativeURL)) {
+                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrl());
+                }
+            }                      
+                       
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            fail("Failed test-->" + badURLs.toString());
+        }
+    }
 
     @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
@@ -133,6 +159,7 @@ public class AllArticlesUITest extends BaseUITest {
             givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
             givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
             givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
+            givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             loadNextUrl = true;
         } while (loadNextURL());
 

@@ -123,4 +123,17 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
+    public List<WebElement> findLinksToTheGithubModule() {
+        return this.getWebDriver().findElements(By
+                .xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'github.com/baeldung') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'github.com/eugenp')]"));
+    }
+
+    public boolean linkExistsInthePage(String articleRelativeURL) {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + articleRelativeURL + "')]")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }

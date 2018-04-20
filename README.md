@@ -99,6 +99,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 25 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | monthly |
 | 26 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | monthly |
 | 27 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | monthly |
+| 28 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | monthly |
 
 
 

@@ -105,4 +105,8 @@ public abstract class BlogBaseDriver {
         return (JavascriptExecutor) this.getWebDriver();
     }
 
+    public String getRelativeUrl() {
+        return this.getUrl().toString().substring(this.getBaseURL().toString().length());
+    }
+
 }
