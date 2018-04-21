@@ -127,15 +127,17 @@ public class AllArticlesUITest extends BaseUITest {
         String articleRelativeURL = null;
         List<WebElement> githubPageLinks = null;
         do {
-            githubPageLinks = page.findLinksToTheGithubModule();
-            if (CollectionUtils.isNotEmpty(githubPageLinks)) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY)) { //exclude JW pages
+                githubPageLinks = page.findLinksToTheGithubModule();
+                if (CollectionUtils.isNotEmpty(githubPageLinks)) {
 
-                githubModuleLink = githubPageLinks.get(githubPageLinks.size() - 1).getAttribute("href");
-                articleRelativeURL = page.getRelativeUrl();
+                    githubModuleLink = githubPageLinks.get(githubPageLinks.size() - 1).getAttribute("href");
+                    articleRelativeURL = page.getRelativeUrl();
 
-                page.getWebDriver().get(githubModuleLink);
-                if (!page.linkExistsInthePage(articleRelativeURL)) {
-                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrl());
+                    page.getWebDriver().get(githubModuleLink); //load GitHub module page
+                    if (!page.linkExistsInthePage(articleRelativeURL)) {
+                        badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrl());
+                    }
                 }
             }
 
