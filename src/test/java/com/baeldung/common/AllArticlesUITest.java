@@ -7,7 +7,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -17,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.base.BaseUITest;
+import com.baeldung.base.TestUtils;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
@@ -123,21 +123,12 @@ public class AllArticlesUITest extends BaseUITest {
     @Test
     @Tag("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle")
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
-        String githubModuleLink = null;
-        String articleRelativeURL = null;
-        List<WebElement> githubPageLinks = null;
+        List<String> gitHubModuleLinks = null;
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY)) { //exclude JW pages
-                githubPageLinks = page.findLinksToTheGithubModule();
-                if (CollectionUtils.isNotEmpty(githubPageLinks)) {
-
-                    githubModuleLink = githubPageLinks.get(githubPageLinks.size() - 1).getAttribute("href");
-                    articleRelativeURL = page.getRelativeUrl();
-
-                    page.getWebDriver().get(githubModuleLink); //load GitHub module page
-                    if (!page.linkExistsInthePage(articleRelativeURL)) {
-                        badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrl());
-                    }
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY)) { // exclude JW pages
+                gitHubModuleLinks = page.findLinksToTheGithubModule();
+                if (!TestUtils.articleLinkFoundOnGitHubModule(gitHubModuleLinks, page.getRelativeUrl(), page)) {
+                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrl());
                 }
             }
 

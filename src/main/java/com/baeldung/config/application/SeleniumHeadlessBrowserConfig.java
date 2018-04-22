@@ -57,7 +57,7 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
             driver = new PhantomJSDriver(caps);
         }
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
 }

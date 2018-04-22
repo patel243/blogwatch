@@ -1,7 +1,10 @@
 package com.baeldung.site.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -123,9 +126,34 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
-    public List<WebElement> findLinksToTheGithubModule() {
-        return this.getWebDriver().findElements(By
+    public List<String> findLinksToTheGithubModule() {
+        List<String> gitHubModuleLinks = new ArrayList<String>();
+        List<WebElement> links = this.getWebDriver().findElements(By
                 .xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'github.com/baeldung') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'github.com/eugenp')]"));
+        if (CollectionUtils.isEmpty(links)) {
+            return gitHubModuleLinks;
+        }
+
+        String firstURL = links.get(links.size() - 1).getAttribute("href");
+        if (StringUtils.isEmpty(firstURL)) {
+            return gitHubModuleLinks;
+        }
+        if (firstURL.charAt(firstURL.length() - 1) == '/') {
+            firstURL = firstURL.substring(0, firstURL.length());
+        }
+        gitHubModuleLinks.add(firstURL);
+        int startingIndexOfMasterBranch = firstURL.indexOf("/master");
+        if (startingIndexOfMasterBranch == -1) {
+            return gitHubModuleLinks;
+        }
+        int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + 8);
+        String secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
+
+        if (!firstURL.equalsIgnoreCase(secondURL)) {
+            gitHubModuleLinks.add(secondURL);
+        }
+
+        return gitHubModuleLinks;
     }
 
     public boolean linkExistsInthePage(String articleRelativeURL) {
