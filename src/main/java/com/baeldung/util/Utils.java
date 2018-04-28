@@ -85,4 +85,10 @@ public class Utils {
         fail("\n\nFailed tests-->" + message + "\n\n");
     }
 
+    public static void removeTrailingSlash(String firstURL) {
+        if (null != firstURL && firstURL.charAt(firstURL.length() - 1) == '/') {
+            firstURL = firstURL.substring(0, firstURL.length());
+        }
+    }
+
 }

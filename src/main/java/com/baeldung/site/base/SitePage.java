@@ -10,6 +10,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Component;
 
+import com.baeldung.config.GlobalConstants;
+import com.baeldung.util.Utils;
+
 @Component
 public class SitePage extends BlogBaseDriver {
 
@@ -128,8 +131,8 @@ public class SitePage extends BlogBaseDriver {
 
     public List<String> findLinksToTheGithubModule() {
         List<String> gitHubModuleLinks = new ArrayList<String>();
-        List<WebElement> links = this.getWebDriver().findElements(By
-                .xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'github.com/baeldung') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'github.com/eugenp')]"));
+        List<WebElement> links = this.getWebDriver().findElements(By.xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_BAELDUNG
+                + "') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_EUGENP + "')]"));
         if (CollectionUtils.isEmpty(links)) {
             return gitHubModuleLinks;
         }
@@ -138,10 +141,10 @@ public class SitePage extends BlogBaseDriver {
         if (StringUtils.isEmpty(firstURL)) {
             return gitHubModuleLinks;
         }
-        if (firstURL.charAt(firstURL.length() - 1) == '/') {
-            firstURL = firstURL.substring(0, firstURL.length());
-        }
+        Utils.removeTrailingSlash(firstURL);
         gitHubModuleLinks.add(firstURL);
+
+        // master module URL
         int startingIndexOfMasterBranch = firstURL.indexOf("/master");
         if (startingIndexOfMasterBranch == -1) {
             return gitHubModuleLinks;
@@ -153,12 +156,19 @@ public class SitePage extends BlogBaseDriver {
             gitHubModuleLinks.add(secondURL);
         }
 
+        // immediate parent module
+        String thirdURL = firstURL.substring(0, firstURL.lastIndexOf("/"));
+        Utils.removeTrailingSlash(thirdURL);
+        if (!thirdURL.equals(secondURL) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_BAELDUNG) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_EUGENP)) {
+            gitHubModuleLinks.add(thirdURL);
+        }
+
         return gitHubModuleLinks;
     }
 
     public boolean linkExistsInthePage(String articleRelativeURL) {
         try {
-            return this.getWebDriver().findElement(By.xpath("//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + articleRelativeURL + "')]")).isDisplayed();
+            return this.getWebDriver().findElement(By.xpath("//a[translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL + articleRelativeURL + "', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]")).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
