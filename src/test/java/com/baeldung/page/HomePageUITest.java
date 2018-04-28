@@ -40,7 +40,7 @@ public final class HomePageUITest extends BaseUITest {
 
         newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
 
-        Thread.sleep(1000);
+        Thread.sleep(10000);
 
         logger.info("URL-->" + homePageDriver.getWebDriver().getCurrentUrl());
 
