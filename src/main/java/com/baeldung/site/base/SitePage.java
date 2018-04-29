@@ -131,36 +131,40 @@ public class SitePage extends BlogBaseDriver {
 
     public List<String> findLinksToTheGithubModule() {
         List<String> gitHubModuleLinks = new ArrayList<String>();
-        List<WebElement> links = this.getWebDriver().findElements(By.xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_BAELDUNG
-                + "') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_EUGENP + "')]"));
-        if (CollectionUtils.isEmpty(links)) {
-            return gitHubModuleLinks;
-        }
+        try {
+            List<WebElement> links = this.getWebDriver().findElements(By.xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_BAELDUNG
+                    + "') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_EUGENP + "')]"));
+            if (CollectionUtils.isEmpty(links)) {
+                return gitHubModuleLinks;
+            }
 
-        String firstURL = links.get(links.size() - 1).getAttribute("href");
-        if (StringUtils.isEmpty(firstURL)) {
-            return gitHubModuleLinks;
-        }
-        Utils.removeTrailingSlash(firstURL);
-        gitHubModuleLinks.add(firstURL);
+            String firstURL = links.get(links.size() - 1).getAttribute("href");
+            if (StringUtils.isEmpty(firstURL)) {
+                return gitHubModuleLinks;
+            }
+            Utils.removeTrailingSlash(firstURL);
+            gitHubModuleLinks.add(firstURL);
 
-        // master module URL
-        int startingIndexOfMasterBranch = firstURL.indexOf("/master");
-        if (startingIndexOfMasterBranch == -1) {
-            return gitHubModuleLinks;
-        }
-        int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + 8);
-        String secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
+            // master module URL
+            int startingIndexOfMasterBranch = firstURL.indexOf("/master");
+            if (startingIndexOfMasterBranch == -1) {
+                return gitHubModuleLinks;
+            }
+            int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + 8);
+            String secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
 
-        if (!firstURL.equalsIgnoreCase(secondURL)) {
-            gitHubModuleLinks.add(secondURL);
-        }
+            if (!firstURL.equalsIgnoreCase(secondURL)) {
+                gitHubModuleLinks.add(secondURL);
+            }
 
-        // immediate parent module
-        String thirdURL = firstURL.substring(0, firstURL.lastIndexOf("/"));
-        Utils.removeTrailingSlash(thirdURL);
-        if (!thirdURL.equals(secondURL) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_BAELDUNG) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_EUGENP)) {
-            gitHubModuleLinks.add(thirdURL);
+            // immediate parent module
+            String thirdURL = firstURL.substring(0, firstURL.lastIndexOf("/"));
+            Utils.removeTrailingSlash(thirdURL);
+            if (!thirdURL.equals(secondURL) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_BAELDUNG) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_EUGENP)) {
+                gitHubModuleLinks.add(thirdURL);
+            }
+        } catch (Exception e) {
+            logger.error("Error occurened while process:" + this.getWebDriver().getCurrentUrl() + " error message:" + e.getMessage());
         }
 
         return gitHubModuleLinks;

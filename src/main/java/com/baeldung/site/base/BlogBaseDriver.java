@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -17,6 +19,8 @@ import com.baeldung.config.application.SeleniumConfig;
 import com.google.common.util.concurrent.RateLimiter;
 
 public abstract class BlogBaseDriver {
+    
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private SeleniumConfig seleniumConfig;
