@@ -18,11 +18,10 @@ public class GlobalConstants {
     // targent env
     public static String TARGET_ENV_WINDOWS = "win";
     public static String TARGET_ENV_LINUX = "linux";
-    
-    //headless browser name
+
+    // headless browser name
     public static String HEADLESS_BROWSER_PHANTOMJS = "phantomJS";
     public static String HEADLESS_BROWSER_HTMLUNIT = "HtmlUnit";
-    
 
     public static String BAELDUNG_HOME_PAGE_URL = "http://www.baeldung.com";
     public static String LAUNCH_FLAG = "LAUNCH_FLAG";
@@ -45,17 +44,17 @@ public class GlobalConstants {
     public static String COURSE_PAGES_BUY_LINKS = "coursePagesBuyLinks.json";
 
     /**
-     * Tests using this tag are executed hourly on Jenkins 
+     * Tests using this tag are executed hourly on Jenkins
      */
     public static final String TAG_HOURLY = "hourly";
 
     /**
-     * Tests using this tag are executed daily on Jenkins 
+     * Tests using this tag are executed daily on Jenkins
      */
     public static final String TAG_DAILY = "daily";
 
     /**
-     * Tests using this tag are executed weekly on Jenkins 
+     * Tests using this tag are executed weekly on Jenkins
      */
     public static final String TAG_WEEKLY = "weekly";
 
@@ -114,12 +113,16 @@ public class GlobalConstants {
 
     // thank-you page
     public static final List<String> PAGES_THANK_YOU = Arrays.asList(new String[] { "thank-you", "thanks" });
-    
-    public static final List<String> URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST = Arrays.asList(new String[] { "/start-here/", "/spring-5/","/swagger-test-on-a-page/","/follow/","/baeldung-company-info/","/contact/","/rest-course-almost-done/"});
-    
-    //Baeldung GitHub repos
-    
+
+    public static final List<String> URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST = Arrays.asList(new String[] { "/start-here/", "/spring-5/", "/swagger-test-on-a-page/", "/follow/", "/baeldung-company-info/", "/contact/", "/rest-course-almost-done/" });
+
+    // Baeldung GitHub repos
+
     public static final String GITHUB_REPO_EUGENP = "github.com/eugenp";
     public static final String GITHUB_REPO_BAELDUNG = "github.com/baeldung";
+
+    // these URLs should be excluded from givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle test because:
+    // 1- these target multiple GitHub repos 2- More than one GitHub modules linked in the article
+    public static final List<String> URL_TARGETING_MULTIPLE_GITHUB_MODULES = Collections.unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/"));
 
 }
