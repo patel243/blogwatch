@@ -168,7 +168,10 @@ public class SitePage extends BlogBaseDriver {
 
     public boolean linkExistsInthePage(String articleRelativeURL) {
         try {
-            return this.getWebDriver().findElement(By.xpath("//a[translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL + articleRelativeURL + "', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]")).isDisplayed();
+            return this.getWebDriver()
+                    .findElement(By.xpath(
+                            "//a[translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL + articleRelativeURL + "', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]"))
+                    .isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
