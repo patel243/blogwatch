@@ -146,12 +146,16 @@ public class AllArticlesUITest extends BaseUITest {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
-            givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv();
-            givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
-            givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
-            givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
-            givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
-            givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
+            try {
+                givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv();
+                givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
+                givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
+                givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
+                givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
+                givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
+            } catch (Exception e) {
+                logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
+            }
             loadNextUrl = true;
         } while (loadNextURL());
 

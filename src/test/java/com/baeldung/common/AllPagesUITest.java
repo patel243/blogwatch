@@ -84,8 +84,12 @@ public class AllPagesUITest extends BaseUITest {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
-            givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv();
-            givenAllPages_whenPageLoads_thenTheMetaDescriptionExists();
+            try {
+                givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv();
+                givenAllPages_whenPageLoads_thenTheMetaDescriptionExists();
+            } catch (Exception e) {
+                logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
+            }
             loadNextUrl = true;
         } while (loadNextURL());
 
