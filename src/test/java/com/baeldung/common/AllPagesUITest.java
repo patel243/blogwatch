@@ -53,7 +53,7 @@ public class AllPagesUITest extends BaseUITest {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnThePage();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )");
+                badURLs.put("givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv", page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n\n");
             }
         } while (loadNextURL());
 
@@ -68,7 +68,7 @@ public class AllPagesUITest extends BaseUITest {
     public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST) && !page.findMetaDescriptionTag()) {
-                badURLs.put("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists", page.getUrl());
+                badURLs.put("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 

@@ -52,7 +52,7 @@ public class AllArticlesUITest extends BaseUITest {
     public final void givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
         do {
             if (page.findEmptyDivs().size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv", page.getUrl());
+                badURLs.put("givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -66,7 +66,7 @@ public class AllArticlesUITest extends BaseUITest {
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
-                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop", page.getUrl());
+                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -80,7 +80,7 @@ public class AllArticlesUITest extends BaseUITest {
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
-                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd", page.getUrl());
+                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -96,7 +96,7 @@ public class AllArticlesUITest extends BaseUITest {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv", page.getUrl() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n");
+                badURLs.put("givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv", page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n\n");
             }
         } while (loadNextURL());
 
@@ -111,7 +111,7 @@ public class AllArticlesUITest extends BaseUITest {
     public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST) && !page.findMetaDescriptionTag()) {
-                badURLs.put("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists", page.getUrl());
+                badURLs.put("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -128,7 +128,7 @@ public class AllArticlesUITest extends BaseUITest {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !Utils.excludePage(page.getUrl(), GlobalConstants.URL_TARGETING_MULTIPLE_GITHUB_MODULES)) { // exclude JW pages
                 gitHubModuleLinks = page.findLinksToTheGithubModule();
                 if (!TestUtils.articleLinkFoundOnGitHubModule(gitHubModuleLinks, page.getRelativeUrl(), page)) {
-                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrl());
+                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrlWithNewLineFeed());
                 }
             }
 

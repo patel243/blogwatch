@@ -78,6 +78,10 @@ public abstract class BlogBaseDriver {
     public String getUrl() {
         return url;
     }
+    
+    public String getUrlWithNewLineFeed() {
+        return "\n"+ url;
+    }
 
     protected abstract void setUrl(String url);
 
