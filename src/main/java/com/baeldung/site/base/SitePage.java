@@ -147,14 +147,14 @@ public class SitePage extends BlogBaseDriver {
 
             // master module URL
             int startingIndexOfMasterBranch = firstURL.indexOf("/master");
-            if (startingIndexOfMasterBranch == -1) {
-                return gitHubModuleLinks;
-            }
-            int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + 8);
-            String secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
+            String secondURL = null;
+            if (startingIndexOfMasterBranch != -1) {
+                int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + 8);
+                 secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
 
-            if (!firstURL.equalsIgnoreCase(secondURL)) {
-                gitHubModuleLinks.add(secondURL);
+                if (!firstURL.equalsIgnoreCase(secondURL)) {
+                    gitHubModuleLinks.add(secondURL);
+                }
             }
 
             // immediate parent module
