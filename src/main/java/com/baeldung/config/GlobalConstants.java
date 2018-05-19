@@ -123,6 +123,6 @@ public class GlobalConstants {
 
     // these URLs should be excluded from givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle test because:
     // 1- these target multiple GitHub repos 2- More than one GitHub modules linked in the article
-    public static final List<String> URL_TARGETING_MULTIPLE_GITHUB_MODULES = Collections.unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/"));
+    public static final List<String> URL_TARGETING_MULTIPLE_GITHUB_MODULES = Collections.unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/","/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/"));
 
 }
