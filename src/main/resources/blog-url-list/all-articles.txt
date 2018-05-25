@@ -1735,3 +1735,11 @@
 /java-command-pattern
 /java-pass-by-value-or-pass-by-reference
 /logback
+/java-weekly-230
+/java-not-a-number
+/msf4j
+/lombok-builder
+/log4j2-programmatic-config
+/java-ee-singleton-session-bean
+/java-access-modifiers
+/upload-file-servlet

@@ -67,3 +67,5 @@
 /rws-why
 /thanks-course-call
 /editors
+/java-web-weekly-archived-may-2018
+/work-with-me
