@@ -96,7 +96,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    @Disabled
+    @Disabled // this test is disabled because it's the objective is covered in other tests.
     public final void givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK() throws IOException {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
@@ -219,6 +219,26 @@ public class CommonUITest extends BaseUITest {
             }
             assertTrue("ga-custom-event script not found on -->" + urlKey, page.findGACustomScript());
         }
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_FIXED_WIDGET_TEST);
+
+        page.loadUrl();
+
+        assertTrue(page.fixedWidgetStopIDIsProvidedAsFooter());
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_FOR_FIXED_WIDGET_TEST);
+
+        page.loadUrl();
+
+        assertTrue(page.fixedWidgetStopIDIsProvidedAsFooter());
     }
 
 }

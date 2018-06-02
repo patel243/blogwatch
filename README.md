@@ -72,7 +72,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 
 | Sr. | Test Name | Tag/Frequency |
 | --- | --------- | ------------- |
-| 1 | givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements | hourly |
+| 1 | ~~givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements~~ | hourly |
 | 2 | givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText | daily |
 | 3 | givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu | daily |
 | 4 | givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
@@ -89,17 +89,19 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
 | 16 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily
 | 17 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
-| 18 | givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip | weekly |
-| 19 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
-| 20 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
-| 21 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|monthly |
-| 22 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | monthly |
-| 23 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | monthly |
-| 24 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | monthly |
-| 25 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | monthly |
-| 26 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | monthly |
-| 27 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | monthly |
-| 28 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | monthly |
+| 18 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily |
+| 19 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily |
+| 20 | givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip | weekly |
+| 21 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
+| 22 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
+| 23 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|monthly |
+| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | monthly |
+| 25 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | monthly |
+| 26 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | monthly |
+| 27 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | monthly |
+| 28 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | monthly |
+| 29 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | monthly |
+| 30 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | monthly |
 
 
 

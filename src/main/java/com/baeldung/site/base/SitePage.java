@@ -150,7 +150,7 @@ public class SitePage extends BlogBaseDriver {
             String secondURL = null;
             if (startingIndexOfMasterBranch != -1) {
                 int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + 8);
-                 secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
+                secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
 
                 if (!firstURL.equalsIgnoreCase(secondURL)) {
                     gitHubModuleLinks.add(secondURL);
@@ -179,6 +179,10 @@ public class SitePage extends BlogBaseDriver {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public boolean fixedWidgetStopIDIsProvidedAsFooter() {
+        return this.getWebDriver().findElements(By.xpath("//script[contains(text(), '\"stop_id\":\"footer\"')]")).size() > 0;
     }
 
 }
