@@ -13,28 +13,28 @@ import com.baeldung.site.course.RwSTeamOptInPageDriver;
 public class RwSTeamOptInPageUITest extends BaseUITest {
 
     @Autowired
-    private RwSTeamOptInPageDriver rwsTamOptInPageDriver;
+    private RwSTeamOptInPageDriver rwsTeamOptInPageDriver;
 
     @Test
     @Tag(GlobalConstants.TAG_HOURLY)
     public final void givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException {
 
-        rwsTamOptInPageDriver.loadUrl();
+        rwsTeamOptInPageDriver.loadUrl();
 
-        rwsTamOptInPageDriver.clickOnGetAccessLinkforSmallTeam();
+        rwsTeamOptInPageDriver.clickOnGetAccessLinkforSmallTeam();
         Thread.sleep(1000);
-        assertTrue("Problem with opt-in pop-up for small team", rwsTamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
-        rwsTamOptInPageDriver.closePopupOnRwSTeamOptInPage();
+        assertTrue("Problem with opt-in pop-up for small team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
+        rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 
-        rwsTamOptInPageDriver.clickOnGetAccessLinkforMediumTeam();
+        rwsTeamOptInPageDriver.clickOnGetAccessLinkforMediumTeam();
         Thread.sleep(1000);
-        assertTrue("Problem with opt-in pop-up for medium team", rwsTamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
-        rwsTamOptInPageDriver.closePopupOnRwSTeamOptInPage();
+        assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
+        rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 
-        rwsTamOptInPageDriver.clickOnGetAccessLinkforLargeTeam();
+        rwsTeamOptInPageDriver.clickOnGetAccessLinkforLargeTeam();
         Thread.sleep(1000);
-        assertTrue("Problem with opt-in pop-up for medium team", rwsTamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
-        rwsTamOptInPageDriver.closePopupOnRwSTeamOptInPage();
+        assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
+        rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 
     }
 }
