@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.baeldung.site.base.BlogBaseDriver;
 
 @Component
-public class RwSTamOptInPageDriver extends BlogBaseDriver {
+public class RwSTeamOptInPageDriver extends BlogBaseDriver {
 
     @Override
     @Value("${rws.team.optin.url}")
