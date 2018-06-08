@@ -73,35 +73,36 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | Sr. | Test Name | Tag/Frequency |
 | --- | --------- | ------------- |
 | 1 | ~~givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements~~ | hourly |
-| 2 | givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText | daily |
-| 3 | givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu | daily |
-| 4 | givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
-| 5 | givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
-| 6 | givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
-| 7 | givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton | daily |
-| 8 | givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly | daily |
-| 9 | givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed | daily |
-| 10 | givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily |
-| 11 | givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily |
-| 12 | givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily |
-| 13 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
-| 14 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
-| 15 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
-| 16 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily
-| 17 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
-| 18 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily |
-| 19 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily |
-| 20 | givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip | weekly |
-| 21 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | bi-monthly |
-| 22 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
-| 23 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|monthly |
-| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | monthly |
-| 25 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | monthly |
-| 26 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | monthly |
-| 27 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | monthly |
-| 28 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | monthly |
-| 29 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | monthly |
-| 30 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | monthly |
+| 2 | givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine | hourly |
+| 3 | givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText | daily |
+| 4 | givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu | daily |
+| 5 | givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
+| 6 | givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
+| 7 | givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
+| 8 | givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton | daily |
+| 9 | givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly | daily |
+| 10 | givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed | daily |
+| 11 | givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily |
+| 12 | givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily |
+| 13 | givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily |
+| 14 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
+| 15 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
+| 16 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
+| 17 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily
+| 18 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
+| 19 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily |
+| 20 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily |
+| 21 | givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip | weekly |
+| 22 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | twice-a-month |
+| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
+| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month |
+| 25 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month |
+| 26 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month |
+| 27 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | twice-a-month |
+| 28 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | twice-a-month |
+| 29 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month |
+| 30 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month |
+| 31 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month |
 
 
 
