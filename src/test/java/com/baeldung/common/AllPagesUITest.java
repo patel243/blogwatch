@@ -80,6 +80,7 @@ public class AllPagesUITest extends BaseUITest {
     @Test
     @Tag("givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses")
     @Tag("givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses")
+    @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;
         do {
