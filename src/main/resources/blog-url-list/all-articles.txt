@@ -1779,3 +1779,13 @@
 /java-super
 /java-this
 /java-parameter-reflection
+/spring-security-oauth
+/java-weekly-232
+/junit-5-registerextension-annotation
+/spring-rest-template-builder
+/java-9-module-api
+/spring-core-annotations
+/mockito-argument-matchers
+/jvm-vs-jre-vs-jdk
+/spring-injecting-collections
+/java-performance-mapping-frameworks
