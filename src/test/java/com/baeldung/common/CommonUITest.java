@@ -30,7 +30,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_WEEKLY)
-    @Disabled
+    @Disabled  // the test is covered in the AllArticlesUITest.java
     public final void givenTheSampleArticleList_whenArticleLoads_thenIthasContent() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
