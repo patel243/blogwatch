@@ -95,8 +95,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    @Disabled // this test is disabled because it's the objective is covered in other tests.
+    @Tag(GlobalConstants.TAG_WEEKLY)    
     public final void givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK() throws IOException {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
@@ -114,7 +113,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_BI_MONTHLY)
+    @Tag(GlobalConstants.TAG_WEEKLY)
     public final void givenAllPagesURLs_whenPageLoads_thenItReturns200OK() throws IOException {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {

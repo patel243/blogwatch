@@ -93,8 +93,8 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 19 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily |
 | 20 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily |
 | 21 | givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip | weekly |
-| 22 | ~~givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK~~ | twice-a-month |
-| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | bi-monthly |
+| 22 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | weekly |
+| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | weekly |
 | 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month |
 | 25 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month |
 | 26 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month |
