@@ -30,8 +30,6 @@ public class BlogLinksExtractor {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    // set environment variable named blog-url-list. It's value should be absolute path to resources/blog-url-list directory.
-
     SeleniumHeadlessBrowserConfig headLessBrowser;
     WebDriver webDriver;
 
@@ -69,7 +67,7 @@ public class BlogLinksExtractor {
         Namespace defaultNamespace = document.getRootElement().getNamespace();
         List<Element> urlElements = document.getRootElement().getChildren("url", defaultNamespace);
 
-        File file = new File(System.getenv(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE) + GlobalConstants.ALL_PAGES_FILE_NAME);
+        File file = new File(getAbsolutePathToFileInSrc(GlobalConstants.ALL_PAGES_FILE_NAME));
         Path allpagesFilePath = Paths.get(file.getAbsolutePath());
         // Files.write(allpagesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         urlElements.forEach(urlNode -> {
@@ -98,7 +96,7 @@ public class BlogLinksExtractor {
     private void createArticlesList() {
         webDriver.get(GlobalConstants.FULL_ARCHIVE_URL);
         List<WebElement> archiveURLElemets = webDriver.findElements(By.xpath("//ul[contains(@class, 'car-list')]//a"));
-        File file = new File(System.getenv(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE) + GlobalConstants.ALL_ARTICLES_FILE_NAME);
+        File file = new File(getAbsolutePathToFileInSrc(GlobalConstants.ALL_ARTICLES_FILE_NAME));
         Path allArtilcesFilePath = Paths.get(file.getAbsolutePath());
         // Files.write(allArtilcesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         archiveURLElemets.forEach(anchorTag -> {
@@ -113,6 +111,10 @@ public class BlogLinksExtractor {
             }
         });
 
+    }
+
+    private String getAbsolutePathToFileInSrc(String fileName) {
+        return new File(BlogLinksExtractor.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getParent() + "/src/main/resources/blog-url-list/" + fileName;
     }
 
     private boolean isFlaggedArticle(String url) {

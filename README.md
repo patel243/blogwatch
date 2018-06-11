@@ -45,7 +45,7 @@ Headless browser can be configured using following system property
 ### Updating List of Posts and Pages
 
 
-_BlogLinksExtractor_ updates articles and pages URLs. To use it, set environment variable named _blog-url-list_. It's value should be absolute path to resources/blog-url-list directory. _BlogLinksExtractor_ should be run as Java application. 
+_BlogLinksExtractor_ updates articles and pages URLs. _BlogLinksExtractor_ should be run as Java application. 
 
 
 ### JUnit Tags
