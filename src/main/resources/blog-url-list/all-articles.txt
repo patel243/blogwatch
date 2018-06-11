@@ -1789,3 +1789,5 @@
 /jvm-vs-jre-vs-jdk
 /spring-injecting-collections
 /java-performance-mapping-frameworks
+/java-jagged-arrays
+/rest-querydsl-multiple-tables
