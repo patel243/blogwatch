@@ -138,6 +138,7 @@ public class SitePage extends BlogBaseDriver {
                 return gitHubModuleLinks;
             }
 
+            // firstURL - the URL linked from the article
             String firstURL = links.get(links.size() - 1).getAttribute("href");
             if (StringUtils.isEmpty(firstURL)) {
                 return gitHubModuleLinks;
@@ -145,29 +146,68 @@ public class SitePage extends BlogBaseDriver {
             Utils.removeTrailingSlash(firstURL);
             gitHubModuleLinks.add(firstURL);
 
-            // master module URL
+            // secondURL- master module URL (immediate child of /master)
             int startingIndexOfMasterBranch = firstURL.indexOf("/master");
             String secondURL = null;
             if (startingIndexOfMasterBranch != -1) {
-                int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + 8);
-                secondURL = mainModuleEndingIndex == -1 ? firstURL : firstURL.substring(0, mainModuleEndingIndex);
+                int mainModuleEndingIndex = firstURL.indexOf("/", startingIndexOfMasterBranch + "master".length() + 2);
+                if (mainModuleEndingIndex > -1) {
+                    secondURL = firstURL.substring(0, mainModuleEndingIndex);
 
-                if (!firstURL.equalsIgnoreCase(secondURL)) {
-                    gitHubModuleLinks.add(secondURL);
+                    if (!urlAlreadyAdded(gitHubModuleLinks, secondURL)) {
+                        gitHubModuleLinks.add(secondURL);
+                    }
                 }
             }
 
-            // immediate parent module
+            // thirdURL - immediate parent module of initial(first) URL
             String thirdURL = firstURL.substring(0, firstURL.lastIndexOf("/"));
             Utils.removeTrailingSlash(thirdURL);
-            if (!thirdURL.equals(secondURL) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_BAELDUNG) && !thirdURL.endsWith(GlobalConstants.GITHUB_REPO_EUGENP)) {
+            if (!urlAlreadyAdded(gitHubModuleLinks, thirdURL) && !parentRepoURL(thirdURL)) {
                 gitHubModuleLinks.add(thirdURL);
             }
+
+            // fourthURL - immediate child of main repository
+            String fourthURL = null;
+            int endingIndexOfImmediateChildOfMainRepo = calculateEndingIndexOfImmediateChildOfMainRepo(firstURL);
+            if (endingIndexOfImmediateChildOfMainRepo > -1) {
+                fourthURL = firstURL.substring(0, endingIndexOfImmediateChildOfMainRepo);
+                if (!urlAlreadyAdded(gitHubModuleLinks, fourthURL) && !parentRepoURL(thirdURL)) {
+                    gitHubModuleLinks.add(fourthURL);
+                }
+            }
+
         } catch (Exception e) {
             logger.error("Error occurened while process:" + this.getWebDriver().getCurrentUrl() + " error message:" + e.getMessage());
         }
 
         return gitHubModuleLinks;
+    }
+
+    private boolean parentRepoURL(String url) {
+        return url.endsWith(GlobalConstants.GITHUB_REPO_BAELDUNG) || url.endsWith(GlobalConstants.GITHUB_REPO_EUGENP);
+    }
+
+    private int calculateEndingIndexOfImmediateChildOfMainRepo(String firstURL) {
+        firstURL = firstURL.toLowerCase();
+        if (firstURL.indexOf(GlobalConstants.GITHUB_REPO_EUGENP.toLowerCase()) > -1) {
+            return firstURL.indexOf("/", firstURL.indexOf(GlobalConstants.GITHUB_REPO_EUGENP.toLowerCase()) + GlobalConstants.GITHUB_REPO_EUGENP.length() + 2);
+        }
+
+        if (firstURL.indexOf(GlobalConstants.GITHUB_REPO_BAELDUNG.toLowerCase()) > -1) {
+            return firstURL.indexOf("/", firstURL.indexOf(GlobalConstants.GITHUB_REPO_BAELDUNG.toLowerCase()) + GlobalConstants.GITHUB_REPO_BAELDUNG.length() + 2);
+        }
+
+        return -1;
+    }
+
+    private boolean urlAlreadyAdded(List<String> gitHubModuleLinks, String newURL) {
+        for (String url : gitHubModuleLinks) {
+            if (url.equalsIgnoreCase(newURL)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean linkExistsInthePage(String articleRelativeURL) {
