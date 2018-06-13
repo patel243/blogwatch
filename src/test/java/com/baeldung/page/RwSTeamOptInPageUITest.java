@@ -22,17 +22,14 @@ public class RwSTeamOptInPageUITest extends BaseUITest {
         rwsTeamOptInPageDriver.loadUrl();
 
         rwsTeamOptInPageDriver.clickOnGetAccessLinkforSmallTeam();
-        Thread.sleep(1000);
         assertTrue("Problem with opt-in pop-up for small team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
         rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 
         rwsTeamOptInPageDriver.clickOnGetAccessLinkforMediumTeam();
-        Thread.sleep(1000);
         assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
         rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 
         rwsTeamOptInPageDriver.clickOnGetAccessLinkforLargeTeam();
-        Thread.sleep(1000);
         assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
         rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 

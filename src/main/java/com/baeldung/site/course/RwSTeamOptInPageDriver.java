@@ -2,6 +2,9 @@ package com.baeldung.site.course;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +29,9 @@ public class RwSTeamOptInPageDriver extends BlogBaseDriver {
 
     public boolean theSubmitButtonOnthePopupisDisplayed() {
         try {
-            return this.getWebDriver().findElement(By.xpath("//button[contains(., 'I HAVE QUESTIONS')]")).isDisplayed();
+            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 10000);
+            WebElement button = wait.until(ExpectedConditions.visibilityOf(this.getWebDriver().findElement(By.xpath("//button[contains(., 'I HAVE QUESTIONS')]"))));
+            return button.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
