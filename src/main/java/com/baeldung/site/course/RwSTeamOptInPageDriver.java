@@ -21,6 +21,8 @@ public class RwSTeamOptInPageDriver extends BlogBaseDriver {
     }
 
     public void clickOnGetAccessLinkforSmallTeam() {
+        WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
         this.getWebDriver().findElement(By.xpath("//a[contains(@onclick,'buy_team_small')]")).click();
     }
 
