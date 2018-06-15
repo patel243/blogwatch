@@ -177,6 +177,7 @@ public class AllArticlesUITest extends BaseUITest {
                 givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
                 givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
+                givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
             }
