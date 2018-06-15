@@ -103,6 +103,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 29 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month |
 | 30 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month |
 | 31 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month |
+| 32 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month |
 
 
 

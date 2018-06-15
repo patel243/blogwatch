@@ -148,12 +148,12 @@ public class AllArticlesUITest extends BaseUITest {
     }
 
     @Test
-    @Tag("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList")
-    public final void givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList() throws IOException {
+    @Tag("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList")
+    public final void givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList() throws IOException {
         do {
             String authorName = page.findAuthorOfTheArticle();
             if (GlobalConstants.EXCLUDED_LIST_OF_AUTHORS.contains(authorName.toLowerCase())) {
-                badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList", page.getUrlWithNewLineFeed());
+                badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -177,7 +177,7 @@ public class AllArticlesUITest extends BaseUITest {
                 givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
                 givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
-                givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList();
+                givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
             }
