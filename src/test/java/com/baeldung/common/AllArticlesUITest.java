@@ -148,6 +148,21 @@ public class AllArticlesUITest extends BaseUITest {
     }
 
     @Test
+    @Tag("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList")
+    public final void givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList() throws IOException {
+        do {
+            String authorName = page.findAuthorOfTheArticle();
+            if (GlobalConstants.EXCLUDED_LIST_OF_AUTHORS.contains(authorName.toLowerCase())) {
+                badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcluedList", page.getUrlWithNewLineFeed());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            Utils.triggerTestFailure(badURLs.toString());
+        }
+    }
+
+    @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
     @Tag("givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses")
     @Tag(GlobalConstants.TAG_BI_MONTHLY)

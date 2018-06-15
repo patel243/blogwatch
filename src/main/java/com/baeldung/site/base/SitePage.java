@@ -225,4 +225,8 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//script[contains(text(), '\"stop_id\":\"footer\"')]")).size() > 0;
     }
 
+    public String findAuthorOfTheArticle() {
+        return this.getWebDriver().findElement(By.xpath("//a[contains(@rel, 'author')]")).getText().trim();
+    }
+
 }
