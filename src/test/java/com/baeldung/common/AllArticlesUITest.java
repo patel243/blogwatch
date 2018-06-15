@@ -120,6 +120,14 @@ public class AllArticlesUITest extends BaseUITest {
         }
     }
 
+    /**
+     * The test looks into four locations for searching a back-link
+     * First URL - the URL linked from the article
+     * 2nd URL - the immediate parent of the first URL
+     * 3rd URL - the master module, immediate child of \master\
+     * 4th URL - the immediate child of the parent(eugenp or Baeldung) repository 
+     */
+
     @Test
     @Tag("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle")
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
