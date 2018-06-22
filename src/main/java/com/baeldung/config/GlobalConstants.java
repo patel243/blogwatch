@@ -131,8 +131,4 @@ public class GlobalConstants {
     public static final String ARTICLE_FOR_FIXED_WIDGET_TEST = "/java-classloaders/";
     public static final String PAGE_FOR_FIXED_WIDGET_TEST = "/spring-tutorial";
 
-    // for verification of articles authors
-    public static final ImmutableList<String> EXCLUDED_LIST_OF_AUTHORS = ImmutableList.of("akash.deep", "asif", "bogdannew", "charles.gonzales", "darmen", "grant.maclean", "haitham", "jacek", "krzysztof", "monica", "monica_admin", "rokon", "roman", "support",
-            "thefather","sachin");
-
 }

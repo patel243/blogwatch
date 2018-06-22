@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.base.BaseUITest;
 import com.baeldung.base.TestUtils;
@@ -23,6 +24,9 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public class AllArticlesUITest extends BaseUITest {
+
+    @Value("#{'${site.excluded.authors}'.split(',')}")
+    private List<String> excludedListOfAuthors;
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -152,7 +156,7 @@ public class AllArticlesUITest extends BaseUITest {
     public final void givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList() throws IOException {
         do {
             String authorName = page.findAuthorOfTheArticle();
-            if (GlobalConstants.EXCLUDED_LIST_OF_AUTHORS.contains(authorName.toLowerCase())) {
+            if (excludedListOfAuthors.contains(authorName.toLowerCase())) {
                 badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
