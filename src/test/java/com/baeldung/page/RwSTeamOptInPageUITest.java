@@ -17,30 +17,60 @@ public class RwSTeamOptInPageUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_HOURLY)
-    public final void givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException {
-
+    public final void givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException {        
+        logger.info("Starting givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
         rwsTeamOptInPageDriver.loadUrl();
+        Thread.sleep(10000);
         
-        logger.info("forSmallTeam-->rwsTeamOptInPageDriver.clickOnGetAccessLinkforSmallTeam()");
+        logger.info("forSmallTeam - rwsTeamOptInPageDriver.clickOnGetAccessLinkforSmallTeam()");
         rwsTeamOptInPageDriver.clickOnGetAccessLinkforSmallTeam();
-        logger.info("forSmallTeam-->rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
+        logger.info("forSmallTeam - rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
         assertTrue("Problem with opt-in pop-up for small team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
-        logger.info("forSmallTeam-->rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
+        logger.info("forSmallTeam - rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
         rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 
-        logger.info("forMediumTeam-->rwsTeamOptInPageDriver.clickOnGetAccessLinkforMediumTeam()");
+        logger.info("forMediumTeam - rwsTeamOptInPageDriver.clickOnGetAccessLinkforMediumTeam()");
         rwsTeamOptInPageDriver.clickOnGetAccessLinkforMediumTeam();
-        logger.info("forMediumTeam-->rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
+        logger.info("forMediumTeam - rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
         assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
-        logger.info("forMediumTeam-->rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
+        logger.info("forMediumTeam - rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
         rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
 
-        logger.info("forLargeTeam-->rwsTeamOptInPageDriver.clickOnGetAccessLinkforLargeTeam()");
+        logger.info("forLargeTeam - rwsTeamOptInPageDriver.clickOnGetAccessLinkforLargeTeam()");
         rwsTeamOptInPageDriver.clickOnGetAccessLinkforLargeTeam();
-        logger.info("forLargeTeam-->rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
+        logger.info("forLargeTeam - rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
         assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
-        logger.info("forLargeTeam-->rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
+        logger.info("forLargeTeam - rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
         rwsTeamOptInPageDriver.closePopupOnRwSTeamOptInPage();
+
+    }
+    
+    @Test
+    @Tag(GlobalConstants.TAG_HOURLY)
+    public final void givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsDoOpen() throws InterruptedException {
+        
+        logger.info("Starting givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsDoOpen");
+        
+        rwsTeamOptInPageDriver.loadUrl();
+        Thread.sleep(10000);
+        logger.info("forSmallTeam - rwsTeamOptInPageDriver.clickOnGetAccessLinkforSmallTeam()");
+        rwsTeamOptInPageDriver.clickOnGetAccessLinkforSmallTeam();
+        logger.info("forSmallTeam - rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
+        assertTrue("Problem with opt-in pop-up for small team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
+        
+        rwsTeamOptInPageDriver.loadUrl();
+        Thread.sleep(10000);
+        logger.info("forMediumTeam - rwsTeamOptInPageDriver.clickOnGetAccessLinkforMediumTeam()");
+        rwsTeamOptInPageDriver.clickOnGetAccessLinkforMediumTeam();
+        logger.info("forMediumTeam - rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
+        assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
+        
+        rwsTeamOptInPageDriver.loadUrl();
+        Thread.sleep(10000);
+        logger.info("forLargeTeam - rwsTeamOptInPageDriver.clickOnGetAccessLinkforLargeTeam()");
+        rwsTeamOptInPageDriver.clickOnGetAccessLinkforLargeTeam();
+        logger.info("forLargeTeam - rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
+        assertTrue("Problem with opt-in pop-up for medium team", rwsTeamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());        
 
     }
 }
