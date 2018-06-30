@@ -115,6 +115,7 @@ public final class HomePageUITest extends BaseUITest {
     @Test
     @Tag(GlobalConstants.TAG_WEEKLY)
     @Tag("dripSurvey")
+    @Disabled //disabled as suggested in BAEL-7332
     /**
      * Tests fails on windows in headless mode. It works fine with UI browser in windows.
      * The test works fine on Jenkins (Cloudbees) with headless mode. On Jenkins, it run on Linux. 
