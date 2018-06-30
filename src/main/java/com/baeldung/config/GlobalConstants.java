@@ -42,6 +42,11 @@ public class GlobalConstants {
     public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
 
     public static String COURSE_PAGES_BUY_LINKS = "coursePagesBuyLinks.json";
+    
+    /**
+     * Tests using this tag are executed every 30 minutes on Jenkins
+     */
+    public static final String TAG__EVERY_30_MINUTES = "every-30-minutes";
 
     /**
      * Tests using this tag are executed hourly on Jenkins

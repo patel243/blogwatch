@@ -16,7 +16,7 @@ public class RwSTeamOptInPageUITest extends BaseUITest {
     private RwSTeamOptInPageDriver rwsTeamOptInPageDriver;
 
     @Test
-    @Tag(GlobalConstants.TAG_HOURLY)
+    @Tag(GlobalConstants.TAG__EVERY_30_MINUTES)
     public final void givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException {        
         logger.info("Starting givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
         rwsTeamOptInPageDriver.loadUrl();
@@ -46,7 +46,7 @@ public class RwSTeamOptInPageUITest extends BaseUITest {
     }
     
     @Test
-    @Tag(GlobalConstants.TAG_HOURLY)
+    @Tag(GlobalConstants.TAG__EVERY_30_MINUTES)
     public final void givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsDoOpen() throws InterruptedException {
         
         logger.info("Starting givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsDoOpen");
