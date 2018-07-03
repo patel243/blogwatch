@@ -111,13 +111,13 @@ public class SitePage extends BlogBaseDriver {
 
     public List<WebElement> findImagesPointingToInvalidEnvOnTheArticle() {
         String baseURLWithOutHttp = this.getBaseURL().substring(6);
-        return this.getWebDriver().findElements(By.xpath("//section//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp
+        return this.getWebDriver().findElements(By.xpath("//section//img[( contains(@src, 'www.') or contains(@src, 'http:') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp
                 + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 's.w.org')) and not(contains(@src, 'postimg.org')) and not(contains(@src, 'github.com')) and not(contains(@src, 'githubusercontent.com'))  and not(contains(@src, 'spring.io'))]"));
     }
 
     public List<WebElement> findImagesPointingToInvalidEnvOnThePage() {
         String baseURLWithOutHttp = this.getBaseURL().substring(6);
-        return this.getWebDriver().findElements(By.xpath("//article//img[( contains(@src, 'www') or contains(@src, 'http') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp
+        return this.getWebDriver().findElements(By.xpath("//article//img[( contains(@src, 'www.') or contains(@src, 'http:') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '" + baseURLWithOutHttp
                 + "')) and not(contains(@src, 'http://cdn')) and not(contains(@src, 'https://s.w.org'))]"));
     }
 
