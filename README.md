@@ -70,40 +70,45 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 ### Tests
  The tests which are crossed out are disabled.
 
-| Sr. | Test Name | Tag/Frequency |
-| --- | --------- | ------------- |
-| 1 | ~~givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements~~ | hourly |
-| 2 | givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine | every 30 minutes |
-| 3 | givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText | daily |
-| 4 | givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu | daily |
-| 5 | givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily |
-| 6 | givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily |
-| 7 | givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily |
-| 8 | givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton | daily |
-| 9 | givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly | daily |
-| 10 | givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed | daily |
-| 11 | givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily |
-| 12 | givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily |
-| 13 | givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily |
-| 14 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily |
-| 15 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily |
-| 16 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily
-| 17 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily
-| 18 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily |
-| 19 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily |
-| 20 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily |
-| 21 | ~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~ | weekly |
-| 22 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | weekly |
-| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | weekly |
-| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month |
-| 25 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month |
-| 26 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month |
-| 27 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | twice-a-month |
-| 28 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | twice-a-month |
-| 29 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month |
-| 30 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month |
-| 31 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month |
-| 32 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month |
+| Sr. | Test Name | Tag/Frequency | short description |
+| --- | --------- | ------------- | ----------------- |
+| 1 | ~~givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements~~ | hourly | |
+| 2 | givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine | every 30 minutes | This test verifies optin popups in the following article - http://www.baeldung.com/rest-with-spring-for-teams-opt-in |
+| 3 | givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText | daily | Verifies that the Java weekly issue links in the homepage point to correct URLs |
+| 4 | givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu | daily | Verifies that the CATEGORY menu is available in the homepage footer |
+| 5 | givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW | daily | If we hit http://baeldung.com, it should redirect to http://www.baeldung.com |
+| 6 | givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog | daily | This test looks for JS error in the browser console falling in server category |
+| 7 | givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages | daily | This test verifies that the images are displayed properly on _Download Guide_ popup in following URL - http://www.baeldung.com/spring-microservices-guide |
+| 8 | givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton | daily | This test checks that the pop-up, the one which auto lods,  has close button on the following page - http://www.baeldung.com/rest-with-spring-series/ |
+| 9 | givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly | daily | Verifies the series plugin on the following page - http://www.baeldung.com/spring-security-registration |
+| 10 | givenTheArticleWithPersistenceEBookDownload_whenPageLoads_thenFooterImageIsDisplayed | daily | This test checks that the image is displayed properly in the EBook download widget available at the end of following page - http://www.baeldung.com/hibernate-spatial |
+| 11 | givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily | This test looks for the Google Analytics code in the following post - http://www.baeldung.com/persistence-layer-with-spring-and-hibernate |
+| 12 | givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily | This test looks for the Google Analytics code in the following page - http://www.baeldung.com/rest-with-spring-course |
+| 13 | givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily | Baeldung feed URL - http://www.baeldung.com/feed/- should redirect to http://feeds.feedburner.com/Baeldung |
+| 14 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily | For testing that the category pages should have a _robots_ meta tag with _noindex_ |
+| 15 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily | This test verifies that the pages which have no title set do not show invalid title - _No Title_. The test runs against a list of following five pages.
+- http://www.baeldung.com/java-weekly-sponsorship/
+- http://www.baeldung.com/webinar-rest-with-spring-thank-you
+- http://www.baeldung.com/webinar-api-security-thank-you
+- http://www.baeldung.com/webinar-api-discoverability-thank-you
+- http://www.baeldung.com/webinar-cqrs-thank-you |
+| 16 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily |
+| 17 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily |
+| 18 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily | |
+| 19 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily | |
+| 20 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily | |
+| 21 | ~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~ | weekly | |
+| 22 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | weekly | |
+| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | weekly | |
+| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month | |
+| 25 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month | |
+| 26 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month | |
+| 27 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | twice-a-month | |
+| 28 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | twice-a-month | |
+| 29 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month | |
+| 30 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month | |
+| 31 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month | |
+| 32 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month | |
 
 
 
