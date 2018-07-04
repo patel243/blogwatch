@@ -85,25 +85,25 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 11 | givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode | daily | This test looks for the Google Analytics code in the following post - http://www.baeldung.com/persistence-layer-with-spring-and-hibernate |
 | 12 | givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode | daily | This test looks for the Google Analytics code in the following page - http://www.baeldung.com/rest-with-spring-course |
 | 13 | givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily | Baeldung feed URL - http://www.baeldung.com/feed/- should redirect to http://feeds.feedburner.com/Baeldung |
-| 14 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily | For testing that the category pages should have a _robots_ meta tag with _noindex_ |
+| 14 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily | For testing that the category pages should have a _robots_ meta tag with _noindex_. Following URL is tested - http://www.baeldung.com/category/series/ |
 | 15 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily | This test verifies that the pages which have no title set do not show invalid title - _No Title_. The test runs against a list of following five pages. http://www.baeldung.com/java-weekly-sponsorship/ , http://www.baeldung.com/webinar-rest-with-spring-thank-you , http://www.baeldung.com/webinar-api-security-thank-you , http://www.baeldung.com/webinar-api-discoverability-thank-you , http://www.baeldung.com/webinar-cqrs-thank-you |
-| 16 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily |
-| 17 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily |
-| 18 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily | |
-| 19 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily | |
-| 20 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily | |
-| 21 | ~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~ | weekly | |
-| 22 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | weekly | |
-| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | weekly | |
-| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month | |
-| 25 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month | |
-| 26 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month | |
-| 27 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | twice-a-month | |
-| 28 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | twice-a-month | |
-| 29 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month | |
-| 30 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month | |
-| 31 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month | |
-| 32 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month | |
+| 16 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily | Verifies that the tag pages should have a _robots_ meta tag with _noindex_. Following URL is tested - http://www.baeldung.com/tag/activiti/ |
+| 17 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily | The test verifies that exactly one _ABOUT_ menu is available in the footer of homepage|
+| 18 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily | Verifies tracking on the course pages. Tracking details are here - https://github.com/eugenp/blogwatch/blob/master/src/main/resources/blog-url-list/coursePagesBuyLinks.json |
+| 19 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily | This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Post tested - http://www.baeldung.com/java-classloaders |
+| 20 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily | This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Page tested - http://www.baeldung.com/spring-tutorial |
+| 21 | ~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~ | weekly | This test verifies that the drip survey is working fine. |
+| 22 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | weekly | Loops over full list of posts and verifies that 200OK is returned |
+| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | weekly | Loops over full list of pages and verifies that 200OK is returned |
+| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month | Test verifies that a single short code is available at the start of every post |
+| 25 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month | Test verifies that a single short code is available at the start of every page |
+| 26 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month | This test loops over all the articles and looks for empty div in code samples. |
+| 27 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | twice-a-month | Verifies that the images in the posts point to live env |
+| 28 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | twice-a-month | Verifies that the images in the pages point to live env |
+| 29 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month | This test verifies that all posts have meta description defined |
+| 30 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month | This test verifies that all pages have meta description defined |
+| 31 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month | Almost every post has a link to GitHub module containing the working code. The test verifies that the linked GitHub module links back to the post.  The test looks for a back-link in the, 1- URL linked from the post (first url) 2- master module URL (immediate child of /master) 3- immediate parent module of initial(first) URL, 4- Immediate child of main repository (/eugenp or /Baeldung) |
+| 32 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month | Loops over all the post and verifies that the author is not from the restricted list. Here is excluded list - https://github.com/eugenp/blogwatch/blob/73b841bedeee0803cc7ee0ae0c28d0d70161805b/src/main/resources/blog.properties#L14 |
 
 
 
