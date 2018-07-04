@@ -70,7 +70,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 ### Tests
  The tests which are crossed out are disabled.
 
-| Sr. | Test Name | Tag/Frequency | short description |
+| Sr. | Test Name | Tag/Frequency | Short Description |
 | --- | --------- | ------------- | ----------------- |
 | 1 | ~~givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements~~ | hourly | |
 | 2 | givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine | every 30 minutes | This test verifies optin popups in the following article - http://www.baeldung.com/rest-with-spring-for-teams-opt-in |
