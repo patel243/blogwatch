@@ -87,11 +87,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 13 | givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner | daily | Baeldung feed URL - http://www.baeldung.com/feed/- should redirect to http://feeds.feedburner.com/Baeldung |
 | 14 | givenTheCategoryPage_whenPageLoads_thenItContainsNoindexRobotsMeta | daily | For testing that the category pages should have a _robots_ meta tag with _noindex_ |
 | 15 | givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText | daily | This test verifies that the pages which have no title set do not show invalid title - _No Title_. The test runs against a list of following five pages.
-- http://www.baeldung.com/java-weekly-sponsorship/
-- http://www.baeldung.com/webinar-rest-with-spring-thank-you
-- http://www.baeldung.com/webinar-api-security-thank-you
-- http://www.baeldung.com/webinar-api-discoverability-thank-you
-- http://www.baeldung.com/webinar-cqrs-thank-you |
+http://www.baeldung.com/java-weekly-sponsorship/ , http://www.baeldung.com/webinar-rest-with-spring-thank-you , http://www.baeldung.com/webinar-api-security-thank-you , http://www.baeldung.com/webinar-api-discoverability-thank-you , http://www.baeldung.com/webinar-cqrs-thank-you |
 | 16 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily |
 | 17 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily |
 | 18 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily | |
