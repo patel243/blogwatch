@@ -90,23 +90,22 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 16 | givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta | daily | Verifies that the tag pages should have a _robots_ meta tag with _noindex_. Following URL is tested - http://www.baeldung.com/tag/activiti/ |
 | 17 | givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter | daily | The test verifies that exactly one _ABOUT_ menu is available in the footer of homepage|
 | 18 | givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly | daily | Verifies tracking on the course pages. Tracking details are here - https://github.com/eugenp/blogwatch/blob/master/src/main/resources/blog-url-list/coursePagesBuyLinks.json |
-| 19 | givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly | daily | This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Post tested - http://www.baeldung.com/java-classloaders |
-| 20 | givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly | daily | This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Page tested - http://www.baeldung.com/spring-tutorial |
-| 21 | ~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~ | weekly | This test verifies that the drip survey is working fine. |
-| 22 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | weekly | Loops over full list of posts and verifies that 200OK is returned |
-| 23 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | weekly | Loops over full list of pages and verifies that 200OK is returned |
-| 24 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month | Test verifies that a single short code is available at the start of every post |
-| 25 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month | Test verifies that a single short code is available at the start of every page |
-| 26 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month | This test loops over all the articles and looks for empty div in code samples. |
-| 27 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | twice-a-month | Verifies that the images in the posts point to live env |
-| 28 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | twice-a-month | Verifies that the images in the pages point to live env |
-| 29 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month | This test verifies that all posts have meta description defined |
-| 30 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month | This test verifies that all pages have meta description defined |
-| 31 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month | Almost every post has a link to GitHub module containing the working code. The test verifies that the linked GitHub module links back to the post.  The test looks for a back-link in the, 1- URL linked from the post (first url) 2- master module URL (immediate child of /master) 3- immediate parent module of initial(first) URL, 4- Immediate child of main repository (/eugenp or /Baeldung) |
-| 32 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month | Loops over all the post and verifies that the author is not from the restricted list. Here is excluded list - https://github.com/eugenp/blogwatch/blob/73b841bedeee0803cc7ee0ae0c28d0d70161805b/src/main/resources/blog.properties#L14 |
-
-
-
+| 19 | ~givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly~ | daily | This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Post tested - http://www.baeldung.com/java-classloaders |
+| 20 | ~givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly~ | daily | This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Page tested - http://www.baeldung.com/spring-tutorial |
+| 21 | givenTheArticleWithTheStickySidebar_whenTheArticleLoads_thenTheContainerClassProptertyIsConfiguredCorrectly | daily | This test verifies that the _Container Class_ property is set to _#Content_ in the _Sticky Sidebar_ plugin . Post tested - http://www.baeldung.com/java-classloaders |
+| 22 | givenThePageWithTheStickySidebar_whenThePageLoads_thenTheContainerClassProptertyIsConfiguredCorrectly | daily | This test verifies that the _Container Class_ property is set to _#Content_ in the _Sticky Sidebar_ plugin. Page tested - http://www.baeldung.com/spring-tutorial |
+| 23 | ~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~ | weekly | This test verifies that the drip survey is working fine. |
+| 24 | givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK | weekly | Loops over full list of posts and verifies that 200OK is returned |
+| 25 | givenAllPagesURLs_whenPageLoads_thenItReturns200OK | weekly | Loops over full list of pages and verifies that 200OK is returned |
+| 26 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop|twice-a-month | Test verifies that a single short code is available at the start of every post |
+| 27 | givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd | twice-a-month | Test verifies that a single short code is available at the start of every page |
+| 28 | givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv | twice-a-month | This test loops over all the articles and looks for empty div in code samples. |
+| 29 | givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv | twice-a-month | Verifies that the images in the posts point to live env |
+| 30 | givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv | twice-a-month | Verifies that the images in the pages point to live env |
+| 31 | givenAllArticles_whenTheArticleLoads_thenTheMetaDescriptionExists | twice-a-month | This test verifies that all posts have meta description defined |
+| 32 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month | This test verifies that all pages have meta description defined |
+| 33 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month | Almost every post has a link to GitHub module containing the working code. The test verifies that the linked GitHub module links back to the post.  The test looks for a back-link in the, 1- URL linked from the post (first url) 2- master module URL (immediate child of /master) 3- immediate parent module of initial(first) URL, 4- Immediate child of main repository (/eugenp or /Baeldung) |
+| 34 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month | Loops over all the post and verifies that the author is not from the restricted list. Here is excluded list - https://github.com/eugenp/blogwatch/blob/73b841bedeee0803cc7ee0ae0c28d0d70161805b/src/main/resources/blog.properties#L14 |
 
 
 

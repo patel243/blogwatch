@@ -42,7 +42,7 @@ public class GlobalConstants {
     public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
 
     public static String COURSE_PAGES_BUY_LINKS = "coursePagesBuyLinks.json";
-    
+
     /**
      * Tests using this tag are executed every 30 minutes on Jenkins
      */
@@ -135,5 +135,10 @@ public class GlobalConstants {
 
     public static final String ARTICLE_FOR_FIXED_WIDGET_TEST = "/java-classloaders/";
     public static final String PAGE_FOR_FIXED_WIDGET_TEST = "/spring-tutorial";
+
+    // for Sticky Sidebar plugin
+
+    public static final String ARTICLE_FOR_STICKY_SIDEBAR_TEST = "/java-classloaders/";
+    public static final String PAGE_FOR_STICKY_SIDEBAR_TEST = "/spring-tutorial";
 
 }

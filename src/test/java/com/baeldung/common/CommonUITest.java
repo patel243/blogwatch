@@ -30,7 +30,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_WEEKLY)
-    @Disabled  // the test is covered in the AllArticlesUITest.java
+    @Disabled // the test is covered in the AllArticlesUITest.java
     public final void givenTheSampleArticleList_whenArticleLoads_thenIthasContent() throws IOException {
         try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
             sampleArticlesList.forEach(URL -> {
@@ -95,7 +95,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_WEEKLY)    
+    @Tag(GlobalConstants.TAG_WEEKLY)
     public final void givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK() throws IOException {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
@@ -222,6 +222,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Disabled
     public final void givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly() {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_FIXED_WIDGET_TEST);
 
@@ -232,12 +233,33 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Disabled
     public final void givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly() {
         page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_FOR_FIXED_WIDGET_TEST);
 
         page.loadUrl();
 
         assertTrue(page.fixedWidgetStopIDIsProvidedAsFooter());
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenTheArticleWithTheStickySidebar_whenTheArticleLoads_thenTheContainerClassProptertyIsConfiguredCorrectly() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_STICKY_SIDEBAR_TEST);
+
+        page.loadUrl();
+
+        assertTrue(page.stickySidebarContainerClassPropertyIsSetupAsContent());
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenThePageWithTheStickySidebar_whenThePageLoads_thenTheContainerClassProptertyIsConfiguredCorrectly() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_FOR_STICKY_SIDEBAR_TEST);
+
+        page.loadUrl();
+
+        assertTrue(page.stickySidebarContainerClassPropertyIsSetupAsContent());
     }
 
 }

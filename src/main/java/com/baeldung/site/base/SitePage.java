@@ -229,4 +229,8 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElement(By.xpath("//a[contains(@rel, 'author')]")).getText().trim();
     }
 
+    public boolean stickySidebarContainerClassPropertyIsSetupAsContent() {
+        return this.getWebDriver().findElements(By.xpath("//script[contains(text(), '\"mystickyside_content_string\":\"#content\"')]")).size() > 0;
+    }
+
 }
