@@ -5,16 +5,20 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -260,6 +264,18 @@ public class CommonUITest extends BaseUITest {
         page.loadUrl();
 
         assertTrue(page.stickySidebarContainerClassPropertyIsSetupAsContent());
+    }
+    
+    @Test
+    @Tag("screenShotTest")
+    public final void screenShotTest() throws IOException {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_STICKY_SIDEBAR_TEST);
+
+        page.loadUrl();
+        
+        File srcFile = ((TakesScreenshot) page.getWebDriver()).getScreenshotAs(OutputType.FILE);
+        System.out.println("File:" + srcFile);
+        System.out.println(srcFile.getAbsolutePath());               
     }
 
 }
