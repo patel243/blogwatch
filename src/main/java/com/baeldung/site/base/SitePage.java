@@ -62,8 +62,8 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean seriesPluginElementDisplayed() {
-        try {
-            return this.getWebDriver().findElement(By.id("article-series-toggle")).isDisplayed();
+        try {            
+            return this.getWebDriver().findElement(By.xpath("//a[contains(@class, 'article-series-header') and contains(@href, 'javascript:void(0);')]")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
