@@ -1918,3 +1918,15 @@
 /java-apache-avro
 /spring-webflux-kotlin
 /spring-webflux-cors
+/spring-boot-vaadin
+/java-mqtt-client
+/log4j2-custom-appender
+/slf4j-log-exceptions
+/java-weekly-240
+/spring-mvc-sse-streams
+/java-connection-pooling
+/java-faker
+/java-snake-yaml
+/spring-mvc-rss-feed
+/java-collection-filtering
+/java-add-items-array-list
