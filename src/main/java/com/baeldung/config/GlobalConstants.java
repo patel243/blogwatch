@@ -23,7 +23,7 @@ public class GlobalConstants {
     public static String HEADLESS_BROWSER_PHANTOMJS = "phantomJS";
     public static String HEADLESS_BROWSER_HTMLUNIT = "HtmlUnit";
 
-    public static String BAELDUNG_HOME_PAGE_URL = "http://www.baeldung.com";
+    public static String BAELDUNG_HOME_PAGE_URL = "https://www.baeldung.com";
     public static String LAUNCH_FLAG = "LAUNCH_FLAG";
     public static String NUMBER_ONE = "1";
     public static String STRING_WITH_SINGLE_SPACE = " ";
@@ -87,10 +87,10 @@ public class GlobalConstants {
     public static final ImmutableList<String> PAGES_WITH_BLANK_TITLE = ImmutableList.of("/java-weekly-sponsorship/", "/webinar-rest-with-spring-thank-you", "/webinar-api-security-thank-you", "/webinar-api-discoverability-thank-you", "/webinar-cqrs-thank-you");
 
     // for redirection tests
-    public static String BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX = "http://baeldung.com";
-    public static String BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX = "http://www.baeldung.com";
+    public static String BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX = "https://baeldung.com";
+    public static String BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX = "https://www.baeldung.com";
 
-    public static String BAELDUNG_FEED_URL = "http://www.baeldung.com/feed/";
+    public static String BAELDUNG_FEED_URL = "https://www.baeldung.com/feed/";
     public static String BAELDUNG_FEED_FEEDBURNER_URL = "http://feeds.feedburner.com/Baeldung";
 
     // for Google Analytics
