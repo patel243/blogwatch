@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,7 @@ public class CommonUITest extends BaseUITest {
         }
     }
 
+    @Ignore
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
