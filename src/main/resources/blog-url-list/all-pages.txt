@@ -75,3 +75,10 @@
 /webinar-idiomatic-functional-programming-in-java
 /learn-spring-security-course-haitham
 /idiomatic-functional-programming-in-java/
+/java-conferences-august2018
+/rest-with-spring-for-teams-2018-launch
+/rest-with-spring-course-launch-2018
+/start-here-august2018
+/contact-old-august-2018
+/rest-with-spring-faq
+/new-course-design-test/
