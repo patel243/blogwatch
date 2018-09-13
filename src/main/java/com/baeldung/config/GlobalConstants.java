@@ -28,8 +28,8 @@ public class GlobalConstants {
     public static String NUMBER_ONE = "1";
     public static String STRING_WITH_SINGLE_SPACE = " ";
 
-    public static String FULL_ARCHIVE_URL = "http://www.baeldung.com/full_archive";
-    public static String PAGES_SITEMAP_URL = "http://www.baeldung.com/page.xml";
+    public static String FULL_ARCHIVE_URL = "https://www.baeldung.com/full_archive";
+    public static String PAGES_SITEMAP_URL = "https://www.baeldung.com/page.xml";
 
     // url files
     public static String ALL_ARTICLES_FILE_NAME = "all-articles.txt";
