@@ -62,7 +62,7 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean seriesPluginElementDisplayed() {
-        try {            
+        try {
             return this.getWebDriver().findElement(By.xpath("//a[contains(@class, 'article-series-header') and contains(@href, 'javascript:void(0);')]")).isDisplayed();
         } catch (Exception e) {
             return false;
@@ -211,14 +211,20 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean linkExistsInthePage(String articleRelativeURL) {
+
         try {
-            return this.getWebDriver()
-                    .findElement(By.xpath(
-                            "//a[translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL + articleRelativeURL + "', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]"))
-                    .isDisplayed();
+            // @formatter:off
+
+            return this.getWebDriver() 
+                            .findElement(By.xpath(
+                                    "//a[(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_HTTP + articleRelativeURL + "', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')) " + 
+                                    " or (translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL + articleRelativeURL + "','ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]"))
+                            .isDisplayed();
+          // @formatter:on
         } catch (NoSuchElementException e) {
             return false;
         }
+
     }
 
     public boolean fixedWidgetStopIDIsProvidedAsFooter() {

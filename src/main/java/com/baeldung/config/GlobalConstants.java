@@ -24,6 +24,7 @@ public class GlobalConstants {
     public static String HEADLESS_BROWSER_HTMLUNIT = "HtmlUnit";
 
     public static String BAELDUNG_HOME_PAGE_URL = "https://www.baeldung.com";
+    public static String BAELDUNG_HOME_PAGE_URL_WITH_HTTP = "http://www.baeldung.com";
     public static String LAUNCH_FLAG = "LAUNCH_FLAG";
     public static String NUMBER_ONE = "1";
     public static String STRING_WITH_SINGLE_SPACE = " ";
