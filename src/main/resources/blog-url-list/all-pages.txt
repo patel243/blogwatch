@@ -67,7 +67,6 @@
 /rws-why
 /thanks-course-call
 /editors
-/java-web-weekly-archived-may-2018
 /work-with-me
 /rest-with-spring-for-teams-opt-in
 /webinar-idiomatic-functional-programming-thank-you
