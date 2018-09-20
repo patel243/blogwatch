@@ -248,7 +248,7 @@ public class CommonUITest extends BaseUITest {
         assertTrue(page.fixedWidgetStopIDIsProvidedAsFooter());
     }
 
-    @Test
+    /*@Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheArticleWithTheStickySidebar_whenTheArticleLoads_thenTheContainerClassProptertyIsConfiguredCorrectly() {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_STICKY_SIDEBAR_TEST);
@@ -266,7 +266,7 @@ public class CommonUITest extends BaseUITest {
         page.loadUrl();
 
         assertTrue(page.stickySidebarContainerClassPropertyIsSetupAsContent());
-    }
+    }*/
     
     @Test
     @Tag("screenShotTest")
