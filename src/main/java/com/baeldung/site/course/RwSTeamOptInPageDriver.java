@@ -35,7 +35,7 @@ public class RwSTeamOptInPageDriver extends BlogBaseDriver {
     public boolean theSubmitButtonOnthePopupisDisplayed() {
         try {
             WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 10);
-            WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(., \"I'M INTERESTED\")]")));
+            WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(., 'WE MIGHT BE INTERESTED')]")));
             return button.isDisplayed();
         } catch (TimeoutException e) {
             logger.error(e.getMessage());
