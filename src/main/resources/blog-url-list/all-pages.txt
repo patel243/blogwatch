@@ -68,7 +68,6 @@
 /thanks-course-call
 /editors
 /work-with-me
-/rest-with-spring-for-teams-opt-in
 /webinar-idiomatic-functional-programming-thank-you
 /webinar-api-discoverability-with-spring-thank-you
 /webinar-idiomatic-functional-programming-in-java
