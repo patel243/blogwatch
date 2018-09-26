@@ -248,8 +248,10 @@ public class CommonUITest extends BaseUITest {
         assertTrue(page.fixedWidgetStopIDIsProvidedAsFooter());
     }
 
-    /*@Test
+    @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Disabled
+    // disabled as discussed here - https://baeldung.slack.com/archives/DBJAJDG67/p1537350093000100
     public final void givenTheArticleWithTheStickySidebar_whenTheArticleLoads_thenTheContainerClassProptertyIsConfiguredCorrectly() {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_STICKY_SIDEBAR_TEST);
 
@@ -260,24 +262,26 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Disabled
+    // disabled as discussed here - https://baeldung.slack.com/archives/DBJAJDG67/p1537350093000100
     public final void givenThePageWithTheStickySidebar_whenThePageLoads_thenTheContainerClassProptertyIsConfiguredCorrectly() {
         page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_FOR_STICKY_SIDEBAR_TEST);
 
         page.loadUrl();
 
         assertTrue(page.stickySidebarContainerClassPropertyIsSetupAsContent());
-    }*/
-    
+    }
+
     @Test
     @Tag("screenShotTest")
     public final void screenShotTest() throws IOException {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_STICKY_SIDEBAR_TEST);
 
         page.loadUrl();
-        
+
         File srcFile = ((TakesScreenshot) page.getWebDriver()).getScreenshotAs(OutputType.FILE);
         System.out.println("File:" + srcFile);
-        System.out.println(srcFile.getAbsolutePath());               
+        System.out.println(srcFile.getAbsolutePath());
     }
 
 }
