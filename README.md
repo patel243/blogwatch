@@ -106,14 +106,5 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 32 | givenAllPages_whenPageLods_thenTheMetaDescriptionExists | twice-a-month | This test verifies that all pages have meta description defined |
 | 33 | givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle | twice-a-month | Almost every post has a link to GitHub module containing the working code. The test verifies that the linked GitHub module links back to the post.  The test looks for a back-link in the, 1- URL linked from the post (first url) 2- master module URL (immediate child of /master) 3- immediate parent module of initial(first) URL, 4- Immediate child of main repository (/eugenp or /Baeldung) |
 | 34 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month | Loops over all the post and verifies that the author is not from the restricted list. Here is excluded list - https://github.com/eugenp/blogwatch/blob/73b841bedeee0803cc7ee0ae0c28d0d70161805b/src/main/resources/blog.properties#L14 |
-| 35 | givenAnArticleWithTheDripScript_whenTheArticleLoads_thenTheArticleHasTheDripScrip | daily | verified the Drip script on https://www.baeldung.com/spring-cache-tutorial |
-| 36 | givenAPageWithTheDripScript_whenThePageLoads_thenThePageHasTheDripScrip | daily | verified the Drip script on https://baeldung.com/spring-tutorial |
-
-
-
-
-
-
-
-
-
+| 35 | givenAnArticleWithTheDripScript_whenTheArticleLoads_thenTheArticleHasTheDripScrip | daily | verifies the Drip script on https://www.baeldung.com/spring-cache-tutorial |
+| 36 | givenAPageWithTheDripScript_whenThePageLoads_thenThePageHasTheDripScrip | daily | verifies the Drip script on https://baeldung.com/spring-tutorial |
