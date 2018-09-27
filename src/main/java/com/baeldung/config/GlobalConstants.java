@@ -132,7 +132,7 @@ public class GlobalConstants {
     public static final List<String> URL_TARGETING_MULTIPLE_GITHUB_MODULES = Collections
             .unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/", "/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/"));
 
-    //// for Q2W3 Fixed Widget test
+    // for Q2W3 Fixed Widget test
 
     public static final String ARTICLE_FOR_FIXED_WIDGET_TEST = "/java-classloaders/";
     public static final String PAGE_FOR_FIXED_WIDGET_TEST = "/spring-tutorial";
@@ -141,5 +141,11 @@ public class GlobalConstants {
 
     public static final String ARTICLE_FOR_STICKY_SIDEBAR_TEST = "/java-classloaders/";
     public static final String PAGE_FOR_STICKY_SIDEBAR_TEST = "/spring-tutorial";
+
+    // for Drip script
+
+    public static final String ARTICLE_WITH_DRIP_SCRIPT = "/spring-cache-tutorial/";
+    public static final String PAGE_WITH_DRIP_SCRPT = "/spring-tutorial/";
+    public static final String DRIP_SCRPT_SEARCH_STRING = "dc.src = '//tag.getdrip.com/9539554.js';";
 
 }

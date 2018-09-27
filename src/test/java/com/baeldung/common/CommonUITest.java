@@ -284,4 +284,24 @@ public class CommonUITest extends BaseUITest {
         System.out.println(srcFile.getAbsolutePath());
     }
 
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenAnArticleWithTheDripScript_whenTheArticleLoads_thenTheArticleHasTheDripScrip() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_DRIP_SCRIPT);
+
+        page.loadUrl();
+
+        assertTrue("Drip script count is not equal to 1", page.getDripScriptCount() == 1);
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenAPageWithTheDripScript_whenThePageLoads_thenThePageHasTheDripScrip() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_DRIP_SCRPT);
+
+        page.loadUrl();
+
+        assertTrue("Drip script count is not equal to 1", page.getDripScriptCount() == 1);
+    }
+
 }

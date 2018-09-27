@@ -239,4 +239,8 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//script[contains(text(), '\"mystickyside_content_string\":\"#content\"')]")).size() > 0;
     }
 
+    public int getDripScriptCount() {
+        return this.getWebDriver().findElements(By.xpath("//script[contains(text(), \"" + GlobalConstants.DRIP_SCRPT_SEARCH_STRING + "\")]")).size();
+    }
+
 }
