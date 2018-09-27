@@ -166,7 +166,7 @@ public class CommonUITest extends BaseUITest {
 
         page.loadUrl();
 
-        assertTrue(page.getAnalyticsScriptCount() == 1);
+        assertTrue("GA script count is not equal to 1", page.getAnalyticsScriptCount() == 1);
     }
 
     @Test
@@ -176,7 +176,7 @@ public class CommonUITest extends BaseUITest {
 
         page.loadUrl();
 
-        assertTrue(page.getAnalyticsScriptCount() == 1);
+        assertTrue("GA script count is not equal to 1", page.getAnalyticsScriptCount() == 1);
     }
 
     @Test
