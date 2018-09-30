@@ -12,6 +12,7 @@ import java.util.ListIterator;
 import java.util.stream.Stream;
 
 import com.baeldung.config.GlobalConstants;
+import com.baeldung.vo.GATrackingVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ArrayListMultimap;
@@ -48,22 +49,30 @@ public class Utils {
         return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_BUY_LINKS).getPath());
     }
 
-    public static Multimap<String, List<String>> getCoursePagesBuyLinksTestData() {
+    public static Multimap<String, List<GATrackingVO>> getCoursePagesBuyLinksTestData() {
 
-        Multimap<String, List<String>> testData = ArrayListMultimap.create();
+        Multimap<String, List<GATrackingVO>> testData = ArrayListMultimap.create();
+        List<GATrackingVO> GATrackingVOs = null;
+        GATrackingVO gaTrackingVO = null;
+
         try {
             ObjectMapper mapper = new ObjectMapper();
 
             JsonNode pageJson = mapper.readTree(Utils.getCoursePagesBuyLinksJsonAsFile());
             for (JsonNode topNode : pageJson.get("coursePages")) {
                 String urlKey = topNode.get("url").textValue();
-                for (JsonNode pageNode : topNode.get("onClickCall")) {
-                    List<String> trackingCodes = new ArrayList<String>();
+                GATrackingVOs = new ArrayList<>();
+                for (JsonNode pageNode : topNode.get("trackingList")) {
+                    gaTrackingVO = new GATrackingVO();
+                    List<String> trackingCodes = new ArrayList<>();
                     for (JsonNode trackingCode : pageNode.get("trackingCode")) {
                         trackingCodes.add(trackingCode.textValue());
                     }
-                    testData.put(urlKey, trackingCodes);
+                    gaTrackingVO.setTrackingCodes(trackingCodes);
+                    gaTrackingVO.setLinkText(pageNode.get("linkText").textValue());
+                    GATrackingVOs.add(gaTrackingVO);
                 }
+                testData.put(urlKey, GATrackingVOs);
             }
             return testData;
         } catch (Exception e) {

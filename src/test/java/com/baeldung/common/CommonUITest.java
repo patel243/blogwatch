@@ -26,6 +26,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
+import com.baeldung.vo.GATrackingVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
@@ -213,16 +214,19 @@ public class CommonUITest extends BaseUITest {
     @Tag(GlobalConstants.GA_TRACKING)
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 
-        Multimap<String, List<String>> testData = Utils.getCoursePagesBuyLinksTestData();
+        Multimap<String, List<GATrackingVO>> testData = Utils.getCoursePagesBuyLinksTestData();
         for (String urlKey : testData.keySet()) {
             page.setUrl(page.getBaseURL() + urlKey);
 
             page.loadUrl();
-
-            for (List<String> trackingCodes : testData.get(urlKey)) {
-                assertTrue("couldn't find custom ga call: " + trackingCodes + " with ga-custom-event class for url-->" + urlKey, page.findAnchorWithGAEventCall(trackingCodes));
+            for (List<GATrackingVO> gaTrackingVOs : testData.get(urlKey)) {
+                for (GATrackingVO gaTrackingVO : gaTrackingVOs) {
+                    logger.debug("Asserting: " + gaTrackingVO.getTrackingCodes() + " for ga-custom-event class on " + page.getBaseURL() + urlKey);
+                    assertTrue("Didn't find the ga-custom-event on the button/link: " + gaTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey, page.findAnchorWithGAEventCall(gaTrackingVO.getTrackingCodes()));
+                }
+                assertTrue("ga-custom-event script not found on -->" + page.getBaseURL() + urlKey, page.findGACustomScript());
             }
-            assertTrue("ga-custom-event script not found on -->" + urlKey, page.findGACustomScript());
+
         }
     }
 
