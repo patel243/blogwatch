@@ -21,3 +21,9 @@ hs_err_pid*
 
 #PhtantomJS logs
 phantomjsdriver.log
+
+# crawler4j
+*.lck
+*.jdb
+*.0
+crawl/root*
