@@ -20,7 +20,7 @@ public class CrawlerMainCofig {
     public CrawlConfig crawlConfig() {
         CrawlConfig crawlConfig = new CrawlConfig();
         crawlConfig.setCrawlStorageFolder("crawl/root");
-        crawlConfig.setPolitenessDelay(1000);
+        crawlConfig.setPolitenessDelay(400);
         crawlConfig.setMaxDepthOfCrawling(-1);
         crawlConfig.setMaxPagesToFetch(-1);
         crawlConfig.setIncludeBinaryContentInCrawling(false);

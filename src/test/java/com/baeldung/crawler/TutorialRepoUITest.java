@@ -3,6 +3,7 @@ package com.baeldung.crawler;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -24,9 +25,10 @@ public class TutorialRepoUITest {
     TutorialsRepoCrawlerController tutorialsRepoCrawlerController;
     
     @Test
+    @Tag("crawler4j")
     public final void test1() {
         System.out.println(new Date());
-        tutorialsRepoCrawlerController.startCrawler(CrawlerForIncorrectlyLinkedURLs.class,4);
+        tutorialsRepoCrawlerController.startCrawler(CrawlerForIncorrectlyLinkedURLs.class,16);
         //List<String> urls = tutorialsRepoCrawlerController.getFlaggedURL();
         System.out.println("============================================================================");
         for(Object object : tutorialsRepoCrawlerController.getFlaggedURL()) {
