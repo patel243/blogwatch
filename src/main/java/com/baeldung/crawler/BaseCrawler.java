@@ -11,7 +11,7 @@ public abstract class BaseCrawler extends WebCrawler {
     public static int urlParsed;
 
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz|java|xml|properties|gitignore|sql|sh|bat|ts))$");
-    private final static Pattern FILTERS_OTHERS = Pattern.compile(".*(\\/test\\/|\\/resources|\\/web-inf|\\/commits|\\/blame\\/).*");
+    private final static Pattern FILTERS_OTHERS = Pattern.compile(".*(\\/test\\/|\\/resources|\\/web-inf|\\/commits|\\/blame\\/|\\/webapp\\/).*");
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
