@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Disabled;

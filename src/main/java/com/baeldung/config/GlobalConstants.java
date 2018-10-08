@@ -147,5 +147,9 @@ public class GlobalConstants {
     public static final String ARTICLE_WITH_DRIP_SCRIPT = "/spring-cache-tutorial/";
     public static final String PAGE_WITH_DRIP_SCRPT = "/spring-tutorial/";
     public static final String DRIP_SCRPT_SEARCH_STRING = "dc.src = '//tag.getdrip.com/9539554.js';";
+    
+    //for crawler4j
+    public static String README_LINKS_FOLDER_PATH = "./blog-url-list/";
+    public static String README_LINKS_FILE_NAME = "readme-files-urls.txt";
 
 }

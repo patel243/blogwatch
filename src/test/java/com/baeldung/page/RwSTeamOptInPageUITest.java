@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 
-import org.eclipse.jetty.util.log.Log;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

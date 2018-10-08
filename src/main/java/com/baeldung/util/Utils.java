@@ -99,5 +99,9 @@ public class Utils {
             firstURL = firstURL.substring(0, firstURL.length());
         }
     }
+    
+    public static String getAbsolutePathToFileInSrc(String fileName) {
+        return new File(Utils.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getParent() + "/src/main/resources/blog-url-list/" + fileName;
+    }
 
 }
