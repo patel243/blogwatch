@@ -7,12 +7,10 @@ import edu.uci.ics.crawler4j.crawler.Page;
 
 public class CrawlerForIncorrectlyLinkedURLs extends BaseCrawler {
 
-    private List<String> flaggedURLs = new ArrayList<>();
-    public static int visitedPages;
+    private List<String> flaggedURLs = new ArrayList<>();    
 
     @Override
-    public void visit(Page page) {
-        CrawlerForIncorrectlyLinkedURLs.visitedPages++;
+    public void visit(Page page) {        
         if (page.getWebURL().getURL().toLowerCase().endsWith("readme.md")) {
             System.out.println(page.getWebURL().getURL());
             this.flaggedURLs.add(page.getWebURL().getURL());

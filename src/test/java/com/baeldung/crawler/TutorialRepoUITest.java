@@ -27,8 +27,8 @@ public class TutorialRepoUITest {
     @Test
     @Tag("crawler4j")
     public final void test1() {
-        System.out.println("No of CPU cores: "+ Runtime.getRuntime().availableProcessors());
-        System.out.println(new Date());
+        logger.info("No of CPU cores: "+ Runtime.getRuntime().availableProcessors());
+        logger.info("Started at: " + new Date());
         tutorialsRepoCrawlerController.startCrawler(CrawlerForIncorrectlyLinkedURLs.class,Runtime.getRuntime().availableProcessors());
         //List<String> urls = tutorialsRepoCrawlerController.getFlaggedURL();
         System.out.println("============================================================================");
@@ -38,9 +38,8 @@ public class TutorialRepoUITest {
             urlList.forEach( s->System.out.println(s));
         }        
         
-        System.out.println("Parsed pages:" + BaseCrawler.urlParsed);
-        System.out.println("Visited pages:" + CrawlerForIncorrectlyLinkedURLs.visitedPages);
-        System.out.println(new Date());
+        
+        logger.info("Ended at at: " + new Date());
     }
 
 }
