@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.vo.GATrackingVO;
+import com.baeldung.vo.LinkVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ArrayListMultimap;
@@ -99,9 +102,30 @@ public class Utils {
             firstURL = firstURL.substring(0, firstURL.length());
         }
     }
-    
+
     public static String getAbsolutePathToFileInSrc(String fileName) {
         return new File(Utils.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getParent() + "/src/main/resources/blog-url-list/" + fileName;
+    }
+
+    public static ListIterator<String> fetchGitHubModulesReadmeLinks() throws IOException {
+        File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.README_LINKS_FOLDER_PATH + GlobalConstants.README_LINKS_FILE_NAME).getPath());
+        return Files.readAllLines(Paths.get(file.getAbsolutePath())).listIterator();
+    }
+
+    public static String getTheParentOfReadme(String readmeURL) {
+        return readmeURL.substring(0, readmeURL.length() - 10).replace("/blob", "/tree"); // lenght of /readme.md is 10;
+    }
+
+    public static void logErrorMessageForInvalidLinksInReadmeFiles(Multimap<String, LinkVO> badURLs) {
+
+        if (badURLs.size() > 0) {
+            String testsResult = "\n\n";
+            for (Map.Entry<String, Collection<LinkVO>> entry : badURLs.asMap().entrySet()) {
+                testsResult = testsResult + entry.getKey() + " \n" + entry.getValue().toString() + "\n\n";
+            }
+            fail("we found issues with following READMEs" + testsResult);
+        }
+
     }
 
 }

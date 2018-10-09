@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,7 +27,9 @@ import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.baeldung.vo.GATrackingVO;
+import com.baeldung.vo.LinkVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
@@ -305,6 +308,42 @@ public class CommonUITest extends BaseUITest {
         page.loadUrl();
 
         assertTrue("Drip script count is not equal to 1", page.getDripScriptCount() == 1);
+    }
+
+    @Test
+    @Tag("readmeLinksValidation")
+    public final void givenTheGitHubModuleReadme_theFileContainsCorrectLinks() throws IOException {
+
+        // default value for crawler.refreshReadmeLinks property is false. So it won't refresh the readme links
+        gitModulesReadmeLinksExtractor.findAndUpdateLinksToReadmeFiles();
+
+        ListIterator<String> readmeURLs = Utils.fetchGitHubModulesReadmeLinks(); //loads links for a file
+        Multimap<String, LinkVO> badURLs = ArrayListMultimap.create();
+
+        readmeURLs.forEachRemaining(readmeURL -> {
+            try {
+                page.setUrl(readmeURLs.next());
+
+                page.loadUrl(); // load readme
+
+                List<LinkVO> urlsInReadmeFile = page.getLinksToTheBaeldungSite(); // get all the articles linked in this readme
+
+                String reamdmeParentURL = Utils.getTheParentOfReadme(readmeURL);
+
+                urlsInReadmeFile.forEach(link -> {
+                    page.setUrl(link.getLink());
+                    page.loadUrlWithThrottling();
+                    if (!page.getWebDriver().getPageSource().toLowerCase().contains(reamdmeParentURL)) {
+                        badURLs.put(readmeURL, new LinkVO(link.getLink(), link.getLinkText()));
+                    }
+
+                });
+            } catch (Exception e) {
+                logger.debug("Error while processing " + readmeURL + " \nError message" + e.getMessage());
+            }
+        });
+
+        Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
     }
 
 }

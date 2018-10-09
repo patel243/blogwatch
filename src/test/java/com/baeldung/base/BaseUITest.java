@@ -13,9 +13,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.config.context.MainConfig;
 import com.baeldung.config.context.MyApplicationContextInitializer;
+import com.baeldung.crawler.GitModulesReadmeLinksExtractor;
+import com.baeldung.crawler.config.CrawlerMainCofig;
 import com.baeldung.site.base.SitePage;
 
-@ContextConfiguration(classes = { MainConfig.class }, initializers = MyApplicationContextInitializer.class)
+@ContextConfiguration(classes = { MainConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
 public class BaseUITest {
 
@@ -23,6 +25,9 @@ public class BaseUITest {
 
     @Autowired
     protected SitePage page;
+
+    @Autowired
+    protected GitModulesReadmeLinksExtractor gitModulesReadmeLinksExtractor;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {

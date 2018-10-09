@@ -2,6 +2,7 @@ package com.baeldung.site.base;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
+import com.baeldung.vo.LinkVO;
 
 @Component
 public class SitePage extends BlogBaseDriver {
@@ -241,6 +243,11 @@ public class SitePage extends BlogBaseDriver {
 
     public int getDripScriptCount() {
         return this.getWebDriver().findElements(By.xpath("//script[contains(text(), \"" + GlobalConstants.DRIP_SCRPT_SEARCH_STRING + "\")]")).size();
+    }
+
+    public List<LinkVO> getLinksToTheBaeldungSite() {
+        List<WebElement> anchorTags = this.getWebDriver().findElements(By.xpath("//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WIThOUT_THE_PROTOCOL + "')]"));
+        return anchorTags.stream().map(tag -> new LinkVO(tag.getAttribute("href").toLowerCase(), tag.getText())).collect(Collectors.toList());
     }
 
 }
