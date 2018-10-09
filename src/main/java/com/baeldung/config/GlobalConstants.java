@@ -151,5 +151,6 @@ public class GlobalConstants {
     //for crawler4j
     public static String README_LINKS_FOLDER_PATH = "./blog-url-list/";
     public static String README_LINKS_FILE_NAME = "readme-files-urls.txt";
+    public static String README_FILE_NAME_LOWERCASE= "readme.md";
 
 }

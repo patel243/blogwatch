@@ -3,6 +3,8 @@ package com.baeldung.crawler;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baeldung.config.GlobalConstants;
+
 import edu.uci.ics.crawler4j.crawler.Page;
 
 public class CrawlerForIncorrectlyLinkedURLs extends BaseCrawler {
@@ -11,7 +13,7 @@ public class CrawlerForIncorrectlyLinkedURLs extends BaseCrawler {
 
     @Override
     public void visit(Page page) {        
-        if (page.getWebURL().getURL().toLowerCase().endsWith("readme.md")) {
+        if (page.getWebURL().getURL().toLowerCase().endsWith(GlobalConstants.README_FILE_NAME_LOWERCASE)) {
             System.out.println(page.getWebURL().getURL());
             this.flaggedURLs.add(page.getWebURL().getURL());
         }
