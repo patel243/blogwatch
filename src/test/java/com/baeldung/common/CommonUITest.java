@@ -314,19 +314,19 @@ public class CommonUITest extends BaseUITest {
     @Tag("readmeLinksValidation")
     public final void givenTheGitHubModuleReadme_theFileContainsCorrectLinks() throws IOException {
 
-        // default value for crawler.refreshReadmeLinks property is false. So it won't refresh the readme links
+        // default value for crawler.refreshReadmeLinks property is false. So it won't refresh the README links
         gitModulesReadmeLinksExtractor.findAndUpdateLinksToReadmeFiles();
 
-        ListIterator<String> readmeURLs = Utils.fetchGitHubModulesReadmeLinks(); // loads links for a file
+        ListIterator<String> readmeURLs = Utils.fetchGitHubModulesReadmeLinks(); // loads links to all READMEs from file
         Multimap<String, LinkVO> badURLs = ArrayListMultimap.create();
 
         readmeURLs.forEachRemaining(readmeURL -> {
             try {
                 page.setUrl(readmeURLs.next());
 
-                page.loadUrl(); // load readme
+                page.loadUrl(); // loads README in browser
 
-                List<LinkVO> urlsInReadmeFile = page.getLinksToTheBaeldungSite(); // get all the articles linked in this readme
+                List<LinkVO> urlsInReadmeFile = page.getLinksToTheBaeldungSite(); // get all the articles linked in this README
                 String reamdmeParentURL = Utils.getTheParentOfReadme(readmeURL);
                 urlsInReadmeFile.forEach(link -> {
                     page.setUrl(link.getLink());
