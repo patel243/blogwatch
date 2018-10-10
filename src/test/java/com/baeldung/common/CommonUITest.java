@@ -330,7 +330,7 @@ public class CommonUITest extends BaseUITest {
                 String reamdmeParentURL = Utils.getTheParentOfReadme(readmeURL);
                 urlsInReadmeFile.forEach(link -> {
                     page.setUrl(link.getLink());
-                    page.loadUrlWithThrottling();
+                    page.loadUrlWithThrottling(); //loads an article in the browser
                     if (!page.getWebDriver().getPageSource().toLowerCase().contains(reamdmeParentURL.toLowerCase())) {
                         badURLs.put(readmeURL, link);
                     }
