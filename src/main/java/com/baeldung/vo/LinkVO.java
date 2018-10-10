@@ -29,7 +29,7 @@ public class LinkVO {
 
     @Override
     public String toString() {
-        return LinkText + "( " + link + " )\n";
+        return "\n" + LinkText + "( " + link + " )";
     }
 
 }

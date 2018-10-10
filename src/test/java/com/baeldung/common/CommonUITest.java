@@ -317,7 +317,7 @@ public class CommonUITest extends BaseUITest {
         // default value for crawler.refreshReadmeLinks property is false. So it won't refresh the readme links
         gitModulesReadmeLinksExtractor.findAndUpdateLinksToReadmeFiles();
 
-        ListIterator<String> readmeURLs = Utils.fetchGitHubModulesReadmeLinks(); //loads links for a file
+        ListIterator<String> readmeURLs = Utils.fetchGitHubModulesReadmeLinks(); // loads links for a file
         Multimap<String, LinkVO> badURLs = ArrayListMultimap.create();
 
         readmeURLs.forEachRemaining(readmeURL -> {
@@ -327,14 +327,12 @@ public class CommonUITest extends BaseUITest {
                 page.loadUrl(); // load readme
 
                 List<LinkVO> urlsInReadmeFile = page.getLinksToTheBaeldungSite(); // get all the articles linked in this readme
-
                 String reamdmeParentURL = Utils.getTheParentOfReadme(readmeURL);
-
                 urlsInReadmeFile.forEach(link -> {
                     page.setUrl(link.getLink());
                     page.loadUrlWithThrottling();
-                    if (!page.getWebDriver().getPageSource().toLowerCase().contains(reamdmeParentURL)) {
-                        badURLs.put(readmeURL, new LinkVO(link.getLink(), link.getLinkText()));
+                    if (!page.getWebDriver().getPageSource().toLowerCase().contains(reamdmeParentURL.toLowerCase())) {
+                        badURLs.put(readmeURL, link);
                     }
 
                 });

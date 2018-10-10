@@ -113,7 +113,7 @@ public class Utils {
     }
 
     public static String getTheParentOfReadme(String readmeURL) {
-        return readmeURL.substring(0, readmeURL.length() - 10).replace("/blob", "/tree"); // lenght of /readme.md is 10;
+        return readmeURL.substring(0, readmeURL.length() - 10).replace("/blob/", "/tree/"); // length of /readme.md is 10;
     }
 
     public static void logErrorMessageForInvalidLinksInReadmeFiles(Multimap<String, LinkVO> badURLs) {
