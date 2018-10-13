@@ -2104,3 +2104,17 @@
 /java-switch
 /java-find-map-max
 /netflix-archaius-database-configurations
+/java-byte-arrays-hex-strings
+/maven-java-version
+/java-write-xml-document-file
+/java-enumset
+/java-bean-validation-not-null-empty-blank
+/java-datetimeformatter
+/maven-dependency-latest-version
+/java-weekly-250
+/java-8-streams-if-else-logic
+/java-insertion-sort
+/java-outputstream
+/spring-boot-evict-cache
+/gradle-build-settings-properties
+/persistence-with-spring-series-alternative
