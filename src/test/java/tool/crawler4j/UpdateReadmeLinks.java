@@ -25,7 +25,7 @@ public class UpdateReadmeLinks {
     GitModulesReadmeLinksExtractor gitModulesReadmeLinksExtractor;
     
     @Test    
-    public final void updateReadmeLins() throws IOException {
+    public final void updateLinks() throws IOException {
         gitModulesReadmeLinksExtractor.findAndUpdateLinksToReadmeFiles();
     }
 
