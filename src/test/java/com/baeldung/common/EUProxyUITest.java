@@ -18,10 +18,10 @@ public class EUProxyUITest extends BaseUITest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    /*@BeforeEach
+    @BeforeEach
     public void loadNewWindow() throws IOException {
         page.openNewWindowWithEUProxy();
-    }*/
+    }
 
     @Test
     @Tag("vat-pricing-test")
