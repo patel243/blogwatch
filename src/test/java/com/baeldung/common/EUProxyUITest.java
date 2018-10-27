@@ -1,17 +1,21 @@
 package com.baeldung.common;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.baeldung.base.BaseUITest;
 import com.baeldung.config.GlobalConstants;
 
-public class CommonUITestWithEUProxy extends BaseUITest {
+public class EUProxyUITest extends BaseUITest {
+
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
@@ -32,7 +36,7 @@ public class CommonUITestWithEUProxy extends BaseUITest {
 
         page.loadUrl();
 
-        assertFalse("VAT prices not displayed in EU region", page.vatPricesNotAvailable());
+        assertFalse(page.vatPricesNotAvailable(), "VAT prices not displayed in EU region");
     }
 
 }
