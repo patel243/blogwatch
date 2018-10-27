@@ -45,8 +45,7 @@ Headless browser can be configured using following system property
 ### Updating List of Posts and Pages
 
 
-_BlogLinksExtractor_ updates articles and pages URLs. _BlogLinksExtractor_ should be run as Java application. 
-
+Run _UpdateArticlesAndPagesLinks#updateLinks_ test for updataing list of articles and pages. 
 
 ### JUnit Tags
 
