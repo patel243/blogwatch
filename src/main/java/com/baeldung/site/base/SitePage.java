@@ -251,8 +251,9 @@ public class SitePage extends BlogBaseDriver {
         return anchorTags.stream().map(tag -> new LinkVO(tag.getAttribute("href").toLowerCase(), tag.getText())).collect(Collectors.toList());
     }
 
-    public boolean vatPricesNotAvailable() {
-        return this.getWebDriver().findElement(By.xpath("//span[contains(@class, 'price-with-vat')][1]")).getText().trim().isEmpty();
+    public boolean vatPricesAvailableThePage() {
+        logger.info("currently loaded page-->" + this.getWebDriver().getCurrentUrl());
+        return !this.getWebDriver().findElement(By.xpath("//span[contains(@class, 'price-with-vat')][1]")).getText().trim().isEmpty();
     }
 
     public String getGeoLocation() {

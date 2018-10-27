@@ -155,6 +155,6 @@ public class GlobalConstants {
     public static String README_FILE_NAME_LOWERCASE = "readme.md";
 
     // VAT test
-    public static final String COURSE_PAGE_FOR_VAT_TEST = "/rest-with-spring-course";
+    public static final String COURSE_PAGE_FOR_VAT_TEST = "/learn-spring-security-course/";
 
 }

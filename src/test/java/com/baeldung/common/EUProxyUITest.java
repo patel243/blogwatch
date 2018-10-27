@@ -1,6 +1,6 @@
 package com.baeldung.common;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -25,10 +25,10 @@ public class EUProxyUITest extends BaseUITest {
 
     @Test
     @Tag("vat-pricing-test")
-    public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {
+    public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {                
         
         page.getWebDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        page.getWebDriver().manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
+        page.getWebDriver().manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);        
 
         page.setUrl("https://ipstack.com/");
 
@@ -39,8 +39,9 @@ public class EUProxyUITest extends BaseUITest {
         page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
         
         page.loadUrl();
+        
 
-        assertFalse(page.vatPricesNotAvailable(), "VAT prices not displayed in EU region");
+        assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region");
     }
 
 }

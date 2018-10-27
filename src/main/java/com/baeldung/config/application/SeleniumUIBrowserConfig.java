@@ -39,7 +39,7 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
         firefoxOptions.setProxy(proxy);
         // firefoxOptions.setHeadless(true);
         driver = new FirefoxDriver(firefoxOptions);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
 }

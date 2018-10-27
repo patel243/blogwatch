@@ -1,12 +1,12 @@
 package com.baeldung.config.application;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -65,20 +65,20 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
         } else {
 
             DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
-            
-            ArrayList<String> cliArgsCap = new ArrayList<String>(); 
+
+            /*  ArrayList<String> cliArgsCap = new ArrayList<String>(); 
             cliArgsCap.add("--proxy=" + this.getEuProxyServerIP() + ":" + this.getEuProxyServerPort());
             cliArgsCap.add("--web-security=false"); 
             cliArgsCap.add("--ignore-ssl-errors=true");            
             cliArgsCap.add("--ssl-protocol=any");
             
             caps.setCapability(
-                PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
-//
-//            org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
-//            proxy.setHttpProxy(super.getEUProxyServerAddress());
-//            proxy.setSslProxy(super.getEUProxyServerAddress());
-//            caps.setCapability(CapabilityType.PROXY, proxy);
+                PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);*/
+
+            org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
+            proxy.setHttpProxy(this.getEuProxyServerIP() + ":" + this.getEuProxyServerPort());
+            proxy.setSslProxy(this.getEuProxyServerIP() + ":" + this.getEuProxyServerPort());
+            caps.setCapability(CapabilityType.PROXY, proxy);
 
             driver = new PhantomJSDriver(caps);
         }
