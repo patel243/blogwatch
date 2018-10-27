@@ -1,4 +1,4 @@
-package com.baeldung.crawler;
+package com.baeldung.crawler4j;
 
 import java.util.List;
 

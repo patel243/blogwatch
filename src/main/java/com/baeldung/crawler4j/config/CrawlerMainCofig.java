@@ -1,4 +1,4 @@
-package com.baeldung.crawler.config;
+package com.baeldung.crawler4j.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,7 +12,7 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 @Configuration
-@ComponentScan("com.baeldung.crawler")
+@ComponentScan("com.baeldung.crawler4j")
 @PropertySource({ "classpath:blog.properties" })
 public class CrawlerMainCofig {
 

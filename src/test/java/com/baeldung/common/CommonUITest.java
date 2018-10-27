@@ -23,8 +23,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
-import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.baeldung.vo.GATrackingVO;
 import com.baeldung.vo.LinkVO;

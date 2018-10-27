@@ -1,9 +1,9 @@
-package com.baeldung.crawler;
+package com.baeldung.crawler4j;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.baeldung.config.GlobalConstants;
+import com.baeldung.GlobalConstants;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 

@@ -1,4 +1,4 @@
-package com.baeldung.config.application;
+package com.baeldung.selenium.config;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

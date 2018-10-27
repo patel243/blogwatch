@@ -16,9 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
 import com.baeldung.base.TestUtils;
-import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;

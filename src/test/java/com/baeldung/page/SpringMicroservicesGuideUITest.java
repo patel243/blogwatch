@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
-import com.baeldung.config.GlobalConstants;
 import com.baeldung.site.guide.SpringMicroservicesGuidePage;
 import com.jayway.restassured.RestAssured;
 

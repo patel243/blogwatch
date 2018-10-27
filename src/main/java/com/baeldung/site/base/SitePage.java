@@ -11,7 +11,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Component;
 
-import com.baeldung.config.GlobalConstants;
+import com.baeldung.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.baeldung.vo.LinkVO;
 

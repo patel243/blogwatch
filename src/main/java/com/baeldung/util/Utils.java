@@ -13,7 +13,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import com.baeldung.config.GlobalConstants;
+import com.baeldung.GlobalConstants;
 import com.baeldung.vo.GATrackingVO;
 import com.baeldung.vo.LinkVO;
 import com.fasterxml.jackson.databind.JsonNode;

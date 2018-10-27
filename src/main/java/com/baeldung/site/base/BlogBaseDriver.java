@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.baeldung.config.GlobalConstants;
-import com.baeldung.config.application.SeleniumConfig;
+import com.baeldung.GlobalConstants;
+import com.baeldung.selenium.config.SeleniumConfig;
 import com.google.common.util.concurrent.RateLimiter;
 
 public abstract class BlogBaseDriver {

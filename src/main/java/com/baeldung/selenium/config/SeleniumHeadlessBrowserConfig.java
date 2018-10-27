@@ -1,4 +1,4 @@
-package com.baeldung.config.application;
+package com.baeldung.selenium.config;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.baeldung.config.GlobalConstants;
+import com.baeldung.GlobalConstants;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;

@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.baeldung.config.context.MyApplicationContextInitializer;
-import com.baeldung.crawler.config.CrawlerMainCofig;
+import com.baeldung.common.config.MyApplicationContextInitializer;
+import com.baeldung.crawler4j.CrawlerForIncorrectlyLinkedURLs;
+import com.baeldung.crawler4j.TutorialsRepoCrawlerController;
+import com.baeldung.crawler4j.config.CrawlerMainCofig;
 
 @ContextConfiguration(classes = { CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)

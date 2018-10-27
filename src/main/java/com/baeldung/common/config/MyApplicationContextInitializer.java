@@ -1,11 +1,11 @@
-package com.baeldung.config.context;
+package com.baeldung.common.config;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-import com.baeldung.config.GlobalConstants;
+import com.baeldung.GlobalConstants;
 
 public class MyApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 

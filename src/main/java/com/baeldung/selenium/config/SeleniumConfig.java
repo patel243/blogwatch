@@ -1,4 +1,4 @@
-package com.baeldung.config.application;
+package com.baeldung.selenium.config;
 
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;

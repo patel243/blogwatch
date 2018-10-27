@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
-import com.baeldung.config.GlobalConstants;
 import com.baeldung.site.course.RwSTeamOptInPageDriver;
 
 public class RwSTeamOptInPageUITest extends BaseUITest {

@@ -1,4 +1,4 @@
-package com.baeldung.config.context;
+package com.baeldung.selenium.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-import com.baeldung.config.application.SeleniumHeadlessBrowserConfig;
-import com.baeldung.config.application.SeleniumUIBrowserConfig;
+import com.baeldung.selenium.BlogLinksExtractor;
 import com.baeldung.site.home.HomePageDriver;
 import com.google.common.util.concurrent.RateLimiter;
 
@@ -39,6 +38,11 @@ public class MainConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+    
+    @Bean
+    public BlogLinksExtractor BlogLinksExtractor() {
+        return new BlogLinksExtractor();
     }
 
     public static void main(final String[] args) {

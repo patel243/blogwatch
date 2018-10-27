@@ -1,4 +1,4 @@
-package com.baeldung.tools;
+package com.baeldung.selenium;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,39 +23,14 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.baeldung.config.GlobalConstants;
-import com.baeldung.config.application.SeleniumHeadlessBrowserConfig;
+import com.baeldung.GlobalConstants;
 import com.baeldung.util.Utils;
 
 public class BlogLinksExtractor {
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());
-
-    SeleniumHeadlessBrowserConfig headLessBrowser;
-    WebDriver webDriver;
-
-    public static void main(String... args) throws Exception {
-
-        BlogLinksExtractor siteMapReader = new BlogLinksExtractor();
-        siteMapReader.initize();
-        siteMapReader.createArticlesList();
-        siteMapReader.createPagesList();
-        siteMapReader.cleanup();
-
-    }
-
-    private void cleanup() {
-        webDriver.quit();
-    }
-
-    private void initize() {
-        SeleniumHeadlessBrowserConfig headLessBrowser = new SeleniumHeadlessBrowserConfig();
-        headLessBrowser.setTargetEnv(GlobalConstants.TARGET_ENV_WINDOWS);
-        headLessBrowser.openNewWindow();
-        webDriver = headLessBrowser.getDriver();
-    }
-
-    private void createPagesList() throws JDOMException, IOException {
+    protected Logger logger = LoggerFactory.getLogger(getClass());    
+   
+    public void createPagesList() throws JDOMException, IOException {
         // webDriver.get(GlobalConstants.PAGES_SITEMAP_URL);
         // Document document = saxBuilder.build(new ByteArrayInputStream(webDriver.getPageSource().getBytes()));
         HttpURLConnection conn;
@@ -94,7 +69,7 @@ public class BlogLinksExtractor {
         return false;
     }
 
-    private void createArticlesList() {
+    public void createArticlesList(WebDriver webDriver) {
         webDriver.get(GlobalConstants.FULL_ARCHIVE_URL);
         List<WebElement> archiveURLElemets = webDriver.findElements(By.xpath("//ul[contains(@class, 'car-list')]//a"));
         File file = new File(Utils.getAbsolutePathToFileInSrc(GlobalConstants.ALL_ARTICLES_FILE_NAME));

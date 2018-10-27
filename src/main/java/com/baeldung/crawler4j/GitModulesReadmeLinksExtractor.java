@@ -1,4 +1,4 @@
-package com.baeldung.crawler;
+package com.baeldung.crawler4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.baeldung.config.GlobalConstants;
+import com.baeldung.GlobalConstants;
 import com.baeldung.util.Utils;
 
 @Component

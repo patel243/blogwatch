@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.baeldung.config.context.MainConfig;
-import com.baeldung.config.context.MyApplicationContextInitializer;
-import com.baeldung.crawler.GitModulesReadmeLinksExtractor;
-import com.baeldung.crawler.config.CrawlerMainCofig;
+import com.baeldung.common.config.MyApplicationContextInitializer;
+import com.baeldung.crawler4j.GitModulesReadmeLinksExtractor;
+import com.baeldung.crawler4j.config.CrawlerMainCofig;
+import com.baeldung.selenium.config.MainConfig;
 import com.baeldung.site.base.SitePage;
 
 @ContextConfiguration(classes = { MainConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)

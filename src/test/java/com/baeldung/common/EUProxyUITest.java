@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
-import com.baeldung.config.GlobalConstants;
 
 public class EUProxyUITest extends BaseUITest {
 

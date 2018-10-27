@@ -15,8 +15,8 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
-import com.baeldung.config.GlobalConstants;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
