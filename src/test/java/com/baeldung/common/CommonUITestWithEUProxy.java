@@ -19,7 +19,7 @@ public class CommonUITestWithEUProxy extends BaseUITest {
     }
 
     @Test
-    @Tag("VAT")
+    @Tag("vat")
     public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() throws IOException {
 
         page.setUrl("https://ipstack.com/");
