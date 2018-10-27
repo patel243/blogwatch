@@ -251,4 +251,17 @@ public class SitePage extends BlogBaseDriver {
         return anchorTags.stream().map(tag -> new LinkVO(tag.getAttribute("href").toLowerCase(), tag.getText())).collect(Collectors.toList());
     }
 
+    public boolean vatPricesNotAvailable() {
+        return this.getWebDriver().findElement(By.xpath("//span[contains(@class, 'price-with-vat')][1]")).getText().trim().isEmpty();
+    }
+
+    public String getGeoLocation() {
+        try {
+            WebElement county = this.getWebDriver().findElement(By.xpath("//div[contains(@data-object, 'country_name')]/span"));
+            return county.getText().isEmpty() ? county.getAttribute("innerHTML") : county.getText();
+        } catch (Exception e) {
+            return "Erroe while getting the Geo Location" + e.getMessage();
+        }
+    }
+
 }

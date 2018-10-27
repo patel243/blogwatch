@@ -5,11 +5,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -345,17 +342,6 @@ public class CommonUITest extends BaseUITest {
         });
 
         Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
-    }
-    
-    @Test
-    @Tag("VAT")
-    public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() throws IOException {
-        URL whatismyip = new URL("http://checkip.amazonaws.com");
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                        whatismyip.openStream()));
-
-        String ip = in.readLine(); //you get the IP as a String
-        System.out.println(ip);
-    }
+    }        
 
 }

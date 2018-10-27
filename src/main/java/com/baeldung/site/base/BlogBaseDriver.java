@@ -50,6 +50,10 @@ public abstract class BlogBaseDriver {
     public void openNewWindow() {
         seleniumConfig.openNewWindow();
     }
+    
+    public void openNewWindowWithEUProxy() {
+        seleniumConfig.openNewWindowWithEUProxy();
+    }
 
     public void openNewWindowAndLoadPage() {
         this.openNewWindow();

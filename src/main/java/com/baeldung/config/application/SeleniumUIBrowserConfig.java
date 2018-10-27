@@ -3,6 +3,7 @@ package com.baeldung.config.application;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -24,6 +25,18 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
     @Override
     public void openNewWindow() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
+        // firefoxOptions.setHeadless(true);
+        driver = new FirefoxDriver(firefoxOptions);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    }
+
+    @Override
+    public void openNewWindowWithEUProxy() {
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        Proxy proxy = new org.openqa.selenium.Proxy();
+        proxy.setHttpProxy(this.getEuProxyServerIP() + ":" + super.getEuProxyServerPort());
+        proxy.setSslProxy(this.getEuProxyServerIP() + ":" + super.getEuProxyServerPort());
+        firefoxOptions.setProxy(proxy);
         // firefoxOptions.setHeadless(true);
         driver = new FirefoxDriver(firefoxOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

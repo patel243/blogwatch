@@ -1,6 +1,7 @@
 package com.baeldung.config.application;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.config.GlobalConstants;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;
 
 public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
@@ -37,27 +39,72 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
             };
         } else {
 
-            DesiredCapabilities caps = new DesiredCapabilities();
-            caps.setJavascriptEnabled(true);
-            // caps.setCapability("takesScreenshot", true);
-            if (GlobalConstants.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())) {
-                caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs.exe");
-            } else {
-
-                File file = new File("bin/" + this.getTargetEnv() + "/phantomjs");
-
-                file.setExecutable(true, false);
-                file.setReadable(true, false);
-                file.setWritable(true, false);
-
-                caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs");
-            }
-
-            caps.setCapability("takesScreenshot", true);
+            DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
 
             driver = new PhantomJSDriver(caps);
         }
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    }
+
+    @Override
+    public void openNewWindowWithEUProxy() {
+
+        logger.info("headlessBrowserName-->" + this.headlessBrowserName);
+
+        if (GlobalConstants.HEADLESS_BROWSER_HTMLUNIT.equalsIgnoreCase(this.headlessBrowserName)) {
+            ProxyConfig proxyConfig = new ProxyConfig(super.getEuProxyServerIP(), Integer.valueOf(super.getEuProxyServerPort()));
+            driver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
+                @Override
+                protected WebClient newWebClient(BrowserVersion version) {
+                    WebClient webClient = super.newWebClient(version);
+                    webClient.getOptions().setThrowExceptionOnScriptError(false);
+                    webClient.getOptions().setProxyConfig(proxyConfig);
+                    return webClient;
+                }
+            };
+        } else {
+
+            DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
+            
+            ArrayList<String> cliArgsCap = new ArrayList<String>(); 
+            cliArgsCap.add("--proxy=" + this.getEuProxyServerIP() + ":" + super.getEuProxyServerPort());
+            cliArgsCap.add("--web-security=false"); 
+            cliArgsCap.add("--ignore-ssl-errors=true");
+            
+            caps.setCapability(
+                PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
+//
+//            org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
+//            proxy.setHttpProxy(super.getEUProxyServerAddress());
+//            proxy.setSslProxy(super.getEUProxyServerAddress());
+//            caps.setCapability(CapabilityType.PROXY, proxy);
+
+            driver = new PhantomJSDriver(caps);
+        }
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+
+    }
+
+    private DesiredCapabilities getPhantomJSDesiredCapabilities() {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setJavascriptEnabled(true);
+        // caps.setCapability("takesScreenshot", true);
+        if (GlobalConstants.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())) {
+            caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs.exe");
+        } else {
+
+            File file = new File("bin/" + this.getTargetEnv() + "/phantomjs");
+
+            file.setExecutable(true, false);
+            file.setReadable(true, false);
+            file.setWritable(true, false);
+
+            caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "bin/" + this.getTargetEnv() + "/phantomjs");
+        }
+
+        // caps.setCapability("takesScreenshot", true);
+
+        return caps;
     }
 
 }

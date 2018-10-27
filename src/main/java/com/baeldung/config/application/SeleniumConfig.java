@@ -12,6 +12,12 @@ public abstract class SeleniumConfig {
     @Value("${target.env}")
     private String targetEnv;
 
+    @Value("${proxy.eu.server.ip}")
+    private String euProxyServerIP;
+    
+    @Value("${proxy.eu.server.port}")
+    private String euProxyServerPort;
+
     protected WebDriver driver;
 
     public WebDriver getDriver() {
@@ -28,8 +34,26 @@ public abstract class SeleniumConfig {
 
     public void setTargetEnv(String targetEnv) {
         this.targetEnv = targetEnv;
+    }        
+
+    public String getEuProxyServerIP() {
+        return euProxyServerIP;
+    }
+       
+    public void setEuProxyServerIP(String euProxyServerIP) {
+        this.euProxyServerIP = euProxyServerIP;
+    }
+
+    public String getEuProxyServerPort() {
+        return euProxyServerPort;
+    }
+
+    public void setEuProxyServerPort(String euProxyServerPort) {
+        this.euProxyServerPort = euProxyServerPort;
     }
 
     public abstract void openNewWindow();
+
+    public abstract void openNewWindowWithEUProxy();
 
 }
