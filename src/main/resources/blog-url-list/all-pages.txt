@@ -83,3 +83,4 @@
 /affiliates
 /rest-with-spring-for-teams-sales
 /learn-spring-security-for-teams-sales
+/learn-spring-security-faq
