@@ -3,6 +3,7 @@ package com.baeldung.common;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -25,6 +26,9 @@ public class EUProxyUITest extends BaseUITest {
     @Test
     @Tag("vat-pricing-test")
     public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {
+        
+        page.getWebDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        page.getWebDriver().manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 
         page.setUrl("https://ipstack.com/");
 
@@ -33,7 +37,7 @@ public class EUProxyUITest extends BaseUITest {
         logger.info("Geo Location-----" + page.getGeoLocation());
 
         page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
-
+        
         page.loadUrl();
 
         assertFalse(page.vatPricesNotAvailable(), "VAT prices not displayed in EU region");

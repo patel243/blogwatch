@@ -67,9 +67,10 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
             DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
             
             ArrayList<String> cliArgsCap = new ArrayList<String>(); 
-            cliArgsCap.add("--proxy=" + this.getEuProxyServerIP() + ":" + super.getEuProxyServerPort());
+            cliArgsCap.add("--proxy=" + this.getEuProxyServerIP() + ":" + this.getEuProxyServerPort());
             cliArgsCap.add("--web-security=false"); 
-            cliArgsCap.add("--ignore-ssl-errors=true");
+            cliArgsCap.add("--ignore-ssl-errors=true");            
+            cliArgsCap.add("--ssl-protocol=any");
             
             caps.setCapability(
                 PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
