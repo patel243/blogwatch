@@ -28,7 +28,7 @@ public class EUProxyUITest extends BaseUITest {
     public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {
         
         page.getWebDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        page.getWebDriver().manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+        page.getWebDriver().manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);
 
         page.setUrl("https://ipstack.com/");
 
