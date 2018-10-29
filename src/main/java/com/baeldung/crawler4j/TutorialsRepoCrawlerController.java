@@ -19,7 +19,7 @@ public class TutorialsRepoCrawlerController extends BaseCrawlController {
         super(crawlController);
     }
 
-    public List<Object> getFlaggedURL() {
+    public List<Object> getMatchingURLs() {
         return this.getCrawlersLocalData();
     }
 

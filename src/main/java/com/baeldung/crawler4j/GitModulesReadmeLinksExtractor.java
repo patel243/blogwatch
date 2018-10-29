@@ -31,16 +31,19 @@ public class GitModulesReadmeLinksExtractor {
     TutorialsRepoCrawlerController tutorialsRepoCrawlerController;
 
     public void findAndUpdateLinksToReadmeFiles() throws IOException {
+        logger.info("Refresh link: "+ refreshReadmeLinks);
         if (!refreshReadmeLinks) {
             return;
         } else {
+            int totalURls =0;
             tutorialsRepoCrawlerController.startCrawler(CrawlerForIncorrectlyLinkedURLs.class, Runtime.getRuntime().availableProcessors());
             File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.README_LINKS_FOLDER_PATH + GlobalConstants.README_LINKS_FILE_NAME).getPath());
             Path readmeLiksFilePath = Paths.get(file.getAbsolutePath());
             Files.write(readmeLiksFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-            for (Object object : tutorialsRepoCrawlerController.getFlaggedURL()) {
+            for (Object object : tutorialsRepoCrawlerController.getMatchingURLs()) {
                 List<String> urlList = (List<String>) object;
-                logger.info("List Size:" + urlList.size());
+                //logger.info("List Size: " + urlList.size());
+                totalURls = totalURls + urlList.size();
                 urlList.forEach(link -> {
                     try {
                         Files.write(readmeLiksFilePath, (link + "\n").getBytes(), StandardOpenOption.APPEND);
@@ -50,6 +53,7 @@ public class GitModulesReadmeLinksExtractor {
                     logger.info(link);
                 });                
             }
+            logger.info("Total README link: " + totalURls);
             File fileInSrcDirectory;
             if (Files.exists(Paths.get(Utils.getAbsolutePathToFileInSrc(GlobalConstants.README_LINKS_FILE_NAME)), LinkOption.NOFOLLOW_LINKS)) {
                 fileInSrcDirectory = new File(Utils.getAbsolutePathToFileInSrc(GlobalConstants.README_LINKS_FILE_NAME));
