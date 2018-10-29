@@ -34,7 +34,7 @@ public class TutorialRepoUITest {
         tutorialsRepoCrawlerController.startCrawler(CrawlerForIncorrectlyLinkedURLs.class,Runtime.getRuntime().availableProcessors());
         //List<String> urls = tutorialsRepoCrawlerController.getFlaggedURL();
         System.out.println("============================================================================");
-        for(Object object : tutorialsRepoCrawlerController.getFlaggedURL()) {
+        for(Object object : tutorialsRepoCrawlerController.getMatchingURLs()) {
             List<String> urlList = (List<String>) object;
             System.out.println("List Size:"+ urlList.size());
             urlList.forEach( s->System.out.println(s));
