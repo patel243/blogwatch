@@ -107,3 +107,4 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 34 | givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList | twice-a-month | Loops over all the post and verifies that the author is not from the restricted list. Here is excluded list - https://github.com/eugenp/blogwatch/blob/73b841bedeee0803cc7ee0ae0c28d0d70161805b/src/main/resources/blog.properties#L14 |
 | 35 | givenAnArticleWithTheDripScript_whenTheArticleLoads_thenTheArticleHasTheDripScrip | daily | verifies the Drip script on https://www.baeldung.com/spring-cache-tutorial |
 | 36 | givenAPageWithTheDripScript_whenThePageLoads_thenThePageHasTheDripScrip | daily | verifies the Drip script on https://baeldung.com/spring-tutorial |
+| 37 | givenTheGitHubModuleReadme_theFileContainsCorrectLinks | monthly | verify that READMEs in GitHub modules link to the correct article |
