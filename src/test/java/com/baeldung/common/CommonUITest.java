@@ -67,30 +67,6 @@ public class CommonUITest extends BaseUITest {
         wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));
     }
 
-    // <pre> tags in article generates HTML table with div having value either 1 or blank or space
-    @Test
-    @Tag(GlobalConstants.TAG_MONTHLY)
-    @Disabled
-    public final void givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
-        List<String> urlsWithNoContent = new ArrayList<String>();
-        try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
-            allArticlesList.forEach(URL -> {
-                page.setUrl(page.getBaseURL() + URL);
-
-                page.loadUrlWithThrottling();
-
-                if (page.findEmptyDivs().size() > 0) {
-                    urlsWithNoContent.add(URL);
-                    logger.info("Page found with empty DIV. URL-->" + URL);
-                }
-            });
-        }
-
-        if (urlsWithNoContent.size() > 0) {
-            fail("URL with No content--->" + urlsWithNoContent.stream().collect(Collectors.joining("\n")));
-        }
-    }
-
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenThePagesWithBlankTitle_whenPageLoads_thenItDoesNotContainNotitleText() {
@@ -311,7 +287,7 @@ public class CommonUITest extends BaseUITest {
     }
 
     @Test
-    @Tag("readmeLinksValidation")
+    @Tag(GlobalConstants.TAG_MONTHLY)
     public final void givenTheGitHubModuleReadme_theFileContainsCorrectLinks() throws IOException {
 
         // default value for crawler.refreshReadmeLinks property is false. So it won't refresh the README links
@@ -330,7 +306,7 @@ public class CommonUITest extends BaseUITest {
                 String reamdmeParentURL = Utils.getTheParentOfReadme(readmeURL);
                 urlsInReadmeFile.forEach(link -> {
                     page.setUrl(link.getLink());
-                    page.loadUrlWithThrottling(); //loads an article in the browser
+                    page.loadUrlWithThrottling(); // loads an article in the browser
                     if (!page.getWebDriver().getPageSource().toLowerCase().contains(reamdmeParentURL.toLowerCase())) {
                         badURLs.put(readmeURL, link);
                     }
@@ -342,6 +318,6 @@ public class CommonUITest extends BaseUITest {
         });
 
         Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
-    }        
+    }
 
 }
