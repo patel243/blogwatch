@@ -2,7 +2,7 @@ package com.baeldung.vo;
 
 import java.util.List;
 
-public class GATrackingVO {
+public class EventTrackingVO {
     List<String> trackingCodes;
     String linkText;       
 

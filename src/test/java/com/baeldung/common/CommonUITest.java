@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.http.HttpStatus;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
 import com.baeldung.util.Utils;
-import com.baeldung.vo.GATrackingVO;
+import com.baeldung.vo.EventTrackingVO;
 import com.baeldung.vo.LinkVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.ArrayListMultimap;
@@ -50,8 +49,7 @@ public class CommonUITest extends BaseUITest {
             });
         }
     }
-
-    @Ignore
+    
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
@@ -192,17 +190,17 @@ public class CommonUITest extends BaseUITest {
     @Tag(GlobalConstants.GA_TRACKING)
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 
-        Multimap<String, List<GATrackingVO>> testData = Utils.getCoursePagesBuyLinksTestData();
+        Multimap<String, List<EventTrackingVO>> testData = Utils.getCoursePagesBuyLinksTestData();
         for (String urlKey : testData.keySet()) {
             page.setUrl(page.getBaseURL() + urlKey);
 
             page.loadUrl();
-            for (List<GATrackingVO> gaTrackingVOs : testData.get(urlKey)) {
-                for (GATrackingVO gaTrackingVO : gaTrackingVOs) {
-                    logger.debug("Asserting: " + gaTrackingVO.getTrackingCodes() + " for ga-custom-event class on " + page.getBaseURL() + urlKey);
-                    assertTrue("Didn't find the ga-custom-event on the button/link: " + gaTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey, page.findAnchorWithGAEventCall(gaTrackingVO.getTrackingCodes()));
+            for (List<EventTrackingVO> eventTrackingVOs : testData.get(urlKey)) {
+                for (EventTrackingVO eventTrackingVO : eventTrackingVOs) {
+                    logger.debug("Asserting: " + eventTrackingVO.getTrackingCodes() + " for ga-custom-event class on " + page.getBaseURL() + urlKey);
+                    assertTrue("Didn't find the tracking code on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey, page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()));
                 }
-                assertTrue("ga-custom-event script not found on -->" + page.getBaseURL() + urlKey, page.findGACustomScript());
+                assertTrue("event generation script not found on -->" + page.getBaseURL() + urlKey, page.findEventGenerationScript());
             }
 
         }

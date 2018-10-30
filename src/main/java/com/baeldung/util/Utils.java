@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.vo.GATrackingVO;
+import com.baeldung.vo.EventTrackingVO;
 import com.baeldung.vo.LinkVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,11 +52,11 @@ public class Utils {
         return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_BUY_LINKS).getPath());
     }
 
-    public static Multimap<String, List<GATrackingVO>> getCoursePagesBuyLinksTestData() {
+    public static Multimap<String, List<EventTrackingVO>> getCoursePagesBuyLinksTestData() {
 
-        Multimap<String, List<GATrackingVO>> testData = ArrayListMultimap.create();
-        List<GATrackingVO> GATrackingVOs = null;
-        GATrackingVO gaTrackingVO = null;
+        Multimap<String, List<EventTrackingVO>> testData = ArrayListMultimap.create();
+        List<EventTrackingVO> GATrackingVOs = null;
+        EventTrackingVO gaTrackingVO = null;
 
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -66,7 +66,7 @@ public class Utils {
                 String urlKey = topNode.get("url").textValue();
                 GATrackingVOs = new ArrayList<>();
                 for (JsonNode pageNode : topNode.get("trackingList")) {
-                    gaTrackingVO = new GATrackingVO();
+                    gaTrackingVO = new EventTrackingVO();
                     List<String> trackingCodes = new ArrayList<>();
                     for (JsonNode trackingCode : pageNode.get("trackingCode")) {
                         trackingCodes.add(trackingCode.textValue());

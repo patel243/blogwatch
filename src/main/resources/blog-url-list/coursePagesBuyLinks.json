@@ -5,132 +5,132 @@
 			"trackingList": [
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy1');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Master'}]);"
+						"GA|course-rest|buy|buy1",
+						"DRIP|RWS|Master"
 					],
 					"linkText": "Get access for $299 →"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy2');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Certification'}]);"
+						"GA|course-rest|buy|buy2",
+						"DRIP|RWS|Certification"
 					],
 					"linkText": "Get access for $399 →"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_master');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Master'}]);"
+						"GA|course-rest|buy|buy_table_master",
+						"DRIP|RWS|Master"
 					],
 					"linkText": "Get Access → $299"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_cert');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Certification'}]);"
+						"GA|course-rest|buy|buy_table_cert",
+						"DRIP|RWS|Certification"
 					],
 					"linkText": "Get Access → $399"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_table_live');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Coaching'}]);"
+						"GA|course-rest|buy|buy_table_live",
+						"DRIP|RWS|Coaching"
 					],
 					"linkText": "Get Access → $599"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_master');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'LSS'}]);"
+						"GA|course-rest|buy|buy_lss_master",
+						"DRIP|RWS|LSS"
 					],
 					"linkText": "Learn Spring Security"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_bulk');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Bulk'}]);"
+						"GA|course-rest|buy|buy_bulk",
+						"DRIP|RWS|Bulk"
 					],
 					"linkText": "The Bulk Package →"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Team'}]);"
+						"GA|course-rest|buy|buy_team",
+						"DRIP|RWS|Team"
 					],
 					"linkText": "Here are our team licenses →"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team2');",
-						"javascript:_dcq.push(['track', 'RWS', {myProp: 'Team'}]);"
+						"GA|course-rest|buy|buy_team2",
+						"DRIP|RWS|Team"
 					],
 					"linkText": "a team license"
 				}
 			]
-		},
+		},		
 		{
 			"url": "/learn-spring-security-course",
 			"trackingList": [
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy1');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Master'}]);"
+						"GA|course-lss|buy|buy1",
+						"DRIP|LSS|Master"
 					],
 					"linkText": "Buy The Master Class"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy2');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Certification'}]);"
+						"GA|course-lss|buy|buy2",
+						"DRIP|LSS|Certification"
 					],
 					"linkText": "Buy The Certification Class"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_master');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Master'}]);"
+						"GA|course-lss|buy|buy_table_master",
+						"DRIP|LSS|Master"
 					],
 					"linkText": "Purchase The Class [Master Class]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_cert');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Certification'}]);"
+						"GA|course-lss|buy|buy_table_cert",
+						"DRIP|LSS|Certification"
 					],
 					"linkText": "Purchase The Class [Certification Class]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_table_live');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Coaching'}]);"
+						"GA|course-lss|buy|buy_table_live",
+						"DRIP|LSS|Coaching"
 					],
 					"linkText": "Purchase The Class [Coaching Class]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_master');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'RWS'}]);"
+						"GA|course-lss|buy|buy_rws_master",
+						"DRIP|LSS|RWS"
 					],
 					"linkText": "REST With Spring"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_bulk');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Bulk'}]);"
+						"GA|course-lss|buy|buy_bulk",
+						"DRIP|LSS|Bulk"
 					],
 					"linkText": "the bulk package"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Team'}]);"
+						"GA|course-lss|buy|buy_team",
+						"DRIP|LSS|Team"
 					],
 					"linkText": "a team license"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team2');",
-						"javascript:_dcq.push(['track', 'LSS', {myProp: 'Team'}]);"
+						"GA|course-lss|buy|buy_team2",
+						"DRIP|LSS|Team"
 					],
 					"linkText": "group license option"
 				}
@@ -141,36 +141,36 @@
 			"trackingList": [
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_small');",
-						"javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Small'}]);"
+						"GA|course-rest|buy|buy_team_small",
+						"DRIP|RWSTeam|Small"
 					],
 					"linkText": "Get Access → [Small Team]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_medium');",
-						"javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Medium'}]);"
+						"GA|course-rest|buy|buy_team_medium",
+						"DRIP|RWSTeam|Medium"
 					],
 					"linkText": "Get Access → [Medium Team]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_large');",
-						"javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Large'}]);"
+						"GA|course-rest|buy|buy_team_large",
+						"DRIP|RWSTeam|Large"
 					],
 					"linkText": "Get Access → [Large Team]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_lss_team_master');",
-						"javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'LSSTeam'}]);"
+						"GA|course-rest|buy|buy_lss_team_master",
+						"DRIP|RWSTeam|LSSTeam"
 					],
 					"linkText": "Learn Spring Security"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-rest', 'buy', 'buy_team_bulk');",
-						"javascript:_dcq.push(['track', 'RWSTeam', {myProp: 'Bulk'}]);"
+						"GA|course-rest|buy|buy_team_bulk",
+						"DRIP|RWSTeam|Bulk"
 					],
 					"linkText": "The Bulk Package for Teams →"
 				}
@@ -181,36 +181,36 @@
 			"trackingList": [
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_small');",
-						"javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Small'}]);"
+						"GA|course-lss|buy|buy_team_small",
+						"DRIP|LSSTeam|Small"
 					],
 					"linkText": "Get Access → [Small Team]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_medium');",
-						"javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Medium'}]);"
+						"GA|course-lss|buy|buy_team_medium",
+						"DRIP|LSSTeam|Medium"
 					],
 					"linkText": "Get Access → [Medium Team]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_large');",
-						"javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Large'}]);"
+						"GA|course-lss|buy|buy_team_large",
+						"DRIP|LSSTeam|Large"
 					],
 					"linkText": "Get Access → [Large Team]"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_rws_team_master');",
-						"javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'RWSTeam'}]);"
+						"GA|course-lss|buy|buy_rws_team_master",
+						"DRIP|LSSTeam|RWSTeam"
 					],
 					"linkText": "REST With Spring"
 				},
 				{
 					"trackingCode": [
-						"javascript:ga('send', 'event', 'course-lss', 'buy', 'buy_team_bulk');",
-						"javascript:_dcq.push(['track', 'LSSTeam', {myProp: 'Bulk'}]);"
+						"GA|course-lss|buy|buy_team_bulk",
+						"DRIP|LSSTeam|Bulk"
 					],
 					"linkText": "the bulk package for teams"
 				}

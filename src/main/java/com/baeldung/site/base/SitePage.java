@@ -95,17 +95,17 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_start')]"));
     }
 
-    public boolean findAnchorWithGAEventCall(List<String> trackingCodes) {
+    public boolean findDivWithEventCalls(List<String> trackingCodes) {
         try {
-            return this.getWebDriver().findElement(By.xpath("//a[contains(@onclick,\"" + trackingCodes.get(0) + "\") and contains(@onclick,\"" + trackingCodes.get(1) + "\")][contains(@class,'ga-custom-event')]")).isDisplayed();
+            return this.getWebDriver().findElement(By.xpath("//div[contains(@class,\"" + trackingCodes.get(0) + "\") and contains(@class,\"" + trackingCodes.get(1) + "\")]")).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    public boolean findGACustomScript() {
+    public boolean findEventGenerationScript() {
         try {
-            return this.getWebDriver().findElement(By.xpath("//script[contains(text(),\"jQuery('.ga-custom-event').on('click', function(event)\")]")).isEnabled();
+            return this.getWebDriver().findElement(By.xpath("//script[contains(text(),\"_dcq.push(['track', DRIP[1], {myProp: DRIP[2]}]);\")]")).isEnabled();
         } catch (NoSuchElementException e) {
             return false;
         }
