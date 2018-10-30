@@ -5,12 +5,12 @@ This project contains UI tests for baeldung.com
 
 ### Overview
 
-The project uses Selenium framework. The tests can be run in GUI or headless mode. UI browser has been configured with Firefox using gecodriver and tested with Firefox 56.0 (64 bit) on Windows. Headless mode works with PhantomJS and HtmlUnit browsers. 
+The project uses Selenium framework, Crawler4J and REST Assured for UI tests . The tests can be run in GUI or headless mode. UI browser has been configured with Firefox using gecodriver and tested with Firefox 56.0 (64 bit) on Windows. Headless mode works with PhantomJS and HtmlUnit browsers.
 
 
 ### Running Tests from the IDE
 
-The default configuration executes tests with headless mode in windows environment and target URL is http://www.baeldung.com. The configuration can be changed using following properties:
+The default configuration executes tests with headless mode in windows environment and target URL is https://www.baeldung.com. The configuration can be changed using following properties:
 
   - _spring.profiles.active_ - environment variable to either "headless-browser" and "ui-browser"
   - _target.env_ - environment variable should be set to "win" or "linux" for headless browser
@@ -26,7 +26,7 @@ Three Maven profiles are available for running tests:
   - _headless-browser-linux_ 
   - _ui-brower-windows_
 
-The target URL for all profiles is http://baeldung.com. The can be changed using following property
+The target URL for all profiles is https://www.baeldung.com. The can be changed using following property
 
 - _base.url_ - to target base URL, for example _http://www.baeldung.com_
 
