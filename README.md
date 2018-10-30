@@ -71,7 +71,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 
 | Sr. | Test Name |
 | --- | --------- |
-| 1 | **~~givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements~~** <br/><br/> hourly |
+| 1 | ~~givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements~~ <br/><br/> hourly |
 | 2 | **givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine** <br/><br/>every 30 minutes<br/><br/>This test verifies optin popups in the following article - http://www.baeldung.com/rest-with-spring-for-teams-opt-in |
 | 3 | **givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText** <br/><br/> daily <br/><br/> Verifies that the Java weekly issue links in the homepage point to correct URLs |
 | 4 | **givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu** <br/><br/> daily <br/><br/> Verifies that the CATEGORY menu is available in the homepage footer |
@@ -89,11 +89,11 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 16 | **givenTheTagArticle_whenArticleLoads_thenItContainsNoindexRobotsMeta** <br/><br/> daily <br/><br/> Verifies that the tag pages should have a _robots_ meta tag with _noindex_. Following URL is tested - http://www.baeldung.com/tag/activiti/ |
 | 17 | **givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter** <br/><br/> daily <br/><br/> The test verifies that exactly one _ABOUT_ menu is available in the footer of homepage|
 | 18 | **givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly** <br/><br/> daily <br/><br/> Verifies tracking on the course pages. Tracking details are here - https://github.com/eugenp/blogwatch/blob/master/src/main/resources/blog-url-list/coursePagesBuyLinks.json |
-| 19 | **~~givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly~~** <br/><br/> daily <br/><br/> This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Post tested - http://www.baeldung.com/java-classloaders |
-| 20 | **~~givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly~~** <br/><br/> daily <br/><br/> This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Page tested - http://www.baeldung.com/spring-tutorial |
-| 21 | **~~givenTheArticleWithTheStickySidebar_whenTheArticleLoads_thenTheContainerClassProptertyIsConfiguredCorrectly~~** <br/><br/> daily <br/><br/> This test verifies that the _Container Class_ property is set to _#Content_ in the _Sticky Sidebar_ plugin . Post tested - http://www.baeldung.com/java-classloaders |
-| 22 | **~~givenThePageWithTheStickySidebar_whenThePageLoads_thenTheContainerClassProptertyIsConfiguredCorrectly~~** <br/><br/> daily <br/><br/> This test verifies that the _Container Class_ property is set to _#Content_ in the _Sticky Sidebar_ plugin. Page tested - http://www.baeldung.com/spring-tutorial |
-| 23 | **~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~** <br/><br/> weekly <br/><br/> This test verifies that the drip survey is working fine. |
+| 19 | ~~givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly~~ <br/><br/> daily <br/><br/> This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Post tested - http://www.baeldung.com/java-classloaders |
+| 20 | ~~givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly~~ <br/><br/> daily <br/><br/> This test verifies that the stop ID value is set as _footer_ in the fixed widget settings. Page tested - http://www.baeldung.com/spring-tutorial |
+| 21 | ~~givenTheArticleWithTheStickySidebar_whenTheArticleLoads_thenTheContainerClassProptertyIsConfiguredCorrectly~~ <br/><br/> daily <br/><br/> This test verifies that the _Container Class_ property is set to _#Content_ in the _Sticky Sidebar_ plugin . Post tested - http://www.baeldung.com/java-classloaders |
+| 22 | ~~givenThePageWithTheStickySidebar_whenThePageLoads_thenTheContainerClassProptertyIsConfiguredCorrectly~~ <br/><br/> daily <br/><br/> This test verifies that the _Container Class_ property is set to _#Content_ in the _Sticky Sidebar_ plugin. Page tested - http://www.baeldung.com/spring-tutorial |
+| 23 | ~~givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip~~ <br/><br/> weekly <br/><br/> This test verifies that the drip survey is working fine. |
 | 24 | **givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK** <br/><br/> weekly <br/><br/> Loops over full list of posts and verifies that 200OK is returned |
 | 25 | **givenAllPagesURLs_whenPageLoads_thenItReturns200OK** <br/><br/> weekly <br/><br/> Loops over full list of pages and verifies that 200OK is returned |
 | 26 | **givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop** <br/><br/> twice-a-month <br/><br/> This Test verifies that a single short code is available at the start of every post |
