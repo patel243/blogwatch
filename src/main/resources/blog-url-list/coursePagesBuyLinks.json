@@ -58,13 +58,6 @@
 						"DRIP|RWS|Team"
 					],
 					"linkText": "Here are our team licenses →"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_team2",
-						"DRIP|RWS|Team"
-					],
-					"linkText": "a team license"
 				}
 			]
 		},		
@@ -126,13 +119,6 @@
 						"DRIP|LSS|Team"
 					],
 					"linkText": "a team license"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_team2",
-						"DRIP|LSS|Team"
-					],
-					"linkText": "group license option"
 				}
 			]
 		},

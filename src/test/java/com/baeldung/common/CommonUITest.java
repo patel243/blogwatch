@@ -197,7 +197,7 @@ public class CommonUITest extends BaseUITest {
             page.loadUrl();
             for (List<EventTrackingVO> eventTrackingVOs : testData.get(urlKey)) {
                 for (EventTrackingVO eventTrackingVO : eventTrackingVOs) {
-                    logger.debug("Asserting: " + eventTrackingVO.getTrackingCodes() + " for ga-custom-event class on " + page.getBaseURL() + urlKey);
+                    logger.debug("Asserting: " + eventTrackingVO.getTrackingCodes() + " for on " + page.getBaseURL() + urlKey);
                     assertTrue("Didn't find the tracking code on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey, page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()));
                 }
                 assertTrue("event generation script not found on -->" + page.getBaseURL() + urlKey, page.findEventGenerationScript());
