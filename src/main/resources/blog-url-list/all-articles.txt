@@ -2152,3 +2152,17 @@
 /ebean-orm
 /java-streams-find-list-items
 /java-combine-collections
+/spring-boot-crud-thymeleaf
+/java-indexOf-find-string-occurrences
+/java-merging-properties
+/lombok-builder-custom-setter
+/java-arrays-guide
+/kotlin-sort
+/microservices-oracle-helidon
+/kotlin-dependency-injection-with-injekt
+/kotlin-data-objects
+/java-jsonarray-get-value-by-key
+/kotlin-initialize-array
+/scala-intro
+/java-csv-file-array
+/gson-json-to-map
