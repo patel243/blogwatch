@@ -30,11 +30,11 @@ public class EUProxyUITest extends BaseUITest {
         page.getWebDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         page.getWebDriver().manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);        
 
-       /* page.setUrl("https://ipstack.com/");
+        page.setUrl("https://ipstack.com/");
 
         page.loadUrl();
 
-        logger.info("Geo Location-----" + page.getGeoLocation());*/
+        logger.info("Geo Location-----" + page.getGeoLocation());
 
         page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
         
