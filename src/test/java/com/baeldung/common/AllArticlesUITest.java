@@ -137,7 +137,7 @@ public class AllArticlesUITest extends BaseUITest {
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
         List<String> gitHubModuleLinks = null;
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !Utils.excludePage(page.getUrl(), GlobalConstants.URL_TARGETING_MULTIPLE_GITHUB_MODULES)) { // exclude JW pages
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !Utils.excludePage(page.getUrl(), GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST)) {
                 gitHubModuleLinks = page.findLinksToTheGithubModule();
                 if (!TestUtils.articleLinkFoundOnGitHubModule(gitHubModuleLinks, page.getRelativeUrl(), page)) {
                     badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrlWithNewLineFeed());
