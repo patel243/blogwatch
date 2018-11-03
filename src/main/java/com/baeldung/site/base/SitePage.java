@@ -254,7 +254,7 @@ public class SitePage extends BlogBaseDriver {
     public boolean vatPricesAvailableThePage() {
         logger.info("currently loaded page-->" + this.getWebDriver().getCurrentUrl());
         String vatValue = this.getWebDriver().findElement(By.xpath("//span[contains(@class, 'price-with-vat')][1]")).getText();
-        logger.info("First VAT value: " + vatValue);
+        logger.info("VAT value: " + vatValue);
         return !vatValue.trim().isEmpty();
     }
 
