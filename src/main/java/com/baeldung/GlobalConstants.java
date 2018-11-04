@@ -158,5 +158,6 @@ public class GlobalConstants {
 
     // VAT test
     public static final String COURSE_PAGE_FOR_VAT_TEST = "/learn-spring-security-course/";
+    public static final String COURSE_PAGE_TITLE_FOR_VAT_TEST = "REST with Spring Course | Baeldung";
 
 }

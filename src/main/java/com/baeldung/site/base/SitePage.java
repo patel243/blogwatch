@@ -251,9 +251,12 @@ public class SitePage extends BlogBaseDriver {
         return anchorTags.stream().map(tag -> new LinkVO(tag.getAttribute("href").toLowerCase(), tag.getText())).collect(Collectors.toList());
     }
 
-    public boolean vatPricesAvailableThePage() {
+    public boolean vatPricesAvailableThePage() throws Exception {
         logger.info("currently loaded page-->" + this.getWebDriver().getCurrentUrl());
         logger.info("Page Title-->" + this.getWebDriver().getTitle());
+        if (!this.getWebDriver().getTitle().equalsIgnoreCase(GlobalConstants.COURSE_PAGE_TITLE_FOR_VAT_TEST)) {
+            throw new Exception("Course page not loaded correctly as the Page title is not correct");
+        }
         String vatValue = this.getWebDriver().findElement(By.xpath("//span[contains(@class, 'price-with-vat')][1]")).getText();
         logger.info("VAT value: " + vatValue);
         return !vatValue.trim().isEmpty();
