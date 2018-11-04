@@ -36,7 +36,7 @@ public class EUProxyUITest extends BaseUITest {
             page.openNewWindowWithEUProxy(Utils.getProxyServerIP(euProxyServers.get(retryCount)), Utils.getProxyServerPort(euProxyServers.get(retryCount)));
             page.getWebDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             page.getWebDriver().manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
-            page.getWebDriver().manage().timeouts().setScriptTimeout(120, TimeUnit.SECONDS);
+            page.getWebDriver().manage().timeouts().setScriptTimeout(150, TimeUnit.SECONDS);
 
             page.setUrl("https://ipstack.com/");
 
@@ -51,7 +51,7 @@ public class EUProxyUITest extends BaseUITest {
             assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             logger.info("Exception----> " + e.getMessage());
             if (euProxyServers.size() == retryCount + 1) {
                 logger.debug(euProxyServers.size() + " retries completed with TimeoutException");
