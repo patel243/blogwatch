@@ -31,11 +31,11 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
     }
 
     @Override
-    public void openNewWindowWithEUProxy() {
+    public void openNewWindowWithEUProxy(String proxyServerIP, String proxyServerPort) {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         Proxy proxy = new org.openqa.selenium.Proxy();
-        proxy.setHttpProxy(this.getEuProxyServerIP() + ":" + super.getEuProxyServerPort());
-        proxy.setSslProxy(this.getEuProxyServerIP() + ":" + super.getEuProxyServerPort());
+        proxy.setHttpProxy(proxyServerIP + ":" + proxyServerPort);
+        proxy.setSslProxy(proxyServerIP + ":" + proxyServerPort);
         firefoxOptions.setProxy(proxy);
         // firefoxOptions.setHeadless(true);
         driver = new FirefoxDriver(firefoxOptions);

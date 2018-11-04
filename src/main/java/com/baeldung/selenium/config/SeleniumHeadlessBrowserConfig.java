@@ -47,12 +47,12 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
     }
 
     @Override
-    public void openNewWindowWithEUProxy() {
+    public void openNewWindowWithEUProxy(String proxyServerIP, String proxyServerPort) {
 
         logger.info("headlessBrowserName-->" + this.headlessBrowserName);
 
         if (GlobalConstants.HEADLESS_BROWSER_HTMLUNIT.equalsIgnoreCase(this.headlessBrowserName)) {
-            ProxyConfig proxyConfig = new ProxyConfig(super.getEuProxyServerIP(), Integer.valueOf(super.getEuProxyServerPort()));
+            ProxyConfig proxyConfig = new ProxyConfig(proxyServerIP, Integer.valueOf(proxyServerPort));
             driver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
                 @Override
                 protected WebClient newWebClient(BrowserVersion version) {
@@ -76,8 +76,8 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
                 PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);*/
 
             org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
-            proxy.setHttpProxy(this.getEuProxyServerIP() + ":" + this.getEuProxyServerPort());
-            proxy.setSslProxy(this.getEuProxyServerIP() + ":" + this.getEuProxyServerPort());
+            proxy.setHttpProxy(proxyServerIP + ":" + proxyServerPort);
+            proxy.setSslProxy(proxyServerIP + ":" + proxyServerPort);
             caps.setCapability(CapabilityType.PROXY, proxy);
 
             driver = new PhantomJSDriver(caps);

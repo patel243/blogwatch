@@ -128,4 +128,12 @@ public class Utils {
 
     }
 
+    public static String getProxyServerIP(String proxyServerAddress) {
+        return proxyServerAddress.substring(0, proxyServerAddress.indexOf(":"));
+    }
+
+    public static String getProxyServerPort(String proxyServerAddress) {
+        return proxyServerAddress.substring(proxyServerAddress.indexOf(":") + 1);
+    }
+
 }

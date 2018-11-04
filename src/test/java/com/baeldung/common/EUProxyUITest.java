@@ -1,47 +1,67 @@
 package com.baeldung.common;
 
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
+import com.baeldung.util.Utils;
 
 public class EUProxyUITest extends BaseUITest {
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());
+    @Value("#{'${proxy.eu.servers}'.split(',')}")
+    private List<String> euProxyServers;
+
+    int retryCount = 0;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
-        page.openNewWindowWithEUProxy();
+        retryCount = 0;
     }
 
     @Test
     @Tag("vat-pricing-test")
-    public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {                
-        
-        page.getWebDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        page.getWebDriver().manage().timeouts().pageLoadTimeout(600, TimeUnit.SECONDS);        
+    public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {
 
-        page.setUrl("https://ipstack.com/");
+        try {
+            page.openNewWindowWithEUProxy(Utils.getProxyServerIP(euProxyServers.get(retryCount)), Utils.getProxyServerPort(euProxyServers.get(retryCount)));
+            page.getWebDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            page.getWebDriver().manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+            page.getWebDriver().manage().timeouts().setScriptTimeout(120, TimeUnit.SECONDS);
 
-        page.loadUrl();
+            page.setUrl("https://ipstack.com/");
 
-        logger.info("Geo Location-----" + page.getGeoLocation());
+            page.loadUrl();
 
-        page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
-        
-        page.loadUrl();
-        
+            logger.info("Geo Location-----" + page.getGeoLocation());
 
-        assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region");
+            page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
+
+            page.loadUrl();
+
+            assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("Exception----> " + e.getMessage());
+            if (euProxyServers.size() == retryCount + 1) {
+                logger.debug(euProxyServers.size() + " retries completed with TimeoutException");
+                fail(e.getMessage());
+            } else {
+                page.closeWindow();
+                retryCount++;
+                givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown();
+            }
+        }
     }
 
 }
