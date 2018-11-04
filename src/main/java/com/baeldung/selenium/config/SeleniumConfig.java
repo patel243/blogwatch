@@ -32,6 +32,6 @@ public abstract class SeleniumConfig {
 
     public abstract void openNewWindow();
 
-    public abstract void openNewWindowWithEUProxy(String proxyServerIP, String proxyServerPort);
+    public abstract void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort);
 
 }

@@ -33,7 +33,7 @@ public class EUProxyUITest extends BaseUITest {
     public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {
 
         try {
-            page.openNewWindowWithEUProxy(Utils.getProxyServerIP(euProxyServers.get(retryCount)), Utils.getProxyServerPort(euProxyServers.get(retryCount)));
+            page.openNewWindowWithProxy(Utils.getProxyServerIP(euProxyServers.get(retryCount)), Utils.getProxyServerPort(euProxyServers.get(retryCount)));
             page.getWebDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             page.getWebDriver().manage().timeouts().pageLoadTimeout(180, TimeUnit.SECONDS);
             page.getWebDriver().manage().timeouts().setScriptTimeout(200, TimeUnit.SECONDS);

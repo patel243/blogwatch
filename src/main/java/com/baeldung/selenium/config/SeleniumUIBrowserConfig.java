@@ -31,7 +31,7 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
     }
 
     @Override
-    public void openNewWindowWithEUProxy(String proxyServerIP, String proxyServerPort) {
+    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         Proxy proxy = new org.openqa.selenium.Proxy();
         proxy.setHttpProxy(proxyServerIP + ":" + proxyServerPort);

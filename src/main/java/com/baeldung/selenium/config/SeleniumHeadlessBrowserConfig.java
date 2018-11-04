@@ -47,7 +47,7 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
     }
 
     @Override
-    public void openNewWindowWithEUProxy(String proxyServerIP, String proxyServerPort) {
+    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
 
         logger.info("headlessBrowserName-->" + this.headlessBrowserName);
 

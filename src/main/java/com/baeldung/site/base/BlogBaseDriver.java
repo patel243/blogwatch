@@ -51,8 +51,8 @@ public abstract class BlogBaseDriver {
         seleniumConfig.openNewWindow();
     }
     
-    public void openNewWindowWithEUProxy(String proxyServerIP, String proxyServerPort) {
-        seleniumConfig.openNewWindowWithEUProxy(proxyServerIP, proxyServerPort);
+    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
+        seleniumConfig.openNewWindowWithProxy(proxyServerIP, proxyServerPort);
     }
 
     public void openNewWindowAndLoadPage() {
