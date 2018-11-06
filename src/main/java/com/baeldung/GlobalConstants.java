@@ -129,11 +129,12 @@ public class GlobalConstants {
     public static final String GITHUB_REPO_BAELDUNG = "github.com/baeldung";
 
     // these URLs should be excluded from givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle test because:
-    // 1- these target multiple GitHub repos 
-    // 2- More than one GitHub modules linked in the article 
+    // 1- these target multiple GitHub repos
+    // 2- More than one GitHub modules linked in the article
     // 3- back-link from GitHub not required
     public static final List<String> URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST = Collections
-            .unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/", "/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/","/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/","/persistence-with-spring-series/","/persistence-with-spring-series-alternative/"));
+            .unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/", "/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/",
+                    "/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/", "/persistence-with-spring-series/", "/persistence-with-spring-series-alternative/", "/design-a-user-friendly-java-library/"));
 
     // for Q2W3 Fixed Widget test
 
