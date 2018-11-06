@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.baeldung.GlobalConstants;
-import com.google.common.util.concurrent.RateLimiter;
 
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 
 public abstract class BaseCrawler extends WebCrawler {
-    
-    @Autowired
-    RateLimiter rateLimiter;
 
     protected List<String> discoveredURLs = new ArrayList<>();
 
