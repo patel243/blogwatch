@@ -11,13 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.crawler4j.GitModulesReadmeLinksExtractor;
 import com.baeldung.crawler4j.config.CrawlerMainCofig;
-import com.baeldung.selenium.config.MainConfig;
+import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
+import com.baeldung.selenium.config.SeleniumMainConfig;
 import com.baeldung.site.base.SitePage;
 
-@ContextConfiguration(classes = { MainConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
+@ContextConfiguration(classes = { CommonConfig.class, SeleniumMainConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
 public class BaseUITest {
 
@@ -28,6 +30,9 @@ public class BaseUITest {
 
     @Autowired
     protected GitModulesReadmeLinksExtractor gitModulesReadmeLinksExtractor;
+    
+    @Autowired
+    protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {

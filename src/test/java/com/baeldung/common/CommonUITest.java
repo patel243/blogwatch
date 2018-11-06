@@ -24,6 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.baeldung.GlobalConstants;
 import com.baeldung.base.BaseUITest;
+import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
 import com.baeldung.util.Utils;
 import com.baeldung.vo.EventTrackingVO;
 import com.baeldung.vo.LinkVO;
@@ -49,7 +50,7 @@ public class CommonUITest extends BaseUITest {
             });
         }
     }
-    
+
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
@@ -316,6 +317,15 @@ public class CommonUITest extends BaseUITest {
         });
 
         Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
+    }
+
+    @Test
+    @Tag("non-empty-readme")
+    public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
+
+        tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
+        List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
+
     }
 
 }

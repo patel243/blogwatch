@@ -15,12 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.selenium.BlogLinksExtractor;
-import com.baeldung.selenium.config.MainConfig;
+import com.baeldung.selenium.config.SeleniumMainConfig;
 import com.baeldung.site.base.SitePage;
 
-@ContextConfiguration(classes = { MainConfig.class }, initializers = MyApplicationContextInitializer.class)
+@ContextConfiguration(classes = { CommonConfig.class, SeleniumMainConfig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
 public class UpdateArticlesAndPagesLinks {

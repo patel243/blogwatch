@@ -1,4 +1,4 @@
-package com.baeldung.crawler4j;
+package com.baeldung.crawler4j.crawler;
 
 import com.baeldung.GlobalConstants;
 
@@ -12,10 +12,7 @@ public class CrawlerForFindingReadmeURLs extends BaseCrawler {
         String href = url.getURL().toLowerCase();
         String referringPageURL = referringPage.getWebURL().getURL();
         // @formatter:off
-        return (href.contains("https://github.com/eugenp/tutorials") || href.contains("https://github.com/eugenp/baeldung"))
-                && href.contains("/master/")
-                && !FILTER_FILE_EXTENTIONS.matcher(href).matches()
-                && !FILTERS_DIRECTORIES.matcher(href).matches()
+        return super.commonPredicate(href, referringPageURL)
                 && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE);
         // @formatter:on
     }

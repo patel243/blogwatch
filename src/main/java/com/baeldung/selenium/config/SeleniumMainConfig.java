@@ -11,12 +11,11 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import com.baeldung.selenium.BlogLinksExtractor;
 import com.baeldung.site.home.HomePageDriver;
-import com.google.common.util.concurrent.RateLimiter;
 
 @Configuration
 @ComponentScan("com.baeldung.site")
 @PropertySource({ "classpath:blog.properties" })
-public class MainConfig {
+public class SeleniumMainConfig {
 
     @Bean
     @Profile("headless-browser")
@@ -28,12 +27,7 @@ public class MainConfig {
     @Profile("ui-browser")
     public SeleniumUIBrowserConfig seleniumUIBrowserConfig() {
         return new SeleniumUIBrowserConfig();
-    }
-
-    @Bean
-    public RateLimiter createRateLimiter() {
-        return RateLimiter.create(1);
-    }
+    }    
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -47,7 +41,7 @@ public class MainConfig {
 
     public static void main(final String[] args) {
 
-        final ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig.class);
+        final ApplicationContext ctx = new AnnotationConfigApplicationContext(SeleniumMainConfig.class);
         final HomePageDriver test = ctx.getBean(HomePageDriver.class);
 
     }

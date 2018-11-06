@@ -136,4 +136,16 @@ public class Utils {
         return proxyServerAddress.substring(proxyServerAddress.indexOf(":") + 1);
     }
 
+    public static List<String> getDiscoveredLinks(List<Object> discoveredURLs) {
+        List<String> urls = new ArrayList<>();
+        for (Object object : discoveredURLs) {
+            List<String> urlList = (List<String>) object;
+            urlList.forEach(link -> {
+                urls.add(link);
+            });
+        }
+
+        return urls;
+    }
+
 }

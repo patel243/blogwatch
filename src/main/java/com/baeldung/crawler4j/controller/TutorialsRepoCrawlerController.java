@@ -1,4 +1,4 @@
-package com.baeldung.crawler4j;
+package com.baeldung.crawler4j.controller;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class TutorialsRepoCrawlerController extends BaseCrawlController {
         super(crawlController);
     }
 
-    public List<Object> getMatchingURLs() {
+    public List<Object> getDiscoveredURLs() {
         return this.getCrawlersLocalData();
     }
 

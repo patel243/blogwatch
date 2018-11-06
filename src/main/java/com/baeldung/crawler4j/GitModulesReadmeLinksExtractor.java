@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.baeldung.GlobalConstants;
+import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
+import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
 import com.baeldung.util.Utils;
 
 @Component
@@ -40,7 +42,7 @@ public class GitModulesReadmeLinksExtractor {
             File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.README_LINKS_FOLDER_PATH + GlobalConstants.README_LINKS_FILE_NAME).getPath());
             Path readmeLiksFilePath = Paths.get(file.getAbsolutePath());
             Files.write(readmeLiksFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-            for (Object object : tutorialsRepoCrawlerController.getMatchingURLs()) {
+            for (Object object : tutorialsRepoCrawlerController.getDiscoveredURLs()) {
                 List<String> urlList = (List<String>) object;
                 //logger.info("List Size: " + urlList.size());
                 totalURls = totalURls + urlList.size();
