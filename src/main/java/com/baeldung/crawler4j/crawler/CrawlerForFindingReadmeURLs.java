@@ -19,8 +19,7 @@ public class CrawlerForFindingReadmeURLs extends BaseCrawler {
 
     @Override
     public void visit(Page page) {
-        if (page.getWebURL().getURL().toLowerCase().endsWith(GlobalConstants.README_FILE_NAME_LOWERCASE)) {
-            System.out.println(page.getWebURL().getURL());
+        if (page.getWebURL().getURL().toLowerCase().endsWith(GlobalConstants.README_FILE_NAME_LOWERCASE)) {           
             this.discoveredURLs.add(page.getWebURL().getURL());
         }
     }
