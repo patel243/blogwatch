@@ -322,7 +322,7 @@ public class CommonUITest extends BaseUITest {
     @Test
     @Tag("non-empty-readme")
     public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
-
+        page.quiet();
         tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
         List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
 

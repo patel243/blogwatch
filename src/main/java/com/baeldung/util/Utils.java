@@ -148,4 +148,9 @@ public class Utils {
         return urls;
     }
 
+    public static String getProtocol(String pageURL) {
+        // TODO Auto-generated method stub
+        return pageURL.substring(0, pageURL.indexOf(":") + 3);
+    }
+
 }

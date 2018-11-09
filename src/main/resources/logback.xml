@@ -10,6 +10,7 @@
     <logger name="com.gargoylesoftware.htmlunit" level="ERROR" />
     <logger name="org.openqa" level="INFO" />
     <logger name="org.selenium" level="WARN" />
+    <logger name="edu.uci.ics.crawler4j.crawler" level="INFO" />
 
     <!-- launchpad - our service -->
     <logger name="com.baeldung" level="DEBUG" />

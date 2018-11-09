@@ -1,33 +1,58 @@
 package com.baeldung.crawler4j.crawler;
 
-import java.util.Date;
+import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import com.baeldung.GlobalConstants;
+import com.baeldung.util.Utils;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
-public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCrawler {       
+public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCrawler {
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String href = url.getURL().toLowerCase();
         String referringPageURL = referringPage.getWebURL().getURL();
         // @formatter:off
-        return super.commonPredicate(href, referringPageURL);
+        return super.commonPredicate(href, referringPageURL)
+               && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE);
         // @formatter:on
     }
 
     @Override
-    public void visit(Page page) {    
-        String pageURL = page.getWebURL().getURL();            
+    public void visit(Page page) {
+        String pageURL = page.getWebURL().getURL();
         HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-        String html = htmlParseData.getHtml();
-        Document doc = Jsoup.parseBodyFragment(html);
+        Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());
         String title = doc.title();
-        System.out.println(new Date()+ "   "+ title);        
+        Elements pomLinks = doc.select("a[href$='pom.xml']");
+
+        if (pomLinks.size() > 0) { // a module identified
+            logger.info("Module identified. Link: " + pageURL);
+            Elements readmeLinks = doc.select("a[href$='readme.md']");
+            if (readmeLinks.size() > 0) {
+                try {
+                    Document readmeDoc = Jsoup.connect(readmeLinks.get(0).absUrl("href")).get();
+                    if (doc.select("a[href*='" + GlobalConstants.BAELDUNG_DOMAIN_NAME + "']").size() == 0) {
+                        this.discoveredURLs.add(pageURL);
+                        logger.info("Empty readme " + pageURL);
+                    }
+                } catch (IOException e) {
+                    logger.error("Error while loading readme. Readme link: " + readmeLinks.get(0).absUrl("href"));
+                }
+                ;
+            } else {
+                this.discoveredURLs.add(pageURL);
+                logger.info("No readme " + pageURL);
+            }
+        }
+
     }
 
 }
