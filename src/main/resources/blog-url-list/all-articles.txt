@@ -2117,7 +2117,6 @@
 /java-outputstream
 /spring-boot-evict-cache
 /gradle-build-settings-properties
-/persistence-with-spring-series-alternative
 /kotlin-threads-coroutines
 /java-weekly-252
 /apache-storm
