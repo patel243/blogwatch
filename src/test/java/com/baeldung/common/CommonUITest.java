@@ -287,7 +287,7 @@ public class CommonUITest extends BaseUITest {
 
     @Test
     @Tag(GlobalConstants.TAG_MONTHLY)
-    public final void givenTheGitHubModuleReadme_theFileContainsCorrectLinks() throws IOException {
+    public final void givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule() throws IOException {
 
         // default value for crawler.refreshReadmeLinks property is false. So it won't refresh the README links
         gitModulesReadmeLinksExtractor.findAndUpdateLinksToReadmeFiles();
