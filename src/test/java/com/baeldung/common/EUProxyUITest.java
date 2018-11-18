@@ -36,11 +36,7 @@ public class EUProxyUITest extends BaseUITest {
             page.openNewWindowWithProxy(Utils.getProxyServerIP(euProxyServers.get(retryCount)), Utils.getProxyServerPort(euProxyServers.get(retryCount)));
             page.getWebDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             page.getWebDriver().manage().timeouts().pageLoadTimeout(280, TimeUnit.SECONDS);
-            page.getWebDriver().manage().timeouts().setScriptTimeout(290, TimeUnit.SECONDS);
-
-            page.setUrl("https://ipstack.com/");
-
-            page.loadUrl();
+            page.getWebDriver().manage().timeouts().setScriptTimeout(290, TimeUnit.SECONDS);            
 
             logger.info("Geo Location-----" + page.getGeoLocation());
 

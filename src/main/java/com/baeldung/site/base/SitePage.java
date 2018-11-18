@@ -265,6 +265,10 @@ public class SitePage extends BlogBaseDriver {
 
     public String getGeoLocation() {
         try {
+            this.setUrl("https://ipstack.com/");
+
+            this.loadUrl();
+            
             WebElement county = this.getWebDriver().findElement(By.xpath("//div[contains(@data-object, 'country_name')]/span"));
             return county.getText().isEmpty() ? county.getAttribute("innerHTML") : county.getText();
         } catch (Exception e) {
