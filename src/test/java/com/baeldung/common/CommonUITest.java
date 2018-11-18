@@ -326,8 +326,7 @@ public class CommonUITest extends BaseUITest {
         tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
         List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
         if(modulesWithNoneOrEmptyReadme.size()>0) {            
-            fail("Modules found with missing or empty READMs \n" + modulesWithNoneOrEmptyReadme.toString());
-            
+            fail("Modules found with missing or empty READMs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));
             
         }
     }
