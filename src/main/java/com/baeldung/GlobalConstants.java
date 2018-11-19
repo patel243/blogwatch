@@ -157,6 +157,7 @@ public class GlobalConstants {
     public static String README_LINKS_FOLDER_PATH = "./blog-url-list/";
     public static String README_LINKS_FILE_NAME = "readme-files-urls.txt";
     public static String README_FILE_NAME_LOWERCASE = "readme.md";
+    public static final String CRAWLER4J_STORAGE_FOLDER = "crawl/root";
 
     // VAT test
     public static final String COURSE_PAGE_FOR_VAT_TEST = "/learn-spring-security-course/";
@@ -168,5 +169,6 @@ public class GlobalConstants {
     //GeoIP API provider logs
     public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections
             .unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
+    
 
 }

@@ -5,6 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import com.baeldung.GlobalConstants;
+
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
@@ -19,7 +21,7 @@ public class CrawlerMainCofig {
     @Bean
     public CrawlConfig crawlConfig() {
         CrawlConfig crawlConfig = new CrawlConfig();
-        crawlConfig.setCrawlStorageFolder("crawl/root");
+        crawlConfig.setCrawlStorageFolder(GlobalConstants.CRAWLER4J_STORAGE_FOLDER);
         crawlConfig.setPolitenessDelay(400);
         crawlConfig.setMaxDepthOfCrawling(-1);
         crawlConfig.setMaxPagesToFetch(-1);
