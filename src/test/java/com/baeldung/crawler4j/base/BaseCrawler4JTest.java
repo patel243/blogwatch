@@ -14,7 +14,7 @@ import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
 
 @ContextConfiguration(classes = { CommonConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
-public class BaseCrawler4jTest {
+public class BaseCrawler4JTest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());        
     
