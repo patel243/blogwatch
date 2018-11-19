@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,7 +22,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
+import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
 import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.util.Utils;
 import com.baeldung.vo.EventTrackingVO;
@@ -289,15 +288,14 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.TAG_MONTHLY)
     public final void givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule() throws IOException {
 
-        // default value for crawler.refreshReadmeLinks property is false. So it won't refresh the README links
-        gitModulesReadmeLinksExtractor.findAndUpdateLinksToReadmeFiles();
+        tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
 
-        ListIterator<String> readmeURLs = Utils.fetchGitHubModulesReadmeLinks(); // loads links to all READMEs from file
+        List<String> readmeURLs = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
         Multimap<String, LinkVO> badURLs = ArrayListMultimap.create();
 
-        readmeURLs.forEachRemaining(readmeURL -> {
+        readmeURLs.forEach(readmeURL -> {
             try {
-                page.setUrl(readmeURLs.next());
+                page.setUrl(readmeURL);
 
                 page.loadUrl(); // loads README in browser
 
@@ -317,19 +315,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         });
 
         Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
-    }
-
-    @Test
-    @Tag("empty-or-none-readme")
-    public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
-        page.quiet();
-        tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
-        List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
-        if (modulesWithNoneOrEmptyReadme.size() > 0) {
-            fail("Modules found with missing or empty READMs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));
-
-        }
-    }
+    }    
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)

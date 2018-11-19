@@ -13,7 +13,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
-import com.baeldung.crawler4j.GitModulesReadmeLinksExtractor;
 import com.baeldung.crawler4j.config.CrawlerMainCofig;
 import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
 import com.baeldung.selenium.config.SeleniumMainConfig;
@@ -26,10 +25,7 @@ public class BaseUISeleniumTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    protected SitePage page;
-
-    @Autowired
-    protected GitModulesReadmeLinksExtractor gitModulesReadmeLinksExtractor;
+    protected SitePage page;    
     
     @Autowired
     protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController;
