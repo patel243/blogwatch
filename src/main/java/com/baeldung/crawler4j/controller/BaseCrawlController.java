@@ -70,5 +70,9 @@ public abstract class BaseCrawlController {
     protected List<Object> getCrawlersLocalData() {
         return this.crawlController.getCrawlersLocalData();
     }
+    
+    public void shutdownCrawler() {
+        this.crawlController.shutdown();
+    }
 
 }
