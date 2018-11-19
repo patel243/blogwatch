@@ -2,6 +2,7 @@ package com.baeldung.site.base;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -9,6 +10,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.springframework.stereotype.Component;
 
 import com.baeldung.GlobalConstants;
@@ -274,6 +278,23 @@ public class SitePage extends BlogBaseDriver {
         } catch (Exception e) {
             return "Erroe while getting the Geo Location" + e.getMessage();
         }
+    }
+
+    public boolean geoIPProviderAPILoaded() {
+        LogEntries browserLogentries = this.getWebDriver().manage().logs().get(LogType.BROWSER);
+        // @formatter:off
+        for (LogEntry logEntry : browserLogentries) {           
+            if (StringUtils.isNotEmpty(logEntry.getMessage()) && logEntry.getLevel().equals(Level.INFO) ) {               
+                if(GlobalConstants.GEOIP_API_PROVIDER_SUCCESS_LOGS.stream()
+                            .filter(entry->logEntry.getMessage().toUpperCase().contains(entry))
+                            .count() >= 1){
+                    logger.info(logEntry.getMessage() );
+                    return true;
+                };
+            }
+        }
+        // @formatter:on
+        return false;
     }
 
 }

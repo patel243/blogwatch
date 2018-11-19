@@ -325,10 +325,20 @@ public class CommonUITest extends BaseUITest {
         page.quiet();
         tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
         List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
-        if(modulesWithNoneOrEmptyReadme.size()>0) {            
+        if (modulesWithNoneOrEmptyReadme.size() > 0) {
             fail("Modules found with missing or empty READMs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));
-            
+
         }
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenOnTheCoursePage_whenThePageLoads_thenAGeoIPApiProviderWorks() {
+        page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
+
+        page.loadUrl();
+
+        assertTrue("geoIP API provider is not working", page.geoIPProviderAPILoaded());
     }
 
 }

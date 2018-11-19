@@ -164,4 +164,9 @@ public class GlobalConstants {
 
     public static final String REPO_GITHUB_TUTORIALS_LINK = "https://github.com/eugenp/tutorials";
     public static final String REPO_GITHUB_BAELDUNG_LINK = "https://github.com/baeldung";
+    
+    //GeoIP API provider logs
+    public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections
+            .unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
+
 }
