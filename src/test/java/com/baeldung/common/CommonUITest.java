@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUITest;
+import com.baeldung.base.BaseUISeleniumTest;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
 import com.baeldung.util.Utils;
 import com.baeldung.vo.EventTrackingVO;
@@ -34,7 +34,7 @@ import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
-public class CommonUITest extends BaseUITest {
+public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_WEEKLY)

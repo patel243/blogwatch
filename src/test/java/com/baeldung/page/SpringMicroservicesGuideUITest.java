@@ -10,11 +10,11 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUITest;
+import com.baeldung.base.BaseUISeleniumTest;
 import com.baeldung.site.guide.SpringMicroservicesGuidePage;
 import com.jayway.restassured.RestAssured;
 
-public final class SpringMicroservicesGuideUITest extends BaseUITest {
+public final class SpringMicroservicesGuideUITest extends BaseUISeleniumTest {
 
     @Autowired
     private SpringMicroservicesGuidePage springMicroservicesGuidePage;

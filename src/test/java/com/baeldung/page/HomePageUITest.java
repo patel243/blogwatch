@@ -18,13 +18,13 @@ import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUITest;
+import com.baeldung.base.BaseUISeleniumTest;
 import com.baeldung.site.home.HomePageDriver;
 import com.baeldung.site.home.NewsLettersubscriptionPage;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
-public final class HomePageUITest extends BaseUITest {
+public final class HomePageUITest extends BaseUISeleniumTest {
 
     @Autowired
     private HomePageDriver homePageDriver;

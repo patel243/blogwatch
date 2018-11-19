@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUITest;
+import com.baeldung.base.BaseUISeleniumTest;
 import com.baeldung.util.Utils;
 
-public class EUProxyUITest extends BaseUITest {
+public class EUProxyUITest extends BaseUISeleniumTest {
 
     @Value("#{'${proxy.eu.servers}'.split(',')}")
     private List<String> euProxyServers;

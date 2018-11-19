@@ -21,7 +21,7 @@ import com.baeldung.site.base.SitePage;
 
 @ContextConfiguration(classes = { CommonConfig.class, SeleniumMainConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
-public class BaseUITest {
+public class BaseUISeleniumTest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 

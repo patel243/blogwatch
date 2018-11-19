@@ -16,12 +16,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUITest;
+import com.baeldung.base.BaseUISeleniumTest;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
-public class AllPagesUITest extends BaseUITest {
+public class AllPagesUITest extends BaseUISeleniumTest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
