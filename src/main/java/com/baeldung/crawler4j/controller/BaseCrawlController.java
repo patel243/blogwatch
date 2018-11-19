@@ -73,6 +73,7 @@ public abstract class BaseCrawlController {
     
     public void shutdownCrawler() {
         this.crawlController.shutdown();
+        this.crawlController.waitUntilFinish();
     }
 
 }
