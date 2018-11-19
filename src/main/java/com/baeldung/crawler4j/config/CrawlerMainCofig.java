@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 
 import com.baeldung.GlobalConstants;
 
@@ -48,7 +49,8 @@ public class CrawlerMainCofig {
         return new RobotstxtServer(robotstxtConfig(), pageFetcher());
     }
     
-    @Bean
+    @Bean    
+    @Scope("prototype")
     public CrawlController crawlController() throws Exception {
         return new CrawlController(crawlConfig(), pageFetcher(), robotstxtServer());
     }
