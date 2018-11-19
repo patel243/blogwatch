@@ -1,4 +1,4 @@
-package com.baeldung.base;
+package com.baeldung.selenium.base;
 
 import java.io.IOException;
 

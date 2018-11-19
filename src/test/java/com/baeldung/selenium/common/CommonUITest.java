@@ -1,4 +1,4 @@
-package com.baeldung.common;
+package com.baeldung.selenium.common;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -23,8 +23,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUISeleniumTest;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
+import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.util.Utils;
 import com.baeldung.vo.EventTrackingVO;
 import com.baeldung.vo.LinkVO;

@@ -1,4 +1,4 @@
-package com.baeldung.common;
+package com.baeldung.selenium.common;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUISeleniumTest;
+import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.util.Utils;
 
 public class EUProxyUITest extends BaseUISeleniumTest {

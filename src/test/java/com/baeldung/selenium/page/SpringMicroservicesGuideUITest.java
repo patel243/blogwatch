@@ -1,4 +1,4 @@
-package com.baeldung.page;
+package com.baeldung.selenium.page;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUISeleniumTest;
+import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.site.guide.SpringMicroservicesGuidePage;
 import com.jayway.restassured.RestAssured;
 

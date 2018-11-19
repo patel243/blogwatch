@@ -1,4 +1,4 @@
-package com.baeldung.common;
+package com.baeldung.selenium.common;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUISeleniumTest;
+import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.util.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;

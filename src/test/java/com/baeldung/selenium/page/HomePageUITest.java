@@ -1,4 +1,4 @@
-package com.baeldung.page;
+package com.baeldung.selenium.page;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +18,7 @@ import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUISeleniumTest;
+import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.site.home.HomePageDriver;
 import com.baeldung.site.home.NewsLettersubscriptionPage;
 import com.jayway.restassured.RestAssured;

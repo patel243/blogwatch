@@ -1,4 +1,4 @@
-package com.baeldung.page;
+package com.baeldung.selenium.page;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baeldung.GlobalConstants;
-import com.baeldung.base.BaseUISeleniumTest;
+import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.site.course.RwSTeamOptInPageDriver;
 
 public class RwSTeamOptInPageUITest extends BaseUISeleniumTest {
