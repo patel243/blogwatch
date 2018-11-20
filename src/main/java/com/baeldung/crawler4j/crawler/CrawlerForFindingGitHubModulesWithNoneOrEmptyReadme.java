@@ -29,8 +29,7 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
     public void visit(Page page) {
         String pageURL = page.getWebURL().getURL();
         HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-        Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());
-        String title = doc.title();
+        Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());        
         Elements pomLinks = doc.select("a[href$='pom.xml']");
 
         if (pomLinks.size() > 0) { // a module identified
@@ -39,7 +38,7 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
             if (readmeLinks.size() > 0) {
                 try {
                     Document readmeDoc = Jsoup.connect(readmeLinks.get(0).absUrl("href")).get();
-                    if (doc.select("a[href*='" + GlobalConstants.BAELDUNG_DOMAIN_NAME + "']").size() == 0) {
+                    if (readmeDoc.select("a[href*='" + GlobalConstants.BAELDUNG_DOMAIN_NAME + "']").size() == 0) {
                         this.discoveredURLs.add(pageURL);
                         logger.info("Empty readme " + pageURL);
                     }
