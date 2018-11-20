@@ -18,7 +18,7 @@ public class GlobalConstants {
     // targent env
     public static String TARGET_ENV_WINDOWS = "win";
     public static String TARGET_ENV_LINUX = "linux";
-   
+
     // headless browser name
     public static String HEADLESS_BROWSER_PHANTOMJS = "phantomJS";
     public static String HEADLESS_BROWSER_HTMLUNIT = "HtmlUnit";
@@ -57,9 +57,14 @@ public class GlobalConstants {
     public static final String TAG_HOURLY = "hourly";
 
     /**
-     * Tests using this tag are executed daily on Jenkins
+     * Tests using this tag are executed daily on Jenkins with PhantomJS
      */
     public static final String TAG_DAILY = "daily";
+
+    /**
+     * Tests using this tag are executed daily on Jenkins with HtmlUnit 
+     */
+    public static final String TAG_DAILY_HTMLUNIT = "daily-htmlunit";
 
     /**
      * Tests using this tag are executed weekly on Jenkins
@@ -165,10 +170,8 @@ public class GlobalConstants {
 
     public static final String REPO_GITHUB_TUTORIALS_LINK = "https://github.com/eugenp/tutorials";
     public static final String REPO_GITHUB_BAELDUNG_LINK = "https://github.com/baeldung";
-    
-    //GeoIP API provider logs
-    public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections
-            .unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
-    
+
+    // GeoIP API provider logs
+    public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections.unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
 
 }
