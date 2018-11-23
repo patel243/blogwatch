@@ -13,6 +13,8 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.baeldung.GlobalConstants;
 import com.baeldung.vo.EventTrackingVO;
 import com.baeldung.vo.LinkVO;
@@ -84,12 +86,24 @@ public class Utils {
     }
 
     public static boolean excludePage(String url, List<String> entryList) {
-        url = url + "/";
+        
+        if (CollectionUtils.isEmpty(entryList)) {
+            return false;
+        }
+        
+        if(!url.endsWith("/")){  
+            url = url + "/";
+        }
+                
         for (String entry : entryList) {
+            if(!entry.endsWith("/")) {
+                entry = entry + "/";
+            }
             if (url.contains(entry)) {
                 return true;
             }
         }
+        
         return false;
     }
 
