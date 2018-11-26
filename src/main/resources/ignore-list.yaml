@@ -1,0 +1,6 @@
+ignoreEmptyReadmeContaining:
+  - /guest/
+  - /2ndurl/   
+ignoreMissingReadmeContaining:
+  - /first-url/
+  - /2ndurl/    

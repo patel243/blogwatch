@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalProperties;
 import com.baeldung.util.Utils;
 
 import edu.uci.ics.crawler4j.crawler.Page;
@@ -21,8 +22,8 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
         String referringPageURL = referringPage.getWebURL().getURL();
         // @formatter:off
         return super.commonPredicate(pageURL, referringPageURL)               
-               && !Utils.excludePage(pageURL, GlobalConstants.IGNORE_EMPTY_README_LIST)
-               && !Utils.excludePage(pageURL, GlobalConstants.IGNORE_MISSING_README_LIST)
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_LIST_KEY))
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_LIST_KEY))
                && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE);
         // @formatter:on
     }

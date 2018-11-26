@@ -175,7 +175,7 @@ public class GlobalConstants {
     public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections.unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
     
     //ignore list for givenTheGitHubModule_theModuleHasANonEmptyReadme
-    public static List<String> IGNORE_EMPTY_README_LIST = Collections.unmodifiableList(Arrays.asList("/guest/"));
-    public static List<String> IGNORE_MISSING_README_LIST = Collections.unmodifiableList(Arrays.asList(""));
+    public static String IGNORE_EMPTY_README_LIST_KEY = "ignoreEmptyReadmeContaining";
+    public static String IGNORE_MISSING_README_LIST_KEY = "ignoreMissingReadmeContaining";
 
 }
