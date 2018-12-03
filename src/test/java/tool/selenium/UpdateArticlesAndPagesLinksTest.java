@@ -24,7 +24,7 @@ import com.baeldung.site.base.SitePage;
 @ContextConfiguration(classes = { CommonConfig.class, SeleniumMainConfig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
-public class UpdateArticlesAndPagesLinks {
+public class UpdateArticlesAndPagesLinksTest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
