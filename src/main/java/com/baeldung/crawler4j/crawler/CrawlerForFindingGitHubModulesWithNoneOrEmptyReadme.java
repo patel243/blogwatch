@@ -22,8 +22,8 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
         String referringPageURL = referringPage.getWebURL().getURL();
         // @formatter:off
         return super.commonPredicate(pageURL, referringPageURL)               
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_LIST_KEY))
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_LIST_KEY))
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_LIST_KEY), true)
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_LIST_KEY), true)
                && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE);
         // @formatter:on
     }

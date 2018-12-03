@@ -67,7 +67,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     @Tag("givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists")
     public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST) && !page.findMetaDescriptionTag()) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, false) && !page.findMetaDescriptionTag()) {
                 badURLs.put("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());

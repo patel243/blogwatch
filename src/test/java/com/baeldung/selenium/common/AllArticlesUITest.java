@@ -69,7 +69,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop")
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
                 badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
@@ -83,7 +83,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd")
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
                 badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
@@ -114,7 +114,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Tag("givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists")
     public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST) && !page.findMetaDescriptionTag()) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, true) && !page.findMetaDescriptionTag()) {
                 badURLs.put("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
@@ -137,7 +137,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
         List<String> gitHubModuleLinks = null;
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY) && !Utils.excludePage(page.getUrl(), GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST)) {
+            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
                 gitHubModuleLinks = page.findLinksToTheGithubModule();
                 if (!TestUtils.articleLinkFoundOnGitHubModule(gitHubModuleLinks, page.getRelativeUrl(), page)) {
                     badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrlWithNewLineFeed());

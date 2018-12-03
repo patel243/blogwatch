@@ -85,25 +85,25 @@ public class Utils {
         }
     }
 
-    public static boolean excludePage(String url, List<String> entryList) {
-        
+    public static boolean excludePage(String url, List<String> entryList, boolean compareAfterAddingTrailingSlash) {
+
         if (CollectionUtils.isEmpty(entryList)) {
             return false;
         }
-        
-        if(!url.endsWith("/")){  
+
+        if (!url.endsWith("/") && compareAfterAddingTrailingSlash) {
             url = url + "/";
         }
-                
+
         for (String entry : entryList) {
-            if(!entry.endsWith("/")) {
+            if (!entry.endsWith("/") && compareAfterAddingTrailingSlash) {
                 entry = entry + "/";
             }
             if (url.contains(entry)) {
                 return true;
             }
         }
-        
+
         return false;
     }
 
