@@ -2228,3 +2228,17 @@
 /jpa-hibernate-difference
 /java-decorator-pattern
 /java-constructors
+/java-remove-trailing-characters
+/spring-security-custom-oauth-requests
+/java-char-encoding
+/hibernate-select-all
+/kotlin-operator-overloading
+/kotlin-contracts
+/spring-boot-mongodb-auto-generated-field
+/java-iterate-list
+/java-weekly-257
+/spring-data-cassandra-reactive
+/java-array-to-string
+/java-join-primitive-array
+/travis-ci-build-pipeline
+/spring-reactive-sequence-logging
