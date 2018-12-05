@@ -52,6 +52,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Disabled
     public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
         if (page.isLaunchFlag()) {
             return;
