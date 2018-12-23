@@ -54,7 +54,6 @@
 /best-of
 /terms-of-service
 /privacy-policy
-/rest-course-almost-done
 /guides
 /learn-spring
 /full_archive
@@ -81,4 +80,6 @@
 /learn-spring-security-faq
 /lss-why
 /rest-with-spring-for-teams-lp
+/test-page-bael-8988/
+/rest-with-spring-for-teams-old
 /partners
