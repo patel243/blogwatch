@@ -81,3 +81,4 @@
 /learn-spring-security-faq
 /lss-why
 /rest-with-spring-for-teams-lp
+/partners
