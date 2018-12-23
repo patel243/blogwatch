@@ -167,6 +167,21 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
+    @Tag("givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
+    @Tag("givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
+    public final void givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
+        do {
+            if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
+                badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath", page.getUrlWithNewLineFeed());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            Utils.triggerTestFailure(badURLs.toString());
+        }
+    }
+
+    @Test
     @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
     @Tag("givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses")
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
@@ -182,6 +197,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
                 givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
+                givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
             }

@@ -76,6 +76,21 @@ public class AllPagesUITest extends BaseUISeleniumTest {
             Utils.triggerTestFailure(badURLs.toString());
         }
     }
+    
+    @Test
+    @Tag("givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
+    @Tag("givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
+    public final void givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
+        do {
+            if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
+                badURLs.put("givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath", page.getUrlWithNewLineFeed());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            Utils.triggerTestFailure(badURLs.toString());
+        }
+    }
 
     @Test
     @Tag("givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses")
@@ -88,6 +103,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
             try {
                 givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv();
                 givenAllPages_whenPageLoads_thenTheMetaDescriptionExists();
+                givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
             }

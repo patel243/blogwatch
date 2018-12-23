@@ -272,7 +272,7 @@ public class SitePage extends BlogBaseDriver {
             this.setUrl("https://ipstack.com/");
 
             this.loadUrl();
-            
+
             WebElement county = this.getWebDriver().findElement(By.xpath("//div[contains(@data-object, 'country_name')]/span"));
             return county.getText().isEmpty() ? county.getAttribute("innerHTML") : county.getText();
         } catch (Exception e) {
@@ -295,6 +295,30 @@ public class SitePage extends BlogBaseDriver {
         }
         // @formatter:on
         return false;
+    }
+
+    public boolean findMetaTagWithOGImagePointingToTheAbsolutePath() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//meta[(@property = 'og:image' and contains(@content, 'baeldung.com'))]")).isEnabled();
+        } catch (NoSuchElementException e) {
+            try {
+                return !this.getWebDriver().findElement(By.xpath("//meta[@property = 'og:image']")).isEnabled();
+            } catch (NoSuchElementException ne) {
+                return true; // test shouldn't flag a post/article if meta og:image doesn't exits
+            }
+        }
+    }
+
+    public boolean findMetaTagWithTwitterImagePointingToTheAbsolutePath() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//meta[(@name = 'twitter:image' and contains(@content, 'baeldung.com'))]")).isEnabled();
+        } catch (NoSuchElementException e) {
+            try {
+                return !this.getWebDriver().findElement(By.xpath("//meta[@name = 'twitter:image']")).isEnabled();
+            } catch (NoSuchElementException ne) {
+                return true; // test shouldn't flag a post/article if meta twitter:image doesn't exits
+            }
+        }
     }
 
 }
