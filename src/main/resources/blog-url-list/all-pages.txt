@@ -80,6 +80,4 @@
 /learn-spring-security-faq
 /lss-why
 /rest-with-spring-for-teams-lp
-/test-page-bael-8988/
-/rest-with-spring-for-teams-old
 /partners
