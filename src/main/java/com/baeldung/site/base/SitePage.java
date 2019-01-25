@@ -92,11 +92,11 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public List<WebElement> findShortCodesAtTheEndOfThePage() {
-        return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_end')]"));
+        return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_end')]")).stream().filter(element -> element.isDisplayed()).collect(Collectors.toList());
     }
 
     public List<WebElement> findShortCodesAtTheTopOfThePage() {
-        return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_start')]"));
+        return this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'short_box short_start')]")).stream().filter(element -> element.isDisplayed()).collect(Collectors.toList());
     }
 
     public boolean findDivWithEventCalls(List<String> trackingCodes) {

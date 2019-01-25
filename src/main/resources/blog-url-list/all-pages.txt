@@ -74,7 +74,6 @@
 /java-conferences-august2018
 /rest-with-spring-course-launch-2018
 /rest-with-spring-faq
-/new-course-design-test/
 /affiliates
 /rest-with-spring-for-teams-sales
 /learn-spring-security-faq
