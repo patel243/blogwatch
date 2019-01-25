@@ -195,10 +195,11 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
                 givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
                 givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
-                givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
-                givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
+                givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();                
                 givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
                 givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
+                //note: this test should be called at the last becasue it loads a GitHub url
+                givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
             }
