@@ -172,6 +172,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     public final void givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
+                logger.info("og:image or twitter:image check failed for: "+page.getUrl());
                 badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
