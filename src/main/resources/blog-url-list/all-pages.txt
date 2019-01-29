@@ -72,7 +72,6 @@
 /webinar-idiomatic-functional-programming-in-java
 /idiomatic-functional-programming-in-java/
 /java-conferences-august2018
-/rest-with-spring-course-launch-2018
 /rest-with-spring-faq
 /affiliates
 /rest-with-spring-for-teams-sales
