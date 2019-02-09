@@ -111,44 +111,5 @@ public final class HomePageUITest extends BaseUISeleniumTest {
         homePageDriver.loadUrl();
         assertTrue(homePageDriver.findAboutMenuInThePageFooter().size() == 1);
     }
-
-    @Test
-    @Tag(GlobalConstants.TAG_WEEKLY)
-    @Tag("dripSurvey")
-    @Disabled //disabled as suggested in BAEL-7332
-    /**
-     * Tests fails on windows in headless mode. It works fine with UI browser in windows.
-     * The test works fine on Jenkins (Cloudbees) with headless mode. On Jenkins, it run on Linux. 
-     */
-    public final void givenOnTheHomePage_whenTheSurveyStarts_thenTheSelectValueIsPostedToTheDrip() throws InterruptedException {
-
-        // impersonate subscriber
-        homePageDriver.loadUrl();
-        homePageDriver.getWebDriver().get(homePageDriver.getBaseURL() + GlobalConstants.DRIP_SUBSCRIPTION_QUERY_STRING);
-
-        // remove custom field
-        String subscriberData = homePageDriver.removeDripCutomJobRoleFieldAndGetSubscriberDetails();
-        logger.info(subscriberData);
-
-        // assert that the custom field is removed
-        assertFalse(subscriberData.contains(GlobalConstants.DRIP_CUTOM_FIELD), "Failed to remove drip cutom field");
-
-        // impersonate subscriber again to load the survey
-        homePageDriver.getWebDriver().get(homePageDriver.getBaseURL() + GlobalConstants.DRIP_SUBSCRIPTION_QUERY_STRING);
-        Thread.sleep(2000);
-
-        // click on the Architect job role
-        homePageDriver.getArchitectItemInTheSurveyPopup().click();
-
-        Thread.sleep(2000);
-
-        // impersonate subscriber again. This is required if the previous step throws JS error.
-        homePageDriver.getWebDriver().get(homePageDriver.getBaseURL() + GlobalConstants.DRIP_SUBSCRIPTION_QUERY_STRING);
-
-        subscriberData = homePageDriver.getDripSubscriberDetails();
-        logger.info(subscriberData);
-
-        assertTrue(subscriberData.contains(GlobalConstants.DRIP_CUTOM_FIELD_VALUE_ARCHITECT), "Failed to set job role thorugh the survey");
-    }
-
+    
 }

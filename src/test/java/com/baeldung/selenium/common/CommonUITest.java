@@ -33,38 +33,7 @@ import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
-public class CommonUITest extends BaseUISeleniumTest {
-
-    @Test
-    @Tag(GlobalConstants.TAG_WEEKLY)
-    @Disabled // the test is covered in the AllArticlesUITest.java
-    public final void givenTheSampleArticleList_whenArticleLoads_thenIthasContent() throws IOException {
-        try (Stream<String> sampleArticlesList = Utils.fetchSampleArtilcesList()) {
-            sampleArticlesList.forEach(URL -> {
-                page.setUrl(page.getBaseURL() + URL);
-
-                page.loadUrlWithThrottling();
-
-                assertTrue("Page found with no content div. URL->" + URL, page.isContentDivDisplayed());
-            });
-        }
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY)
-    @Disabled
-    public final void givenArticleWithPopup_whenPopupOpens_thenPopupHasCloseButton() {
-        if (page.isLaunchFlag()) {
-            return;
-        }
-        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
-
-        page.loadUrl();
-        logger.info("Testing popup close button on-->" + page.getBaseURL() + GlobalConstants.ARTICLE_WITH_POPUP);
-
-        WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 60);
-        wait.until(ExpectedConditions.visibilityOf(page.findPopupCloseButton()));
-    }
+public class CommonUITest extends BaseUISeleniumTest {    
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -205,53 +174,7 @@ public class CommonUITest extends BaseUISeleniumTest {
             }
 
         }
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY)
-    @Disabled
-    public final void givenTheArticleWithFixedWidget_whenArticleLoads_thenStopIDIsConfiguredCorrectly() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_FIXED_WIDGET_TEST);
-
-        page.loadUrl();
-
-        assertTrue(page.fixedWidgetStopIDIsProvidedAsFooter());
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY)
-    @Disabled
-    public final void givenThePageWithFixedWidget_whenPageLoads_thenStopIDIsConfiguredCorrectly() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_FOR_FIXED_WIDGET_TEST);
-
-        page.loadUrl();
-
-        assertTrue(page.fixedWidgetStopIDIsProvidedAsFooter());
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY)
-    @Disabled
-    // disabled as discussed here - https://baeldung.slack.com/archives/DBJAJDG67/p1537350093000100
-    public final void givenTheArticleWithTheStickySidebar_whenTheArticleLoads_thenTheContainerClassProptertyIsConfiguredCorrectly() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_FOR_STICKY_SIDEBAR_TEST);
-
-        page.loadUrl();
-
-        assertTrue(page.stickySidebarContainerClassPropertyIsSetupAsContent());
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY)
-    @Disabled
-    // disabled as discussed here - https://baeldung.slack.com/archives/DBJAJDG67/p1537350093000100
-    public final void givenThePageWithTheStickySidebar_whenThePageLoads_thenTheContainerClassProptertyIsConfiguredCorrectly() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_FOR_STICKY_SIDEBAR_TEST);
-
-        page.loadUrl();
-
-        assertTrue(page.stickySidebarContainerClassPropertyIsSetupAsContent());
-    }
+    }        
 
     @Test
     @Tag("screenShotTest")
