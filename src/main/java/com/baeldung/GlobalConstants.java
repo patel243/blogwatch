@@ -172,7 +172,7 @@ public class GlobalConstants {
     public static final String REPO_GITHUB_BAELDUNG_LINK = "https://github.com/baeldung";
 
     // GeoIP API provider logs
-    public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections.unmodifiableList(Arrays.asList("VAT Calc Notice: geoIP API provider is set to ipdata", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
+    public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections.unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPDATA", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
     
     //ignore list for givenTheGitHubModule_theModuleHasANonEmptyReadme
     public static String IGNORE_EMPTY_README_LIST_KEY = "ignoreEmptyReadmeContaining";
