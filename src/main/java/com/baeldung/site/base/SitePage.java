@@ -327,7 +327,8 @@ public class SitePage extends BlogBaseDriver {
         try {
             return this.getWebDriver().findElement(By.xpath(".//h1[contains(@class, 'entry-title')]")).getText();
         } catch (Exception e) {
-            logger.debug("No entry title found for-->" + this.getWebDriver().getCurrentUrl());
+            logger.debug("Error getting entry title found for-->" + this.getWebDriver().getCurrentUrl());
+            logger.debug("Error-->" +  e.getMessage());
             return "no-entry-title-found";
         }
     }
