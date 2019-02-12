@@ -324,8 +324,12 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public String getArticleHeading() {
-        // TODO Auto-generated method stub
-        return this.getWebDriver().findElement(By.xpath(".//h1[contains(@class, 'entry-title')]")).getText();
+        try {
+            return this.getWebDriver().findElement(By.xpath(".//h1[contains(@class, 'entry-title')]")).getText();
+        } catch (Exception e) {
+            logger.debug("No entry title found for-->" + this.getWebDriver().getCurrentUrl());
+            return "no-entry-title-found";
+        }
     }
 
     public boolean articleTitleMatchesWithTheGitHubLink(String articleHeading, String articleRelativeUrl) {
