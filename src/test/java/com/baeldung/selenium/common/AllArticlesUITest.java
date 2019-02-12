@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.CollectionUtils;
 
 import com.baeldung.GlobalConstants;
 import com.baeldung.common.TestUtils;
@@ -135,12 +136,23 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Test
     @Tag("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle")
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
-        List<String> gitHubModuleLinks = null;
+        String articleHeading = null;
+        String articleRelativeUrl = null;
+        List<String> findLinksToTheGithubModule = null;
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
-                gitHubModuleLinks = page.findLinksToTheGithubModule();
-                if (!TestUtils.articleLinkFoundOnGitHubModule(gitHubModuleLinks, page.getRelativeUrl(), page)) {
+                articleHeading = page.getArticleHeading();
+                articleRelativeUrl = page.getRelativeUrl();
+                findLinksToTheGithubModule = page.findLinksToTheGithubModule();
+
+                if (CollectionUtils.isEmpty(findLinksToTheGithubModule)) {
+                    continue;
+                }
+
+                if (!TestUtils.articleLinkFoundOnTheGitHubModule(findLinksToTheGithubModule, articleRelativeUrl, page)) {
                     badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrlWithNewLineFeed());
+                } else if (!page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) { // note: the TestUtils.articleLinkFoundOnGitHubModule will have the GitHub page loaded in the browser
+                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch", page.getUrlWithNewLineFeed());
                 }
             }
 
@@ -172,7 +184,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     public final void givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
-                logger.info("og:image or twitter:image check failed for: "+page.getUrl());
+                logger.info("og:image or twitter:image check failed for: " + page.getUrl());
                 badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath", page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
@@ -195,10 +207,10 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop();
                 givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd();
                 givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv();
-                givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();                
+                givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
                 givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
                 givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
-                //note: this test should be called at the last becasue it loads a GitHub url
+                // note: this test should be called at the last becasue it loads a GitHub url
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());

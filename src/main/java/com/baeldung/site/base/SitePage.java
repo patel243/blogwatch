@@ -220,18 +220,20 @@ public class SitePage extends BlogBaseDriver {
     public boolean linkExistsInthePage(String articleRelativeURL) {
 
         try {
-            // @formatter:off
-
-            return this.getWebDriver() 
-                            .findElement(By.xpath(
-                                    "//a[(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_HTTP + articleRelativeURL + "', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')) " + 
-                                    " or (translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL + articleRelativeURL + "','ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]"))
-                            .isDisplayed();
-          // @formatter:on
+            return findElementWithTheRelativeURL(articleRelativeURL).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
 
+    }
+
+    private WebElement findElementWithTheRelativeURL(String articleRelativeURL) {
+        // @formatter:off
+    	return this.getWebDriver() 
+                .findElement(By.xpath(
+                        "//a[(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_HTTP + articleRelativeURL + "', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')) " + 
+                        " or (translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')=translate('" + GlobalConstants.BAELDUNG_HOME_PAGE_URL + articleRelativeURL + "','ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]")) ;
+    	// @formatter:on
     }
 
     public boolean fixedWidgetStopIDIsProvidedAsFooter() {
@@ -319,6 +321,16 @@ public class SitePage extends BlogBaseDriver {
                 return true; // test shouldn't flag a post/article if meta twitter:image doesn't exits
             }
         }
+    }
+
+    public String getArticleHeading() {
+        // TODO Auto-generated method stub
+        return this.getWebDriver().findElement(By.xpath(".//h1[contains(@class, 'entry-title')]")).getText();
+    }
+
+    public boolean articleTitleMatchesWithTheGitHubLink(String articleHeading, String articleRelativeUrl) {
+        // TODO Auto-generated method stub
+        return findElementWithTheRelativeURL(articleRelativeUrl).getText().equalsIgnoreCase(articleHeading);
     }
 
 }
