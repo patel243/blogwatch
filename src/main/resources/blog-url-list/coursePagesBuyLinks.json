@@ -127,35 +127,35 @@
 			"trackingList": [
 				{
 					"trackingCode": [
-						"GA|course-rest|buy|buy_team_small",
+						"GA|course-rws|buy|buy_team_small",
 						"DRIP|RWSTeam|Small"
 					],
 					"linkText": "Get Access → [Small Team]"
 				},
 				{
 					"trackingCode": [
-						"GA|course-rest|buy|buy_team_medium",
+						"GA|course-rws|buy|buy_team_medium",
 						"DRIP|RWSTeam|Medium"
 					],
 					"linkText": "Get Access → [Medium Team]"
 				},
 				{
 					"trackingCode": [
-						"GA|course-rest|buy|buy_team_large",
+						"GA|course-rws|buy|buy_team_large",
 						"DRIP|RWSTeam|Large"
 					],
 					"linkText": "Get Access → [Large Team]"
 				},
 				{
 					"trackingCode": [
-						"GA|course-rest|buy|buy_lss_team_master",
-						"DRIP|RWSTeam|LSSTeam"
+						"GA|course-rws|buy|buy_ls_team_master",
+						"DRIP|RWSTeam|LSTeam"
 					],
-					"linkText": "Learn Spring Security"
+					"linkText": "Learn Spring"
 				},
 				{
 					"trackingCode": [
-						"GA|course-rest|buy|buy_team_bulk",
+						"GA|course-rws|buy|buy_team_bulk",
 						"DRIP|RWSTeam|Bulk"
 					],
 					"linkText": "The Bulk Package for Teams →"
