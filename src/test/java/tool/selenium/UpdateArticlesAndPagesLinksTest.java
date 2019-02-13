@@ -40,7 +40,7 @@ public class UpdateArticlesAndPagesLinksTest {
     }                            
 
     @Test
-    public final void updateLinks() throws IOException, JDOMException {
+    public final void updateLinksTest() throws IOException, JDOMException {
         blogLinksExtractor.createArticlesList(page.getWebDriver());
         blogLinksExtractor.createPagesList();
     }

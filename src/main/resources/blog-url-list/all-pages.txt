@@ -78,3 +78,6 @@
 /lss-why
 /rest-with-spring-for-teams-lp
 /partners
+/learn-spring-for-teams
+/learn-spring-faq
+/rest-with-spring-for-teams-landers
