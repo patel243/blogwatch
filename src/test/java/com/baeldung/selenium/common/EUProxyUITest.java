@@ -39,13 +39,13 @@ public class EUProxyUITest extends BaseUISeleniumTest {
             page.getWebDriver().manage().timeouts().pageLoadTimeout(280, TimeUnit.SECONDS);
             page.getWebDriver().manage().timeouts().setScriptTimeout(290, TimeUnit.SECONDS);
 
-            //logger.info("Geo Location-----" + page.getGeoLocation());
+            // logger.info("Geo Location-----" + page.getGeoLocation());
 
             page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
 
             page.loadUrl();
 
-            assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region");
+            assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region. Proxy Server:" + Utils.getProxyServerIP(euProxyServers.get(retryCount)) + ":" + Utils.getProxyServerPort(euProxyServers.get(retryCount)));
 
         } catch (Exception e) {
             // e.printStackTrace();

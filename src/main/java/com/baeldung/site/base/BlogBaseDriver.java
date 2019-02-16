@@ -19,7 +19,7 @@ import com.baeldung.selenium.config.SeleniumConfig;
 import com.google.common.util.concurrent.RateLimiter;
 
 public abstract class BlogBaseDriver {
-    
+
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -50,8 +50,9 @@ public abstract class BlogBaseDriver {
     public void openNewWindow() {
         seleniumConfig.openNewWindow();
     }
-    
+
     public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
+        logger.info("Loading page using Proxy Server: " + proxyServerIP + ":" + proxyServerPort);
         seleniumConfig.openNewWindowWithProxy(proxyServerIP, proxyServerPort);
     }
 
@@ -82,9 +83,9 @@ public abstract class BlogBaseDriver {
     public String getUrl() {
         return url;
     }
-    
+
     public String getUrlWithNewLineFeed() {
-        return "\n"+ url;
+        return "\n" + url;
     }
 
     protected abstract void setUrl(String url);
