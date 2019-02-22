@@ -7,23 +7,37 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import com.baeldung.GlobalConstants;
+
 public class SeleniumUIBrowserConfig extends SeleniumConfig {
 
-    static {
+    /*static {        
         System.setProperty("webdriver.gecko.driver", findFile("/geckodriver.exe"));
-    }
+    }*/
 
-    static private String findFile(final String filename) {
-        final String paths[] = { "", "bin/win/", "target/classes" }; // drivers are in bin/ directory
+    static private String findFile(final String filename, final String envTarget) {
+        final String paths[] = { "", "bin/" + envTarget + "/", "target/classes" }; // drivers are in bin/ directory
         for (final String path : paths) {
-            if (new File(path + filename).exists())
+            File file = new File(path + filename);
+            if (file.exists()) {
+                if (GlobalConstants.TARGET_ENV_LINUX.equals(envTarget)) {
+                    file.setExecutable(true, false);
+                    file.setReadable(true, false);
+                    file.setWritable(true, false);
+                }
                 return path + filename;
+            }
         }
         return "";
     }
 
     @Override
     public void openNewWindow() {
+        if (GlobalConstants.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())) {
+            System.setProperty("webdriver.gecko.driver", findFile("/geckodriver.exe", this.getTargetEnv()));
+        } else {
+            System.setProperty("webdriver.gecko.driver", findFile("/geckodriver", this.getTargetEnv()));
+        }
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         // firefoxOptions.setHeadless(true);
         driver = new FirefoxDriver(firefoxOptions);

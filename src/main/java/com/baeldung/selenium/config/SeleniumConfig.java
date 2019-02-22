@@ -10,7 +10,7 @@ public abstract class SeleniumConfig {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("${target.env}")
-    private String targetEnv;    
+    private String targetEnv;
 
     protected WebDriver driver;
 
@@ -28,7 +28,7 @@ public abstract class SeleniumConfig {
 
     public void setTargetEnv(String targetEnv) {
         this.targetEnv = targetEnv;
-    }            
+    }
 
     public abstract void openNewWindow();
 
