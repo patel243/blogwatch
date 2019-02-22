@@ -22,11 +22,16 @@ public class RwSTeamOptInPageDriver extends BlogBaseDriver {
     public void clickOnGetAccessLinkforSmallTeam() {
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
-        this.getWebDriver().findElement(By.xpath("//a[contains(@onclick,'buy_team_small')]")).click();
+        this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).click();
     }
 
     public void closePopupOnRwSTeamOptInPage() {
-        this.getWebDriver().findElement(By.xpath("//div[contains(@class, 'tve_ea_thrive_leads_form_close')]")).click();
+        for (WebElement element : this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'tve_ea_thrive_leads_form_close')]"))) {
+            if (element.isDisplayed()) {
+                element.click();
+                break;
+            }
+        }
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'tl-lb-target')]")));
     }
@@ -43,11 +48,11 @@ public class RwSTeamOptInPageDriver extends BlogBaseDriver {
     }
 
     public void clickOnGetAccessLinkforMediumTeam() {
-        this.getWebDriver().findElement(By.xpath("//a[contains(@onclick,'buy_team_medium')]")).click();
+        this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_medium')]/a")).click();
     }
 
     public void clickOnGetAccessLinkforLargeTeam() {
-        this.getWebDriver().findElement(By.xpath("//a[contains(@onclick,'buy_team_large')]")).click();
+        this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_large')]/a")).click();
     }
 
 }
