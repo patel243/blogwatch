@@ -13,13 +13,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.http.HttpStatus;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.baeldung.GlobalConstants;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;

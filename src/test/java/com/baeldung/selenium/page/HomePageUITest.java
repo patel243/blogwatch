@@ -2,13 +2,11 @@ package com.baeldung.selenium.page;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.logging.Level;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
@@ -20,40 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.baeldung.GlobalConstants;
 import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.baeldung.site.home.HomePageDriver;
-import com.baeldung.site.home.NewsLettersubscriptionPage;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 public final class HomePageUITest extends BaseUISeleniumTest {
 
     @Autowired
-    private HomePageDriver homePageDriver;
-
-    @Autowired
-    private NewsLettersubscriptionPage newsLettersubscriptionPage;
-
-    @Test
-    @Tag(GlobalConstants.TAG_HOURLY)
-    @Disabled
-    public final void givenOnTheJavaWebWeeklyPage_whenSubscriptionPopupLoads_thenItContainsSubscriptionElements() throws InterruptedException {
-        homePageDriver.loadUrl();
-        homePageDriver.clickNewsletterButton();
-        Thread.sleep(10000);
-
-        newsLettersubscriptionPage.clickGetAccessToTheLatestIssuesButton();
-
-        Thread.sleep(10000);
-
-        logger.info("URL-->" + homePageDriver.getWebDriver().getCurrentUrl());
-
-        logger.info("Email field found on the page-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup());
-
-        logger.info("Email field displayed-->" + newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
-
-        assertTrue(newsLettersubscriptionPage.findEmailFieldInSubscriptionPopup().isDisplayed());
-        assertTrue(newsLettersubscriptionPage.findSubscripbeButtonInSubscriptionPopup().isDisplayed());
-    }
-
+    private HomePageDriver homePageDriver;   
+    
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText() {
