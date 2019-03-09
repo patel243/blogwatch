@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.http.HttpStatus;
+import org.jdom2.JDOMException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
@@ -246,6 +247,19 @@ public class CommonUITest extends BaseUISeleniumTest {
         page.loadUrl();
 
         assertTrue("geoIP API provider is not working", page.geoIPProviderAPILoaded());
+    }
+    
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenOnTheBaeldungRSSFeed_whenTheFirstUrlIsHit_thenItPointsToTheBaeldungSite() throws JDOMException, IOException {
+        page.setUrl(GlobalConstants.BAELDUNG_RSS_FEED_URL);
+        
+        page.loadUrl(); 
+        
+        Response response = RestAssured.given().redirects().follow(false).get(page.getTheFirstBaeldungURL());       
+       
+        logger.info("response Location Header: " + response.getHeader("Location"));
+        assertTrue("The RSS Feed URL doesn't point to the https://baeldung.com", page.rssFeedURLPointsTotheBaeldungSite(response.getHeader("Location")));
     }
 
 }

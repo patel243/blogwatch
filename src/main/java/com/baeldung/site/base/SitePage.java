@@ -1,5 +1,6 @@
 package com.baeldung.site.base;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -7,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jdom2.JDOMException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -336,6 +338,21 @@ public class SitePage extends BlogBaseDriver {
     public boolean articleTitleMatchesWithTheGitHubLink(String articleHeading, String articleRelativeUrl) {
         // TODO Auto-generated method stub
         return findElementWithTheRelativeURL(articleRelativeUrl).getText().equalsIgnoreCase(articleHeading);
+    }
+
+    public String getTheFirstBaeldungURL() throws JDOMException, IOException {           
+       String pageSource = this.getWebDriver().getPageSource();
+       int indexOfAtomTag = pageSource.indexOf("<atom");
+       String linkStartTag = "<link>";
+       String linkClosingtTag = "</link>";
+       //take the link which appears after <atom tag
+       String firstBaeldungPageURL = pageSource.substring(pageSource.indexOf(linkStartTag, indexOfAtomTag) + linkStartTag.length(),pageSource.indexOf(linkClosingtTag, indexOfAtomTag));
+       logger.info("Baeldung URL from RSS feed: "+ firstBaeldungPageURL);
+       return firstBaeldungPageURL;                 
+    }
+
+    public boolean rssFeedURLPointsTotheBaeldungSite(String feedURL) {        
+        return feedURL.contains(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WIThOUT_THE_PROTOCOL);
     }
 
 }
