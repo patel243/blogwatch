@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
-import com.baeldung.selenium.base.BaseUISeleniumTest;
 
 public class EUProxyUITest extends BaseUISeleniumTest {
 

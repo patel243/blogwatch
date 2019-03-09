@@ -24,7 +24,6 @@ import com.baeldung.common.Utils;
 import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.LinkVO;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
-import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;

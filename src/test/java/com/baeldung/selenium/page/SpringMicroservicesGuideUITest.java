@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baeldung.common.GlobalConstants;
-import com.baeldung.selenium.base.BaseUISeleniumTest;
+import com.baeldung.selenium.common.BaseUISeleniumTest;
 import com.baeldung.site.SpringMicroservicesGuidePage;
 import com.jayway.restassured.RestAssured;
 

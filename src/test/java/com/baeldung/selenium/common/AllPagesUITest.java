@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
-import com.baeldung.selenium.base.BaseUISeleniumTest;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 

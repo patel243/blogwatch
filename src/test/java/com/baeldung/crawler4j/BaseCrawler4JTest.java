@@ -1,4 +1,4 @@
-package com.baeldung.crawler4j.base;
+package com.baeldung.crawler4j;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;

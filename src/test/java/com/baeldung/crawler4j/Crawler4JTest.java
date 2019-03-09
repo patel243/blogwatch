@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
-import com.baeldung.crawler4j.base.BaseCrawler4JTest;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
 
 public class Crawler4JTest extends BaseCrawler4JTest {

@@ -1,4 +1,4 @@
-package com.baeldung.common;
+package com.baeldung.utility;
 
 import java.util.List;
 
