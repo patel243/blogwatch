@@ -3,8 +3,6 @@ package com.baeldung.site;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.PostConstruct;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
-import com.baeldung.selenium.config.SeleniumConfig;
+import com.baeldung.selenium.config.browserConfig;
 import com.google.common.util.concurrent.RateLimiter;
 
 public abstract class BlogBaseDriver {
@@ -23,7 +21,7 @@ public abstract class BlogBaseDriver {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private SeleniumConfig seleniumConfig;
+    private browserConfig browserConfig;
 
     @Autowired
     private RateLimiter rateLimiter;
@@ -32,11 +30,6 @@ public abstract class BlogBaseDriver {
     private String baseURL;
 
     protected String url;
-
-    @PostConstruct
-    public void setDriver() {
-        this.seleniumConfig.getDriver();
-    }
 
     public void loadUrl() {
         this.getWebDriver().get(this.url);
@@ -48,12 +41,12 @@ public abstract class BlogBaseDriver {
     }
 
     public void openNewWindow() {
-        seleniumConfig.openNewWindow();
+        browserConfig.openNewWindow();
     }
 
     public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
         logger.info("Loading page using Proxy Server: " + proxyServerIP + ":" + proxyServerPort);
-        seleniumConfig.openNewWindowWithProxy(proxyServerIP, proxyServerPort);
+        browserConfig.openNewWindowWithProxy(proxyServerIP, proxyServerPort);
     }
 
     public void openNewWindowAndLoadPage() {
@@ -62,22 +55,21 @@ public abstract class BlogBaseDriver {
     }
 
     public void closeWindow() {
-        this.seleniumConfig.getDriver().close();
+        this.browserConfig.getDriver().close();
     }
 
     public void quiet() {
-        if (null != this.seleniumConfig.getDriver()) {
-            this.seleniumConfig.getDriver().quit();
+        if (null != this.browserConfig.getDriver()) {
+            this.browserConfig.getDriver().quit();
         }
-
     }
 
     public String getTitle() {
-        return this.seleniumConfig.getDriver().getTitle();
+        return this.browserConfig.getDriver().getTitle();
     }
 
     public WebDriver getWebDriver() {
-        return seleniumConfig.getDriver();
+        return browserConfig.getDriver();
     }
 
     public String getUrl() {

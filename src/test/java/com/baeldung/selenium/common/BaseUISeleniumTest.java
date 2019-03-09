@@ -15,10 +15,10 @@ import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.crawler4j.config.CrawlerMainCofig;
 import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
-import com.baeldung.selenium.config.SeleniumMainConfig;
+import com.baeldung.selenium.config.SeleniumContextConfiguration;
 import com.baeldung.site.SitePage;
 
-@ContextConfiguration(classes = { CommonConfig.class, SeleniumMainConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
+@ContextConfiguration(classes = { CommonConfig.class, SeleniumContextConfiguration.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
 public class BaseUISeleniumTest {
 

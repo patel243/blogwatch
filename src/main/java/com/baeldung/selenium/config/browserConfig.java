@@ -5,21 +5,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
-public abstract class SeleniumConfig {
+public abstract class browserConfig {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("${target.env}")
     private String targetEnv;
 
-    protected WebDriver driver;
+    protected WebDriver webDriver;
 
     public WebDriver getDriver() {
-        return driver;
+        return webDriver;
     }
 
     public void setDriver(final WebDriver driver) {
-        this.driver = driver;
+        this.webDriver = driver;
     }
 
     public String getTargetEnv() {

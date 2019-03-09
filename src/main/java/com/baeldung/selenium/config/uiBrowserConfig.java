@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import com.baeldung.common.GlobalConstants;
 
-public class SeleniumUIBrowserConfig extends SeleniumConfig {
+public class uiBrowserConfig extends browserConfig {
 
     /*static {        
         System.setProperty("webdriver.gecko.driver", findFile("/geckodriver.exe"));
@@ -40,8 +40,8 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
         }
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         // firefoxOptions.setHeadless(true);
-        driver = new FirefoxDriver(firefoxOptions);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webDriver = new FirefoxDriver(firefoxOptions);
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     @Override
@@ -52,8 +52,8 @@ public class SeleniumUIBrowserConfig extends SeleniumConfig {
         proxy.setSslProxy(proxyServerIP + ":" + proxyServerPort);
         firefoxOptions.setProxy(proxy);
         // firefoxOptions.setHeadless(true);
-        driver = new FirefoxDriver(firefoxOptions);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        webDriver = new FirefoxDriver(firefoxOptions);
+        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
 }

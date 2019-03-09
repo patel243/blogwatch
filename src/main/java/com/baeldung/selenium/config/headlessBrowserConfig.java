@@ -15,7 +15,7 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;
 
-public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
+public class headlessBrowserConfig extends browserConfig {
 
     @Value("${headless.browser.name}")
     private String headlessBrowserName;
@@ -29,7 +29,7 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
         logger.info("headlessBrowserName-->" + this.headlessBrowserName);
 
         if (GlobalConstants.HEADLESS_BROWSER_HTMLUNIT.equalsIgnoreCase(this.headlessBrowserName)) {
-            driver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
+            webDriver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
                 @Override
                 protected WebClient newWebClient(BrowserVersion version) {
                     WebClient webClient = super.newWebClient(version);
@@ -41,9 +41,9 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
             DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
 
-            driver = new PhantomJSDriver(caps);
+            webDriver = new PhantomJSDriver(caps);
         }
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
 
         if (GlobalConstants.HEADLESS_BROWSER_HTMLUNIT.equalsIgnoreCase(this.headlessBrowserName)) {
             ProxyConfig proxyConfig = new ProxyConfig(proxyServerIP, Integer.valueOf(proxyServerPort));
-            driver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
+            webDriver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
                 @Override
                 protected WebClient newWebClient(BrowserVersion version) {
                     WebClient webClient = super.newWebClient(version);
@@ -80,9 +80,9 @@ public class SeleniumHeadlessBrowserConfig extends SeleniumConfig {
             proxy.setSslProxy(proxyServerIP + ":" + proxyServerPort);
             caps.setCapability(CapabilityType.PROXY, proxy);
 
-            driver = new PhantomJSDriver(caps);
+            webDriver = new PhantomJSDriver(caps);
         }
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
     }
 

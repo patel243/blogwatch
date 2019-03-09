@@ -15,18 +15,18 @@ import com.baeldung.site.HomePageDriver;
 @Configuration
 @ComponentScan("com.baeldung.site")
 @PropertySource({ "classpath:blog.properties" })
-public class SeleniumMainConfig {
+public class SeleniumContextConfiguration {
 
     @Bean
     @Profile("headless-browser")
-    public SeleniumHeadlessBrowserConfig seleniumHeadlessBrowserConfig() {
-        return new SeleniumHeadlessBrowserConfig();
+    public headlessBrowserConfig seleniumHeadlessBrowserConfig() {
+        return new headlessBrowserConfig();
     }
 
     @Bean
     @Profile("ui-browser")
-    public SeleniumUIBrowserConfig seleniumUIBrowserConfig() {
-        return new SeleniumUIBrowserConfig();
+    public uiBrowserConfig seleniumUIBrowserConfig() {
+        return new uiBrowserConfig();
     }    
 
     @Bean
@@ -41,7 +41,7 @@ public class SeleniumMainConfig {
 
     public static void main(final String[] args) {
 
-        final ApplicationContext ctx = new AnnotationConfigApplicationContext(SeleniumMainConfig.class);
+        final ApplicationContext ctx = new AnnotationConfigApplicationContext(SeleniumContextConfiguration.class);
         final HomePageDriver test = ctx.getBean(HomePageDriver.class);
 
     }
