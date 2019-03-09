@@ -1,4 +1,4 @@
-package com.baeldung.site.home;
+package com.baeldung.site;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.baeldung.site.base.BlogBaseDriver;
 import com.google.common.collect.Streams;
 
 @Component

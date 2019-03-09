@@ -1,4 +1,4 @@
-package com.baeldung.site.base;
+package com.baeldung.site;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.springframework.stereotype.Component;
 
-import com.baeldung.GlobalConstants;
-import com.baeldung.util.Utils;
-import com.baeldung.vo.LinkVO;
+import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.Utils;
+import com.baeldung.common.vo.LinkVO;
 
 @Component
 public class SitePage extends BlogBaseDriver {

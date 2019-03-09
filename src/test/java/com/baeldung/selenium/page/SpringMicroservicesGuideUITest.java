@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
 import com.baeldung.selenium.base.BaseUISeleniumTest;
-import com.baeldung.site.guide.SpringMicroservicesGuidePage;
+import com.baeldung.site.SpringMicroservicesGuidePage;
 import com.jayway.restassured.RestAssured;
 
 public final class SpringMicroservicesGuideUITest extends BaseUISeleniumTest {

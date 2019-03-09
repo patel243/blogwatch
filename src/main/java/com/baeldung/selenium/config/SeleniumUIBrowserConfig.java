@@ -7,7 +7,7 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
 
 public class SeleniumUIBrowserConfig extends SeleniumConfig {
 

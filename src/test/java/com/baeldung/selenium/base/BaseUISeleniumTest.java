@@ -16,7 +16,7 @@ import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.crawler4j.config.CrawlerMainCofig;
 import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
 import com.baeldung.selenium.config.SeleniumMainConfig;
-import com.baeldung.site.base.SitePage;
+import com.baeldung.site.SitePage;
 
 @ContextConfiguration(classes = { CommonConfig.class, SeleniumMainConfig.class, CrawlerMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)

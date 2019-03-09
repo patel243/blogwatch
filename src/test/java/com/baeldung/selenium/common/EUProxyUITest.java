@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.Utils;
 import com.baeldung.selenium.base.BaseUISeleniumTest;
-import com.baeldung.util.Utils;
 
 public class EUProxyUITest extends BaseUISeleniumTest {
 

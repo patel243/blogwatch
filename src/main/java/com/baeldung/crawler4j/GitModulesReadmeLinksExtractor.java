@@ -15,10 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.Utils;
 import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
-import com.baeldung.util.Utils;
 
 @Component
 public class GitModulesReadmeLinksExtractor {

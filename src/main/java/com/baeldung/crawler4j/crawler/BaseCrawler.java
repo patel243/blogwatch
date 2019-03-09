@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
 
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 

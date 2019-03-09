@@ -6,9 +6,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.GlobalProperties;
-import com.baeldung.util.Utils;
+import com.baeldung.common.Utils;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;

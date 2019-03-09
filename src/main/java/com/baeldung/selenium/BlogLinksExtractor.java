@@ -23,8 +23,8 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.baeldung.GlobalConstants;
-import com.baeldung.util.Utils;
+import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.Utils;
 
 public class BlogLinksExtractor {
 

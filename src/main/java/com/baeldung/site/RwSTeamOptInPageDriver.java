@@ -1,4 +1,4 @@
-package com.baeldung.site.course;
+package com.baeldung.site;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import com.baeldung.site.base.BlogBaseDriver;
 
 @Component
 public class RwSTeamOptInPageDriver extends BlogBaseDriver {

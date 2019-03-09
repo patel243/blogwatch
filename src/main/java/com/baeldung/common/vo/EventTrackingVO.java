@@ -1,4 +1,4 @@
-package com.baeldung.vo;
+package com.baeldung.common.vo;
 
 import java.util.List;
 

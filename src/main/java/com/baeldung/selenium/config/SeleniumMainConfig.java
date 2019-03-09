@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import com.baeldung.selenium.BlogLinksExtractor;
-import com.baeldung.site.home.HomePageDriver;
+import com.baeldung.site.HomePageDriver;
 
 @Configuration
 @ComponentScan("com.baeldung.site")

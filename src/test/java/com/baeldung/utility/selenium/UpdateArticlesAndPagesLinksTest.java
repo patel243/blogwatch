@@ -1,4 +1,4 @@
-package utility.selenium;
+package com.baeldung.utility.selenium;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.selenium.BlogLinksExtractor;
 import com.baeldung.selenium.config.SeleniumMainConfig;
-import com.baeldung.site.base.SitePage;
+import com.baeldung.site.SitePage;
 
 @ContextConfiguration(classes = { CommonConfig.class, SeleniumMainConfig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)

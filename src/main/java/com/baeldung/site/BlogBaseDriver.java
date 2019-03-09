@@ -1,4 +1,4 @@
-package com.baeldung.site.base;
+package com.baeldung.site;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
 import com.baeldung.selenium.config.SeleniumConfig;
 import com.google.common.util.concurrent.RateLimiter;
 

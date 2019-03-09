@@ -1,6 +1,6 @@
 package com.baeldung.crawler4j.crawler;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.url.WebURL;

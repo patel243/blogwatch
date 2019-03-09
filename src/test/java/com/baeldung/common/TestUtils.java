@@ -2,7 +2,7 @@ package com.baeldung.common;
 
 import java.util.List;
 
-import com.baeldung.site.base.SitePage;
+import com.baeldung.site.SitePage;
 
 public class TestUtils {
 

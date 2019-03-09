@@ -15,9 +15,9 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.baeldung.GlobalConstants;
+import com.baeldung.common.GlobalConstants;
 import com.baeldung.selenium.base.BaseUISeleniumTest;
-import com.baeldung.site.home.HomePageDriver;
+import com.baeldung.site.HomePageDriver;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 

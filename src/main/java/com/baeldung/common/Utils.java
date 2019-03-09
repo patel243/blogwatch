@@ -1,4 +1,4 @@
-package com.baeldung.util;
+package com.baeldung.common;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -15,9 +15,8 @@ import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import com.baeldung.GlobalConstants;
-import com.baeldung.vo.EventTrackingVO;
-import com.baeldung.vo.LinkVO;
+import com.baeldung.common.vo.EventTrackingVO;
+import com.baeldung.common.vo.LinkVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ArrayListMultimap;
