@@ -1,4 +1,4 @@
-package tool.crawler4j;
+package utility.crawler4j;
 
 import java.io.IOException;
 
