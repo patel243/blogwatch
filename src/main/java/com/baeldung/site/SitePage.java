@@ -1,6 +1,5 @@
 package com.baeldung.site;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -8,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jdom2.JDOMException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -330,7 +328,7 @@ public class SitePage extends BlogBaseDriver {
             return this.getWebDriver().findElement(By.xpath(".//h1[contains(@class, 'entry-title')]")).getText();
         } catch (Exception e) {
             logger.debug("Error getting entry title found for-->" + this.getWebDriver().getCurrentUrl());
-            logger.debug("Error-->" +  e.getMessage());
+            logger.debug("Error-->" + e.getMessage());
             return "no-entry-title-found";
         }
     }
@@ -340,19 +338,43 @@ public class SitePage extends BlogBaseDriver {
         return findElementWithTheRelativeURL(articleRelativeUrl).getText().equalsIgnoreCase(articleHeading);
     }
 
-    public String getTheFirstBaeldungURL() throws JDOMException, IOException {           
-       String pageSource = this.getWebDriver().getPageSource();
-       int indexOfAtomTag = pageSource.indexOf("<atom");
-       String linkStartTag = "<link>";
-       String linkClosingtTag = "</link>";
-       //take the link which appears after <atom tag
-       String firstBaeldungPageURL = pageSource.substring(pageSource.indexOf(linkStartTag, indexOfAtomTag) + linkStartTag.length(),pageSource.indexOf(linkClosingtTag, indexOfAtomTag));
-       logger.info("Baeldung URL from RSS feed: "+ firstBaeldungPageURL);
-       return firstBaeldungPageURL;                 
+    public String getTheFirstBaeldungURL() {
+        String pageSource = this.getWebDriver().getPageSource();
+        int indexOfAtomTag = pageSource.indexOf("<atom");
+        String linkStartTag = "<link>";
+        String linkClosingtTag = "</link>";
+        // take the link which appears after <atom tag
+        String firstBaeldungPageURL = pageSource.substring(pageSource.indexOf(linkStartTag, indexOfAtomTag) + linkStartTag.length(), pageSource.indexOf(linkClosingtTag, indexOfAtomTag));
+        logger.info("Baeldung URL from RSS feed: " + firstBaeldungPageURL);
+        return firstBaeldungPageURL;
     }
 
-    public boolean rssFeedURLPointsTotheBaeldungSite(String feedURL) {        
+    public boolean rssFeedURLPointsTotheBaeldungSite(String feedURL) {
         return feedURL.contains(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WIThOUT_THE_PROTOCOL);
+    }
+
+    public boolean tableAnchorIsVisibleOnThePage() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//*[contains(@href, '#table') and contains(text(), 'PRICING')]")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean masterclassAnchorIsVisibleOnThePage() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//*[contains(@href, '#master-class') and contains(text(), 'MASTER CLASS')]")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean certificationclassAnchorIsVisibleOnThePage() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//*[contains(@href, '#certification-class') and contains(text(), 'CERTIFICATION CLASS')]")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
 }

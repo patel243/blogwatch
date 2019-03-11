@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.http.HttpStatus;
-import org.jdom2.JDOMException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
@@ -30,7 +29,7 @@ import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
-public class CommonUITest extends BaseUISeleniumTest {    
+public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -171,7 +170,7 @@ public class CommonUITest extends BaseUISeleniumTest {
             }
 
         }
-    }        
+    }
 
     @Test
     @Tag("screenShotTest")
@@ -236,7 +235,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         });
 
         Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
-    }    
+    }
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -247,18 +246,41 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         assertTrue("geoIP API provider is not working", page.geoIPProviderAPILoaded());
     }
-    
+
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenOnTheBaeldungRSSFeed_whenTheFirstUrlIsHit_thenItPointsToTheBaeldungSite() throws JDOMException, IOException {
+    public final void givenOnTheBaeldungRSSFeed_whenTheFirstUrlIsHit_thenItPointsToTheBaeldungSite() {
         page.setUrl(GlobalConstants.BAELDUNG_RSS_FEED_URL);
-        
-        page.loadUrl(); 
-        
-        Response response = RestAssured.given().redirects().follow(false).get(page.getTheFirstBaeldungURL());       
-       
+
+        page.loadUrl();
+
+        Response response = RestAssured.given().redirects().follow(false).get(page.getTheFirstBaeldungURL());
+
         logger.info("response Location Header: " + response.getHeader("Location"));
         assertTrue("The RSS Feed URL doesn't point to the https://baeldung.com", page.rssFeedURLPointsTotheBaeldungSite(response.getHeader("Location")));
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenOnCoursePages_whenAPageLoads_thenItContainsImportantAnchors() {
+
+        page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_RWS_PAGE);
+        logger.info("RWS course page loaded");
+
+        page.loadUrl();
+
+        assertTrue("RWS Course page is missing #table(PRICING) anchor in the footer", page.tableAnchorIsVisibleOnThePage());
+        assertTrue("RWS Course page is missing #master-class anchor in the footer", page.masterclassAnchorIsVisibleOnThePage());
+        assertTrue("RWS Course page is missing #certification-class anchor in the footer", page.certificationclassAnchorIsVisibleOnThePage());
+
+        page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_LSS_PAGE);
+        logger.info("LSS course page loaded");
+
+        page.loadUrl();
+
+        assertTrue("RWS Course page is missing #table(PRICING) anchor in the footer", page.tableAnchorIsVisibleOnThePage());
+        assertTrue("RWS Course page is missing #master-class anchor in the footer", page.masterclassAnchorIsVisibleOnThePage());
+        assertTrue("RWS Course page is missing #certification-class anchor in the footer", page.certificationclassAnchorIsVisibleOnThePage());
     }
 
 }

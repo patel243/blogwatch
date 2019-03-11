@@ -178,5 +178,10 @@ public class GlobalConstants {
     //ignore list for givenTheGitHubModule_theModuleHasANonEmptyReadme
     public static String IGNORE_EMPTY_README_LIST_KEY = "ignoreEmptyReadmeContaining";
     public static String IGNORE_MISSING_README_LIST_KEY = "ignoreMissingReadmeContaining";
+    
+    //cource page
+    
+    public static String COURSE_RWS_PAGE = "/rest-with-spring-course/";
+    public static String COURSE_LSS_PAGE = "/learn-spring-security-course/";
 
 }
