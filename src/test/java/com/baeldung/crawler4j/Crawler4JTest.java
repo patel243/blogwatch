@@ -20,7 +20,8 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Tag("empty-or-none-readme")    
     public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
         
-        tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
+        tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
+        
         List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
         if (modulesWithNoneOrEmptyReadme.size() > 0) {
             fail("Modules found with missing or empty READMEs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));

@@ -1,6 +1,13 @@
 ignoreEmptyReadmeContaining:
   - /guest/
-  - /2ndurl/   
+  - /2ndurl/  
+ignoreEmptyReadmeEndingWith:
+  - /guest/
+  - /2ndurl/  
 ignoreMissingReadmeContaining:
   - /first-url/
-  - /2ndurl/    
+  - /2ndurl/   
+ignoreMissingReadmeEndingWith:
+  - /first-url/
+  - /2ndurl/  
+  

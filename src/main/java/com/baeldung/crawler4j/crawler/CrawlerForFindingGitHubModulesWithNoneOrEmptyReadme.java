@@ -22,17 +22,19 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
         String referringPageURL = referringPage.getWebURL().getURL();
         // @formatter:off
         return super.commonPredicate(pageURL, referringPageURL)               
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_LIST_KEY), true)
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_LIST_KEY), true)
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_CONTAINING_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.contains(anEntryIntheList))
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_CONTAINING_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.contains(anEntryIntheList))
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
+               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
                && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE);
         // @formatter:on
     }
 
     @Override
     public void visit(Page page) {
-        String pageURL = page.getWebURL().getURL();        
+        String pageURL = page.getWebURL().getURL();
         HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-        Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());        
+        Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());
         Elements pomLinks = doc.select("a[href$='pom.xml']");
 
         if (pomLinks.size() > 0) { // a module identified

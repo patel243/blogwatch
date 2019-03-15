@@ -20,12 +20,7 @@ public abstract class BaseCrawlController {
     List<String> seedURLs;
     
     @Autowired
-    ApplicationContext applicationContext;
-
-    @Autowired
-    public BaseCrawlController(CrawlController crawlController) {
-        this.crawlController = crawlController;        
-    }
+    ApplicationContext applicationContext;    
 
     /**
      *  start crawl with thread count supplied in numberOfCrawlers
@@ -43,25 +38,14 @@ public abstract class BaseCrawlController {
      * @param configClass
      * @param numberOfCrawlers
      */
-    public void startCrawlerWithFreshController(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {
-        crawlController =  applicationContext.getBean(CrawlController.class);
-        addSeedURLsForCrawl();
-        this.crawlController.start(configClass, numberOfCrawlers);
-    }
-
-    /**
-     * start crawl with 4 threads
-     * @param configClass
-     */
-    public void startCrawler(Class<? extends BaseCrawler> configClass) {
-        addSeedURLsForCrawl();
-        this.crawlController.start(configClass, 4);
-    }
+    public void startCrawlingWithAFreshController(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {       
+       crawlController = applicationContext.getBean(CrawlController.class);
+       addSeedURLsForCrawl();
+       this.crawlController.start(configClass, numberOfCrawlers);
+    }    
 
     private void addSeedURLsForCrawl() {
-        for (String seedURL : seedURLs) {
-            this.crawlController.addSeed(seedURL);
-        }
+        seedURLs.forEach(this.crawlController::addSeed);   
     }
 
     protected List<String> getSeedURLs() {

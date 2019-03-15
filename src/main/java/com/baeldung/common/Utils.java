@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -82,6 +83,29 @@ public class Utils {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static boolean excludePage(String url, List<String> entryList, BiPredicate<String, String> p) {
+
+        if (CollectionUtils.isEmpty(entryList)) {
+            return false;
+        }
+
+        if (!url.endsWith("/")) {
+            url = url + "/";
+        }
+
+        for (String entry : entryList) {
+            if (!entry.endsWith("/")) {
+                entry = entry + "/";
+            }
+
+            if (p.test(url, entry)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static boolean excludePage(String url, List<String> entryList, boolean compareAfterAddingTrailingSlash) {

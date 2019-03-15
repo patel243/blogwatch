@@ -208,7 +208,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.TAG_MONTHLY)
     public final void givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule() throws IOException {
 
-        tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
+        tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
 
         List<String> readmeURLs = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
         Multimap<String, LinkVO> badURLs = ArrayListMultimap.create();
