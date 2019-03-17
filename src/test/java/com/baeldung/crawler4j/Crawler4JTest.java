@@ -24,7 +24,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
         
         List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
         if (modulesWithNoneOrEmptyReadme.size() > 0) {
-            fail("Modules found with missing or empty READMEs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));
+            fail("\n Modules found with missing or empty READMEs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));
 
         }
     }

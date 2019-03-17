@@ -15,6 +15,8 @@ import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.LinkVO;
@@ -24,6 +26,8 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public class Utils {
+
+    protected static Logger logger = LoggerFactory.getLogger(Utils.class);
 
     public static Stream<String> fetchSampleArtilcesList() throws IOException {
         File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.SAMPLE_ARTICLES_FILE_NAME).getPath());
@@ -134,6 +138,18 @@ public class Utils {
         fail("\n\nFailed tests-->" + message + "\n\n");
     }
 
+    public static void triggerTestFailure(Multimap<String, String> testResutls) {
+
+        StringBuilder resultBuilder = new StringBuilder();
+
+        testResutls.asMap().forEach((key, value) -> {
+            resultBuilder.append(formatResults((List<String>) value, key));
+        });
+
+        fail("\n\nFailed tests-->" + resultBuilder.toString());
+
+    }
+
     public static void removeTrailingSlash(String firstURL) {
         if (null != firstURL && firstURL.charAt(firstURL.length() - 1) == '/') {
             firstURL = firstURL.substring(0, firstURL.length());
@@ -160,7 +176,7 @@ public class Utils {
             for (Map.Entry<String, Collection<LinkVO>> entry : badURLs.asMap().entrySet()) {
                 testsResult = testsResult + entry.getKey() + " \n" + entry.getValue().toString() + "\n\n";
             }
-            fail("we found issues with following READMEs" + testsResult);
+            fail("\nwe found issues with following READMEs" + testsResult);
         }
 
     }
@@ -188,6 +204,48 @@ public class Utils {
     public static String getProtocol(String pageURL) {
         // TODO Auto-generated method stub
         return pageURL.substring(0, pageURL.indexOf(":") + 3);
+    }
+
+    public static void logResults(Map<String, Integer> restResults, String testName) {
+        StringBuilder formatResult = new StringBuilder();
+
+        restResults.forEach((readmeLink, articleCount) -> {
+            formatResult.append(readmeLink + " = " + articleCount);
+            formatResult.append("\n");
+        });
+
+        // @formatter:off
+
+        String resutls = "\n\n------------------------------------------------------------------------------------\n" 
+                        + testName
+                        + "\n-------------------------------------------------------------------------------------\n" 
+                        + formatResult.toString() 
+                        + "\n------------------------------------------------------------------------------------\n\n\n";
+     // @formatter:on
+
+        logger.info(resutls);
+
+    }
+
+    public static String formatResults(List<String> urls, String testName) {
+        StringBuilder formatResult = new StringBuilder();
+
+        urls.forEach((url) -> {
+            formatResult.append(url);
+            // formatResult.append("\n");
+        });
+
+        // @formatter:off
+
+        String resutls = "\n------------------------------------------------------------------------------------\n" 
+                        + testName
+                        + "\n-------------------------------------------------------------------------------------" 
+                        + formatResult.toString() 
+                        + "\n------------------------------------------------------------------------------------\n";
+     // @formatter:on
+
+        return resutls;
+
     }
 
 }

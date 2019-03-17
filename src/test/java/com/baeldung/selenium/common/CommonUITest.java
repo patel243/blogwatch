@@ -8,7 +8,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -213,6 +215,8 @@ public class CommonUITest extends BaseUISeleniumTest {
         List<String> readmeURLs = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
         Multimap<String, LinkVO> badURLs = ArrayListMultimap.create();
 
+        Map<String, Integer> articleCountByReadme = new HashMap<>();
+
         readmeURLs.forEach(readmeURL -> {
             try {
                 page.setUrl(readmeURL);
@@ -220,6 +224,12 @@ public class CommonUITest extends BaseUISeleniumTest {
                 page.loadUrl(); // loads README in browser
 
                 List<LinkVO> urlsInReadmeFile = page.getLinksToTheBaeldungSite(); // get all the articles linked in this README
+
+                // for documenting no of links per README
+                if (urlsInReadmeFile.size() >= 10) {
+                    articleCountByReadme.put(readmeURL, urlsInReadmeFile.size());
+                }
+
                 String reamdmeParentURL = Utils.getTheParentOfReadme(readmeURL);
                 urlsInReadmeFile.forEach(link -> {
                     page.setUrl(link.getLink());
@@ -234,6 +244,7 @@ public class CommonUITest extends BaseUISeleniumTest {
             }
         });
 
+        Utils.logResults(articleCountByReadme, "Article Count by READMEs");
         Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
     }
 

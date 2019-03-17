@@ -1,10 +1,8 @@
 package com.baeldung.selenium.common;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.AfterEach;
@@ -61,7 +59,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -75,7 +73,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -89,7 +87,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -105,7 +103,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -120,7 +118,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -158,7 +156,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -173,7 +171,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -189,7 +187,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs.toString());
+            Utils.triggerTestFailure(badURLs);
         }
     }
 
@@ -218,12 +216,9 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (badURLs.size() > 0) {
-            String testsResult = "\n\n\n";
-            for (Map.Entry<String, Collection<String>> entry : badURLs.asMap().entrySet()) {
-                testsResult = testsResult + entry.getKey() + "=" + entry.getValue().toString() + "\n\n\n";
-            }
-            Utils.triggerTestFailure(testsResult);
+            Utils.triggerTestFailure(badURLs);
         }
+
     }
 
     private boolean loadNextURL() {
