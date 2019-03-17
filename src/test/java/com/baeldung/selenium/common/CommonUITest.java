@@ -245,7 +245,7 @@ public class CommonUITest extends BaseUISeleniumTest {
             }
         });
 
-        Utils.logResults(articleCountByReadme, "Article Count by READMEs");
+        Utils.logResults(articleCountByReadme, "Article count by READMEs");
         Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
     }
 
