@@ -79,5 +79,4 @@
 /partners
 /learn-spring-for-teams
 /learn-spring-faq
-/rest-with-spring-for-teams-landers
 /coaching-faq
