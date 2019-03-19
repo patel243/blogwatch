@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
@@ -32,6 +33,9 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 public class CommonUITest extends BaseUISeleniumTest {
+
+    @Value("${document-readme-having-articles-more-than}")
+    private int documentReadmeHavingArticlesMoreThan;
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -227,7 +231,7 @@ public class CommonUITest extends BaseUISeleniumTest {
                 List<LinkVO> urlsInReadmeFile = page.getLinksToTheBaeldungSite(); // get all the articles linked in this README
 
                 // for documenting no of links per README
-                if (urlsInReadmeFile.size() >= 10) {
+                if (urlsInReadmeFile.size() > documentReadmeHavingArticlesMoreThan) {
                     articleCountByReadme.put(readmeURL, urlsInReadmeFile.size());
                 }
 
