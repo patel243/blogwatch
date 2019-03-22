@@ -92,14 +92,21 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv")
-    @Tag("givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv")
+    @Tag(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv)
+    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv)
     public final void givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
+            List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
+            
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv", page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n\n");
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n\n");
             }
+            
+            if (anchorTags.size() > 0) {
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n\n");
+            }
+            
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
@@ -192,8 +199,8 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses")
-    @Tag("givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses")
+    @Tag(GlobalConstants.givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses)
+    @Tag(GlobalConstants.givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses)
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;

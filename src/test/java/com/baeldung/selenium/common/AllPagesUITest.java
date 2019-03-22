@@ -44,14 +44,22 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv")
-    @Tag("givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv")
+    @Tag(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv)
+    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv)
     public final void givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnThePage();
+            List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
+
             if (imgTags.size() > 0) {
-                badURLs.put("givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv", page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n\n");
+                badURLs.put(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n\n");
             }
+
+            if (anchorTags.size() > 0) {
+                badURLs.put(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv,
+                        page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n\n");
+            }
+
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
@@ -73,7 +81,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
             Utils.triggerTestFailure(badURLs);
         }
     }
-    
+
     @Test
     @Tag("givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
     @Tag("givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
@@ -90,8 +98,8 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses")
-    @Tag("givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses")
+    @Tag(GlobalConstants.givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses)
+    @Tag(GlobalConstants.givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses)
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;
@@ -107,7 +115,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
             loadNextUrl = true;
         } while (loadNextURL());
 
-        if (badURLs.size() > 0) {          
+        if (badURLs.size() > 0) {
             Utils.triggerTestFailure(badURLs);
         }
     }

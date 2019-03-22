@@ -173,17 +173,28 @@ public class GlobalConstants {
     public static final String REPO_GITHUB_BAELDUNG_LINK = "https://github.com/baeldung";
 
     // GeoIP API provider logs
-    public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections.unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPDATA", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
-    
-    //ignore list for givenTheGitHubModule_theModuleHasANonEmptyReadme
+    public static final List<String> GEOIP_API_PROVIDER_SUCCESS_LOGS = Collections
+            .unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPDATA", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
+
+    // ignore list for givenTheGitHubModule_theModuleHasANonEmptyReadme
     public static String IGNORE_EMPTY_README_CONTAINING_LIST_KEY = "ignoreEmptyReadmeContaining";
     public static String IGNORE_MISSING_README_CONTAINING_LIST_KEY = "ignoreMissingReadmeContaining";
     public static String IGNORE_EMPTY_README_ENDING_WITH_LIST_KEY = "ignoreEmptyReadmeEndingWith";
     public static String IGNORE_MISSING_README_ENDING_WITH_LIST_KEY = "ignoreMissingReadmeEndingWith";
-    
-    //cource page
-    
+
+    // cource page
+
     public static String COURSE_RWS_PAGE = "/rest-with-spring-course/";
     public static String COURSE_LSS_PAGE = "/learn-spring-security-course/";
 
+    // exclude following domain for givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv
+    public static final ImmutableList<String> DOMAIN_LIST_TO_EXCLUDE = ImmutableList.of("http://cdn", "s.w.org", "postimg.org", "github.com", "githubusercontent.com", "spring.io");
+
+    // test name
+    public static final String givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv = "givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv";
+    public static final String givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv = "givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv";
+    public static final String givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv = "givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv";
+    public static final String givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses = "givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses";
+    public static final String givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses = "givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses";
+    public static final String givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses = "givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses";
 }
