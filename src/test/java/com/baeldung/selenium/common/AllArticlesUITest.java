@@ -50,11 +50,11 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv")
+    @Tag(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv)
     public final void givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
         do {
             if (page.findEmptyDivs().size() > 0) {
-                badURLs.put("givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -64,11 +64,11 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop")
+    @Tag(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop)
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
-                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -78,11 +78,11 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd")
+    @Tag(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd)
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
-                badURLs.put("givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -98,15 +98,17 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
             List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
-            
+
             if (imgTags.size() > 0) {
-                badURLs.put(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n\n");
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv,
+                        page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n");
             }
-            
+
             if (anchorTags.size() > 0) {
-                badURLs.put(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n\n");
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv,
+                        page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n");
             }
-            
+
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
@@ -115,12 +117,12 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists")
-    @Tag("givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists")
+    @Tag(GlobalConstants.givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists)
+    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists)
     public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, true) && !page.findMetaDescriptionTag()) {
-                badURLs.put("givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -138,7 +140,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
      */
 
     @Test
-    @Tag("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle")
+    @Tag(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle)
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
         String articleHeading = null;
         String articleRelativeUrl = null;
@@ -154,9 +156,9 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 }
 
                 if (!TestUtils.articleLinkFoundOnTheGitHubModule(findLinksToTheGithubModule, articleRelativeUrl, page)) {
-                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle", page.getUrlWithNewLineFeed());
+                    badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle, page.getUrlWithNewLineFeed());
                 } else if (!page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) { // note: the TestUtils.articleLinkFoundOnGitHubModule will have the GitHub page loaded in the browser
-                    badURLs.put("givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch", page.getUrlWithNewLineFeed());
+                    badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch, page.getUrlWithNewLineFeed());
                 }
             }
 
@@ -168,12 +170,12 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList")
+    @Tag(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList)
     public final void givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList() throws IOException {
         do {
             String authorName = page.findAuthorOfTheArticle();
             if (excludedListOfAuthors.contains(authorName.toLowerCase())) {
-                badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -183,13 +185,13 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
-    @Tag("givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
+    @Tag(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
+    @Tag(GlobalConstants.givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
     public final void givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
                 logger.info("og:image or twitter:image check failed for: " + page.getUrl());
-                badURLs.put("givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 

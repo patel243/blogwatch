@@ -9,42 +9,42 @@ import com.google.common.collect.ImmutableList;
 public class GlobalConstants {
 
     // env properties
-    public static String ENV_PROPERTY_BASE_URL = "base.url";
-    public static String ENV_PROPERTY_SPRING_PROFILE = "spring.profiles.active";
-    public static String ENV_PROPERTY_TARGET_ENV = "target.env";
+    public static final String ENV_PROPERTY_BASE_URL = "base.url";
+    public static final String ENV_PROPERTY_SPRING_PROFILE = "spring.profiles.active";
+    public static final String ENV_PROPERTY_TARGET_ENV = "target.env";
 
-    public static String DEFAULT_SPRING_PROFILE = "headless-browser";
+    public static final String DEFAULT_SPRING_PROFILE = "headless-browser";
 
     // targent env
-    public static String TARGET_ENV_WINDOWS = "win";
-    public static String TARGET_ENV_LINUX = "linux";
+    public static final String TARGET_ENV_WINDOWS = "win";
+    public static final String TARGET_ENV_LINUX = "linux";
 
     // headless browser name
-    public static String HEADLESS_BROWSER_PHANTOMJS = "phantomJS";
-    public static String HEADLESS_BROWSER_HTMLUNIT = "HtmlUnit";
+    public static final String HEADLESS_BROWSER_PHANTOMJS = "phantomJS";
+    public static final String HEADLESS_BROWSER_HTMLUNIT = "HtmlUnit";
 
-    public static String BAELDUNG_HOME_PAGE_URL = "https://www.baeldung.com";
-    public static String BAELDUNG_HOME_PAGE_URL_WITH_HTTP = "http://www.baeldung.com";
-    public static String BAELDUNG_HOME_PAGE_URL_WIThOUT_THE_PROTOCOL = "www.baeldung.com";
-    public static String BAELDUNG_DOMAIN_NAME = "baeldung.com";
-    public static String LAUNCH_FLAG = "LAUNCH_FLAG";
-    public static String NUMBER_ONE = "1";
-    public static String STRING_WITH_SINGLE_SPACE = " ";
+    public static final String BAELDUNG_HOME_PAGE_URL = "https://www.baeldung.com";
+    public static final String BAELDUNG_HOME_PAGE_URL_WITH_HTTP = "http://www.baeldung.com";
+    public static final String BAELDUNG_HOME_PAGE_URL_WIThOUT_THE_PROTOCOL = "www.baeldung.com";
+    public static final String BAELDUNG_DOMAIN_NAME = "baeldung.com";
+    public static final String LAUNCH_FLAG = "LAUNCH_FLAG";
+    public static final String NUMBER_ONE = "1";
+    public static final String STRING_WITH_SINGLE_SPACE = " ";
 
-    public static String FULL_ARCHIVE_URL = "https://www.baeldung.com/full_archive";
-    public static String PAGES_SITEMAP_URL = "https://www.baeldung.com/page.xml";
+    public static final String FULL_ARCHIVE_URL = "https://www.baeldung.com/full_archive";
+    public static final String PAGES_SITEMAP_URL = "https://www.baeldung.com/page.xml";
 
     // url files
-    public static String ALL_ARTICLES_FILE_NAME = "all-articles.txt";
-    public static String SAMPLE_ARTICLES_FILE_NAME = "sample-articles.txt";
-    public static String ALL_PAGES_FILE_NAME = "all-pages.txt";
-    public static String SAMPLE_PAGES_FILE_NAME = "sample-pages.txt";
+    public static final String ALL_ARTICLES_FILE_NAME = "all-articles.txt";
+    public static final String SAMPLE_ARTICLES_FILE_NAME = "sample-articles.txt";
+    public static final String ALL_PAGES_FILE_NAME = "all-pages.txt";
+    public static final String SAMPLE_PAGES_FILE_NAME = "sample-pages.txt";
 
-    public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH = "./blog-url-list/";
+    public static final String BLOG_URL_LIST_RESOUCE_FOLDER_PATH = "./blog-url-list/";
 
-    public static String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
+    public static final String BLOG_URL_LIST_RESOUCE_FOLDER_PATH_ENV_VARIABLE = "blog-url-list";
 
-    public static String COURSE_PAGES_BUY_LINKS = "coursePagesBuyLinks.json";
+    public static final String COURSE_PAGES_BUY_LINKS = "coursePagesBuyLinks.json";
 
     /**
      * Tests using this tag are executed every 30 minutes on Jenkins
@@ -95,12 +95,12 @@ public class GlobalConstants {
     public static final ImmutableList<String> PAGES_WITH_BLANK_TITLE = ImmutableList.of("/java-weekly-sponsorship/", "/webinar-rest-with-spring-thank-you", "/webinar-api-security-thank-you", "/webinar-api-discoverability-thank-you", "/webinar-cqrs-thank-you");
 
     // for redirection tests
-    public static String BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX = "https://baeldung.com";
-    public static String BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX = "https://www.baeldung.com";
+    public static final String BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX = "https://baeldung.com";
+    public static final String BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX = "https://www.baeldung.com";
 
-    public static String BAELDUNG_FEED_URL = "https://www.baeldung.com/feed/";
-    public static String BAELDUNG_FEED_FEEDBURNER_URL = "http://feeds.feedburner.com/Baeldung";
-    public static String BAELDUNG_RSS_FEED_URL = "https://www.baeldung.com/rss/";
+    public static final String BAELDUNG_FEED_URL = "https://www.baeldung.com/feed/";
+    public static final String BAELDUNG_FEED_FEEDBURNER_URL = "http://feeds.feedburner.com/Baeldung";
+    public static final String BAELDUNG_RSS_FEED_URL = "https://www.baeldung.com/rss/";
 
     // for Google Analytics
 
@@ -160,9 +160,9 @@ public class GlobalConstants {
     public static final String DRIP_SCRPT_SEARCH_STRING = "dc.src = '//tag.getdrip.com/9539554.js';";
 
     // for crawler4j
-    public static String README_LINKS_FOLDER_PATH = "./blog-url-list/";
-    public static String README_LINKS_FILE_NAME = "readme-files-urls.txt";
-    public static String README_FILE_NAME_LOWERCASE = "readme.md";
+    public static final String README_LINKS_FOLDER_PATH = "./blog-url-list/";
+    public static final String README_LINKS_FILE_NAME = "readme-files-urls.txt";
+    public static final String README_FILE_NAME_LOWERCASE = "readme.md";
     public static final String CRAWLER4J_STORAGE_FOLDER = "crawl/root";
 
     // VAT test
@@ -177,24 +177,37 @@ public class GlobalConstants {
             .unmodifiableList(Arrays.asList("VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPDATA", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPINFO.IO", "VAT CALC NOTICE: GEOIP API PROVIDER IS SET TO IPAPI.COM"));
 
     // ignore list for givenTheGitHubModule_theModuleHasANonEmptyReadme
-    public static String IGNORE_EMPTY_README_CONTAINING_LIST_KEY = "ignoreEmptyReadmeContaining";
-    public static String IGNORE_MISSING_README_CONTAINING_LIST_KEY = "ignoreMissingReadmeContaining";
-    public static String IGNORE_EMPTY_README_ENDING_WITH_LIST_KEY = "ignoreEmptyReadmeEndingWith";
-    public static String IGNORE_MISSING_README_ENDING_WITH_LIST_KEY = "ignoreMissingReadmeEndingWith";
+    public static final String IGNORE_EMPTY_README_CONTAINING_LIST_KEY = "ignoreEmptyReadmeContaining";
+    public static final String IGNORE_MISSING_README_CONTAINING_LIST_KEY = "ignoreMissingReadmeContaining";
+    public static final String IGNORE_EMPTY_README_ENDING_WITH_LIST_KEY = "ignoreEmptyReadmeEndingWith";
+    public static final String IGNORE_MISSING_README_ENDING_WITH_LIST_KEY = "ignoreMissingReadmeEndingWith";
 
     // cource page
 
-    public static String COURSE_RWS_PAGE = "/rest-with-spring-course/";
-    public static String COURSE_LSS_PAGE = "/learn-spring-security-course/";
+    public static final String COURSE_RWS_PAGE = "/rest-with-spring-course/";
+    public static final String COURSE_LSS_PAGE = "/learn-spring-security-course/";
 
     // exclude following domain for givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv
     public static final ImmutableList<String> DOMAIN_LIST_TO_EXCLUDE = ImmutableList.of("http://cdn", "s.w.org", "postimg.org", "github.com", "githubusercontent.com", "spring.io");
 
-    // test name
+    // test names for
     public static final String givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv = "givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv";
     public static final String givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv = "givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv";
     public static final String givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv = "givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv";
     public static final String givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses = "givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses";
     public static final String givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses = "givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses";
     public static final String givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses = "givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses";
+    public static final String givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv = "givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv";
+    public static final String givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop = "givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop";
+    public static final String givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd = "givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd";
+    public static final String givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists = "givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists";
+    public static final String givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists = "givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists";
+    public static final String givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle = "givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle";
+    public static final String givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch = "givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch";
+    public static final String givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList = "givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList";
+    public static final String givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
+    public static final String givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
+    public static final String givenAllPages_whenPageLoads_thenTheMetaDescriptionExists = "givenAllPages_whenPageLoads_thenTheMetaDescriptionExists";
+    public static final String givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
+
 }

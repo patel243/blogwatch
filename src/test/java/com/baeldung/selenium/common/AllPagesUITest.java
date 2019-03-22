@@ -52,12 +52,12 @@ public class AllPagesUITest extends BaseUISeleniumTest {
             List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
 
             if (imgTags.size() > 0) {
-                badURLs.put(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n\n");
+                badURLs.put(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n");
             }
 
             if (anchorTags.size() > 0) {
                 badURLs.put(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv,
-                        page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n\n");
+                        page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n");
             }
 
         } while (loadNextURL());
@@ -68,12 +68,12 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists")
-    @Tag("givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists")
+    @Tag(GlobalConstants.givenAllPages_whenPageLoads_thenTheMetaDescriptionExists)
+    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists)
     public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, false) && !page.findMetaDescriptionTag()) {
-                badURLs.put("givenAllPages_whenPageLoads_thenTheMetaDescriptionExists", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllPages_whenPageLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -83,12 +83,12 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag("givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
-    @Tag("givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath")
+    @Tag(GlobalConstants.givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
+    @Tag(GlobalConstants.givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
     public final void givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
-                badURLs.put("givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath", page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
