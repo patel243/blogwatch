@@ -2498,3 +2498,13 @@
 /jvm-method-inlining
 /spring-autowired-abstract-class
 /spring-webflux-404
+/kotlin-mockk
+/kotlin-immutable-collections
+/java-map-primitives
+/java-weekly-274
+/spring-data-jpa-deleteby
+/java-inputstream-server-socket
+/groovy-collections-find-elements
+/groovy-closures
+/jlink
+/java-localdate-to-xmlgregoriancalendar
