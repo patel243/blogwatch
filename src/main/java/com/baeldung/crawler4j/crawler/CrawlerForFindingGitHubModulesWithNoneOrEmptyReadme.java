@@ -1,6 +1,7 @@
 package com.baeldung.crawler4j.crawler;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,6 +16,9 @@ import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
 public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCrawler {
+    
+    private final static Pattern FILTER_ADDITIONAL_FILE_EXTENTIONS = Pattern.compile(".*(\\.(java)$");
+    private final static Pattern FILTERS_ADDITIONAL_DIRECTORIES = Pattern.compile(".*(\\/test\\/).*");
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
@@ -26,7 +30,9 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
                && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_CONTAINING_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.contains(anEntryIntheList))
                && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
                && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
-               && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE);
+               && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE)
+               && !FILTER_ADDITIONAL_FILE_EXTENTIONS.matcher(pageURL).matches()
+               && !FILTERS_ADDITIONAL_DIRECTORIES.matcher(pageURL).matches();
         // @formatter:on
     }
 
@@ -49,8 +55,7 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
                     }
                 } catch (IOException e) {
                     logger.error("Error while loading readme. Readme link: " + readmeLinks.get(0).absUrl("href"));
-                }
-                ;
+                }                
             } else {
                 this.discoveredURLs.add(pageURL);
                 logger.info("No readme " + pageURL);

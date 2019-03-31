@@ -10,6 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.crawler4j.config.Crawler4jMainCofig;
+import com.baeldung.crawler4j.controller.CodeCrawlerController;
 import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
 
 @ContextConfiguration(classes = { CommonConfig.class, Crawler4jMainCofig.class }, initializers = MyApplicationContextInitializer.class)
@@ -19,6 +20,9 @@ public class BaseCrawler4JTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());        
     
     @Autowired
-    protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController;    
+    protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController; 
+    
+    @Autowired
+    protected CodeCrawlerController codeSnippetCrawlerController;        
 
 }

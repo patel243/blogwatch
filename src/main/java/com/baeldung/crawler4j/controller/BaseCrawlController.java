@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 
 import com.baeldung.crawler4j.crawler.BaseCrawler;
@@ -18,6 +19,9 @@ public abstract class BaseCrawlController {
     CrawlController crawlController;
 
     List<String> seedURLs;
+    
+    @Value("${base.url}")
+    private String baseURL;
     
     @Autowired
     ApplicationContext applicationContext;    
@@ -52,7 +56,7 @@ public abstract class BaseCrawlController {
         return seedURLs;
     }
 
-    public void setSeedURLs(List<String> seedURLs) {
+    protected void setSeedURLs(List<String> seedURLs) {
         this.seedURLs = seedURLs;
     }    
 
@@ -64,5 +68,9 @@ public abstract class BaseCrawlController {
         this.crawlController.shutdown();
         this.crawlController.waitUntilFinish();
     }
+
+    public String getBaseURL() {
+        return baseURL;
+    }        
 
 }

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,9 +14,12 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +42,10 @@ public class Utils {
     public static Stream<String> fetchAllArtilcesList() throws IOException {
         File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_ARTICLES_FILE_NAME).getPath());
         return Files.lines(Paths.get(file.getAbsolutePath()));
+    }
+
+    public static List<String> fetchAllArticlesAsList() throws IOException {
+        return Utils.fetchAllArtilcesList().collect(Collectors.toList());
     }
 
     public static Stream<String> fetchAllPagesList() throws IOException {
@@ -202,7 +211,6 @@ public class Utils {
     }
 
     public static String getProtocol(String pageURL) {
-        // TODO Auto-generated method stub
         return pageURL.substring(0, pageURL.indexOf(":") + 3);
     }
 
@@ -246,6 +254,15 @@ public class Utils {
 
         return resutls;
 
+    }
+
+    public static Document getJSoupDocument(String pageSource, String url) throws URISyntaxException {
+        return Jsoup.parseBodyFragment(pageSource, Utils.getProtocol(url) + Utils.getHost(url));
+    }
+
+    public static String getHost(String url) throws URISyntaxException {
+        URI uri = new URI(url);
+        return uri.getHost();
     }
 
 }

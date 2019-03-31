@@ -1,11 +1,16 @@
 package com.baeldung.crawler4j.crawler;
 
+import java.util.regex.Pattern;
+
 import com.baeldung.common.GlobalConstants;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.url.WebURL;
 
 public class CrawlerForFindingReadmeURLs extends BaseCrawler {
+    
+    private final static Pattern FILTER_ADDITIONAL_FILE_EXTENTIONS = Pattern.compile(".*(\\.(java)$");
+    private final static Pattern FILTERS_ADDITIONAL_DIRECTORIES = Pattern.compile(".*(\\/test\\/).*");
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
@@ -13,7 +18,9 @@ public class CrawlerForFindingReadmeURLs extends BaseCrawler {
         String referringPageURL = referringPage.getWebURL().getURL();
         // @formatter:off
         return super.commonPredicate(href, referringPageURL)
-                && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE);
+                && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE)
+                && !FILTER_ADDITIONAL_FILE_EXTENTIONS.matcher(href).matches()
+                && !FILTERS_ADDITIONAL_DIRECTORIES.matcher(href).matches();
         // @formatter:on
     }
 
