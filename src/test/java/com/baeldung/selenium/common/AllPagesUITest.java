@@ -48,6 +48,9 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv)
     public final void givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
+            if (Utils.excludePage(page.getUrl(), GlobalConstants.PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV, false)) {
+                continue;
+            }
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnThePage();
             List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
 

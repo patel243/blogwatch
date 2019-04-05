@@ -190,6 +190,9 @@ public class GlobalConstants {
     // exclude following domain for givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv
     public static final ImmutableList<String> DOMAIN_LIST_TO_EXCLUDE = ImmutableList.of("http://cdn", "s.w.org", "postimg.org", "github.com", "githubusercontent.com", "spring.io");
 
+    // exclude following pages for givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv test
+    public static final List<String> PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV = Arrays.asList(new String[] { "/learn-spring-security-faq", "/rest-with-spring-faq" });
+
     // test names for
     public static final String givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv = "givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv";
     public static final String givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv = "givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv";
