@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CodeCrawlerController extends BaseCrawlController {
 
-    public List<Object> getDiscoveredURLs() {
+    public List<Object> getDiscoveredJacaConstructs() {
         return this.getCrawlersLocalData();
     }
-    
+
     public void setSeedURL(String url) {
-        this.setSeedURLs(Arrays.asList(new String[] {url}));
+        this.setSeedURLs(Arrays.asList(new String[] { url }));
     }
 }

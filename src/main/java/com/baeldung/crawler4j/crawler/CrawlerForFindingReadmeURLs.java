@@ -1,5 +1,7 @@
 package com.baeldung.crawler4j.crawler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import com.baeldung.common.GlobalConstants;
@@ -11,6 +13,7 @@ public class CrawlerForFindingReadmeURLs extends BaseCrawler {
     
     private final static Pattern FILTER_ADDITIONAL_FILE_EXTENTIONS = Pattern.compile(".*(\\.(java)$");
     private final static Pattern FILTERS_ADDITIONAL_DIRECTORIES = Pattern.compile(".*(\\/test\\/).*");
+    private List<String> discoveredURLs = new ArrayList<>();
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
@@ -29,6 +32,11 @@ public class CrawlerForFindingReadmeURLs extends BaseCrawler {
         if (page.getWebURL().getURL().toLowerCase().endsWith(GlobalConstants.README_FILE_NAME_LOWERCASE)) {           
             this.discoveredURLs.add(page.getWebURL().getURL());
         }
+    }
+    
+    @Override
+    public List<String> getMyLocalData() {
+        return discoveredURLs;
     }
 
 }

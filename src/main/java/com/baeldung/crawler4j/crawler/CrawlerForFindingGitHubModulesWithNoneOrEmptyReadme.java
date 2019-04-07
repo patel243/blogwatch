@@ -1,6 +1,8 @@
 package com.baeldung.crawler4j.crawler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
@@ -16,9 +18,10 @@ import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
 public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCrawler {
-    
+
     private final static Pattern FILTER_ADDITIONAL_FILE_EXTENTIONS = Pattern.compile(".*(\\.(java)$");
     private final static Pattern FILTERS_ADDITIONAL_DIRECTORIES = Pattern.compile(".*(\\/test\\/).*");
+    private List<String> discoveredURLs = new ArrayList<>();
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
@@ -55,13 +58,18 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
                     }
                 } catch (IOException e) {
                     logger.error("Error while loading readme. Readme link: " + readmeLinks.get(0).absUrl("href"));
-                }                
+                }
             } else {
                 this.discoveredURLs.add(pageURL);
                 logger.info("No readme " + pageURL);
             }
         }
 
+    }
+
+    @Override
+    public List<String> getMyLocalData() {
+        return discoveredURLs;
     }
 
 }

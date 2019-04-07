@@ -18,15 +18,23 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.text.StringEscapeUtils;
+import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.common.vo.EventTrackingVO;
+import com.baeldung.common.vo.JavaConstructs;
 import com.baeldung.common.vo.LinkVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
@@ -256,13 +264,94 @@ public class Utils {
 
     }
 
-    public static Document getJSoupDocument(String pageSource, String url) throws URISyntaxException {
+    public static Document getJSoupDocumentFromPageSource(String pageSource, String url) throws URISyntaxException {
         return Jsoup.parseBodyFragment(pageSource, Utils.getProtocol(url) + Utils.getHost(url));
+    }
+
+    public static Document getJSoupDocument(String url) throws IOException {
+        return Jsoup.connect(url).get();
     }
 
     public static String getHost(String url) throws URISyntaxException {
         URI uri = new URI(url);
         return uri.getHost();
+    }
+
+    public static List<JavaConstructs> getJavaConstructsFromPreTagsInTheJSoupDocument(Document doc) throws IOException {
+        List<JavaConstructs> javaConstructs = new ArrayList<>();
+        for (Element e : doc.getElementsByClass("brush: java; gutter: true")) {
+            getJavaConstructsFromJavaCode(StringEscapeUtils.unescapeHtml4(e.getElementsByTag("pre").html()), javaConstructs);
+
+        }
+        return javaConstructs;
+    }
+
+    public static List<JavaConstructs> getJavaConstructsFromGitHubRawUrl(String url) throws IOException {
+        List<JavaConstructs> javaConstructs = new ArrayList<>();
+        getJavaConstructsFromJavaCode(StringEscapeUtils.unescapeHtml4(Jsoup.connect(url).execute().body()), javaConstructs);
+        return javaConstructs;
+    }
+
+    private static void getJavaConstructsFromJavaCode(String code, List<JavaConstructs> javaConstructs) {
+        try {
+            CompilationUnit compilationUnit = JavaParser.parse(code);
+            compilationUnit.findAll(ClassOrInterfaceDeclaration.class).stream().forEach(c -> {
+                addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, null, c.getNameAsString(), javaConstructs);
+                c.getMethods().forEach(m -> addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, c.getNameAsString(), m.getNameAsString(), javaConstructs));
+            });
+        } catch (Exception e) {
+            getJavaConstructsFromJavaCodeWrappingIntoDummyClass(code, javaConstructs);
+        }
+    }
+
+    private static void addNewJavaConstructToTheList(String constructType, String constructParentTypeName, String constructName, List<JavaConstructs> javaConstructs) {
+        for (JavaConstructs javaConstruct : javaConstructs) {
+            if (constructType.equals(javaConstruct.getConstructType()) && constructName.equals(javaConstruct.getConstructName())) {
+                if (null == constructParentTypeName && null == javaConstruct.getConstructParentTypeName()) {
+                    return;
+                }
+                if (null != constructParentTypeName && null != javaConstruct.getConstructParentTypeName() && constructParentTypeName.equals(javaConstruct.getConstructParentTypeName())) {
+                    return;
+                }
+                return;
+            }
+        }
+        javaConstructs.add(new JavaConstructs(constructType, constructParentTypeName, constructName));
+    }
+
+    private static void getJavaConstructsFromJavaCodeWrappingIntoDummyClass(String code, List<JavaConstructs> javaConstructs) {
+        try {
+
+            CompilationUnit compilationUnit = JavaParser.parse(GlobalConstants.CONSTRUCT_DUMMY_CLASS_START + code + GlobalConstants.CONSTRUCT_DUMMY_CLASS_END);
+            compilationUnit.findAll(ClassOrInterfaceDeclaration.class).stream().forEach(c -> {
+                addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, null, c.getNameAsString(), javaConstructs);
+                c.getMethods().forEach(m -> addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, c.getNameAsString(), m.getNameAsString(), javaConstructs));
+            });
+        } catch (Exception e) {
+            logger.error("Error occuremtn while processing Java code: " + e.getMessage() + "\n" + code);
+        }
+    }
+
+    public static String getGitHubModuleUrl(Document jSoupDocument) throws IOException {
+        String url = null;
+        Elements links = jSoupDocument.select("section a[href*='" + GlobalConstants.GITHUB_REPO_EUGENP + "'],section a[href*='" + GlobalConstants.GITHUB_REPO_BAELDUNG + "']");
+        if (CollectionUtils.isNotEmpty(links)) {
+            url = links.get(links.size() - 1).absUrl("href");
+        }
+        Response response = Jsoup.connect(url).followRedirects(true).execute();
+        if (null != response) {
+            return response.url().toString();
+        }
+        return url;
+    }
+
+    public static List<JavaConstructs> getDiscoveredJavaArtifacts(List<Object> discoveredURLs) {
+        List<JavaConstructs> allJavaConstructs = new ArrayList<>();
+        for (Object object : discoveredURLs) {
+            List<JavaConstructs> javaConstructs = (List<JavaConstructs>) object;
+            allJavaConstructs.addAll(javaConstructs);
+        }
+        return allJavaConstructs;
     }
 
 }

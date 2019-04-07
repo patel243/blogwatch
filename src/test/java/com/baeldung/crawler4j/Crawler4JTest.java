@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
+import com.baeldung.common.vo.JavaConstructs;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
+import com.baeldung.crawler4j.crawler.CrawlerForFindingJavaCode;
 
 public class Crawler4JTest extends BaseCrawler4JTest {
 
@@ -33,23 +36,27 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Tag("givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub")
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
         String url = null;
-        /*for (String entry : Utils.fetchAllArticlesAsList()) {
+
+        for (String entry : Utils.fetchAllArticlesAsList()) {
             try {
                 url = codeSnippetCrawlerController.getBaseURL() + entry;
-                if (!Utils.excludePage(url, GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && !Utils.excludePage(url, GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
-        
-                    Document doc = Jsoup.connect(url).get();// Utils.getJSoupDocument(page.getWebDriver().getPageSource(), page.getUrl());
-                    doc.getElementsByClass("brush: java; gutter: true");
-        
-                    codeSnippetCrawlerController.setSeedURL(url);
-                    CrawlerForFindingJavaCode.baseURL = url;
-                    codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
+                if (Utils.excludePage(url, GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && !Utils.excludePage(url, GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
+                    continue;
                 }
+                Document jSoupDocument = Utils.getJSoupDocument(url);
+                List<JavaConstructs> javaConstructsOnPost = Utils.getJavaConstructsFromPreTagsInTheJSoupDocument(jSoupDocument);
+
+                String gitHubUrl = Utils.getGitHubModuleUrl(jSoupDocument);
+                codeSnippetCrawlerController.setSeedURL(gitHubUrl);
+                CrawlerForFindingJavaCode.baseURL = gitHubUrl;
+                codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
+                List<JavaConstructs> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
+
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + url + " .Error message:" + e.getMessage());
             }
-        
-        }*/
+
+        }
 
     }
 

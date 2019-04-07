@@ -193,6 +193,11 @@ public class GlobalConstants {
     // exclude following pages for givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv test
     public static final List<String> PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV = Arrays.asList(new String[] { "/learn-spring-security-faq", "/rest-with-spring-faq" });
 
+    public static final String CONSTRUCT_TYPE_CLASS_OR_INTERFACE = "ClassOrInterface";
+    public static final String CONSTRUCT_TYPE_METHOD = "Method";
+    public static final String CONSTRUCT_DUMMY_CLASS_START = "class DummyClass{ ";
+    public static final String CONSTRUCT_DUMMY_CLASS_END = " }";
+    
     // test names for
     public static final String givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv = "givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv";
     public static final String givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv = "givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv";
@@ -211,6 +216,6 @@ public class GlobalConstants {
     public static final String givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
     public static final String givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
     public static final String givenAllPages_whenPageLoads_thenTheMetaDescriptionExists = "givenAllPages_whenPageLoads_thenTheMetaDescriptionExists";
-    public static final String givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
+    public static final String givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";    
 
 }
