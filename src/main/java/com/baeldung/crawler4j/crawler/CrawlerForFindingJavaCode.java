@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import com.baeldung.common.Utils;
-import com.baeldung.common.vo.JavaConstructs;
+import com.baeldung.common.vo.JavaConstruct;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -20,8 +20,8 @@ public class CrawlerForFindingJavaCode extends BaseCrawler {
     protected final static Pattern FILTERS_ADDITIONAL_DIRECTORIES = Pattern.compile(".*(\\/src).*");
     public static List<String> CODE_SNIPPETS = null;
     public static String baseURL = null;
-    public static List<JavaConstructs> javaConstructsOnTheBaeldungPage;
-    private List<JavaConstructs> javaConstructsInTheGitHub = new ArrayList<>();
+    public static List<JavaConstruct> javaConstructsOnTheBaeldungPage;
+    private List<JavaConstruct> javaConstructsInTheGitHub = new ArrayList<>();
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
@@ -46,7 +46,7 @@ public class CrawlerForFindingJavaCode extends BaseCrawler {
                 HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
                 Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());
                 Element rawLink = doc.select("a[href$='.java']:contains(raw)").get(0);
-                List<JavaConstructs> javaConstructs = Utils.getJavaConstructsFromGitHubRawUrl(rawLink.absUrl("href"));
+                List<JavaConstruct> javaConstructs = Utils.getJavaConstructsFromGitHubRawUrl(rawLink.absUrl("href"));
                 javaConstructsInTheGitHub.addAll(javaConstructs);
             }
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class CrawlerForFindingJavaCode extends BaseCrawler {
     }
 
     @Override
-    public List<JavaConstructs> getMyLocalData() {
+    public List<JavaConstruct> getMyLocalData() {
         return javaConstructsInTheGitHub;
     }
 

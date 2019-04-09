@@ -10,17 +10,15 @@ import java.util.stream.Collectors;
 
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
-import com.baeldung.common.vo.JavaConstructs;
+import com.baeldung.common.vo.JavaConstruct;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingJavaCode;
 
 public class Crawler4JTest extends BaseCrawler4JTest {
 
-    @Test
     @Tag(GlobalConstants.TAG_MONTHLY)
     @Tag("empty-or-none-readme")
     public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
@@ -34,11 +32,10 @@ public class Crawler4JTest extends BaseCrawler4JTest {
         }
     }
 
-    @Test
     @Tag("givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub")
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
         String url = null;
-        Map<String, List<JavaConstructs>> pagesWithIssues = new HashMap<>();
+        Map<String, List<JavaConstruct>> pagesWithIssues = new HashMap<>();
 
         for (String entry : Utils.fetchAllArticlesAsList()) {
             try {
@@ -47,13 +44,13 @@ public class Crawler4JTest extends BaseCrawler4JTest {
                     continue;
                 }
                 Document jSoupDocument = Utils.getJSoupDocument(url);
-                List<JavaConstructs> javaConstructsOnPost = Utils.getJavaConstructsFromPreTagsInTheJSoupDocument(jSoupDocument);
+                List<JavaConstruct> javaConstructsOnPost = Utils.getJavaConstructsFromPreTagsInTheJSoupDocument(jSoupDocument);
 
                 String gitHubUrl = Utils.getGitHubModuleUrl(jSoupDocument);
                 codeSnippetCrawlerController.setSeedURL(gitHubUrl);
                 CrawlerForFindingJavaCode.baseURL = gitHubUrl;
                 codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
-                List<JavaConstructs> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
+                List<JavaConstruct> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
 
                 Utils.filterAndCollectJacaConstructsNotFoundOnGitHub(javaConstructsOnPost, javaConstructsOnGitHub, pagesWithIssues, entry);
 

@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.common.vo.EventTrackingVO;
-import com.baeldung.common.vo.JavaConstructs;
+import com.baeldung.common.vo.JavaConstruct;
 import com.baeldung.common.vo.LinkVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -277,8 +277,8 @@ public class Utils {
         return uri.getHost();
     }
 
-    public static List<JavaConstructs> getJavaConstructsFromPreTagsInTheJSoupDocument(Document doc) throws IOException {
-        List<JavaConstructs> javaConstructs = new ArrayList<>();
+    public static List<JavaConstruct> getJavaConstructsFromPreTagsInTheJSoupDocument(Document doc) throws IOException {
+        List<JavaConstruct> javaConstructs = new ArrayList<>();
         for (Element e : doc.getElementsByClass("brush: java; gutter: true")) {
             getJavaConstructsFromJavaCode(StringEscapeUtils.unescapeHtml4(e.getElementsByTag("pre").html()), javaConstructs);
 
@@ -286,13 +286,13 @@ public class Utils {
         return javaConstructs;
     }
 
-    public static List<JavaConstructs> getJavaConstructsFromGitHubRawUrl(String url) throws IOException {
-        List<JavaConstructs> javaConstructs = new ArrayList<>();
+    public static List<JavaConstruct> getJavaConstructsFromGitHubRawUrl(String url) throws IOException {
+        List<JavaConstruct> javaConstructs = new ArrayList<>();
         getJavaConstructsFromJavaCode(StringEscapeUtils.unescapeHtml4(Jsoup.connect(url).execute().body()), javaConstructs);
         return javaConstructs;
     }
 
-    private static void getJavaConstructsFromJavaCode(String code, List<JavaConstructs> javaConstructs) {
+    private static void getJavaConstructsFromJavaCode(String code, List<JavaConstruct> javaConstructs) {
         try {
             CompilationUnit compilationUnit = JavaParser.parse(code);
             compilationUnit.findAll(ClassOrInterfaceDeclaration.class).stream().forEach(c -> {
@@ -304,8 +304,8 @@ public class Utils {
         }
     }
 
-    private static void addNewJavaConstructToTheList(String constructType, String constructParentTypeName, String constructName, List<JavaConstructs> javaConstructs) {
-        for (JavaConstructs javaConstruct : javaConstructs) {
+    private static void addNewJavaConstructToTheList(String constructType, String constructParentTypeName, String constructName, List<JavaConstruct> javaConstructs) {
+        for (JavaConstruct javaConstruct : javaConstructs) {
             if (constructType.equals(javaConstruct.getConstructType()) && constructName.equals(javaConstruct.getConstructName())) {
                 if (null == constructParentTypeName && null == javaConstruct.getConstructParentTypeName()) {
                     return;
@@ -316,10 +316,10 @@ public class Utils {
                 return;
             }
         }
-        javaConstructs.add(new JavaConstructs(constructType, constructParentTypeName, constructName));
+        javaConstructs.add(new JavaConstruct(constructType, constructParentTypeName, constructName));
     }
 
-    private static void getJavaConstructsFromJavaCodeWrappingIntoDummyClass(String code, List<JavaConstructs> javaConstructs) {
+    private static void getJavaConstructsFromJavaCodeWrappingIntoDummyClass(String code, List<JavaConstruct> javaConstructs) {
         try {
 
             CompilationUnit compilationUnit = JavaParser.parse(GlobalConstants.CONSTRUCT_DUMMY_CLASS_START + code + GlobalConstants.CONSTRUCT_DUMMY_CLASS_END);
@@ -345,24 +345,24 @@ public class Utils {
         return url;
     }
 
-    public static List<JavaConstructs> getDiscoveredJavaArtifacts(List<Object> discoveredURLs) {
-        List<JavaConstructs> allJavaConstructs = new ArrayList<>();
+    public static List<JavaConstruct> getDiscoveredJavaArtifacts(List<Object> discoveredURLs) {
+        List<JavaConstruct> allJavaConstructs = new ArrayList<>();
         for (Object object : discoveredURLs) {
-            List<JavaConstructs> javaConstructs = (List<JavaConstructs>) object;
+            List<JavaConstruct> javaConstructs = (List<JavaConstruct>) object;
             allJavaConstructs.addAll(javaConstructs);
         }
         return allJavaConstructs;
     }
 
-    public static void filterAndCollectJacaConstructsNotFoundOnGitHub(List<JavaConstructs> javaConstructsOnPost, List<JavaConstructs> javaConstructsOnGitHub, Map<String, List<JavaConstructs>> pagesWithIssues, String url) {
+    public static void filterAndCollectJacaConstructsNotFoundOnGitHub(List<JavaConstruct> javaConstructsOnPost, List<JavaConstruct> javaConstructsOnGitHub, Map<String, List<JavaConstruct>> pagesWithIssues, String url) {
         javaConstructsOnPost.forEach(javaConstructOnPage -> {
-            if (javaConstructsOnGitHub.stream().filter(javaConstructOnGitHub -> javaConstructOnPage.equals(javaConstructOnGitHub)).count() > 0) {
+            if (javaConstructsOnGitHub.stream().filter(javaConstructOnGitHub -> javaConstructOnPage.equalsTo(javaConstructOnGitHub)).count() > 0) {
                 javaConstructOnPage.setFoundOnGitHub(true);
             }
         });
 
         // @formatter:off
-        List<JavaConstructs> javaConstructsWithIssues = javaConstructsOnPost.stream().filter(javaConstructOnPage -> !javaConstructOnPage.isFoundOnGitHub() && !javaConstructOnPage.getConstructName().equals(GlobalConstants.CONSTRUCT_DUMMY_CLASS_NAME))
+        List<JavaConstruct> javaConstructsWithIssues = javaConstructsOnPost.stream().filter(javaConstructOnPage -> !javaConstructOnPage.isFoundOnGitHub() && !javaConstructOnPage.getConstructName().equals(GlobalConstants.CONSTRUCT_DUMMY_CLASS_NAME))
                                                                                      .collect(Collectors.toList());
         // @formatter:on
 
@@ -372,18 +372,18 @@ public class Utils {
 
     }
 
-    public static void triggerTestFailure(Map<String, List<JavaConstructs>> pagesWithIssues) {
+    public static void triggerTestFailure(Map<String, List<JavaConstruct>> pagesWithIssues) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
         pagesWithIssues.forEach((key, value) -> {
-            resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstructs>) value, key));
+            resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, key));
         });
 
         fail("\n\nFailed tests-->" + resultBuilder.toString());
     }
 
-    private static Object formatResultsForJavaConstructsTest(List<JavaConstructs> javaConstructs, String url) {
+    private static Object formatResultsForJavaConstructsTest(List<JavaConstruct> javaConstructs, String url) {
 
         StringBuilder resultBuilder = new StringBuilder();
 

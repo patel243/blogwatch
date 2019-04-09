@@ -2,23 +2,23 @@ package com.baeldung.common.vo;
 
 import com.baeldung.common.GlobalConstants;
 
-public class JavaConstructs {
+public class JavaConstruct {
     private String constructType;
     private String constructParentTypeName; // if constructType is Method, constructParentTypeName will contain the Java Class Type
     private String constructName;
     private boolean foundOnGitHub;
 
-    public JavaConstructs() {
+    public JavaConstruct() {
     }
 
-    public JavaConstructs(String constructType, String constructParentTypeName, String constructName, boolean foundOnGitHub) {
+    public JavaConstruct(String constructType, String constructParentTypeName, String constructName, boolean foundOnGitHub) {
         this.constructType = constructType;
         this.constructParentTypeName = constructParentTypeName;
         this.constructName = constructName;
         this.foundOnGitHub = foundOnGitHub;
     }
 
-    public JavaConstructs(String constructType, String constructParentTypeName, String constructName) {
+    public JavaConstruct(String constructType, String constructParentTypeName, String constructName) {
         super();
         this.constructType = constructType;
         this.constructParentTypeName = constructParentTypeName;
@@ -26,25 +26,15 @@ public class JavaConstructs {
         this.foundOnGitHub = false;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((constructName == null) ? 0 : constructName.hashCode());
-        result = prime * result + ((constructParentTypeName == null || constructParentTypeName.equals(GlobalConstants.CONSTRUCT_DUMMY_CLASS_NAME)) ? 0 : constructParentTypeName.hashCode());
-        result = prime * result + ((constructType == null) ? 0 : constructType.hashCode());
-        return result;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
+    public boolean equalsTo(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
-        JavaConstructs other = (JavaConstructs) obj;
+        JavaConstruct other = (JavaConstruct) obj;
         if (constructName == null) {
             if (other.constructName != null)
                 return false;
