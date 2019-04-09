@@ -3,7 +3,9 @@ package com.baeldung.crawler4j;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.jsoup.nodes.Document;
@@ -36,6 +38,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Tag("givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub")
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
         String url = null;
+        Map<String, List<JavaConstructs>> pagesWithIssues = new HashMap<>();
 
         for (String entry : Utils.fetchAllArticlesAsList()) {
             try {
@@ -52,10 +55,16 @@ public class Crawler4JTest extends BaseCrawler4JTest {
                 codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
                 List<JavaConstructs> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
 
+                Utils.filterAndCollectJacaConstructsNotFoundOnGitHub(javaConstructsOnPost, javaConstructsOnGitHub, pagesWithIssues, entry);
+
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + url + " .Error message:" + e.getMessage());
             }
 
+        }
+
+        if (pagesWithIssues.size() > 0) {
+            Utils.triggerTestFailure(pagesWithIssues);
         }
 
     }

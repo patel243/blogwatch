@@ -297,7 +297,7 @@ public class Utils {
             CompilationUnit compilationUnit = JavaParser.parse(code);
             compilationUnit.findAll(ClassOrInterfaceDeclaration.class).stream().forEach(c -> {
                 addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, null, c.getNameAsString(), javaConstructs);
-                c.getMethods().forEach(m -> addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, c.getNameAsString(), m.getNameAsString(), javaConstructs));
+                c.getMethods().forEach(m -> addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_METHOD, c.getNameAsString(), m.getNameAsString(), javaConstructs));
             });
         } catch (Exception e) {
             getJavaConstructsFromJavaCodeWrappingIntoDummyClass(code, javaConstructs);
@@ -325,10 +325,10 @@ public class Utils {
             CompilationUnit compilationUnit = JavaParser.parse(GlobalConstants.CONSTRUCT_DUMMY_CLASS_START + code + GlobalConstants.CONSTRUCT_DUMMY_CLASS_END);
             compilationUnit.findAll(ClassOrInterfaceDeclaration.class).stream().forEach(c -> {
                 addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, null, c.getNameAsString(), javaConstructs);
-                c.getMethods().forEach(m -> addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_CLASS_OR_INTERFACE, c.getNameAsString(), m.getNameAsString(), javaConstructs));
+                c.getMethods().forEach(m -> addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_METHOD, c.getNameAsString(), m.getNameAsString(), javaConstructs));
             });
         } catch (Exception e) {
-            logger.error("Error occuremtn while processing Java code: " + e.getMessage() + "\n" + code);
+            logger.error("Error occured while processing Java code: " + e.getMessage() + "\n" + code);
         }
     }
 
@@ -352,6 +352,53 @@ public class Utils {
             allJavaConstructs.addAll(javaConstructs);
         }
         return allJavaConstructs;
+    }
+
+    public static void filterAndCollectJacaConstructsNotFoundOnGitHub(List<JavaConstructs> javaConstructsOnPost, List<JavaConstructs> javaConstructsOnGitHub, Map<String, List<JavaConstructs>> pagesWithIssues, String url) {
+        javaConstructsOnPost.forEach(javaConstructOnPage -> {
+            if (javaConstructsOnGitHub.stream().filter(javaConstructOnGitHub -> javaConstructOnPage.equals(javaConstructOnGitHub)).count() > 0) {
+                javaConstructOnPage.setFoundOnGitHub(true);
+            }
+        });
+
+        // @formatter:off
+        List<JavaConstructs> javaConstructsWithIssues = javaConstructsOnPost.stream().filter(javaConstructOnPage -> !javaConstructOnPage.isFoundOnGitHub() && !javaConstructOnPage.getConstructName().equals(GlobalConstants.CONSTRUCT_DUMMY_CLASS_NAME))
+                                                                                     .collect(Collectors.toList());
+        // @formatter:on
+
+        if (javaConstructsWithIssues.size() > 0) {
+            pagesWithIssues.put(url, javaConstructsWithIssues);
+        }
+
+    }
+
+    public static void triggerTestFailure(Map<String, List<JavaConstructs>> pagesWithIssues) {
+
+        StringBuilder resultBuilder = new StringBuilder();
+
+        pagesWithIssues.forEach((key, value) -> {
+            resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstructs>) value, key));
+        });
+
+        fail("\n\nFailed tests-->" + resultBuilder.toString());
+    }
+
+    private static Object formatResultsForJavaConstructsTest(List<JavaConstructs> javaConstructs, String url) {
+
+        StringBuilder resultBuilder = new StringBuilder();
+
+        // @formatter:off        
+        javaConstructs.forEach((javaConstruct) -> {
+            resultBuilder.append(javaConstruct.toString()+"\n");            
+        });
+        String resutls = "\n------------------------------------------------------------------------------------\n" 
+                        + url
+                        + "\n-------------------------------------------------------------------------------------\n" 
+                        + resultBuilder 
+                        + "\n------------------------------------------------------------------------------------\n";
+     // @formatter:on
+
+        return resutls;
     }
 
 }
