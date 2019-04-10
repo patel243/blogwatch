@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
@@ -21,6 +22,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
 
     @Tag(GlobalConstants.TAG_MONTHLY)
     @Tag("empty-or-none-readme")
+    @Test
     public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
 
         tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
@@ -33,6 +35,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     }
 
     @Tag("givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub")
+    @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
         String url = null;
         Map<String, List<JavaConstruct>> pagesWithIssues = new HashMap<>();
