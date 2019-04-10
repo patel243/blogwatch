@@ -43,13 +43,16 @@ public class Crawler4JTest extends BaseCrawler4JTest {
         for (String entry : Utils.fetchAllArticlesAsList()) {
             try {
                 url = codeSnippetCrawlerController.getBaseURL() + entry;
-                if (Utils.excludePage(url, GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && !Utils.excludePage(url, GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
+                logger.info("Processing:  " + url);
+                if (Utils.excludePage(url, GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                     continue;
                 }
+
                 Document jSoupDocument = Utils.getJSoupDocument(url);
                 List<JavaConstruct> javaConstructsOnPost = Utils.getJavaConstructsFromPreTagsInTheJSoupDocument(jSoupDocument);
 
                 String gitHubUrl = Utils.getGitHubModuleUrl(jSoupDocument);
+                logger.info("Github Module:  " + gitHubUrl);
                 codeSnippetCrawlerController.setSeedURL(gitHubUrl);
                 CrawlerForFindingJavaCode.baseURL = gitHubUrl;
                 codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
@@ -64,7 +67,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
         }
 
         if (pagesWithIssues.size() > 0) {
-            Utils.triggerTestFailure(pagesWithIssues);
+            Utils.triggerTestFailure(pagesWithIssues, codeSnippetCrawlerController.getBaseURL());
         }
 
     }

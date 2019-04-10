@@ -372,12 +372,12 @@ public class Utils {
 
     }
 
-    public static void triggerTestFailure(Map<String, List<JavaConstruct>> pagesWithIssues) {
+    public static void triggerTestFailure(Map<String, List<JavaConstruct>> pagesWithIssues, String baseUrl) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
         pagesWithIssues.forEach((key, value) -> {
-            resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, key));
+            resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, baseUrl + key));
         });
 
         fail("\n\nFailed tests-->" + resultBuilder.toString());

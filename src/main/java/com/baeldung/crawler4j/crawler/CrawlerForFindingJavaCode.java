@@ -27,9 +27,6 @@ public class CrawlerForFindingJavaCode extends BaseCrawler {
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String pageURL = url.getURL().toLowerCase();
         String referringPageURL = referringPage.getWebURL().getURL();
-        if (pageURL.contains("src")) {
-            System.out.println(pageURL);
-        }
         // @formatter:off
         return super.commonPredicate(pageURL, referringPageURL)                                
                 && FILTERS_ADDITIONAL_DIRECTORIES.matcher(pageURL).matches()
@@ -41,8 +38,9 @@ public class CrawlerForFindingJavaCode extends BaseCrawler {
     public void visit(Page page) {
         try {
             String pageURL = page.getWebURL().getURL();
-            logger.info(pageURL);
+
             if (pageURL.endsWith(".java")) {
+                rateLimiter.acquire();
                 HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
                 Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());
                 Element rawLink = doc.select("a[href$='.java']:contains(raw)").get(0);
