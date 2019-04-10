@@ -193,6 +193,9 @@ public class GlobalConstants {
     // exclude following pages for givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv test
     public static final List<String> PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV = Arrays.asList(new String[] { "/learn-spring-security-faq", "/rest-with-spring-faq" });
 
+    // exclude following images from givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv
+    public static final List<String> POSTS_TO_BE_EXCUDED_FOR_ANCHORS_LINK_TO_CORRECT_ENV = Arrays.asList(new String[] { "/javafx", "/java-sms-twilio" });
+
     public static final String CONSTRUCT_TYPE_CLASS_OR_INTERFACE = "ClassOrInterface";
     public static final String CONSTRUCT_TYPE_METHOD = "Method";
     public static final String CONSTRUCT_DUMMY_CLASS_NAME = "DummyClass";
