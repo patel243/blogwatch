@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RwSTeamOptInPageDriver extends BlogBaseDriver {
+public class TeamOptInPageDriver extends BlogBaseDriver {
 
     @Override
-    @Value("${rws.team.optin.url}")
+    @Value("${team.optin.url}")
     protected void setUrl(String url) {
         this.url = this.getBaseURL() + url;
     }
