@@ -71,7 +71,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 
 | Sr. | Test Name |
 | --- | --------- |
-| 1 | **givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine** <br/><br/>daily<br/><br/>This test verifies optin popups in the following article - https://www.baeldung.com/rest-with-spring-for-teams-kinsta-test |
+| 1 | **givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine** <br/><br/>daily<br/><br/>This test verifies optin popups in the following article - https://www.baeldung.com/rest-with-spring-for-teams-kinsta-test |
 | 2 | **givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText** <br/><br/> daily <br/><br/> Verifies that the Java weekly issue links in the homepage point to correct URLs |
 | 3 | **givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu** <br/><br/> daily <br/><br/> Verifies that the CATEGORY menu is available in the homepage footer |
 | 4 | **givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW** <br/><br/> daily <br/><br/> If we hit http://baeldung.com, it should redirect to http://www.baeldung.com |

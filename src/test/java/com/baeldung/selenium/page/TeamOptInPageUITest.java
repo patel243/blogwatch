@@ -32,9 +32,9 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
     //@Tag(GlobalConstants.TAG__EVERY_30_MINUTES)
     @Tag("team-optin-popup-test")
     @Tag(GlobalConstants.TAG_DAILY)    
-    public final void givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException, IOException {
+    public final void givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException, IOException {
         try {
-            logger.info("Starting givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
+            logger.info("Starting givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
             teamOptInPageDriver.loadUrl();
             Thread.sleep(10000);
 
@@ -65,7 +65,7 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
                     fail(e.getMessage());
                 } else {
                     retryCount++;
-                    givenOnTheRwSTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine();
+                    givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine();
 
                 }
             } else {
