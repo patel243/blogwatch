@@ -36,7 +36,7 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
         try {
             logger.info("Starting givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
             teamOptInPageDriver.loadUrl();
-            Thread.sleep(10000);
+            Thread.sleep(15000);
 
             logger.info("forSmallTeam - teamOptInPageDriver.clickOnGetAccessLinkforSmallTeam()");
             teamOptInPageDriver.clickOnGetAccessLinkforSmallTeam();
