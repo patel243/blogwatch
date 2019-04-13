@@ -42,7 +42,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
         Multimap<String, String> gitHubModuleAndPostsMap = null;
 
         logger.info("Start - creating Map for GitHub modules and Posts");
-        gitHubModuleAndPostsMap = Utils.createMapForGitHubModuleAndPosts(codeSnippetCrawlerController.getBaseURL());
+        gitHubModuleAndPostsMap = Utils.createMapForGitHubModuleAndPosts(codeSnippetCrawlerController.getBaseURL(), rateLimiter);
         logger.info("Finished - creating Map for GitHub modules and Posts");
 
         gitHubModuleAndPostsMap.asMap().forEach((gitHubUrl, posts) -> {
@@ -54,10 +54,11 @@ public class Crawler4JTest extends BaseCrawler4JTest {
             // get Java constructs from GitHub module
             codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
             List<JavaConstruct> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
-            
+
             for (String postUrl : posts) {
+                rateLimiter.acquire();
                 try {
-                    logger.info("Getting Java Constructs from" + postUrl );
+                    logger.info("Getting Java Constructs from: " + postUrl);
                     // get HTML of the post
                     Document jSoupDocument = Utils.getJSoupDocument(postUrl);
 

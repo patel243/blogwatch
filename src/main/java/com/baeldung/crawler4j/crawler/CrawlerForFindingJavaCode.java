@@ -40,7 +40,6 @@ public class CrawlerForFindingJavaCode extends BaseCrawler {
             String pageURL = page.getWebURL().getURL();
 
             if (pageURL.endsWith(".java")) {
-                rateLimiter.acquire();
                 HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
                 Document doc = Jsoup.parseBodyFragment(htmlParseData.getHtml(), Utils.getProtocol(pageURL) + page.getWebURL().getDomain());
                 Element rawLink = doc.select("a[href$='.java']:contains(raw)").get(0);

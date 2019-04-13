@@ -38,6 +38,7 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.util.concurrent.RateLimiter;
 
 public class Utils {
 
@@ -329,7 +330,7 @@ public class Utils {
                 c.getMethods().forEach(m -> addNewJavaConstructToTheList(GlobalConstants.CONSTRUCT_TYPE_METHOD, c.getNameAsString(), m.getNameAsString(), javaConstructs));
             });
         } catch (Exception e) {
-            logger.error("Error occured while processing Java code: " + e.getMessage() + "\n" + code);
+            logger.error("Error occured while processing Java code: " + e.getMessage().substring(0, 100) + "\n" + code);
         }
     }
 
@@ -410,12 +411,13 @@ public class Utils {
         return resutls;
     }
 
-    public static Multimap<String, String> createMapForGitHubModuleAndPosts(String baseURL) throws IOException {
+    public static Multimap<String, String> createMapForGitHubModuleAndPosts(String baseURL, RateLimiter rateLimiter) throws IOException {
         Multimap<String, String> gitHubModuleAndPostsMap = ArrayListMultimap.create();
         String url = null;
         int count = 0;
         for (String entry : Utils.fetchAllArticlesAsList()) {
             try {
+                rateLimiter.acquire();
                 url = baseURL + entry;
                 logger.info("Processing:  " + url);
                 if (Utils.excludePage(url, GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {

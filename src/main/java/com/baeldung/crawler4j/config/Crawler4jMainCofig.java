@@ -23,33 +23,33 @@ public class Crawler4jMainCofig {
     public CrawlConfig crawlConfig() {
         CrawlConfig crawlConfig = new CrawlConfig();
         crawlConfig.setCrawlStorageFolder(GlobalConstants.CRAWLER4J_STORAGE_FOLDER);
-        crawlConfig.setPolitenessDelay(400);
+        crawlConfig.setPolitenessDelay(800);
         crawlConfig.setMaxDepthOfCrawling(-1);
         crawlConfig.setMaxPagesToFetch(-1);
         crawlConfig.setIncludeBinaryContentInCrawling(false);
         crawlConfig.setResumableCrawling(false);
         crawlConfig.setMaxDownloadSize(Integer.MAX_VALUE);
-        return  crawlConfig;
+        return crawlConfig;
     }
-    
+
     @Bean
     public PageFetcher pageFetcher() {
-        return  new PageFetcher(crawlConfig());       
+        return new PageFetcher(crawlConfig());
     }
-    
+
     @Bean
     public RobotstxtConfig robotstxtConfig() {
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         robotstxtConfig.setEnabled(false);
-        return  robotstxtConfig;
-    }   
-    
+        return robotstxtConfig;
+    }
+
     @Bean
     public RobotstxtServer robotstxtServer() {
         return new RobotstxtServer(robotstxtConfig(), pageFetcher());
     }
-    
-    @Bean    
+
+    @Bean
     @Scope("prototype")
     public CrawlController crawlController() throws Exception {
         return new CrawlController(crawlConfig(), pageFetcher(), robotstxtServer());
