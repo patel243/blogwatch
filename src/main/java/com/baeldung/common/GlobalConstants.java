@@ -141,7 +141,7 @@ public class GlobalConstants {
     // 3- back-link from GitHub not required
     public static final List<String> URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST = Collections
             .unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/", "/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/",
-                    "/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/", "/persistence-with-spring-series/", "/persistence-with-spring-series-alternative/", "/design-a-user-friendly-java-library/"));
+                    "/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/", "/persistence-with-spring-series/", "/persistence-with-spring-series-alternative/", "/design-a-user-friendly-java-library/", "/travis-ci-build-pipeline"));
 
     // for Q2W3 Fixed Widget test
 
