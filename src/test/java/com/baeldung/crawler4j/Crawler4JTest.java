@@ -54,7 +54,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
             // get Java constructs from GitHub module
             codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
             List<JavaConstruct> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
-
+            codeSnippetCrawlerController.shutdownCrawler();
             for (String postUrl : posts) {
                 rateLimiter.acquire();
                 try {

@@ -42,7 +42,7 @@ public abstract class BaseCrawlController {
      * @param configClass
      * @param numberOfCrawlers
      */
-    public void startCrawlingWithAFreshController(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {
+    public void startCrawlingWithAFreshController(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {        
         crawlController = applicationContext.getBean(CrawlController.class);
         addSeedURLsForCrawl();
         this.crawlController.start(configClass, numberOfCrawlers);

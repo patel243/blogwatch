@@ -20,10 +20,11 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 public class Crawler4jMainCofig {
 
     @Bean
+    @Scope("prototype")
     public CrawlConfig crawlConfig() {
         CrawlConfig crawlConfig = new CrawlConfig();
         crawlConfig.setCrawlStorageFolder(GlobalConstants.CRAWLER4J_STORAGE_FOLDER);
-        crawlConfig.setPolitenessDelay(800);
+        crawlConfig.setPolitenessDelay(400);
         crawlConfig.setMaxDepthOfCrawling(-1);
         crawlConfig.setMaxPagesToFetch(-1);
         crawlConfig.setIncludeBinaryContentInCrawling(false);
@@ -33,11 +34,13 @@ public class Crawler4jMainCofig {
     }
 
     @Bean
+    @Scope("prototype")
     public PageFetcher pageFetcher() {
         return new PageFetcher(crawlConfig());
     }
 
     @Bean
+    @Scope("prototype")
     public RobotstxtConfig robotstxtConfig() {
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         robotstxtConfig.setEnabled(false);
@@ -45,6 +48,7 @@ public class Crawler4jMainCofig {
     }
 
     @Bean
+    @Scope("prototype")
     public RobotstxtServer robotstxtServer() {
         return new RobotstxtServer(robotstxtConfig(), pageFetcher());
     }
