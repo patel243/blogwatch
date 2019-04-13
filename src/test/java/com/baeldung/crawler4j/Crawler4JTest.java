@@ -3,9 +3,7 @@ package com.baeldung.crawler4j;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.jsoup.nodes.Document;
@@ -17,6 +15,8 @@ import com.baeldung.common.Utils;
 import com.baeldung.common.vo.JavaConstruct;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingJavaCode;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 public class Crawler4JTest extends BaseCrawler4JTest {
 
@@ -37,37 +37,44 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Tag("givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub")
     @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
-        String url = null;
-        Map<String, List<JavaConstruct>> pagesWithIssues = new HashMap<>();
 
-        for (String entry : Utils.fetchAllArticlesAsList()) {
-            try {
-                url = codeSnippetCrawlerController.getBaseURL() + entry;
-                logger.info("Processing:  " + url);
-                if (Utils.excludePage(url, GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
-                    continue;
+        Multimap<String, JavaConstruct> postsWithIssues = ArrayListMultimap.create();
+        Multimap<String, String> gitHubModuleAndPostsMap = null;
+
+        logger.info("Start - creating Map for GitHub modules and Posts");
+        gitHubModuleAndPostsMap = Utils.createMapForGitHubModuleAndPosts(codeSnippetCrawlerController.getBaseURL());
+        logger.info("Finished - creating Map for GitHub modules and Posts");
+
+        gitHubModuleAndPostsMap.asMap().forEach((gitHubUrl, posts) -> {
+
+            logger.info("Getting Java Constructs from Github Module:  " + gitHubUrl);
+            codeSnippetCrawlerController.setSeedURL(gitHubUrl);
+            CrawlerForFindingJavaCode.baseURL = gitHubUrl;
+
+            // get Java constructs from GitHub module
+            codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
+            List<JavaConstruct> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
+            
+            for (String postUrl : posts) {
+                try {
+                    logger.info("Getting Java Constructs from" + postUrl );
+                    // get HTML of the post
+                    Document jSoupDocument = Utils.getJSoupDocument(postUrl);
+
+                    // get Java constructs from a post
+                    List<JavaConstruct> javaConstructsOnPost = Utils.getJavaConstructsFromPreTagsInTheJSoupDocument(jSoupDocument);
+
+                    // find Java constructs not found in GitHub module
+                    Utils.filterAndCollectJacaConstructsNotFoundOnGitHub(javaConstructsOnPost, javaConstructsOnGitHub, postsWithIssues, postUrl);
+                } catch (Exception e) {
+                    logger.error("Error occurened while process:" + postUrl + " .Error message:" + e.getMessage());
                 }
-
-                Document jSoupDocument = Utils.getJSoupDocument(url);
-                List<JavaConstruct> javaConstructsOnPost = Utils.getJavaConstructsFromPreTagsInTheJSoupDocument(jSoupDocument);
-
-                String gitHubUrl = Utils.getGitHubModuleUrl(jSoupDocument);
-                logger.info("Github Module:  " + gitHubUrl);
-                codeSnippetCrawlerController.setSeedURL(gitHubUrl);
-                CrawlerForFindingJavaCode.baseURL = gitHubUrl;
-                codeSnippetCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingJavaCode.class, Runtime.getRuntime().availableProcessors());
-                List<JavaConstruct> javaConstructsOnGitHub = Utils.getDiscoveredJavaArtifacts(codeSnippetCrawlerController.getDiscoveredJacaConstructs());
-
-                Utils.filterAndCollectJacaConstructsNotFoundOnGitHub(javaConstructsOnPost, javaConstructsOnGitHub, pagesWithIssues, entry);
-
-            } catch (Exception e) {
-                logger.error("Error occurened while process:" + url + " .Error message:" + e.getMessage());
             }
 
-        }
+        });
 
-        if (pagesWithIssues.size() > 0) {
-            Utils.triggerTestFailure(pagesWithIssues, codeSnippetCrawlerController.getBaseURL());
+        if (postsWithIssues.size() > 0) {
+            Utils.triggerTestFailure(postsWithIssues, codeSnippetCrawlerController.getBaseURL());
         }
 
     }

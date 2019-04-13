@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
@@ -332,17 +333,28 @@ public class Utils {
         }
     }
 
-    public static String getGitHubModuleUrl(Document jSoupDocument) throws IOException {
-        String url = null;
+    public static String getGitHubModuleUrl(Document jSoupDocument, String url) throws IOException {
+        String gitHubUrl = null;
         Elements links = jSoupDocument.select("section a[href*='" + GlobalConstants.GITHUB_REPO_EUGENP + "'],section a[href*='" + GlobalConstants.GITHUB_REPO_BAELDUNG + "']");
-        if (CollectionUtils.isNotEmpty(links)) {
-            url = links.get(links.size() - 1).absUrl("href");
+
+        if (CollectionUtils.isEmpty(links)) {
+            return gitHubUrl;
         }
-        Response response = Jsoup.connect(url).followRedirects(true).execute();
+
+        if (links.size() > 1) {
+            logger.debug("More than one GitHub links Found on :" + url);
+            logger.debug("Will pickup ther last from the following URLs");
+            List<String> gitHubUrls = new ArrayList<>();
+            links.forEach(element -> gitHubUrls.add(element.absUrl("href")));
+            logger.debug(gitHubUrls.toString());
+        }
+        gitHubUrl = links.get(links.size() - 1).absUrl("href");
+
+        Response response = Jsoup.connect(gitHubUrl).followRedirects(true).execute();
         if (null != response) {
             return response.url().toString();
         }
-        return url;
+        return gitHubUrl;
     }
 
     public static List<JavaConstruct> getDiscoveredJavaArtifacts(List<Object> discoveredURLs) {
@@ -354,7 +366,7 @@ public class Utils {
         return allJavaConstructs;
     }
 
-    public static void filterAndCollectJacaConstructsNotFoundOnGitHub(List<JavaConstruct> javaConstructsOnPost, List<JavaConstruct> javaConstructsOnGitHub, Map<String, List<JavaConstruct>> pagesWithIssues, String url) {
+    public static void filterAndCollectJacaConstructsNotFoundOnGitHub(List<JavaConstruct> javaConstructsOnPost, List<JavaConstruct> javaConstructsOnGitHub, Multimap<String, JavaConstruct> pagesWithIssues, String url) {
         javaConstructsOnPost.forEach(javaConstructOnPage -> {
             if (javaConstructsOnGitHub.stream().filter(javaConstructOnGitHub -> javaConstructOnPage.equalsTo(javaConstructOnGitHub)).count() > 0) {
                 javaConstructOnPage.setFoundOnGitHub(true);
@@ -362,21 +374,18 @@ public class Utils {
         });
 
         // @formatter:off
-        List<JavaConstruct> javaConstructsWithIssues = javaConstructsOnPost.stream().filter(javaConstructOnPage -> !javaConstructOnPage.isFoundOnGitHub() && !javaConstructOnPage.getConstructName().equals(GlobalConstants.CONSTRUCT_DUMMY_CLASS_NAME))
-                                                                                     .collect(Collectors.toList());
-        // @formatter:on
-
-        if (javaConstructsWithIssues.size() > 0) {
-            pagesWithIssues.put(url, javaConstructsWithIssues);
-        }
+        javaConstructsOnPost.stream().filter(javaConstructOnPage -> !javaConstructOnPage.isFoundOnGitHub() && !javaConstructOnPage.getConstructName().equals(GlobalConstants.CONSTRUCT_DUMMY_CLASS_NAME))
+                                     .forEach(javaConstruct -> pagesWithIssues.put(url, javaConstruct));
+                                                                                     
+        // @formatter:on        
 
     }
 
-    public static void triggerTestFailure(Map<String, List<JavaConstruct>> pagesWithIssues, String baseUrl) {
+    public static void triggerTestFailure(Multimap<String, JavaConstruct> pagesWithIssues, String baseUrl) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
-        pagesWithIssues.forEach((key, value) -> {
+        pagesWithIssues.asMap().forEach((key, value) -> {
             resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, baseUrl + key));
         });
 
@@ -399,6 +408,42 @@ public class Utils {
      // @formatter:on
 
         return resutls;
+    }
+
+    public static Multimap<String, String> createMapForGitHubModuleAndPosts(String baseURL) throws IOException {
+        Multimap<String, String> gitHubModuleAndPostsMap = ArrayListMultimap.create();
+        String url = null;
+        int count = 0;
+        for (String entry : Utils.fetchAllArticlesAsList()) {
+            try {
+                url = baseURL + entry;
+                logger.info("Processing:  " + url);
+                if (Utils.excludePage(url, GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
+                    continue;
+                }
+
+                Document jSoupDocument = Utils.getJSoupDocument(url);
+
+                String gitHubUrl = Utils.getGitHubModuleUrl(jSoupDocument, url);
+                if (StringUtils.isBlank(gitHubUrl)) {
+                    continue;
+                }
+                if (gitHubUrl.endsWith("/")) {
+                    gitHubUrl = gitHubUrl.substring(0, gitHubUrl.length() - 1);
+                }
+
+                gitHubModuleAndPostsMap.put(gitHubUrl, url);
+                if (count++ == 100) {
+                    return gitHubModuleAndPostsMap;
+                }
+
+            } catch (Exception e) {
+                logger.error("Error occurened in createMapForGitHubModuleAndPosts while process:" + url + " .Error message:" + e.getMessage());
+            }
+
+        }
+
+        return gitHubModuleAndPostsMap;
     }
 
 }

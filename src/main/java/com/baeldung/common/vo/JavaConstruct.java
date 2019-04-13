@@ -26,7 +26,6 @@ public class JavaConstruct {
         this.foundOnGitHub = false;
     }
 
-
     public boolean equalsTo(Object obj) {
         if (this == obj)
             return true;

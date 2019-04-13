@@ -14,42 +14,42 @@ import edu.uci.ics.crawler4j.crawler.CrawlController;
 
 public abstract class BaseCrawlController {
 
-    protected static final Logger logger = LoggerFactory.getLogger(BaseCrawlController.class);    
+    protected static final Logger logger = LoggerFactory.getLogger(BaseCrawlController.class);
 
     CrawlController crawlController;
 
     List<String> seedURLs;
-    
+
     @Value("${base.url}")
     private String baseURL;
-    
+
     @Autowired
-    ApplicationContext applicationContext;    
+    ApplicationContext applicationContext;
 
     /**
      *  start crawl with thread count supplied in numberOfCrawlers
      * @param configClass
      * @param numberOfCrawlers
      */
-    public void startCrawler(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {        
+    public void startCrawler(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {
         addSeedURLsForCrawl();
         this.crawlController.start(configClass, numberOfCrawlers);
     }
-    
+
     /**
      *  reset the controller - deletes the storage folder
      *  start crawl with thread count supplied in numberOfCrawlers
      * @param configClass
      * @param numberOfCrawlers
      */
-    public void startCrawlingWithAFreshController(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {       
-       crawlController = applicationContext.getBean(CrawlController.class);
-       addSeedURLsForCrawl();
-       this.crawlController.start(configClass, numberOfCrawlers);
-    }    
+    public void startCrawlingWithAFreshController(Class<? extends BaseCrawler> configClass, int numberOfCrawlers) {
+        crawlController = applicationContext.getBean(CrawlController.class);
+        addSeedURLsForCrawl();
+        this.crawlController.start(configClass, numberOfCrawlers);
+    }
 
     private void addSeedURLsForCrawl() {
-        seedURLs.forEach(this.crawlController::addSeed);   
+        seedURLs.forEach(this.crawlController::addSeed);
     }
 
     protected List<String> getSeedURLs() {
@@ -58,12 +58,12 @@ public abstract class BaseCrawlController {
 
     protected void setSeedURLs(List<String> seedURLs) {
         this.seedURLs = seedURLs;
-    }    
+    }
 
     protected List<Object> getCrawlersLocalData() {
         return this.crawlController.getCrawlersLocalData();
     }
-    
+
     public void shutdownCrawler() {
         this.crawlController.shutdown();
         this.crawlController.waitUntilFinish();
@@ -71,6 +71,6 @@ public abstract class BaseCrawlController {
 
     public String getBaseURL() {
         return baseURL;
-    }        
+    }
 
 }
