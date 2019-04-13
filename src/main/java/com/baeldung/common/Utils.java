@@ -387,10 +387,10 @@ public class Utils {
         StringBuilder resultBuilder = new StringBuilder();
 
         pagesWithIssues.asMap().forEach((key, value) -> {
-            resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, baseUrl + key));
+            resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, key));
         });
 
-        fail("\n\nFailed tests-->" + resultBuilder.toString());
+        fail("\n\nTest Results-->" + resultBuilder.toString());
     }
 
     private static Object formatResultsForJavaConstructsTest(List<JavaConstruct> javaConstructs, String url) {
@@ -435,7 +435,7 @@ public class Utils {
                 }
 
                 gitHubModuleAndPostsMap.put(gitHubUrl, url);
-                if (count++ == 100) {
+                if (count++ == 15) {
                     return gitHubModuleAndPostsMap;
                 }
 

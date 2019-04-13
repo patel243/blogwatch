@@ -27,9 +27,9 @@ public class CrawlerForFindingJavaCode extends BaseCrawler {
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String pageURL = url.getURL().toLowerCase();
         String referringPageURL = referringPage.getWebURL().getURL();
+
         // @formatter:off
-        return super.commonPredicate(pageURL, referringPageURL)                                
-                && FILTERS_ADDITIONAL_DIRECTORIES.matcher(pageURL).matches()
+        return super.commonPredicate(pageURL, referringPageURL)                                               
                 && (pageURL.toLowerCase().startsWith(baseURL.toLowerCase()) || pageURL.toLowerCase().replace("/blob/", "/tree/").startsWith(baseURL.toLowerCase()));
         // @formatter:on
     }
