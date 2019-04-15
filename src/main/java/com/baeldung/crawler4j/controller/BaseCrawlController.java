@@ -2,6 +2,7 @@ package com.baeldung.crawler4j.controller;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,9 @@ public abstract class BaseCrawlController {
     }
 
     private void addSeedURLsForCrawl() {
-        seedURLs.forEach(this.crawlController::addSeed);
+        if (CollectionUtils.isNotEmpty(seedURLs)) {
+            seedURLs.forEach(this.crawlController::addSeed);
+        }
     }
 
     protected List<String> getSeedURLs() {

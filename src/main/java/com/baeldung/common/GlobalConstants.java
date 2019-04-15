@@ -12,12 +12,14 @@ public class GlobalConstants {
     public static final String ENV_PROPERTY_BASE_URL = "base.url";
     public static final String ENV_PROPERTY_SPRING_PROFILE = "spring.profiles.active";
     public static final String ENV_PROPERTY_TARGET_ENV = "target.env";
+    public static final String ENV_PROPERTY_HEADLESS_BROWSER_NAME = "headless.browser.name";
 
     public static final String DEFAULT_SPRING_PROFILE = "headless-browser";
 
     // targent env
     public static final String TARGET_ENV_WINDOWS = "win";
     public static final String TARGET_ENV_LINUX = "linux";
+    public static final String TARGET_ENV_DEFAULT_HEADLESS_BROWSER = GlobalConstants.HEADLESS_BROWSER_PHANTOMJS;
 
     // headless browser name
     public static final String HEADLESS_BROWSER_PHANTOMJS = "phantomJS";
