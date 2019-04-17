@@ -43,9 +43,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         page.quiet();
     }
 
-    @Test
-    @Tag(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv)
-    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv)
+    @Test   
     public final void givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             if (Utils.excludePage(page.getUrl(), GlobalConstants.PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV, false)) {
@@ -70,9 +68,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test
-    @Tag(GlobalConstants.givenAllPages_whenPageLoads_thenTheMetaDescriptionExists)
-    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists)
+    @Test    
     public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, false) && !page.findMetaDescriptionTag()) {
@@ -85,9 +81,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test
-    @Tag(GlobalConstants.givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
-    @Tag(GlobalConstants.givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
+    @Test    
     public final void givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
@@ -100,9 +94,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test
-    @Tag(GlobalConstants.givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses)
-    @Tag(GlobalConstants.givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses)
+    @Test    
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;

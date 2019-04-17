@@ -50,7 +50,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv)
     public final void givenAllTheArticles_whenArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
         do {
             if (page.findEmptyDivs().size() > 0) {
@@ -64,7 +63,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop)
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
@@ -78,7 +76,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd)
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
@@ -92,8 +89,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv)
-    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv)
     public final void givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
@@ -120,8 +115,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists)
-    @Tag(GlobalConstants.givenAllTheURLs_whenURLLoads_thenTheMetaDescriptionExists)
     public final void givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, true) && !page.findMetaDescriptionTag()) {
@@ -141,9 +134,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
      * 3rd URL - the master module, immediate child of \master\
      * 4th URL - the immediate child of the parent(eugenp or Baeldung) repository 
      */
-
     @Test
-    @Tag(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle)
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
         String articleHeading = null;
         String articleRelativeUrl = null;
@@ -173,7 +164,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList)
     public final void givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList() throws IOException {
         do {
             String authorName = page.findAuthorOfTheArticle();
@@ -188,8 +178,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
-    @Tag(GlobalConstants.givenAllTheURls_whenAURLLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)
     public final void givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
@@ -202,9 +190,8 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
             Utils.triggerTestFailure(badURLs);
         }
     }
-    
+
     @Test
-    @Tag(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainInvalidCharacters)
     public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainInvalidCharacters() throws IOException {
         do {
             if (page.findInvalidCharactersInTheArticle()) {
@@ -218,8 +205,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses)
-    @Tag(GlobalConstants.givenTestsTargetedToAllUrls_whenTheTestRuns_thenItPasses)
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;
