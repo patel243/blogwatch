@@ -394,4 +394,14 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
+    public boolean findInvalidCharactersInTheArticle() {
+        String pageSource = this.getWebDriver().getPageSource();
+        if (pageSource.indexOf("”&gt;") != -1 || pageSource.indexOf("”>") != -1 || pageSource.indexOf("”\">") != -1 || pageSource.indexOf("”\"&gt;") != -1) {
+            return true;
+        }
+
+        return false;
+
+    }
+
 }
