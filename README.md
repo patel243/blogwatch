@@ -71,7 +71,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 
 | Sr. | Test Name |
 | --- | --------- |
-| 1 | **givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine** <br/><br/>daily<br/><br/>This test verifies optin popups in the following article - https://www.baeldung.com/rest-with-spring-for-teams-kinsta-test |
+| 1 | **givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine** <br/><br/>daily<br/><br/>This test verifies optin popups in the following article - https://www.baeldung.com/learn-spring-security-for-teams|
 | 2 | **givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText** <br/><br/> daily <br/><br/> Verifies that the Java weekly issue links in the homepage point to correct URLs |
 | 3 | **givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu** <br/><br/> daily <br/><br/> Verifies that the CATEGORY menu is available in the homepage footer |
 | 4 | **givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW** <br/><br/> daily <br/><br/> If we hit http://baeldung.com, it should redirect to http://www.baeldung.com |
@@ -109,4 +109,4 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 36 | **givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath** <br/><br/> twice-a-month <br/><br/> This test verifies that mage links in the og:image and twitter:image parameters are absolute. The test runs on all the pages|
 | 37 | **givenOnTheBaeldungRSSFeed_whenTheFirstUrlIsHit_thenItPointsToTheBaeldungSite** <br/><br/> daily <br/><br/> This test verifies that the first link in the Baeldung RSS feed ( https://www.baeldung.com/rss/ ) points to the www.baeldung.com |
 | 38 | **givenOnCoursePages_whenAPageLoads_thenItContainsImportantAnchors** <br/><br/> daily <br/><br/> This test verifies that the LSS and RWS course pages contain following anchors: </br>#table</br>#master-class</br>#certification-class |
-| 39 | **givenOnCoursePages_whenAPageLoads_thenItContainsImportantAnchors** <br/><br/> twice-a-month <br/><br/> This test verifies that the articles does not container ”> or ”"> characters |
+| 39 | **givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainInvalidCharacters** <br/><br/> twice-a-month <br/><br/> This test verifies that the articles does not contain ”> or ”"> characters |
