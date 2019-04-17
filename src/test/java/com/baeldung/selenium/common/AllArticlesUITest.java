@@ -192,10 +192,10 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainInvalidCharacters() throws IOException {
+    public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations() throws IOException {
         do {
             if (page.findInvalidCharactersInTheArticle()) {
-                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainInvalidCharacters, page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -218,7 +218,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 givenAllArticles_whenArticleLoads_thenTheMetaDescriptionExists();
                 givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
                 givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
-                givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainInvalidCharacters();
+                givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations();
                 // note: this test should be called at the last because it loads a GitHub url
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
