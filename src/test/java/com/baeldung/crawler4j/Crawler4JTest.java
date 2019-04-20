@@ -34,7 +34,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
         }
     }
 
-    @Tag("givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub")
+    @Tag("matchJavaConstructs")
     @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
 
