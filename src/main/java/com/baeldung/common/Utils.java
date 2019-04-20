@@ -367,7 +367,7 @@ public class Utils {
         return allJavaConstructs;
     }
 
-    public static void filterAndCollectJacaConstructsNotFoundOnGitHub(List<JavaConstruct> javaConstructsOnPost, List<JavaConstruct> javaConstructsOnGitHub, Multimap<String, JavaConstruct> pagesWithIssues, String url) {
+    public static void filterAndCollectJacaConstructsNotFoundOnGitHub(List<JavaConstruct> javaConstructsOnPost, List<JavaConstruct> javaConstructsOnGitHub, Multimap<String, JavaConstruct> results, String url) {
         javaConstructsOnPost.forEach(javaConstructOnPage -> {
             if (javaConstructsOnGitHub.stream().filter(javaConstructOnGitHub -> javaConstructOnPage.equalsTo(javaConstructOnGitHub)).count() > 0) {
                 javaConstructOnPage.setFoundOnGitHub(true);
@@ -376,38 +376,39 @@ public class Utils {
 
         // @formatter:off
         javaConstructsOnPost.stream().filter(javaConstructOnPage -> !javaConstructOnPage.isFoundOnGitHub() && !javaConstructOnPage.getConstructName().equals(GlobalConstants.CONSTRUCT_DUMMY_CLASS_NAME))
-                                     .forEach(javaConstruct -> pagesWithIssues.put(url, javaConstruct));
-                                                                                     
-        // @formatter:on        
+                                     .forEach(javaConstruct -> results.put(url, javaConstruct));                                                                                            
+        // @formatter:on 
+        if (!results.containsKey(url)) {
+            results.put(url, null);
+        }
 
     }
 
-    public static void triggerTestFailure(Multimap<String, JavaConstruct> pagesWithIssues, String baseUrl) {
+    public static void triggerTestFailure(Multimap<String, JavaConstruct> results, String baseUrl) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
-        pagesWithIssues.asMap().forEach((key, value) -> {
+        results.asMap().forEach((key, value) -> {
             resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, key));
         });
 
         fail("\n\nTest Results-->" + resultBuilder.toString());
     }
 
-    private static Object formatResultsForJavaConstructsTest(List<JavaConstruct> javaConstructs, String url) {
+    private static String formatResultsForJavaConstructsTest(List<JavaConstruct> javaConstructs, String url) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
         // @formatter:off        
         javaConstructs.forEach((javaConstruct) -> {
-            resultBuilder.append(javaConstruct.toString()+"\n");            
+            resultBuilder.append(javaConstruct == null ? "OK" :javaConstruct.toString()+"\n");            
         });
         String resutls = "\n------------------------------------------------------------------------------------\n" 
                         + url
                         + "\n-------------------------------------------------------------------------------------\n" 
                         + resultBuilder 
-                        + "\n------------------------------------------------------------------------------------\n";
-     // @formatter:on
-
+                        + "\n------------------------------------------------------------------------------------\n\n";
+        // @formatter:on
         return resutls;
     }
 
@@ -435,7 +436,7 @@ public class Utils {
                 }
 
                 gitHubModuleAndPostsMap.put(gitHubUrl, url);
-                if (count++ == 15) {
+                if (count++ == 100) {
                     return gitHubModuleAndPostsMap;
                 }
 
@@ -446,6 +447,15 @@ public class Utils {
         }
 
         return gitHubModuleAndPostsMap;
+    }
+
+    public static boolean hasArticlesWithProblems(Multimap<String, JavaConstruct> results) {
+        for (Map.Entry<String, Collection<JavaConstruct>> entry : results.asMap().entrySet()) {
+            if (null != entry.getKey()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

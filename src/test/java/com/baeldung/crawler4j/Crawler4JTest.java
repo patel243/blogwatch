@@ -38,7 +38,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
 
-        Multimap<String, JavaConstruct> postsWithIssues = ArrayListMultimap.create();
+        Multimap<String, JavaConstruct> results = ArrayListMultimap.create();
         Multimap<String, String> gitHubModuleAndPostsMap = null;
 
         logger.info("Start - creating Map for GitHub modules and Posts");
@@ -66,7 +66,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
                     List<JavaConstruct> javaConstructsOnPost = Utils.getJavaConstructsFromPreTagsInTheJSoupDocument(jSoupDocument);
 
                     // find Java constructs not found in GitHub module
-                    Utils.filterAndCollectJacaConstructsNotFoundOnGitHub(javaConstructsOnPost, javaConstructsOnGitHub, postsWithIssues, postUrl);
+                    Utils.filterAndCollectJacaConstructsNotFoundOnGitHub(javaConstructsOnPost, javaConstructsOnGitHub, results, postUrl);
                 } catch (Exception e) {
                     logger.error("Error occurened while process:" + postUrl + " .Error message:" + e.getMessage());
                 }
@@ -74,8 +74,8 @@ public class Crawler4JTest extends BaseCrawler4JTest {
 
         });
 
-        if (postsWithIssues.size() > 0) {
-            Utils.triggerTestFailure(postsWithIssues, codeSnippetCrawlerController.getBaseURL());
+        if (Utils.hasArticlesWithProblems(results)) {
+            Utils.triggerTestFailure(results, codeSnippetCrawlerController.getBaseURL());
         }
 
     }
