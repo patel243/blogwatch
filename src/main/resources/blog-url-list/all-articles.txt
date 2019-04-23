@@ -2525,7 +2525,6 @@
 /birt-reports-spring-boot
 /java-avoid-null-check
 /java-cannot-reference-x-before-supertype-constructor-error
-/cf-verify-bsJTvFV6RdTYSpBO
 /spring-rest-http-headers
 /spring-boot-environmentpostprocessor
 /spring-data-case-insensitive-queries
@@ -2543,3 +2542,18 @@
 /jhipster-new-apis-and-views
 /spring-data-jpa-save-saveandflush
 /java-jar-war-packaging
+/java-generic-constructors
+/groovy-def-keyword
+/spring-data-jpa-repository-populators
+/sql-joins
+/hibernate-persisting-maps
+/java-anonymous-classes
+/spring-data-web-support
+/spring-boot-configure-tomcat
+/spring-boot-h2-database
+/spring-boot-testing-log-level
+/spring-data-jpa-null-parameters
+/guava-multiset
+/spring-data-jpa-projections
+/jpa-embedded-embeddable
+/java-weekly-277
