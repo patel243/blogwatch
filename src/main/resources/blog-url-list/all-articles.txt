@@ -2557,3 +2557,14 @@
 /spring-data-jpa-projections
 /jpa-embedded-embeddable
 /java-weekly-277
+/groovy-maps
+/kotlin-console-io
+/groovy-pattern-matching
+/jackson-yaml
+/spring-exceptions-json
+/spring-security-kerberos
+/rest-assured-authentication
+/java-set-operations
+/google-tink
+/spring-data-jpa-delete
+/java-weekly-278
