@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
@@ -19,6 +20,9 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public class Crawler4JTest extends BaseCrawler4JTest {
+
+    @Value("${file.for.javaConstructs.test}")
+    private String fileForJavaConstructsTest;
 
     @Tag(GlobalConstants.TAG_MONTHLY)
     @Tag("empty-or-none-readme")
@@ -38,11 +42,12 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenJavaClassesAndMethodsCanBeFoundOnGitHub() throws IOException {
 
+        logger.info("Using article file: " + fileForJavaConstructsTest);
         Multimap<String, JavaConstruct> results = ArrayListMultimap.create();
         Multimap<String, String> gitHubModuleAndPostsMap = null;
 
         logger.info("Start - creating Map for GitHub modules and Posts");
-        gitHubModuleAndPostsMap = Utils.createMapForGitHubModuleAndPosts(codeSnippetCrawlerController.getBaseURL(), rateLimiter);
+        gitHubModuleAndPostsMap = Utils.createMapForGitHubModuleAndPosts(codeSnippetCrawlerController.getBaseURL(), fileForJavaConstructsTest, rateLimiter);
         logger.info("Finished - creating Map for GitHub modules and Posts");
 
         gitHubModuleAndPostsMap.asMap().forEach((gitHubUrl, posts) -> {

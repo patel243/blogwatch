@@ -58,6 +58,11 @@ public class Utils {
         return Utils.fetchAllArtilcesList().collect(Collectors.toList());
     }
 
+    public static List<String> fetchFileAsList(String fileName) throws IOException {
+        File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + fileName).getPath());
+        return Files.lines(Paths.get(file.getAbsolutePath())).collect(Collectors.toList());
+    }
+
     public static Stream<String> fetchAllPagesList() throws IOException {
         File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_PAGES_FILE_NAME).getPath());
         return Files.lines(Paths.get(file.getAbsolutePath()));
@@ -412,11 +417,11 @@ public class Utils {
         return resutls;
     }
 
-    public static Multimap<String, String> createMapForGitHubModuleAndPosts(String baseURL, RateLimiter rateLimiter) throws IOException {
+    public static Multimap<String, String> createMapForGitHubModuleAndPosts(String baseURL, String fileForJavaConstructsTest, RateLimiter rateLimiter) throws IOException {
         Multimap<String, String> gitHubModuleAndPostsMap = ArrayListMultimap.create();
         String url = null;
         int count = 0;
-        for (String entry : Utils.fetchAllArticlesAsList()) {
+        for (String entry : Utils.fetchFileAsList(fileForJavaConstructsTest)) {
             try {
                 rateLimiter.acquire();
                 url = baseURL + entry;
