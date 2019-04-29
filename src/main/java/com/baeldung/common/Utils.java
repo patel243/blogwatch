@@ -456,8 +456,10 @@ public class Utils {
 
     public static boolean hasArticlesWithProblems(Multimap<String, JavaConstruct> results) {
         for (Map.Entry<String, Collection<JavaConstruct>> entry : results.asMap().entrySet()) {
-            if (null != entry.getKey()) {
-                return true;
+            for (JavaConstruct javaConstruct : entry.getValue()) {
+                if (javaConstruct != null) {
+                    return true;
+                }
             }
         }
         return false;
