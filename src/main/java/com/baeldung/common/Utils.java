@@ -419,8 +419,7 @@ public class Utils {
 
     public static Multimap<String, String> createMapForGitHubModuleAndPosts(String baseURL, String fileForJavaConstructsTest, RateLimiter rateLimiter) throws IOException {
         Multimap<String, String> gitHubModuleAndPostsMap = ArrayListMultimap.create();
-        String url = null;
-        int count = 0;
+        String url = null;      
         for (String entry : Utils.fetchFileAsList(fileForJavaConstructsTest)) {
             try {
                 rateLimiter.acquire();
@@ -440,10 +439,7 @@ public class Utils {
                     gitHubUrl = gitHubUrl.substring(0, gitHubUrl.length() - 1);
                 }
 
-                gitHubModuleAndPostsMap.put(gitHubUrl, url);
-                if (count++ == 100) {
-                    return gitHubModuleAndPostsMap;
-                }
+                gitHubModuleAndPostsMap.put(gitHubUrl, url);                
 
             } catch (Exception e) {
                 logger.error("Error occurened in createMapForGitHubModuleAndPosts while process:" + url + " .Error message:" + e.getMessage());
