@@ -65,7 +65,10 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Test
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheTopOfThePage().size() != 1) {
+            if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_TOP_TEST, true)) {
+                continue;
+            }
+            if (page.findShortCodesAtTheTopOfThePage().size() != 1) {
                 badURLs.put(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheTop, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
@@ -78,7 +81,10 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Test
     public final void givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && page.findShortCodesAtTheEndOfThePage().size() != 1) {
+            if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_END_TEST, true)) {
+                continue;
+            }
+            if (page.findShortCodesAtTheEndOfThePage().size() != 1) {
                 badURLs.put(GlobalConstants.givenAllArticleList_whenArticleLoads_thenItHasSingleShortcodeAtTheEnd, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());

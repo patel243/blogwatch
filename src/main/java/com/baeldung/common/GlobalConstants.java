@@ -132,6 +132,10 @@ public class GlobalConstants {
 
     public static final List<String> URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST = Arrays.asList(new String[] { "/start-here/", "/spring-5/", "/swagger-test-on-a-page/", "/follow/", "/baeldung-company-info/", "/contact/", "/rest-course-almost-done/" });
 
+    public static final List<String> URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_TOP_TEST = Arrays.asList(new String[] { "/spring-java-online-courses/" });
+
+    public static final List<String> URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_END_TEST = Arrays.asList(new String[] { "/spring-java-online-courses/" });
+
     // Baeldung GitHub repos
 
     public static final String GITHUB_REPO_EUGENP = "github.com/eugenp";
