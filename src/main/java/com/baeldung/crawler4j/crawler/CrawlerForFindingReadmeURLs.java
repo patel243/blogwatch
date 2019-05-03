@@ -11,7 +11,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
 
 public class CrawlerForFindingReadmeURLs extends BaseCrawler {
     
-    private final static Pattern FILTER_ADDITIONAL_FILE_EXTENTIONS = Pattern.compile(".*(\\.(java)$");
+    private final static Pattern FILTER_ADDITIONAL_FILE_EXTENTIONS = Pattern.compile(".*(\\.(java))$");
     private final static Pattern FILTERS_ADDITIONAL_DIRECTORIES = Pattern.compile(".*(\\/test\\/).*");
     private List<String> discoveredURLs = new ArrayList<>();
 
