@@ -228,5 +228,6 @@ public class GlobalConstants {
     public static final String givenAllPages_whenPageLoads_thenTheMetaDescriptionExists = "givenAllPages_whenPageLoads_thenTheMetaDescriptionExists";
     public static final String givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
     public static final String givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations = "givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations";
+    public static final String givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization = "givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization";
 
 }

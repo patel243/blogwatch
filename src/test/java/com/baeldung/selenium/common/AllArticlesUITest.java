@@ -211,6 +211,20 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
+    public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization() throws IOException {
+        do {
+            List<String> invalidTitles = page.findInvalidTitles();
+            if (invalidTitles.size() > 0) {
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization, page.getUrlWithNewLineFeed() + " (\n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining()) + ")\n");
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            Utils.triggerTestFailure(badURLs);
+        }
+    }
+
+    @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
         allTestsFlag = true;
@@ -228,7 +242,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 // note: this test should be called at the last because it loads a GitHub url
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
-                logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
+                logger.error("Error occurened while processing:" + page.getUrl() + " error message:" + e.getMessage());
             }
             loadNextUrl = true;
         } while (loadNextURL());

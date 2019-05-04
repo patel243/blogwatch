@@ -10,16 +10,20 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.function.BiPredicate;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
+import org.apache.commons.text.WordUtils;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -419,7 +423,7 @@ public class Utils {
 
     public static Multimap<String, String> createMapForGitHubModuleAndPosts(String baseURL, String fileForJavaConstructsTest, RateLimiter rateLimiter) throws IOException {
         Multimap<String, String> gitHubModuleAndPostsMap = ArrayListMultimap.create();
-        String url = null;      
+        String url = null;
         for (String entry : Utils.fetchFileAsList(fileForJavaConstructsTest)) {
             try {
                 rateLimiter.acquire();
@@ -439,7 +443,7 @@ public class Utils {
                     gitHubUrl = gitHubUrl.substring(0, gitHubUrl.length() - 1);
                 }
 
-                gitHubModuleAndPostsMap.put(gitHubUrl, url);                
+                gitHubModuleAndPostsMap.put(gitHubUrl, url);
 
             } catch (Exception e) {
                 logger.error("Error occurened in createMapForGitHubModuleAndPosts while process:" + url + " .Error message:" + e.getMessage());
@@ -459,6 +463,25 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static boolean isValidTitle(String title) {
+        List<String> tokens = Collections.list(new StringTokenizer(title, " ")).stream().map(token -> applyCapatalization((String) token)).collect(Collectors.toList());
+
+        tokens.set(0, WordUtils.capitalize(tokens.get(0)));
+        tokens.set(tokens.size() - 1, WordUtils.capitalize(tokens.get(tokens.size() - 1)));
+
+        return title.equals(StringUtils.join(tokens, " "));
+    }
+
+    private static String applyCapatalization(String token) {
+
+        String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via";
+        if (Pattern.matches(regex, token)) {
+            return token.toLowerCase();
+        }
+
+        return WordUtils.capitalize(token);
     }
 
 }

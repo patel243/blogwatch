@@ -404,4 +404,15 @@ public class SitePage extends BlogBaseDriver {
 
     }
 
+    public List<String> findInvalidTitles() {
+        List<String> invalidTitles = new ArrayList<>();
+        List<WebElement> titles = this.getWebDriver().findElements(By.xpath("//h2/strong | //h3/strong"));
+        for (WebElement title : titles) {
+            if (!Utils.isValidTitle(title.getText())) {
+                invalidTitles.add(title.getText());
+            }
+        }
+        return invalidTitles;
+    }
+
 }
