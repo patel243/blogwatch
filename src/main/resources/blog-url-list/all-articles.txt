@@ -2568,3 +2568,16 @@
 /google-tink
 /spring-data-jpa-delete
 /java-weekly-278
+/fastutil
+/clojure-ring
+/java-time-milliseconds
+/maven-profiles
+/java-array-add-element-at-the-end
+/spring-data-jpa-named-entity-graphs
+/jackson-kotlin
+/java-weekly-279
+/webflux-webclient-parameters
+/java-string-contains-substring
+/jpa-size-length-column-differences
+/java-9-migration-issue
+/mongodb-bson
