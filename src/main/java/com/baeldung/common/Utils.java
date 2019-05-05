@@ -485,7 +485,7 @@ public class Utils {
     }
 
     public static String formatResultsForCapatalizationTest(String url, List<String> invalidTitles) {
-        return "\n\n" + url + " \n----------------------------------------------------------------------------------------------------------\n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining());
+        return "\n\n" + url + " \n----------------------------------------------------------------\n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining());
     }
 
 }
