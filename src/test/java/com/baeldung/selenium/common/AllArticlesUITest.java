@@ -212,12 +212,13 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization() throws IOException {
+        int count = 0;
         do {
             List<String> invalidTitles = page.findInvalidTitles();
             if (invalidTitles.size() > 0) {
                 badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization, page.getUrlWithNewLineFeed() + " (\n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining()) + ")\n");
             }
-        } while (loadNextURL());
+        } while (loadNextURL() && count++ < 20);
 
         if (!allTestsFlag && badURLs.size() > 0) {
             Utils.triggerTestFailure(badURLs);
