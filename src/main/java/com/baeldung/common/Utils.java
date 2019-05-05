@@ -484,4 +484,8 @@ public class Utils {
         return WordUtils.capitalize(token);
     }
 
+    public static String formatResultsForCapatalizationTest(String url, List<String> invalidTitles) {
+        return "\n\n" + url + " \n----------------------------------------------------------------------------------------------------------\n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining()) + "\n";
+    }
+
 }

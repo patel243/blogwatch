@@ -217,8 +217,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
             try {
                 List<String> invalidTitles = page.findInvalidTitles();
                 if (invalidTitles.size() > 0) {
-                    badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization,
-                            page.getUrlWithNewLineFeed() + " \n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining()) + "\n");
+                    badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization, Utils.formatResultsForCapatalizationTest(page.getUrl(), invalidTitles));
                 }
             } catch (Exception e) {
                 logger.error("Error occurened in Title Capatilization test for: " + page.getUrl() + " error message:" + e.getMessage());
