@@ -31,7 +31,7 @@ public class GitModulesReadmeLinksExtractor {
     public void findAndUpdateLinksToReadmeFiles() throws IOException {
 
         int totalURls = 0;
-        tutorialsRepoCrawlerController.startCrawler(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
+        tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
         File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.README_LINKS_FOLDER_PATH + GlobalConstants.README_LINKS_FILE_NAME).getPath());
         Path readmeLiksFilePath = Paths.get(file.getAbsolutePath());
         Files.write(readmeLiksFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);

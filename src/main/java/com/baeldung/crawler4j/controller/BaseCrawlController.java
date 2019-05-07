@@ -50,7 +50,7 @@ public abstract class BaseCrawlController {
     }
 
     private void addSeedURLsForCrawl() {
-        if (CollectionUtils.isNotEmpty(seedURLs)) {
+        if (CollectionUtils.isNotEmpty(seedURLs) && null != this.crawlController) {
             seedURLs.forEach(this.crawlController::addSeed);
         }
     }
