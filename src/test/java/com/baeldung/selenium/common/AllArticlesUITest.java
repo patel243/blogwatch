@@ -212,7 +212,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization() throws IOException {
-        int count = 0;
         do {
             try {
                 List<String> invalidTitles = page.findInvalidTitles();
@@ -222,7 +221,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
             } catch (Exception e) {
                 logger.error("Error occurened in Title Capatilization test for: " + page.getUrl() + " error message:" + e.getMessage());
             }
-        } while (loadNextURL() && count++ < 30);
+        } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
             Utils.triggerTestFailure(badURLs);
@@ -244,6 +243,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
                 givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
                 givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations();
+                givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization();
                 // note: this test should be called at the last because it loads a GitHub url
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
@@ -265,7 +265,6 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
 
         page.setUrl(page.getBaseURL() + allArticlesList.next());
         logger.info(page.getUrl());
-
         page.loadUrlWithThrottling();
 
         return true;
