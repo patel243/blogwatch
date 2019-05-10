@@ -4,10 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.NTCredentials;
@@ -21,7 +17,6 @@ import com.baeldung.common.GlobalConstants;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;
-
 
 public class headlessBrowserConfig extends browserConfig {
 
@@ -88,13 +83,7 @@ public class headlessBrowserConfig extends browserConfig {
             cliArgsCap.add("--proxy-type=http");
             caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
             caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:66.0.4) Gecko/20100101 Firefox/66.0.4");
-            
-            //set logging level
-            /*Logger rootLogger = LogManager.getLogManager().getLogger("");
-            rootLogger.setLevel(Level.INFO);
-            for (Handler h : rootLogger.getHandlers()) {
-                h.setLevel(Level.WARNING);
-            }*/
+
             webDriver = new PhantomJSDriver(caps);
         }
         webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

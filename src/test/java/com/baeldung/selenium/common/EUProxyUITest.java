@@ -44,9 +44,7 @@ public class EUProxyUITest extends BaseUISeleniumTest {
 
             page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
 
-            page.loadUrl();
-            
-            System.out.println(page.getWebDriver().getPageSource());
+            page.loadUrl();                        
 
             assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region. Proxy Server:" + proxyHost + ":" + proxyServerPort);
 
