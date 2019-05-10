@@ -90,11 +90,11 @@ public class headlessBrowserConfig extends browserConfig {
             caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:66.0.4) Gecko/20100101 Firefox/66.0.4");
             
             //set logging level
-            Logger rootLogger = LogManager.getLogManager().getLogger("");
+            /*Logger rootLogger = LogManager.getLogManager().getLogger("");
             rootLogger.setLevel(Level.INFO);
             for (Handler h : rootLogger.getHandlers()) {
                 h.setLevel(Level.WARNING);
-            }
+            }*/
             webDriver = new PhantomJSDriver(caps);
         }
         webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
