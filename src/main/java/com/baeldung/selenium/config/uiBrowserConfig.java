@@ -45,11 +45,14 @@ public class uiBrowserConfig extends browserConfig {
     }
 
     @Override
-    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
+    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort, String proxyUserName, String proxyPassword) {
+        logger.info("Proxy Authentication is not implemented for UI Browser");
+
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         Proxy proxy = new org.openqa.selenium.Proxy();
         proxy.setHttpProxy(proxyServerIP + ":" + proxyServerPort);
         proxy.setSslProxy(proxyServerIP + ":" + proxyServerPort);
+
         firefoxOptions.setProxy(proxy);
         // firefoxOptions.setHeadless(true);
         webDriver = new FirefoxDriver(firefoxOptions);

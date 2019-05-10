@@ -1,12 +1,19 @@
 package com.baeldung.selenium.config;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.NTCredentials;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -14,6 +21,7 @@ import com.baeldung.common.GlobalConstants;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;
+
 
 public class headlessBrowserConfig extends browserConfig {
 
@@ -47,18 +55,19 @@ public class headlessBrowserConfig extends browserConfig {
     }
 
     @Override
-    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
+    public void openNewWindowWithProxy(String proxyHost, String proxyServerPort, String proxyUsername, String proxyPassword) {
 
         logger.info("headlessBrowserName-->" + this.headlessBrowserName);
 
         if (GlobalConstants.HEADLESS_BROWSER_HTMLUNIT.equalsIgnoreCase(this.headlessBrowserName)) {
-            ProxyConfig proxyConfig = new ProxyConfig(proxyServerIP, Integer.valueOf(proxyServerPort));
+            ProxyConfig proxyConfig = new ProxyConfig(proxyHost, Integer.valueOf(proxyServerPort));
             webDriver = new HtmlUnitDriver(BrowserVersion.getDefault(), true) {
                 @Override
                 protected WebClient newWebClient(BrowserVersion version) {
                     WebClient webClient = super.newWebClient(version);
                     webClient.getOptions().setThrowExceptionOnScriptError(false);
                     webClient.getOptions().setProxyConfig(proxyConfig);
+                    webClient.getCredentialsProvider().setCredentials(AuthScope.ANY, new NTCredentials(proxyUsername, proxyPassword, "", ""));
                     return webClient;
                 }
             };
@@ -66,20 +75,26 @@ public class headlessBrowserConfig extends browserConfig {
 
             DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
 
-            /*  ArrayList<String> cliArgsCap = new ArrayList<String>(); 
-            cliArgsCap.add("--proxy=" + this.getEuProxyServerIP() + ":" + this.getEuProxyServerPort());
-            cliArgsCap.add("--web-security=false"); 
-            cliArgsCap.add("--ignore-ssl-errors=true");            
-            cliArgsCap.add("--ssl-protocol=any");
-            
-            caps.setCapability(
-                PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);*/
-
-            org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
+            /*org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
             proxy.setHttpProxy(proxyServerIP + ":" + proxyServerPort);
             proxy.setSslProxy(proxyServerIP + ":" + proxyServerPort);
-            caps.setCapability(CapabilityType.PROXY, proxy);
+            proxy.setSocksUsername(proxyUsername);
+            proxy.setSocksPassword(proxyPassword);
+            caps.setCapability(CapabilityType.PROXY, proxy);*/
 
+            List<String> cliArgsCap = new ArrayList<String>();
+            cliArgsCap.add("--proxy=" + proxyHost + ":" + proxyServerPort);
+            cliArgsCap.add("--proxy-auth=" + proxyUsername + ":" + proxyPassword);
+            cliArgsCap.add("--proxy-type=http");
+            caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
+            caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:66.0.4) Gecko/20100101 Firefox/66.0.4");
+            
+            //set logging level
+            Logger rootLogger = LogManager.getLogManager().getLogger("");
+            rootLogger.setLevel(Level.INFO);
+            for (Handler h : rootLogger.getHandlers()) {
+                h.setLevel(Level.WARNING);
+            }
             webDriver = new PhantomJSDriver(caps);
         }
         webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

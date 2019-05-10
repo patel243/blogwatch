@@ -32,6 +32,6 @@ public abstract class browserConfig {
 
     public abstract void openNewWindow();
 
-    public abstract void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort);
+    public abstract void openNewWindowWithProxy(String proxyHost, String proxyServerPort, String proxyUsername, String proxyPassword);
 
 }

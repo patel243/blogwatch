@@ -67,6 +67,11 @@ public class GlobalConstants {
      * Tests using this tag are executed daily on Jenkins with HtmlUnit 
      */
     public static final String TAG_DAILY_HTMLUNIT = "daily-htmlunit";
+    
+    /**
+     * Tests using this tag are executed daily on Jenkins with EU proxy 
+     */
+    public static final String TAG_DAILY_EU_PROXY = "daily-eu-proxy";
 
     /**
      * Tests using this tag are executed weekly on Jenkins

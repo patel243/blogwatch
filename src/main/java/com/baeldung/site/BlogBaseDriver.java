@@ -44,9 +44,9 @@ public abstract class BlogBaseDriver {
         browserConfig.openNewWindow();
     }
 
-    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort) {
+    public void openNewWindowWithProxy(String proxyServerIP, String proxyServerPort, String proxyUsername, String proxyPassword) {
         logger.info("Loading page using Proxy Server: " + proxyServerIP + ":" + proxyServerPort);
-        browserConfig.openNewWindowWithProxy(proxyServerIP, proxyServerPort);
+        browserConfig.openNewWindowWithProxy(proxyServerIP, proxyServerPort, proxyUsername, proxyPassword);
     }
 
     public void openNewWindowAndLoadPage() {

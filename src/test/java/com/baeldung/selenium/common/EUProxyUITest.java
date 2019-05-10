@@ -4,8 +4,6 @@ import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -13,14 +11,23 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
-import com.baeldung.common.Utils;
 
 public class EUProxyUITest extends BaseUISeleniumTest {
 
-    @Value("#{'${proxy.eu.servers}'.split(',')}")
-    private List<String> euProxyServers;
+    @Value("${proxy.host}")
+    private String proxyHost;
+
+    @Value("${proxy.server.port}")
+    private String proxyServerPort;
+
+    @Value("${proxy.username}")
+    private String proxyUsername;
+
+    @Value("${proxy.password}")
+    private String proxyPasswod;
 
     int retryCount = 0;
+    int maxRetries = 5;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
@@ -29,28 +36,23 @@ public class EUProxyUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag("vat-pricing-test")
-    @Tag(GlobalConstants.TAG_DAILY_HTMLUNIT)
+    @Tag(GlobalConstants.TAG_DAILY_EU_PROXY)
     public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {
 
         try {
-            page.openNewWindowWithProxy(Utils.getProxyServerIP(euProxyServers.get(retryCount)), Utils.getProxyServerPort(euProxyServers.get(retryCount)));
-            page.getWebDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            page.getWebDriver().manage().timeouts().pageLoadTimeout(280, TimeUnit.SECONDS);
-            page.getWebDriver().manage().timeouts().setScriptTimeout(290, TimeUnit.SECONDS);
-
-            // logger.info("Geo Location-----" + page.getGeoLocation());
+            page.openNewWindowWithProxy(proxyHost, proxyServerPort, proxyUsername, proxyPasswod);            
 
             page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
 
             page.loadUrl();
 
-            assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region. Proxy Server:" + Utils.getProxyServerIP(euProxyServers.get(retryCount)) + ":" + Utils.getProxyServerPort(euProxyServers.get(retryCount)));
+            assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region. Proxy Server:" + proxyHost + ":" + proxyServerPort);
 
         } catch (Exception e) {
             // e.printStackTrace();
             logger.info("Exception----> " + e.getMessage());
-            if (euProxyServers.size() == retryCount + 1) {
-                logger.debug(euProxyServers.size() + " retries completed with TimeoutException");
+            if (maxRetries == retryCount + 1) {
+                logger.debug(maxRetries + " retries completed with TimeoutException");
                 fail(e.getMessage());
             } else {
                 page.closeWindow();
