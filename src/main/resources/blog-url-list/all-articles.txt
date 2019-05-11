@@ -2592,3 +2592,13 @@
 /java-run-jar-with-arguments
 /jpa-hibernate-batch-insert-update
 /maven-multi-module-project-java-jpms
+/odata
+/jpa-basic-annotation
+/java-weekly-280
+/jpa-default-column-values
+/kotlin-jvm-annotations
+/java-localization-messages-formatting
+/spring-security-oauth-cognito
+/junit-src-test-resources-directory-path
+/mockito-unnecessary-stubbing-exception
+/junit-filtering-tests
