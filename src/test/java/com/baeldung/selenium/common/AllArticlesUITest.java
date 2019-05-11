@@ -200,6 +200,11 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Test
     public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations() throws IOException {
         do {
+
+            if (Utils.excludePage(page.getUrl(), GlobalConstants.POSTS_TO_BE_EXCUDED_FOR_WRONG_QUOTATIONS_TEST, true)) {
+                continue;
+            }
+            
             if (page.findInvalidCharactersInTheArticle()) {
                 badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations, page.getUrlWithNewLineFeed());
             }
