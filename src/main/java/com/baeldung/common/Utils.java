@@ -476,7 +476,7 @@ public class Utils {
 
     private static String applyCapatalization(String token) {
 
-        String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from";
+        String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up|with";
         if (Pattern.matches(regex, token)) {
             return token.toLowerCase();
         }
