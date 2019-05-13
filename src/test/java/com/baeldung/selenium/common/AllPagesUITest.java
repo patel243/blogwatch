@@ -43,7 +43,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         page.quiet();
     }
 
-    @Test   
+    @Test
     public final void givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             if (Utils.excludePage(page.getUrl(), GlobalConstants.PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV, false)) {
@@ -68,7 +68,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test    
+    @Test
     public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, false) && !page.findMetaDescriptionTag()) {
@@ -81,7 +81,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test    
+    @Test
     public final void givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
@@ -94,9 +94,9 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test    
+    @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    public final void givenTestsTargetedToAllPages_whenTheTestRuns_thenItPasses() throws IOException {
+    public final void givenAllLongRunningTests_whenHittingAllPages_thenOK() throws IOException {
         allTestsFlag = true;
         do {
             loadNextUrl = false;

@@ -204,7 +204,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
             if (Utils.excludePage(page.getUrl(), GlobalConstants.POSTS_TO_BE_EXCUDED_FOR_WRONG_QUOTATIONS_TEST, true)) {
                 continue;
             }
-            
+
             if (page.findInvalidCharactersInTheArticle()) {
                 badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations, page.getUrlWithNewLineFeed());
             }
@@ -235,7 +235,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    public final void givenTestsTargetedToAllArticlesUrls_whenTheTestRuns_thenItPasses() throws IOException {
+    public final void givenAllLongRunningTests_whenHittingAllArticles_thenOK() throws IOException {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
