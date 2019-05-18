@@ -2602,3 +2602,12 @@
 /junit-src-test-resources-directory-path
 /mockito-unnecessary-stubbing-exception
 /junit-filtering-tests
+/java12-string-api
+/java-keystore-truststore-difference
+/rxkotlin
+/java-string-initialization
+/java-weekly-281
+/java-stream-to-array
+/groovy-template-engines
+/java-exception-root-cause
+/spring-data-derived-queries
