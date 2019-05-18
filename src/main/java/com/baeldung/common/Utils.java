@@ -466,12 +466,27 @@ public class Utils {
     }
 
     public static boolean isValidTitle(String title) {
+        if (StringUtils.isBlank(title)) {
+            return true;
+        }
         List<String> tokens = Collections.list(new StringTokenizer(title, " ")).stream().map(token -> applyCapatalization((String) token)).collect(Collectors.toList());
 
-        tokens.set(0, WordUtils.capitalize(tokens.get(0)));
-        tokens.set(tokens.size() - 1, WordUtils.capitalize(tokens.get(tokens.size() - 1)));
+        if (CollectionUtils.isEmpty(tokens)) {
+            return true;
+        }
+
+        capitalizeFirstAndLastToken(tokens);
 
         return title.equals(StringUtils.join(tokens, " "));
+    }
+
+    private static void capitalizeFirstAndLastToken(List<String> tokens) {
+
+        tokens.set(0, WordUtils.capitalize(tokens.get(0)));
+        if (!isClassOrMethod(tokens.get(tokens.size() - 1))) {
+            tokens.set(tokens.size() - 1, WordUtils.capitalize(tokens.get(tokens.size() - 1)));
+        }
+
     }
 
     private static String applyCapatalization(String token) {
@@ -481,7 +496,22 @@ public class Utils {
             return token.toLowerCase();
         }
 
+        if (isClassOrMethod(token)) {
+            return token;
+        }
+
         return WordUtils.capitalize(token);
+    }
+
+    private static boolean isClassOrMethod(String token) {
+        if (StringUtils.isBlank(token)) {
+            return false;
+        }
+        if (token.endsWith("()") || token.contains(".")) {
+            return true;
+        }
+        return false;
+
     }
 
     public static String formatResultsForCapatalizationTest(String url, List<String> invalidTitles) {
