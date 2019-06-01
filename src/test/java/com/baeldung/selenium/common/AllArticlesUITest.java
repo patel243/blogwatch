@@ -146,20 +146,21 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         String articleRelativeUrl = null;
         List<String> findLinksToTheGithubModule = null;
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
-                articleHeading = page.getArticleHeading();
-                articleRelativeUrl = page.getRelativeUrl();
-                findLinksToTheGithubModule = page.findLinksToTheGithubModule();
+            if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
+                continue;
+            }
+            articleHeading = page.getArticleHeading();
+            articleRelativeUrl = page.getRelativeUrl();
+            findLinksToTheGithubModule = page.findLinksToTheGithubModule();
 
-                if (CollectionUtils.isEmpty(findLinksToTheGithubModule)) {
-                    continue;
-                }
+            if (CollectionUtils.isEmpty(findLinksToTheGithubModule)) {
+                continue;
+            }
 
-                if (!TestUtils.articleLinkFoundOnTheGitHubModule(findLinksToTheGithubModule, articleRelativeUrl, page)) {
-                    badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle, page.getUrlWithNewLineFeed());
-                } else if (!page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) { // note: the TestUtils.articleLinkFoundOnGitHubModule will have the GitHub page loaded in the browser
-                    badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch, page.getUrlWithNewLineFeed());
-                }
+            if (!TestUtils.articleLinkFoundOnTheGitHubModule(findLinksToTheGithubModule, articleRelativeUrl, page)) {
+                badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle, page.getUrlWithNewLineFeed());
+            } else if (!page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) { // note: the TestUtils.articleLinkFoundOnGitHubModule will have the GitHub page loaded in the browser
+                badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch, page.getUrlWithNewLineFeed());
             }
 
         } while (loadNextURL());

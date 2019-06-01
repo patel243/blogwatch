@@ -150,9 +150,9 @@ public class GlobalConstants {
     // 1- these target multiple GitHub repos
     // 2- More than one GitHub modules linked in the article
     // 3- back-link from GitHub not required
-    public static final List<String> URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST = Collections
-            .unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/", "/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/",
-                    "/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/", "/persistence-with-spring-series/", "/persistence-with-spring-series-alternative/", "/design-a-user-friendly-java-library/", "/travis-ci-build-pipeline"));
+    public static final List<String> URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST = Collections.unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/",
+            "/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/", "/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/", "/persistence-with-spring-series/", "/persistence-with-spring-series-alternative/",
+            "/design-a-user-friendly-java-library/", "/travis-ci-build-pipeline", "/rest-api-spring-oauth2-angular", "/securing-a-restful-web-service-with-spring-security"));
 
     public static final List<String> POSTS_TO_BE_EXCUDED_FOR_WRONG_QUOTATIONS_TEST = Collections
             .unmodifiableList(Arrays.asList("/java-web-start/", "/java-logging-intro/", "/spring-security-login-error-handling-localization/", "/spring-security-thymeleaf/", "/thymeleaf-list/", "/spring-security-taglibs"));
