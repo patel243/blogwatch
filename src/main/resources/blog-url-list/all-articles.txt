@@ -2628,3 +2628,6 @@
 /jpa-persisting-enums-in-jpa
 /spring-jpa-like-queries
 /java-string-remove-stopwords
+/java-jpa-transaction-locks
+/java-weekly-283
+/ddd-double-dispatch
