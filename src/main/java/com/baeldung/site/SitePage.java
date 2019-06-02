@@ -408,7 +408,7 @@ public class SitePage extends BlogBaseDriver {
         List<String> invalidTitles = new ArrayList<>();
         List<WebElement> titles = this.getWebDriver().findElements(By.xpath("//h2/strong | //h3/strong"));
         for (WebElement title : titles) {
-            if (!Utils.isValidTitle(title.getText())) {
+            if (!Utils.isValidTitle(title.getText(), Utils.getEMTagValues(title.getAttribute("innerHTML")))) {
                 invalidTitles.add(title.getText());
             }
         }

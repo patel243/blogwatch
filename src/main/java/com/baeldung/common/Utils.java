@@ -16,6 +16,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.function.BiPredicate;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -465,34 +466,23 @@ public class Utils {
         return false;
     }
 
-    public static boolean isValidTitle(String title) {
+    public static boolean isValidTitle(String title, List<String> emTagValues) {
         if (StringUtils.isBlank(title)) {
             return true;
         }
-        List<String> tokens = Collections.list(new StringTokenizer(title, " ")).stream().map(token -> applyCapatalization((String) token)).collect(Collectors.toList());
+        List<String> tokens = Collections.list(new StringTokenizer(title, " ")).stream().map(token -> applyCapatalization((String) token, emTagValues)).collect(Collectors.toList());
 
         if (CollectionUtils.isEmpty(tokens)) {
             return true;
         }
 
-        capitalizeFirstAndLastToken(tokens);
-
         return title.equals(StringUtils.join(tokens, " "));
     }
 
-    private static void capitalizeFirstAndLastToken(List<String> tokens) {
-
-        tokens.set(0, WordUtils.capitalize(tokens.get(0)));
-        if (!isClassOrMethod(tokens.get(tokens.size() - 1))) {
-            tokens.set(tokens.size() - 1, WordUtils.capitalize(tokens.get(tokens.size() - 1)));
-        }
-
-    }
-
-    private static String applyCapatalization(String token) {
+    private static String applyCapatalization(String token, List<String> emTagValues) {
 
         String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up|with";
-        if (Pattern.matches(regex, token)) {
+        if (Pattern.matches(regex, token) || emTagValues.contains(token)) {
             return token.toLowerCase();
         }
 
@@ -516,6 +506,18 @@ public class Utils {
 
     public static String formatResultsForCapatalizationTest(String url, List<String> invalidTitles) {
         return "\n\n" + url + " \n----------------------------------------------------------------\n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining());
+    }
+
+    public static List<String> getEMTagValues(final String str) {
+
+        final Pattern TAG_REGEX = Pattern.compile("<em>(.+?)</em>", Pattern.DOTALL);
+
+        final List<String> tagValues = new ArrayList<String>();
+        final Matcher matcher = TAG_REGEX.matcher(str);
+        while (matcher.find()) {
+            tagValues.add(matcher.group(1));
+        }
+        return tagValues;
     }
 
 }
