@@ -71,6 +71,7 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
         try {
             JavascriptExecutor js = ((JavascriptExecutor) this.getWebDriver());
             js.executeScript("document.getElementById('drift-widget-container').style.display = 'none';");
+            js.executeScript("document.getElementById('drift-widget').style.display = 'none';");
         } catch (Exception e) {
             e.printStackTrace();
         }
