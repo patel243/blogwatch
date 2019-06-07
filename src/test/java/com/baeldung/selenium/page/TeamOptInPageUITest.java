@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.net.SocketTimeoutException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -29,9 +28,9 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    //@Tag(GlobalConstants.TAG__EVERY_30_MINUTES)
+    // @Tag(GlobalConstants.TAG__EVERY_30_MINUTES)
     @Tag("team-optin-popup-test")
-    @Tag(GlobalConstants.TAG_HOURLY)    
+    @Tag(GlobalConstants.TAG_HOURLY)
     public final void givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException, IOException {
         try {
             logger.info("Starting givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
@@ -51,7 +50,7 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
             assertTrue("Problem with opt-in pop-up for medium team", teamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed());
             logger.info("forMediumTeam - teamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
             teamOptInPageDriver.closePopupOnRwSTeamOptInPage();
-            
+
             logger.info("forLargeTeam - teamOptInPageDriver.clickOnGetAccessLinkforLargeTeam()");
             teamOptInPageDriver.clickOnGetAccessLinkforLargeTeam();
             logger.info("forLargeTeam - teamOptInPageDriver.theSubmitButtonOnthePopupisDisplayed()");
@@ -59,20 +58,17 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
             logger.info("forLargeTeam - teamOptInPageDriver.closePopupOnRwSTeamOptInPage()");
             teamOptInPageDriver.closePopupOnRwSTeamOptInPage();
         } catch (Exception e) {
-            if (e instanceof SocketTimeoutException) {
-                if (5 == retryCount) {
-                    logger.debug("5 retries completed with SocketTimeoutException");
-                    fail(e.getMessage());
-                } else {
-                    retryCount++;
-                    givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine();
-
-                }
-            } else {
+            if (5 == retryCount) {
+                logger.debug("5 retries completed.");
+                logger.error(e.getMessage());
                 fail(e.getMessage());
+            } else {
+                retryCount++;
+                givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine();
+
             }
         }
 
     }
-   
+
 }
