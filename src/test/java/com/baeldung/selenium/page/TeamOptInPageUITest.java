@@ -31,7 +31,7 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
     @Test
     //@Tag(GlobalConstants.TAG__EVERY_30_MINUTES)
     @Tag("team-optin-popup-test")
-    @Tag(GlobalConstants.TAG_DAILY)    
+    @Tag(GlobalConstants.TAG_HOURLY)    
     public final void givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException, IOException {
         try {
             logger.info("Starting givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
