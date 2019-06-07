@@ -35,7 +35,7 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
         try {
             logger.info("Starting givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
             teamOptInPageDriver.loadUrl();
-            Thread.sleep(15000);
+            Thread.sleep(10000);
 
             logger.info("forSmallTeam - teamOptInPageDriver.clickOnGetAccessLinkforSmallTeam()");
             teamOptInPageDriver.clickOnGetAccessLinkforSmallTeam();
@@ -64,6 +64,7 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
                 fail(e.getMessage());
             } else {
                 retryCount++;
+                logger.error(e.getMessage());
                 givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine();
 
             }
