@@ -50,8 +50,7 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
                 return button.isDisplayed();
 
             } catch (TimeoutException ee) {
-                logger.error(ee.getMessage());
-                return false;
+                throw ee;
             }
         }
 
