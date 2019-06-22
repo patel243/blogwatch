@@ -2655,3 +2655,13 @@
 /spring-session-mongodb
 /okhttp-json-response
 /java-weekly-284
+/jpa-cascade-types
+/java-jar-manifest
+/spring-boot-lazy-initialization
+/folding-hashing-technique
+/spring-load-resource-as-string
+/ratpack-groovy
+/java-weekly-286
+/spring-resttemplate-download-large-file
+/junit-5-temporary-directory
+/java-converting-json-to-csv
