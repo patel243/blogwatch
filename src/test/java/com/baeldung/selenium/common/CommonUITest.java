@@ -31,6 +31,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
 
 public class CommonUITest extends BaseUISeleniumTest {
 
@@ -270,7 +271,8 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        Response response = RestAssured.given().redirects().follow(false).get(page.getTheFirstBaeldungURL());
+        RequestSpecification requestSpecification = RestAssured.given().redirects().follow(false);
+        Response response = requestSpecification.get(requestSpecification.get(page.getTheFirstBaeldungURL()).getHeader("Location"));
 
         logger.info("response Location Header: " + response.getHeader("Location"));
         assertTrue("The RSS Feed URL doesn't point to the https://baeldung.com", page.rssFeedURLPointsTotheBaeldungSite(response.getHeader("Location")));
