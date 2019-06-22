@@ -133,7 +133,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     public final void givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner() {
         Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_FEED_URL);
 
-        assertEquals(302, response.getStatusCode());
+        assertEquals(301, response.getStatusCode());
         assertEquals(GlobalConstants.BAELDUNG_FEED_FEEDBURNER_URL, response.getHeader("Location").replaceAll("/$", ""));
     }
 
