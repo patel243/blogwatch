@@ -20,8 +20,8 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
 
     public void clickOnGetAccessLinkforSmallTeam() throws InterruptedException {
         closeChatPopupIfOpen();
-        WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
-         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
+        //WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
+         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
         this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).click();
     }
 
@@ -40,12 +40,12 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
     public boolean theSubmitButtonOnthePopupisDisplayed() {
         closeChatPopupIfOpen();
         try {
-            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 10);
+            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 30);
             WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[2]")));
             return button.isDisplayed();
         } catch (TimeoutException e) {
             try {
-                WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 10);
+                WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 30);
                 WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[1]")));
                 return button.isDisplayed();
 
