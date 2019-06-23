@@ -41,6 +41,8 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
         closeChatPopupIfOpen();
         try {
             logger.info("waiting for WE MIGHT BE INTERESTED...........");
+            logger.info("button2 is displayed:  "+String.valueOf(this.getWebDriver().findElement(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[2]")).isDisplayed()));
+            logger.info("button1 is displayed:  "+String.valueOf(this.getWebDriver().findElement(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[1]")).isDisplayed()));
             WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 30);
             WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[2]")));
             return button.isDisplayed();
