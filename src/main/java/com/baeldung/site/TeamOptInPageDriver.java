@@ -20,9 +20,9 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
 
     public void clickOnGetAccessLinkforSmallTeam() throws InterruptedException {
         closeChatPopupIfOpen();
-        // WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
-        // wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
-        this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]")).click();
+        WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
+         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
+        this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).click();
     }
 
     public void closePopupOnRwSTeamOptInPage() {
