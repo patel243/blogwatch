@@ -20,9 +20,17 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
 
     public void clickOnGetAccessLinkforSmallTeam() throws InterruptedException {
         closeChatPopupIfOpen();
-        //WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
-         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
+        // WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
+        // wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
+        logger.info(this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).getAttribute("href"));
+        logger.info(this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).getAttribute("class"));
+       
+        
         this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).click();
+        
+        logger.info("email field: "+  String.valueOf( this.getWebDriver().findElements(By.id("drip-email")).get(2).isDisplayed()));
+       
+       
     }
 
     public void closePopupOnRwSTeamOptInPage() {
@@ -40,16 +48,12 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
     public boolean theSubmitButtonOnthePopupisDisplayed() {
         closeChatPopupIfOpen();
         try {
-            logger.info("waiting for WE MIGHT BE INTERESTED...........");
-            //logger.info("button2 is displayed:  "+String.valueOf(this.getWebDriver().findElement(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[2]")).isDisplayed()));
-            logger.info("button1 is displayed:  "+String.valueOf(this.getWebDriver().findElement(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[1]")).isDisplayed()));
-            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 30);
+            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 10);
             WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[2]")));
             return button.isDisplayed();
         } catch (TimeoutException e) {
-            logger.info("in side timout exception block");
             try {
-                WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 30);
+                WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 10);
                 WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[1]")));
                 return button.isDisplayed();
 
