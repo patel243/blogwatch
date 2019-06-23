@@ -40,10 +40,12 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
     public boolean theSubmitButtonOnthePopupisDisplayed() {
         closeChatPopupIfOpen();
         try {
+            logger.info("waiting for WE MIGHT BE INTERESTED...........");
             WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 30);
             WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[2]")));
             return button.isDisplayed();
         } catch (TimeoutException e) {
+            logger.info("in side timout exception block");
             try {
                 WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 30);
                 WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])[1]")));
