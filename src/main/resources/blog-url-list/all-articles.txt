@@ -2665,3 +2665,6 @@
 /spring-resttemplate-download-large-file
 /junit-5-temporary-directory
 /java-converting-json-to-csv
+/raw-types-java
+/java-check-if-list-sorted
+/google-autoservice
