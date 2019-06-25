@@ -271,11 +271,21 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
+        
+        page.setUrl(page.getTheFirstBaeldungURL());
+        page.loadUrl();
+        page.getWebDriver().getCurrentUrl();
+        
         RequestSpecification requestSpecification = RestAssured.given().redirects().follow(false);
-        Response response = requestSpecification.get(requestSpecification.get(page.getTheFirstBaeldungURL()).getHeader("Location"));
+        String feedURL = requestSpecification.get(page.getTheFirstBaeldungURL()).getHeader("Location");
+        //requestSpecification = RestAssured.given().redirects().follow(true);
+       // Response response = requestSpecification.get(feedURL);
 
-        logger.info("response Location Header: " + response.getHeader("Location"));
-        assertTrue("The RSS Feed URL doesn't point to the https://baeldung.com", page.rssFeedURLPointsTotheBaeldungSite(response.getHeader("Location")));
+        logger.info("Currently loaded page URL: " + page.getWebDriver().getCurrentUrl());
+        logger.info("Currently loaded page title: " + page.getWebDriver().getTitle());
+        logger.info("Currently set feed url: " + page.getUrl());
+        //assertTrue("The page linked in the RSS feed couldn't be loaded properly", page.getWebDriver().getTitle().toLowerCase().contains("baeldung)"));
+        assertTrue("The RSS Feed URL doesn't point to  https://baeldung.com", page.rssFeedURLPointsTotheBaeldungSite(page.getWebDriver().getCurrentUrl()));
     }
 
     @Test
