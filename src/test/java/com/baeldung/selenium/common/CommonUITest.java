@@ -31,7 +31,6 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
 
 public class CommonUITest extends BaseUISeleniumTest {
 
@@ -273,11 +272,10 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         
         page.setUrl(page.getTheFirstBaeldungURL());
-        page.loadUrl();
-        page.getWebDriver().getCurrentUrl();
+        page.loadUrl();        
         
-        RequestSpecification requestSpecification = RestAssured.given().redirects().follow(false);
-        String feedURL = requestSpecification.get(page.getTheFirstBaeldungURL()).getHeader("Location");
+        //RequestSpecification requestSpecification = RestAssured.given().redirects().follow(false);
+        //String feedURL = requestSpecification.get(page.getTheFirstBaeldungURL()).getHeader("Location");
         //requestSpecification = RestAssured.given().redirects().follow(true);
        // Response response = requestSpecification.get(feedURL);
 
