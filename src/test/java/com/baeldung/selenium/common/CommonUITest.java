@@ -133,7 +133,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     public final void givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner() {
         Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_FEED_URL);
 
-        assertEquals(301, response.getStatusCode());
+        assertTrue("HTTP staus code is not 301 or 302", response.getStatusCode() == 301 || response.getStatusCode() == 302);
         assertEquals(GlobalConstants.BAELDUNG_FEED_FEEDBURNER_URL, response.getHeader("Location").replaceAll("/$", ""));
     }
 
@@ -270,19 +270,18 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        
         page.setUrl(page.getTheFirstBaeldungURL());
-        page.loadUrl();        
-        
-        //RequestSpecification requestSpecification = RestAssured.given().redirects().follow(false);
-        //String feedURL = requestSpecification.get(page.getTheFirstBaeldungURL()).getHeader("Location");
-        //requestSpecification = RestAssured.given().redirects().follow(true);
-       // Response response = requestSpecification.get(feedURL);
+        page.loadUrl();
+
+        // RequestSpecification requestSpecification = RestAssured.given().redirects().follow(false);
+        // String feedURL = requestSpecification.get(page.getTheFirstBaeldungURL()).getHeader("Location");
+        // requestSpecification = RestAssured.given().redirects().follow(true);
+        // Response response = requestSpecification.get(feedURL);
 
         logger.info("Currently loaded page URL: " + page.getWebDriver().getCurrentUrl());
         logger.info("Currently loaded page title: " + page.getWebDriver().getTitle());
         logger.info("Currently set feed url: " + page.getUrl());
-        //assertTrue("The page linked in the RSS feed couldn't be loaded properly", page.getWebDriver().getTitle().toLowerCase().contains("baeldung)"));
+        // assertTrue("The page linked in the RSS feed couldn't be loaded properly", page.getWebDriver().getTitle().toLowerCase().contains("baeldung)"));
         assertTrue("The RSS Feed URL doesn't point to  https://baeldung.com", page.rssFeedURLPointsTotheBaeldungSite(page.getWebDriver().getCurrentUrl()));
     }
 
