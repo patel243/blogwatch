@@ -133,8 +133,9 @@ public class CommonUITest extends BaseUISeleniumTest {
     public final void givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner() {
         Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_FEED_URL);
 
-        assertTrue(response.getStatusCode() == 301 || response.getStatusCode() == 302, "HTTP staus code is not 301 or 302");
-        assertEquals(GlobalConstants.BAELDUNG_FEED_FEEDBURNER_URL, response.getHeader("Location").replaceAll("/$", ""));
+        assertTrue(response.getStatusCode() == 301 || response.getStatusCode() == 302, "HTTP staus code is not 301 or 302. Returned status code is: " + response.getStatusCode());
+        assertEquals(response.getHeader("Location").replaceAll("/$", "").toLowerCase().contains(GlobalConstants.BAELDUNG_FEED_FEEDBURNER_URL),
+                "Location header doesn't contain feeds.feedburner.com/baeldung. Returned Location header is: " + response.getHeader("Location").replaceAll("/$", ""));
     }
 
     @Test
