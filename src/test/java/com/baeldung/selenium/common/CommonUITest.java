@@ -1,8 +1,8 @@
 package com.baeldung.selenium.common;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
@@ -45,7 +45,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
             page.loadUrl();
 
-            assertFalse("page found with 'No Title' in body-->" + url, page.getCountOfElementsWithNotitleText() > 0);
+            assertFalse(page.getCountOfElementsWithNotitleText() > 0, "page found with 'No Title' in body-->" + url);
         });
     }
 
@@ -115,7 +115,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        assertTrue("GA script count is not equal to 1", page.getAnalyticsScriptCount() == 1);
+        assertTrue(page.getAnalyticsScriptCount() == 1, "GA script count is not equal to 1");
     }
 
     @Test
@@ -125,7 +125,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        assertTrue("GA script count is not equal to 1", page.getAnalyticsScriptCount() == 1);
+        assertTrue(page.getAnalyticsScriptCount() == 1, "GA script count is not equal to 1");
     }
 
     @Test
@@ -133,7 +133,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     public final void givenBaeldungFeedUrl_whenUrlIsHit_thenItRedirectsToFeedburner() {
         Response response = RestAssured.given().redirects().follow(false).get(GlobalConstants.BAELDUNG_FEED_URL);
 
-        assertTrue("HTTP staus code is not 301 or 302", response.getStatusCode() == 301 || response.getStatusCode() == 302);
+        assertTrue(response.getStatusCode() == 301 || response.getStatusCode() == 302, "HTTP staus code is not 301 or 302");
         assertEquals(GlobalConstants.BAELDUNG_FEED_FEEDBURNER_URL, response.getHeader("Location").replaceAll("/$", ""));
     }
 
@@ -170,9 +170,9 @@ public class CommonUITest extends BaseUISeleniumTest {
             for (List<EventTrackingVO> eventTrackingVOs : testData.get(urlKey)) {
                 for (EventTrackingVO eventTrackingVO : eventTrackingVOs) {
                     logger.debug("Asserting: " + eventTrackingVO.getTrackingCodes() + " for on " + page.getBaseURL() + urlKey);
-                    assertTrue("Didn't find the tracking code on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey, page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()));
+                    assertTrue(page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()), "Didn't find the tracking code on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey);
                 }
-                assertTrue("event generation script not found on -->" + page.getBaseURL() + urlKey, page.findEventGenerationScript());
+                assertTrue(page.findEventGenerationScript(), "event generation script not found on -->" + page.getBaseURL() + urlKey);
             }
 
         }
@@ -197,7 +197,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        assertTrue("Drip script count is not equal to 1", page.getDripScriptCount() == 1);
+        assertTrue(page.getDripScriptCount() == 1, "Drip script count is not equal to 1");
     }
 
     @Test
@@ -207,7 +207,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        assertTrue("Drip script count is not equal to 1", page.getDripScriptCount() == 1);
+        assertTrue(page.getDripScriptCount() == 1, "Drip script count is not equal to 1");
     }
 
     @Test
@@ -260,7 +260,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        assertTrue("geoIP API provider is not working", page.geoIPProviderAPILoaded());
+        assertTrue(page.geoIPProviderAPILoaded(), "geoIP API provider is not working");
     }
 
     @Test
@@ -282,7 +282,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         logger.info("Currently loaded page title: " + page.getWebDriver().getTitle());
         logger.info("Currently set feed url: " + page.getUrl());
         // assertTrue("The page linked in the RSS feed couldn't be loaded properly", page.getWebDriver().getTitle().toLowerCase().contains("baeldung)"));
-        assertTrue("The RSS Feed URL doesn't point to  https://baeldung.com", page.rssFeedURLPointsTotheBaeldungSite(page.getWebDriver().getCurrentUrl()));
+        assertTrue(page.rssFeedURLPointsTotheBaeldungSite(page.getWebDriver().getCurrentUrl()), "The RSS Feed URL doesn't point to  https://baeldung.com");
     }
 
     @Test
@@ -294,18 +294,18 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        assertTrue("RWS Course page is missing #table(PRICING) anchor in the footer", page.tableAnchorIsVisibleOnThePage());
-        assertTrue("RWS Course page is missing #master-class anchor in the footer", page.masterclassAnchorIsVisibleOnThePage());
-        assertTrue("RWS Course page is missing #certification-class anchor in the footer", page.certificationclassAnchorIsVisibleOnThePage());
+        assertTrue(page.tableAnchorIsVisibleOnThePage(), "RWS Course page is missing #table(PRICING) anchor in the footer");
+        assertTrue(page.masterclassAnchorIsVisibleOnThePage(), "RWS Course page is missing #master-class anchor in the footer");
+        assertTrue(page.certificationclassAnchorIsVisibleOnThePage(), "RWS Course page is missing #certification-class anchor in the footer");
 
         page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_LSS_PAGE);
         logger.info("LSS course page loaded");
 
         page.loadUrl();
 
-        assertTrue("RWS Course page is missing #table(PRICING) anchor in the footer", page.tableAnchorIsVisibleOnThePage());
-        assertTrue("RWS Course page is missing #master-class anchor in the footer", page.masterclassAnchorIsVisibleOnThePage());
-        assertTrue("RWS Course page is missing #certification-class anchor in the footer", page.certificationclassAnchorIsVisibleOnThePage());
+        assertTrue(page.tableAnchorIsVisibleOnThePage(), "RWS Course page is missing #table(PRICING) anchor in the footer");
+        assertTrue(page.masterclassAnchorIsVisibleOnThePage(), "RWS Course page is missing #master-class anchor in the footer");
+        assertTrue(page.certificationclassAnchorIsVisibleOnThePage(), "RWS Course page is missing #certification-class anchor in the footer");
     }
 
 }
