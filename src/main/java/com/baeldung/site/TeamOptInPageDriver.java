@@ -72,6 +72,7 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
     public void closeChatPopupIfOpen() {
         try {
             JavascriptExecutor js = ((JavascriptExecutor) this.getWebDriver());
+            logger.info("is_Crawler variable.................." + js.executeScript("tve_dash_front.is_crawler"));
             js.executeScript("document.getElementById('drift-widget-container').style.display = 'none';");
             js.executeScript("document.getElementById('drift-widget').style.display = 'none';");
         } catch (Exception e) {
