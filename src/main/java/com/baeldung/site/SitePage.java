@@ -117,11 +117,10 @@ public class SitePage extends BlogBaseDriver {
 
     public List<WebElement> findImagesPointingToInvalidEnvOnTheArticle() {
         String baseURLWithOutHttp = this.getBaseURL().substring(6);
-        return this.getWebDriver()
-                .findElements(By.xpath("//section//img[( contains(@src, 'www.') or contains(@src, 'http:') or contains(@src, 'https:') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '"
-                        + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(0) + "')) and not(contains(@src, '"
-                        + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(1) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(2) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(3)
-                        + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(4) + "'))  and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(5) + "'))]"));
+        return this.getWebDriver().findElements(By.xpath("//section//img[( contains(@src, 'www.') or contains(@src, 'http:') or contains(@src, 'https:') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '"
+                + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(0) + "')) and not(contains(@src, '"
+                + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(1) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(2) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(3) + "')) and not(contains(@src, '"
+                + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(4) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(5) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(6) + "'))]"));
     }
 
     public List<WebElement> findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle() {
