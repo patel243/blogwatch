@@ -43,6 +43,7 @@ public class headlessBrowserConfig extends browserConfig {
         } else {
 
             DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
+            caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0");
 
             webDriver = new PhantomJSDriver(caps);
         }
