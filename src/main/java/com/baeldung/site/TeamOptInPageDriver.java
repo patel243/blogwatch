@@ -21,11 +21,8 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
     public void clickOnGetAccessLinkforSmallTeam() throws InterruptedException {
         closeChatPopupIfOpen();
         // WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
-        // wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));        
+        // wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'tl-states-root')]")));
         this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).click();
-        Thread.sleep(10000);
-        logger.info("email fields size: "+  this.getWebDriver().findElements(By.id("drip-email")).size());       
-       
     }
 
     public void closePopupOnRwSTeamOptInPage() {
@@ -72,7 +69,7 @@ public class TeamOptInPageDriver extends BlogBaseDriver {
     public void closeChatPopupIfOpen() {
         try {
             JavascriptExecutor js = ((JavascriptExecutor) this.getWebDriver());
-            logger.info("is_Crawler variable.................." + js.executeScript("tve_dash_front.is_crawler"));
+            // logger.info("is_Crawler variable.................." + js.executeScript("tve_dash_front.is_crawler"));
             js.executeScript("document.getElementById('drift-widget-container').style.display = 'none';");
             js.executeScript("document.getElementById('drift-widget').style.display = 'none';");
         } catch (Exception e) {
