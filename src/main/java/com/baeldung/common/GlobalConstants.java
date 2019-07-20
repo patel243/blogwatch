@@ -181,7 +181,7 @@ public class GlobalConstants {
 
     // VAT test
     public static final String COURSE_PAGE_FOR_VAT_TEST = "/learn-spring-security-course/";
-    public static final String COURSE_PAGE_TITLE_FOR_VAT_TEST = "The Learn Spring Security Course | Baeldung";
+    public static final String COURSE_PAGE_TITLE_FOR_VAT_TEST = "Learn Spring Security";
 
     public static final String REPO_GITHUB_TUTORIALS_LINK = "https://github.com/eugenp/tutorials";
     public static final String REPO_GITHUB_BAELDUNG_LINK = "https://github.com/baeldung";
