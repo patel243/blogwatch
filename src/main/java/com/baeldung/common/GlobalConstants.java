@@ -216,6 +216,10 @@ public class GlobalConstants {
     public static final String CONSTRUCT_DUMMY_CLASS_START = "class DummyClass{ ";
     public static final String CONSTRUCT_DUMMY_CLASS_END = " }";
 
+    // Baeldung Media Kit URL
+
+    public static final String BAELDUNG_MEDIA_KIT_URL = "https://s3.amazonaws.com/baeldung.com/Baeldung+-+Media+Kit.pdf";
+
     // test names for
     public static final String givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv = "givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv";
     public static final String givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv = "givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv";

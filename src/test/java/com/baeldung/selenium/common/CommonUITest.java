@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -307,6 +309,18 @@ public class CommonUITest extends BaseUISeleniumTest {
         assertTrue(page.tableAnchorIsVisibleOnThePage(), "RWS Course page is missing #table(PRICING) anchor in the footer");
         assertTrue(page.masterclassAnchorIsVisibleOnThePage(), "RWS Course page is missing #master-class anchor in the footer");
         assertTrue(page.certificationclassAnchorIsVisibleOnThePage(), "RWS Course page is missing #certification-class anchor in the footer");
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenTheBaeldungMediaKitURL_whenPageLoads_thenItReturns200OK() throws IOException {
+
+        URL url = new URL(GlobalConstants.BAELDUNG_MEDIA_KIT_URL);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("GET");
+
+        assertEquals(200, httpURLConnection.getResponseCode());
+
     }
 
 }
