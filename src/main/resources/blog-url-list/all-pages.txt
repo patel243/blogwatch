@@ -80,3 +80,5 @@
 /learn-spring-for-teams
 /learn-spring-faq
 /coaching-faq
+/learn-spring-course
+
