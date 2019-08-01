@@ -6,7 +6,48 @@ ignoreEmptyReadmeEndingWith:
   - /2ndurl/  
 ignoreMissingReadmeContaining:
   - /first-url/
-  - /2ndurl/   
+  - /2ndurl/
+  - /spring-session/
+  - /spring-ejb/
+  - /java-spi/
+  - /spring-boot-admin/
+  - /spring-security-x509/
+  - /spring-cloud-data-flow/etl/
+  - /rule-engines/
+  - /spring-boot-property-exp/
+  - /spring-cloud-zuul-eureka-integration/
+  - /spring-cloud-security/
+  - /spring-cloud-zookeeper/
+  - /spring-cloud-archaius/
+  - /spring-cloud-contract/
+  - /spring-cloud-hystrix/
+  - /helidon/
+  - /spring-cloud-rest/
+  - /spring-cloud-bus/
+  - /annotations/
+  - /spring-boot-disable-console-logging/
+  - /java-ee-8-security-api/
+  - /spring-swagger-codegen/
+  - /cloud-foundry-uaa/
+  - /osgi/
+  - /spring-zuul/
+  - /spring-boot-custom-starter/
+  - /spring-cloud-config/
+  - /spring-cloud-eureka/
+  - /spring-cloud-task/
+  - /spring-cloud-stream/
+  - /parallel-tests-junit/
+  - /jnosql/
+  - /multimodule-maven-project/
+  - /jhipster-uaa/
+  - /jhipster-microservice/
+  - /sse-jaxrs/
+  - /remoting-hessian-burlap/
+  - /remoting-http/
+  - /remoting-jms/
+  - /remoting-rmi/
+  - /remoting-amqp/
+  - /multimodulemavenproject/
 ignoreMissingReadmeEndingWith:
   - /first-url/
   - /2ndurl/  
