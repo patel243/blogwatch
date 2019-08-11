@@ -249,7 +249,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
                 givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
                 givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations();
-                //givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization();
+                givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization();
                 // note: this test should be called at the last because it loads a GitHub url
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
