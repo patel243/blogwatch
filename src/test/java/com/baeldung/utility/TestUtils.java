@@ -2,7 +2,12 @@ package com.baeldung.utility;
 
 import java.util.List;
 
+import org.apache.http.params.CoreConnectionPNames;
+
 import com.baeldung.site.SitePage;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.config.HttpClientConfig;
+import com.jayway.restassured.config.RestAssuredConfig;
 
 public class TestUtils {
 
@@ -17,6 +22,15 @@ public class TestUtils {
             }
         }
         return articleLinkFoundOnGitHubModule;
+    }
+
+    public static RestAssuredConfig getRestAssuredCustomConfig() {
+        // @formatter:off
+        return RestAssured.config()
+                .httpClient(HttpClientConfig.httpClientConfig()
+                        .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000)
+                        .setParam(CoreConnectionPNames.SO_TIMEOUT, 5000));
+     // @formatter:on
     }
 
 }

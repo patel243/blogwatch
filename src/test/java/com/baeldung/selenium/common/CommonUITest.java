@@ -28,6 +28,7 @@ import com.baeldung.common.Utils;
 import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.LinkVO;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
+import com.baeldung.utility.TestUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -57,7 +58,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
-                if (HttpStatus.SC_OK != RestAssured.given().head(page.getBaseURL() + URL).getStatusCode()) {
+                if (HttpStatus.SC_OK != RestAssured.given().config(TestUtils.getRestAssuredCustomConfig()).head(page.getBaseURL() + URL).getStatusCode()) {
                     badURls.add(URL);
                 }
 
@@ -75,7 +76,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
-                if (HttpStatus.SC_OK != RestAssured.given().head(page.getBaseURL() + URL).getStatusCode()) {
+                if (HttpStatus.SC_OK != RestAssured.given().config(TestUtils.getRestAssuredCustomConfig()).head(page.getBaseURL() + URL).getStatusCode()) {
                     badURls.add(URL);
                 }
             });
