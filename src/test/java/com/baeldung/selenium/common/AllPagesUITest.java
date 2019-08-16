@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -105,7 +106,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
                 givenAllPages_whenPageLoads_thenTheMetaDescriptionExists();
                 givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
             } catch (Exception e) {
-                logger.error("Error occurened while process:" + page.getUrl() + " error message:" + e.getMessage());
+                logger.error("Error occurened while process:" + page.getUrl() + " error message:" + StringUtils.substring(e.getMessage(), 0, 100));
             }
             loadNextUrl = true;
         } while (loadNextURL());
