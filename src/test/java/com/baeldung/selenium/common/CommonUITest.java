@@ -58,6 +58,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
+                logger.info(URL);
                 if (HttpStatus.SC_OK != RestAssured.given().config(TestUtils.getRestAssuredCustomConfig()).head(page.getBaseURL() + URL).getStatusCode()) {
                     badURls.add(URL);
                 }
@@ -76,6 +77,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         List<String> badURls = new ArrayList<String>();
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
+                logger.info(URL);
                 if (HttpStatus.SC_OK != RestAssured.given().config(TestUtils.getRestAssuredCustomConfig()).head(page.getBaseURL() + URL).getStatusCode()) {
                     badURls.add(URL);
                 }
