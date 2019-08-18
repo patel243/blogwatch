@@ -470,7 +470,7 @@ public class Utils {
         if (StringUtils.isBlank(title)) {
             return true;
         }
-        List<String> tokens = Collections.list(new StringTokenizer(title, " ")).stream().map(token -> applyCapatalization((String) token, emTagValues)).collect(Collectors.toList());
+        List<String> tokens = Collections.list(new StringTokenizer(title, " ")).parallelStream().map(token -> applyCapatalization((String) token, emTagValues)).collect(Collectors.toList());
 
         if (CollectionUtils.isEmpty(tokens)) {
             return true;
