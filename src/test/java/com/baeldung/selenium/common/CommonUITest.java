@@ -63,7 +63,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
-                rateLimiter.acquire();
+                TestUtils.sleep(1000);
                 String fullURL = page.getBaseURL() + URL;
                 logger.info(fullURL);
                 int httpStatusCode = TestUtils.getHttpStatusCodeUsingRestAssured(restAssuredConfig, fullURL);
@@ -87,6 +87,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
+                TestUtils.sleep(1000);
                 String fullURL = page.getBaseURL() + URL;
                 logger.info(fullURL);
                 int httpStatusCode = TestUtils.getHttpStatusCodeUsingRestAssured(restAssuredConfig, fullURL);
