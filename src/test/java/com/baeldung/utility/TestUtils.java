@@ -1,8 +1,9 @@
 package com.baeldung.utility;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
-import org.apache.http.params.CoreConnectionPNames;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,14 +32,31 @@ public class TestUtils {
         // @formatter:off
         return RestAssured.config()
                 .httpClient(HttpClientConfig.httpClientConfig()
-                        .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, timeout)
-                        .setParam(CoreConnectionPNames.SO_TIMEOUT, timeout));
+                        .setParam("http.connection.timeout", timeout)
+                        .setParam("http.socket.timeout", timeout)
+                        .setParam("http.connection-manager.timeout",timeout));
      // @formatter:on
     }
 
-    public static int getHttpStatusCode(RestAssuredConfig restAssuredConfig, String URL) {
+    public static int getHttpStatusCodeUsingRestAssured(RestAssuredConfig restAssuredConfig, String URL) {
         try {
             return RestAssured.given().config(restAssuredConfig).head(URL).getStatusCode();
+        } catch (Exception e) {
+            logger.error("Got error while retrieving HTTP status code for:" + URL);
+            logger.error("Error Message: " + e.getMessage());
+            if (logger.isDebugEnabled()) {
+                e.printStackTrace();
+            }
+            return -1;
+        }
+    }
+
+    public static int getHttpStatusCode(String URL) {
+        try {
+            URL pageURL = new URL(URL);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) pageURL.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            return httpURLConnection.getResponseCode();
         } catch (Exception e) {
             logger.error("Got error while retrieving HTTP status code for:" + URL);
             logger.error("Error Message: " + e.getMessage());

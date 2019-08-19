@@ -66,7 +66,7 @@ public class CommonUITest extends BaseUISeleniumTest {
                 rateLimiter.acquire();
                 String fullURL = page.getBaseURL() + URL;
                 logger.info(fullURL);
-                int httpStatusCode = TestUtils.getHttpStatusCode(restAssuredConfig, fullURL);
+                int httpStatusCode = TestUtils.getHttpStatusCodeUsingRestAssured(restAssuredConfig, fullURL);
                 if (HttpStatus.SC_OK != httpStatusCode) {
                     logger.info(httpStatusCode + " Status code received from: " + fullURL);
                     badURls.add(fullURL);
@@ -89,7 +89,7 @@ public class CommonUITest extends BaseUISeleniumTest {
             allArticlesList.forEach(URL -> {
                 String fullURL = page.getBaseURL() + URL;
                 logger.info(fullURL);
-                int httpStatusCode = TestUtils.getHttpStatusCode(restAssuredConfig, fullURL);
+                int httpStatusCode = TestUtils.getHttpStatusCodeUsingRestAssured(restAssuredConfig, fullURL);
                 if (HttpStatus.SC_OK != httpStatusCode) {
                     logger.info(httpStatusCode + " Status code received from: " + fullURL);
                     badURls.add(fullURL);
