@@ -24,12 +24,12 @@ public class TestUtils {
         return articleLinkFoundOnGitHubModule;
     }
 
-    public static RestAssuredConfig getRestAssuredCustomConfig() {
+    public static RestAssuredConfig getRestAssuredCustomConfig(int timeout) {
         // @formatter:off
         return RestAssured.config()
                 .httpClient(HttpClientConfig.httpClientConfig()
-                        .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000)
-                        .setParam(CoreConnectionPNames.SO_TIMEOUT, 5000));
+                        .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, timeout)
+                        .setParam(CoreConnectionPNames.SO_TIMEOUT, timeout));
      // @formatter:on
     }
 
