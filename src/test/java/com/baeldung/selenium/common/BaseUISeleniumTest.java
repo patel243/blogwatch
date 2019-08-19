@@ -17,6 +17,7 @@ import com.baeldung.crawler4j.config.Crawler4jMainCofig;
 import com.baeldung.crawler4j.controller.TutorialsRepoCrawlerController;
 import com.baeldung.selenium.config.SeleniumContextConfiguration;
 import com.baeldung.site.SitePage;
+import com.google.common.util.concurrent.RateLimiter;
 
 @ContextConfiguration(classes = { CommonConfig.class, SeleniumContextConfiguration.class, Crawler4jMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
@@ -29,6 +30,9 @@ public class BaseUISeleniumTest {
     
     @Autowired
     protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController;
+    
+    @Autowired
+    protected RateLimiter rateLimiter;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {

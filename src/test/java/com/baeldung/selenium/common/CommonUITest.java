@@ -33,12 +33,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.config.RestAssuredConfig;
 import com.jayway.restassured.response.Response;
 
 public class CommonUITest extends BaseUISeleniumTest {
 
     @Value("${document-readme-having-articles-more-than}")
     private int documentReadmeHavingArticlesMoreThan;
+
+    @Value("${time-out.for.200OK-test}")
+    private int timeOutFor200OKTest;
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -56,18 +60,22 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.TAG_WEEKLY)
     public final void givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK() throws IOException {
         List<String> badURls = new ArrayList<String>();
+        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
-                logger.info(URL);
-                if (HttpStatus.SC_OK != RestAssured.given().config(TestUtils.getRestAssuredCustomConfig()).head(page.getBaseURL() + URL).getStatusCode()) {
-                    badURls.add(URL);
+                rateLimiter.acquire();
+                logger.info(page.getBaseURL() + URL);
+                int httpStatusCode = RestAssured.given().config(restAssuredConfig).head(page.getBaseURL() + URL).getStatusCode();
+                if (HttpStatus.SC_OK != httpStatusCode) {
+                    logger.info(httpStatusCode + " Status code received from" + URL);
+                    badURls.add(page.getBaseURL() + URL);
                 }
 
             });
         }
 
         if (badURls.size() > 0) {
-            fail("200OK Not received from URLs--->" + badURls.stream().collect(Collectors.joining("\n")));
+            fail("200OK Not received from URLs:\n" + badURls.stream().collect(Collectors.joining("\n")));
         }
     }
 
@@ -75,17 +83,20 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.TAG_WEEKLY)
     public final void givenAllPagesURLs_whenPageLoads_thenItReturns200OK() throws IOException {
         List<String> badURls = new ArrayList<String>();
+        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
-                logger.info(URL);
-                if (HttpStatus.SC_OK != RestAssured.given().config(TestUtils.getRestAssuredCustomConfig()).head(page.getBaseURL() + URL).getStatusCode()) {
-                    badURls.add(URL);
+                logger.info(page.getBaseURL() + URL);
+                int httpStatusCode = RestAssured.given().config(restAssuredConfig).head(page.getBaseURL() + URL).getStatusCode();
+                if (HttpStatus.SC_OK != httpStatusCode) {
+                    logger.info(httpStatusCode + " Status code received from" + URL);
+                    badURls.add(page.getBaseURL() + URL);
                 }
             });
         }
 
         if (badURls.size() > 0) {
-            fail("200OK Not received from URLs--->" + badURls.stream().collect(Collectors.joining("\n")));
+            fail("200OK Not received from URLs:\n" + badURls.stream().collect(Collectors.joining("\n")));
         }
     }
 
