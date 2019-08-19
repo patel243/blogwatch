@@ -64,11 +64,12 @@ public class CommonUITest extends BaseUISeleniumTest {
         try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
             allArticlesList.forEach(URL -> {
                 rateLimiter.acquire();
-                logger.info(page.getBaseURL() + URL);
-                int httpStatusCode = TestUtils.getHttpStatusCode(restAssuredConfig, page.getBaseURL() + URL);
+                String fullURL = page.getBaseURL() + URL;
+                logger.info(fullURL);
+                int httpStatusCode = TestUtils.getHttpStatusCode(restAssuredConfig, fullURL);
                 if (HttpStatus.SC_OK != httpStatusCode) {
-                    logger.info(httpStatusCode + " Status code received from" + URL);
-                    badURls.add(page.getBaseURL() + URL);
+                    logger.info(httpStatusCode + " Status code received from: " + fullURL);
+                    badURls.add(fullURL);
                 }
 
             });
@@ -86,11 +87,12 @@ public class CommonUITest extends BaseUISeleniumTest {
         RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
         try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
             allArticlesList.forEach(URL -> {
-                logger.info(page.getBaseURL() + URL);
-                int httpStatusCode = TestUtils.getHttpStatusCode(restAssuredConfig, page.getBaseURL() + URL);
+                String fullURL = page.getBaseURL() + URL;
+                logger.info(fullURL);
+                int httpStatusCode = TestUtils.getHttpStatusCode(restAssuredConfig, fullURL);
                 if (HttpStatus.SC_OK != httpStatusCode) {
-                    logger.info(httpStatusCode + " Status code received from" + URL);
-                    badURls.add(page.getBaseURL() + URL);
+                    logger.info(httpStatusCode + " Status code received from: " + fullURL);
+                    badURls.add(fullURL);
                 }
             });
         }
