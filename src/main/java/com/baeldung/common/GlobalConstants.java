@@ -220,6 +220,10 @@ public class GlobalConstants {
 
     public static final String BAELDUNG_MEDIA_KIT_URL = "https://s3.amazonaws.com/baeldung.com/Baeldung+-+Media+Kit.pdf";
 
+    //
+    public static final List<String> springSubCategoriesOnTheSite = Arrays.asList("Spring Security", "Spring Boot", "Spring Cloud", "Spring Web", "Spring MVC");
+    public static final String springCategoryOnTheSite = "Spring";
+
     // test names for
     public static final String givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv = "givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv";
     public static final String givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv = "givenAllTheURLs_whenURLLoads_thenImagesPointToCorrectEnv";
@@ -241,5 +245,6 @@ public class GlobalConstants {
     public static final String givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath = "givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath";
     public static final String givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations = "givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations";
     public static final String givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization = "givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization";
+    public static final String givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasUnnecessaryLabels = "givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasUnnecessaryLabels";
 
 }

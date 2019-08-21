@@ -236,6 +236,19 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
+    public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasUnnecessaryLabels() throws IOException {
+        do {
+            if (page.hasUnnecessaryLabels()) {
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasUnnecessaryLabels, page.getUrlWithNewLineFeed());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            Utils.triggerTestFailure(badURLs);
+        }
+    }
+
+    @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
     public final void givenAllLongRunningTests_whenHittingAllArticles_thenOK() throws IOException {
         allTestsFlag = true;
