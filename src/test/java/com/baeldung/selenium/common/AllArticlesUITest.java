@@ -236,11 +236,11 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasUnnecessaryLabels() throws IOException {
+    public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotContainUnnecessaryLabels() throws IOException {
         do {
             if (page.hasUnnecessaryLabels()) {
                 logger.info("URL found with Spring and other more specific label:" + page.getUrlWithNewLineFeed());
-                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasUnnecessaryLabels, page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotContainUnnecessaryLabels, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
