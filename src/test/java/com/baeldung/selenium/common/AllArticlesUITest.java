@@ -236,11 +236,11 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotContainUnnecessaryLabels() throws IOException {
+    public final void givenAllArticles_whenAnalizingCategories_thenTheArticleDoesNotContainUnnecessaryCategory() throws IOException {
         do {
             if (page.hasUnnecessaryLabels()) {
-                logger.info("URL found with Spring and other more specific label:" + page.getUrlWithNewLineFeed());
-                badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotContainUnnecessaryLabels, page.getUrlWithNewLineFeed());
+                // logger.info("URL found with Spring and other more specific label:" + page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllArticles_whenAnalizingCategories_thenTheArticleDoesNotContainUnnecessaryCategory, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -265,6 +265,7 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
                 givenAllTheArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
                 givenAllTheArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations();
                 givenAllTheArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization();
+                givenAllArticles_whenAnalizingCategories_thenTheArticleDoesNotContainUnnecessaryCategory();
                 // note: this test should be called at the last because it loads a GitHub url
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
