@@ -424,19 +424,25 @@ public class SitePage extends BlogBaseDriver {
 
     public boolean hasUnnecessaryLabels() {
         List<WebElement> elements = this.getWebDriver().findElements(By.xpath("//a[contains(@rel, 'category tag')]"));
-        
+
         //@formatter:off
         List<String> labels = elements.stream()
                 .map(element->  element.getAttribute("innerHTML"))
                 .map(label -> label==null?label:label.toLowerCase())
                 .collect(Collectors.toList());
         
-        List<String> subCategories = GlobalConstants.springSubCategoriesOnTheSite.stream()
+        List<String> subCategories1 = GlobalConstants.springSubCategoriesType1OnTheSite.stream()
                 .filter(subCategory -> labels.contains(subCategory.toLowerCase()))
                 .collect(Collectors.toList());
+        
+        List<String> subCategories2 = GlobalConstants.springSubCategoriesType2OnTheSite.stream()
+                .filter(subCategory -> labels.contains(subCategory.toLowerCase()))
+                .collect(Collectors.toList());
+        
+        boolean postContainsSpringCategory = labels.contains(GlobalConstants.springCategoryOnTheSite.toLowerCase());
        //@formatter:on
 
-        return labels.contains(GlobalConstants.springCategoryOnTheSite.toLowerCase()) && subCategories.size() > 0;
+        return (postContainsSpringCategory && subCategories1.size() > 0) || (postContainsSpringCategory && subCategories2.size() == 2);
     }
 
 }
