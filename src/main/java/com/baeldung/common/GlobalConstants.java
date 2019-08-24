@@ -221,8 +221,7 @@ public class GlobalConstants {
     public static final String BAELDUNG_MEDIA_KIT_URL = "https://s3.amazonaws.com/baeldung.com/Baeldung+-+Media+Kit.pdf";
 
     //
-    public static final List<String> springSubCategoriesType1OnTheSite = Arrays.asList("Spring Security", "Spring Boot", "Spring Cloud");
-    public static final List<String> springSubCategoriesType2OnTheSite = Arrays.asList("Spring Web", "Spring MVC");
+    public static final List<String> springSubCategories = Arrays.asList("Spring Security", "Spring Boot", "Spring Cloud", "Spring Web", "Spring MVC");
     public static final String springCategoryOnTheSite = "Spring";
 
     // test names for
