@@ -1,12 +1,14 @@
 package com.baeldung.selenium.common;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,9 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
     @Value("#{'${site.excluded.authors}'.split(',')}")
     private List<String> excludedListOfAuthors;
 
+    @Value("${single-url-to-run-all-tests}")
+    private String singleURL;
+
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     private ListIterator<String> allArticlesList;
@@ -40,7 +45,14 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
         logger.info("inside loadNewWindow()");
         allTestsFlag = false;
         page.openNewWindow();
-        allArticlesList = Utils.fetchAllArtilcesAsListIterator();
+        if (StringUtils.isNotEmpty(singleURL)) {
+            if (!singleURL.contains(page.getBaseURL())) {
+                Assertions.fail("Invalid URL passed to the test");
+            }
+            allArticlesList = Arrays.asList(singleURL.trim()).listIterator();
+        } else {
+            allArticlesList = Utils.fetchAllArtilcesAsListIterator();
+        }
         badURLs.clear();
         loadNextURL();
     }
@@ -285,7 +297,12 @@ public class AllArticlesUITest extends BaseUISeleniumTest {
             return false;
         }
 
-        page.setUrl(page.getBaseURL() + allArticlesList.next());
+        if (StringUtils.isNotEmpty(singleURL)) {
+            page.setUrl(allArticlesList.next());
+        } else {
+            page.setUrl(page.getBaseURL() + allArticlesList.next());
+        }
+
         logger.info(page.getUrl());
         page.loadUrlWithThrottling();
 
