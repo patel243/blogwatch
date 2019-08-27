@@ -45,7 +45,7 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv() throws IOException {
+    public final void givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
             if (Utils.excludePage(page.getUrl(), GlobalConstants.PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV, false)) {
                 continue;
@@ -54,12 +54,11 @@ public class AllPagesUITest extends BaseUISeleniumTest {
             List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
 
             if (imgTags.size() > 0) {
-                badURLs.put(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n");
+                badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n");
             }
 
             if (anchorTags.size() > 0) {
-                badURLs.put(GlobalConstants.givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv,
-                        page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n");
+                badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n");
             }
 
         } while (loadNextURL());
@@ -70,10 +69,10 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllPages_whenPageLoads_thenTheMetaDescriptionExists() throws IOException {
+    public final void givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, false) && !page.findMetaDescriptionTag()) {
-                badURLs.put(GlobalConstants.givenAllPages_whenPageLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -83,10 +82,10 @@ public class AllPagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
+    public final void givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
-                badURLs.put(GlobalConstants.givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
+                badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
@@ -102,9 +101,9 @@ public class AllPagesUITest extends BaseUISeleniumTest {
         do {
             loadNextUrl = false;
             try {
-                givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv();
-                givenAllPages_whenPageLoads_thenTheMetaDescriptionExists();
-                givenAllThePages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
+                givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv();
+                givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists();
+                givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + StringUtils.substring(e.getMessage(), 0, 100));
             }
