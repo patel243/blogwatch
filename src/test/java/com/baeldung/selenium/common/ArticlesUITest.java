@@ -24,7 +24,7 @@ import com.baeldung.utility.TestUtils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
-public class AllArticlesUITest extends BaseUISeleniumTest {
+public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Value("#{'${site.excluded.authors}'.split(',')}")
     private List<String> excludedListOfAuthors;

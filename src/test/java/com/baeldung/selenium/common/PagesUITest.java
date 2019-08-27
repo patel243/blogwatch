@@ -19,7 +19,7 @@ import com.baeldung.common.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
-public class AllPagesUITest extends BaseUISeleniumTest {
+public class PagesUITest extends BaseUISeleniumTest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
