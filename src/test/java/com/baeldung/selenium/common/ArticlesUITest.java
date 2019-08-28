@@ -13,8 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
 
@@ -32,13 +30,12 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     @Value("${single-url-to-run-all-tests}")
     private String singleURL;
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());
-
     private ListIterator<String> allArticlesList;
     Multimap<String, String> badURLs = ArrayListMultimap.create();
 
     boolean loadNextUrl = true;
     boolean allTestsFlag = false;
+    boolean testingSingleURL = false;
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
@@ -50,6 +47,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
                 Assertions.fail("Invalid URL passed to the test");
             }
             allArticlesList = Arrays.asList(singleURL.trim()).listIterator();
+            testingSingleURL = true;
         } else {
             allArticlesList = Utils.fetchAllArtilcesAsListIterator();
         }
@@ -64,6 +62,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv);
+
         do {
             if (page.findEmptyDivs().size() > 0) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv, page.getUrlWithNewLineFeed());
@@ -77,9 +78,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop);
+
         do {
             if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_TOP_TEST, true)) {
                 continue;
+
             }
             if (page.findShortCodesAtTheTopOfThePage().size() != 1) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop, page.getUrlWithNewLineFeed());
@@ -93,6 +98,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd);
+
         do {
             if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_END_TEST, true)) {
                 continue;
@@ -109,6 +117,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv);
+
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
 
@@ -135,6 +146,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists);
+
         do {
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, true) && !page.findMetaDescriptionTag()) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
@@ -155,6 +169,10 @@ public class ArticlesUITest extends BaseUISeleniumTest {
      */
     @Test
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
+
+        log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle);
+        log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch);
+
         String articleHeading = null;
         String articleRelativeUrl = null;
         List<String> findLinksToTheGithubModule = null;
@@ -185,6 +203,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList() throws IOException {
+
+        log(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList);
+
         do {
             String authorName = page.findAuthorOfTheArticle();
             if (excludedListOfAuthors.contains(authorName.toLowerCase())) {
@@ -199,6 +220,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath);
+
         do {
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
                 logger.info("og:image or twitter:image check failed for: " + page.getUrl());
@@ -213,6 +237,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations);
+
         do {
 
             if (Utils.excludePage(page.getUrl(), GlobalConstants.POSTS_TO_BE_EXCUDED_FOR_WRONG_QUOTATIONS_TEST, true)) {
@@ -231,6 +258,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization);
+
         do {
             try {
                 List<String> invalidTitles = page.findInvalidTitles();
@@ -249,6 +279,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @Test
     public final void givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory);
+
         do {
             if (page.hasUnnecessaryLabels()) {
                 // logger.info("URL found with Spring and other more specific label:" + page.getUrlWithNewLineFeed());
@@ -308,10 +341,17 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             page.setUrl(page.getBaseURL() + allArticlesList.next());
         }
 
-        logger.info(page.getUrl());
+        logger.info("Loading - " + page.getUrl());
         page.loadUrlWithThrottling();
 
         return true;
+
+    }
+
+    private void log(String testName) {
+        if (testingSingleURL) {
+            logger.info("Running Test - " + testName);
+        }
 
     }
 
