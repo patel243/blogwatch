@@ -135,27 +135,12 @@ public class GlobalConstants {
     // thank-you page
     public static final List<String> PAGES_THANK_YOU = Arrays.asList(new String[] { "thank-you", "thanks" });
 
-    public static final List<String> URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST = Arrays.asList(new String[] { "/start-here/", "/spring-5/", "/swagger-test-on-a-page/", "/follow/", "/baeldung-company-info/", "/contact/", "/rest-course-almost-done/" });
-
-    public static final List<String> URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_TOP_TEST = Arrays.asList(new String[] { "/spring-java-online-courses/" });
-
-    public static final List<String> URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_END_TEST = Arrays.asList(new String[] { "/spring-java-online-courses/" });
+    public static final List<String> URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST = Arrays.asList(new String[] { "/start-here/", "/spring-5/", "/swagger-test-on-a-page/", "/follow/", "/baeldung-company-info/", "/contact/", "/rest-course-almost-done/" });       
 
     // Baeldung GitHub repos
 
     public static final String GITHUB_REPO_EUGENP = "github.com/eugenp";
-    public static final String GITHUB_REPO_BAELDUNG = "github.com/baeldung";
-
-    // these URLs should be excluded from givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle test because:
-    // 1- these target multiple GitHub repos
-    // 2- More than one GitHub modules linked in the article
-    // 3- back-link from GitHub not required
-    public static final List<String> URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST = Collections.unmodifiableList(Arrays.asList("/cookbooks/", "/security-spring/", "/maven-dire/", "/slf4j-with-log4j2-logback/", "/spring-security-expressions-basic/",
-            "/2013/02/25/tweeting-stackexchange-with-spring-social-part-1/", "/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/", "/persistence-with-spring-series/", "/persistence-with-spring-series-alternative/",
-            "/design-a-user-friendly-java-library/", "/travis-ci-build-pipeline", "/rest-api-spring-oauth2-angular", "/securing-a-restful-web-service-with-spring-security"));
-
-    public static final List<String> POSTS_TO_BE_EXCUDED_FOR_WRONG_QUOTATIONS_TEST = Collections
-            .unmodifiableList(Arrays.asList("/java-web-start/", "/java-logging-intro/", "/spring-security-login-error-handling-localization/", "/spring-security-thymeleaf/", "/thymeleaf-list/", "/spring-security-taglibs"));
+    public static final String GITHUB_REPO_BAELDUNG = "github.com/baeldung";        
 
     // for Q2W3 Fixed Widget test
 
@@ -202,13 +187,7 @@ public class GlobalConstants {
     public static final String COURSE_LSS_PAGE = "/learn-spring-security-course/";
 
     // exclude following domain for givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv
-    public static final ImmutableList<String> DOMAIN_LIST_TO_EXCLUDE = ImmutableList.of("http://cdn", "s.w.org", "postimg.org", "github.com", "githubusercontent.com", "spring.io", "eclipse.org");
-
-    // exclude following pages for givenAllThePages_whenPageLoads_thenImagesPointToCorrectEnv test
-    public static final List<String> PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV = Arrays.asList(new String[] { "/learn-spring-security-faq", "/rest-with-spring-faq" });
-
-    // exclude following images from givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv
-    public static final List<String> POSTS_TO_BE_EXCUDED_FOR_ANCHORS_LINK_TO_CORRECT_ENV = Arrays.asList(new String[] { "/javafx", "/java-sms-twilio" });
+    public static final ImmutableList<String> DOMAIN_LIST_TO_EXCLUDE = ImmutableList.of("http://cdn", "s.w.org", "postimg.org", "github.com", "githubusercontent.com", "spring.io", "eclipse.org");        
 
     public static final String CONSTRUCT_TYPE_CLASS_OR_INTERFACE = "ClassOrInterface";
     public static final String CONSTRUCT_TYPE_METHOD = "Method";

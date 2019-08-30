@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.yaml.snakeyaml.Yaml;
 
 public class GlobalProperties {
@@ -14,8 +15,19 @@ public class GlobalProperties {
     static {
         try {
             Yaml yaml = new Yaml();
-            InputStream inputStream = GlobalProperties.class.getClassLoader().getResourceAsStream("ignore-list.yaml");
-            properties = yaml.load(inputStream);
+            InputStream ignoreListYml = GlobalProperties.class.getClassLoader().getResourceAsStream("ignore-list.yaml");
+            properties = yaml.load(ignoreListYml);
+            InputStream testExceptionUrls = GlobalProperties.class.getClassLoader().getResourceAsStream("exceptions-for-tests-hitting-all-urls.yaml");
+            Map<String, List<String>> testExceptionUrlsMap = yaml.load(testExceptionUrls);
+            testExceptionUrlsMap.forEach((key, urlList) -> {
+                if (CollectionUtils.isNotEmpty(urlList)) {
+                    properties.merge(key, urlList, (list1, list2) -> {
+                        list1.addAll(list2);
+                        return list1;
+                    });
+                }
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }

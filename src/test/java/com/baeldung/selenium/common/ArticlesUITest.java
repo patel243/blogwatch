@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.GlobalProperties;
 import com.baeldung.common.Utils;
 import com.baeldung.utility.TestUtils;
 import com.google.common.collect.ArrayListMultimap;
@@ -66,6 +67,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv);
 
         do {
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv)) {
+                continue;
+            }
             if (page.findEmptyDivs().size() > 0) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv, page.getUrlWithNewLineFeed());
             }
@@ -82,10 +86,11 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop);
 
         do {
-            if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_TOP_TEST, true)) {
-                continue;
 
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
+                continue;
             }
+
             if (page.findShortCodesAtTheTopOfThePage().size() != 1) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop, page.getUrlWithNewLineFeed());
             }
@@ -102,7 +107,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd);
 
         do {
-            if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_SHORT_CODE_AT_THE_END_TEST, true)) {
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }
             if (page.findShortCodesAtTheEndOfThePage().size() != 1) {
@@ -123,14 +128,15 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         do {
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnTheArticle();
 
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv)) {
+                continue;
+            }
+
             if (imgTags.size() > 0) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv,
                         page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n");
             }
 
-            if (Utils.excludePage(page.getUrl(), GlobalConstants.POSTS_TO_BE_EXCUDED_FOR_ANCHORS_LINK_TO_CORRECT_ENV, false)) {
-                continue;
-            }
             List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
             if (anchorTags.size() > 0) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv,
@@ -150,7 +156,12 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists);
 
         do {
-            if (!Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, true) && !page.findMetaDescriptionTag()) {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists)) {
+                continue;
+            }
+
+            if (!page.findMetaDescriptionTag()) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
@@ -177,7 +188,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         String articleRelativeUrl = null;
         List<String> findLinksToTheGithubModule = null;
         do {
-            if (Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false) || Utils.excludePage(page.getUrl(), GlobalConstants.URL_EXCLUDED_FROM_ARTICELS_GITHUB_LINKS_TEST, true)) {
+            if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }
             articleHeading = page.getArticleHeading();
@@ -190,7 +201,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
             if (!TestUtils.articleLinkFoundOnTheGitHubModule(findLinksToTheGithubModule, articleRelativeUrl, page)) {
                 badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle, page.getUrlWithNewLineFeed());
-            } else if (!page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) { // note: the TestUtils.articleLinkFoundOnGitHubModule will have the GitHub page loaded in the browser
+            } else if (!shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch) && !page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) {
                 badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch, page.getUrlWithNewLineFeed());
             }
 
@@ -207,6 +218,11 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList);
 
         do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList)) {
+                continue;
+            }
+
             String authorName = page.findAuthorOfTheArticle();
             if (excludedListOfAuthors.contains(authorName.toLowerCase())) {
                 badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList, page.getUrlWithNewLineFeed());
@@ -224,6 +240,11 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath);
 
         do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)) {
+                continue;
+            }
+
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
                 logger.info("og:image or twitter:image check failed for: " + page.getUrl());
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
@@ -242,7 +263,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
         do {
 
-            if (Utils.excludePage(page.getUrl(), GlobalConstants.POSTS_TO_BE_EXCUDED_FOR_WRONG_QUOTATIONS_TEST, true)) {
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations)) {
                 continue;
             }
 
@@ -262,6 +283,11 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization);
 
         do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization)) {
+                continue;
+            }
+
             try {
                 List<String> invalidTitles = page.findInvalidTitles();
                 if (invalidTitles.size() > 0) {
@@ -283,6 +309,11 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory);
 
         do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory)) {
+                continue;
+            }
+
             if (page.hasUnnecessaryLabels()) {
                 // logger.info("URL found with Spring and other more specific label:" + page.getUrlWithNewLineFeed());
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory, page.getUrlWithNewLineFeed());
@@ -353,6 +384,14 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             logger.info("Running Test - " + testName);
         }
 
+    }
+
+    protected boolean shouldSkipUrl(String testName) {
+        if (!testingSingleURL && Utils.excludePage(page.getUrl(), GlobalProperties.properties.get(testName), true)) {
+            logger.info("URL skipped for test:" + testName + "Skipped URL:" + page.getUrl());
+            return true;
+        }
+        return false;
     }
 
 }

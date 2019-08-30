@@ -47,7 +47,8 @@ public class PagesUITest extends BaseUISeleniumTest {
     @Test
     public final void givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv() throws IOException {
         do {
-            if (Utils.excludePage(page.getUrl(), GlobalConstants.PAGE_TO_BE_EXCUDED_FOR_IMAGES_LINK_TO_CORRECT_ENV, false)) {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv)) {
                 continue;
             }
             List<WebElement> imgTags = page.findImagesPointingToInvalidEnvOnThePage();
@@ -71,6 +72,11 @@ public class PagesUITest extends BaseUISeleniumTest {
     @Test
     public final void givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists)) {
+                continue;
+            }
+
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, false) && !page.findMetaDescriptionTag()) {
                 badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
             }
@@ -84,6 +90,11 @@ public class PagesUITest extends BaseUISeleniumTest {
     @Test
     public final void givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
         do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath)) {
+                continue;
+            }
+
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
                 badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
             }

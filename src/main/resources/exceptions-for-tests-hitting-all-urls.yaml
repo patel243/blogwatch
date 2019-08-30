@@ -1,0 +1,65 @@
+givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv:
+  - /jpa-composite-primary-keys/  
+givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop:
+  - /spring-java-online-courses/  
+givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop:
+  - /spring-java-online-courses/ 
+givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv:
+  - /javafx/
+  - /java-sms-twilio/    
+givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists: 
+  - /start-here/
+  - /spring-5/
+  - /swagger-test-on-a-page/
+  - /follow/
+  - /baeldung-company-info/
+  - /contact/
+  - /rest-course-almost-done/
+givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle:
+  - /cookbooks/
+  - /security-spring/
+  - /maven-dire/
+  - /slf4j-with-log4j2-logback/
+  - /spring-security-expressions-basic/
+  - /2013/02/25/tweeting-stackexchange-with-spring-social-part-1/ 
+  - /2012/01/03/this-is-not-your-fathers-spring-a-learning-project/
+  - /persistence-with-spring-series/
+  - /persistence-with-spring-series-alternative/
+  - /design-a-user-friendly-java-library/
+  - /travis-ci-build-pipeline/
+  - /rest-api-spring-oauth2-angular/
+  - /securing-a-restful-web-service-with-spring-security/
+givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch:
+
+givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList:
+
+givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath:
+
+givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations:
+  - /java-web-start/
+  - /java-logging-intro/
+  - /spring-security-login-error-handling-localization/
+  - /spring-security-thymeleaf/
+  - /thymeleaf-list/
+  - /spring-security-taglibs/
+givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization:
+
+givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory:
+  - /spring-reloading-properties/
+  - /spring-component-scanning/
+  - /unable-to-locate-spring-namespacehandler-for-xml-schema-namespace/
+  - /properties-with-spring/
+  - /java-8-spring-4-and-spring-boot-adoption/
+  - /spring-adoption-march-2016/
+givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv:
+  - /learn-spring-security-faq/
+  - /rest-with-spring-faq/
+givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists:
+
+givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath:
+
+
+  
+
+  
+    

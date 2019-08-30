@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baeldung.common.GlobalProperties;
+import com.baeldung.common.Utils;
 import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.crawler4j.config.Crawler4jMainCofig;
@@ -42,6 +44,14 @@ public class BaseUISeleniumTest {
     @AfterEach
     public void closeWindow() {
         page.quiet();
+    }
+    
+    protected boolean shouldSkipUrl(String testName) {
+        if (Utils.excludePage(page.getUrl(), GlobalProperties.properties.get(testName), true)) {
+            logger.info("URL skipped for test:" + testName + "Skipped URL:" + page.getUrl());
+            return true;
+        }
+        return false;
     }
 
 }
