@@ -59,6 +59,8 @@ givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists:
 
 givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath:
 
+givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly:
+
 
   
 

@@ -440,4 +440,9 @@ public class SitePage extends BlogBaseDriver {
         return labels.contains(GlobalConstants.springCategoryOnTheSite.toLowerCase()) && subCategories.size() > 0;
     }
 
+    public boolean hasBrokenCodeBlock() {
+        List<WebElement> elements = this.getWebDriver().findElements(By.xpath("//pre[(contains(@class, 'brush'))]"));
+        return elements.size() > 0 ? true : false;
+    }
+
 }
