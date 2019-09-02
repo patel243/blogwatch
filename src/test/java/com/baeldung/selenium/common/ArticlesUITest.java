@@ -324,6 +324,27 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             Utils.triggerTestFailure(badURLs);
         }
     }
+    
+    @Test
+    public final void givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly() throws IOException {
+
+        log(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly);
+
+        do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly)) {
+                continue;
+            }
+
+            if (page.hasBrokenCodeBlock()) {                
+                badURLs.put(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly, page.getUrlWithNewLineFeed());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            Utils.triggerTestFailure(badURLs);
+        }
+    }
 
     @Test
     @Tag(GlobalConstants.TAG_BI_MONTHLY)
