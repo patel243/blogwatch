@@ -326,21 +326,20 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
     
     @Test
-    public final void givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly() throws IOException {
+    public final void givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly() throws IOException, InterruptedException {
 
         log(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly);
 
         do {
-             page.setUrl("http://staging8.baeldung.com/hamcrest-number-matchers");
-             page.loadUrl();
-            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly)) {
+
+            Thread.sleep(1000);
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }
 
             if (page.hasBrokenCodeBlock()) {                
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly, page.getUrlWithNewLineFeed());
             }
-            break;
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
