@@ -331,7 +331,8 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         log(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly);
 
         do {
-
+             page.setUrl("http://staging8.baeldung.com/hamcrest-number-matchers");
+             page.loadUrl();
             if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly)) {
                 continue;
             }
@@ -339,6 +340,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             if (page.hasBrokenCodeBlock()) {                
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly, page.getUrlWithNewLineFeed());
             }
+            break;
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
