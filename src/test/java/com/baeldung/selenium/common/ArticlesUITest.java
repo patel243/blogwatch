@@ -62,7 +62,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv);
 
@@ -81,7 +81,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop);
 
@@ -121,7 +121,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv);
 
@@ -151,7 +151,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists);
 
@@ -179,7 +179,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
      * 4th URL - the immediate child of the parent(eugenp or Baeldung) repository 
      */
     @Test
-    public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() throws IOException {
+    public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() {
 
         log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle);
         log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch);
@@ -213,7 +213,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList() {
 
         log(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList);
 
@@ -235,7 +235,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath);
 
@@ -257,7 +257,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations);
 
@@ -278,7 +278,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization() throws IOException {
+    public final void givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization);
 
@@ -304,7 +304,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    public final void givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory() throws IOException {
+    public final void givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory() {
 
         log(GlobalConstants.givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory);
 
@@ -324,20 +324,23 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             Utils.triggerTestFailure(badURLs);
         }
     }
-    
+
     @Test
-    public final void givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly() throws IOException, InterruptedException {
+    public final void givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly() throws InterruptedException {
 
         log(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly);
 
         do {
 
-            Thread.sleep(1000);
             if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }
 
-            if (page.hasBrokenCodeBlock()) {                
+            if (!allTestsFlag) {
+                Thread.sleep(1000);
+            }
+
+            if (page.hasBrokenCodeBlock()) {
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
