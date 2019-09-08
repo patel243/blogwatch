@@ -367,6 +367,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
                 givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations();
                 givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization();
                 givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory();
+                givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly();
                 // note: this test should be called at the last because it loads a GitHub url
                 givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
