@@ -85,7 +85,7 @@ public class headlessBrowserConfig extends browserConfig {
             cliArgsCap.add("--proxy-auth=" + proxyUsername + ":" + proxyPassword);
             cliArgsCap.add("--proxy-type=http");
             caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
-            caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:66.0.4) Gecko/20100101 Firefox/66.0.4");
+            caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0");
 
             webDriver = new PhantomJSDriver(caps);
         }
