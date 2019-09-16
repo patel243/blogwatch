@@ -287,7 +287,9 @@ public class SitePage extends BlogBaseDriver {
         if (!this.getWebDriver().getTitle().toLowerCase().contains(GlobalConstants.COURSE_PAGE_TITLE_FOR_VAT_TEST.toLowerCase())) {
             throw new Exception("Course page not loaded correctly as the Page title is not correct");
         }
-        String vatValue = this.getWebDriver().findElement(By.xpath("//span[contains(@class, 'price-with-vat')][1]")).getText();
+        WebElement vatElement = this.getWebDriver().findElement(By.xpath("//span[contains(@class, 'price-with-vat')][1]"));
+        String vatValue = vatElement.getText();
+        logger.info("Inner HTML: " + vatElement.getAttribute("innerHTML"));
         logger.info("VAT value: " + vatValue);
         return !vatValue.trim().isEmpty();
     }
