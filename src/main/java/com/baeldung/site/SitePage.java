@@ -281,7 +281,7 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean vatPricesAvailableThePage() throws Exception {
-        Thread.sleep(10000);
+        Thread.sleep(30000);
         logger.info("currently loaded page-->" + this.getWebDriver().getCurrentUrl());
         logger.info("Page Title-->" + this.getWebDriver().getTitle());
         if (!this.getWebDriver().getTitle().toLowerCase().contains(GlobalConstants.COURSE_PAGE_TITLE_FOR_VAT_TEST.toLowerCase())) {
