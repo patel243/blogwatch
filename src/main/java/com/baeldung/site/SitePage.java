@@ -283,8 +283,10 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean vatPricesAvailableThePage() throws Exception {
+        logger.info("wait for element with VAT");
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 300);
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//span[contains(@class, 'price-with-vat')][1]"), "($418.80 with VAT)"));
+        WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'with VAT')]")));
+              
         logger.info("currently loaded page-->" + this.getWebDriver().getCurrentUrl());
         logger.info("Page Title-->" + this.getWebDriver().getTitle());
         if (!this.getWebDriver().getTitle().toLowerCase().contains(GlobalConstants.COURSE_PAGE_TITLE_FOR_VAT_TEST.toLowerCase())) {
