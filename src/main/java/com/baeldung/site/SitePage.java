@@ -13,6 +13,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 
 import com.baeldung.common.GlobalConstants;
@@ -281,7 +283,8 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean vatPricesAvailableThePage() throws Exception {
-        Thread.sleep(30000);
+        WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 300);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//span[contains(@class, 'price-with-vat')][1]"), "($418.80 with VAT)"));
         logger.info("currently loaded page-->" + this.getWebDriver().getCurrentUrl());
         logger.info("Page Title-->" + this.getWebDriver().getTitle());
         if (!this.getWebDriver().getTitle().toLowerCase().contains(GlobalConstants.COURSE_PAGE_TITLE_FOR_VAT_TEST.toLowerCase())) {
