@@ -328,7 +328,6 @@
 /java-weekly-183
 /apache-commons-ordered-map
 /spring-cloud-gateway-pattern
-/spring-cloud-tutorial
 /netflix-servo
 /apache-commons-setutils
 /exceptions-using-vavr
