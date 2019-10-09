@@ -82,3 +82,6 @@
 /coaching-faq
 /learn-spring-course
 /hiring
+/hiring-old
+/cf-geo-header/
+/homepage-february2019
