@@ -2893,3 +2893,16 @@
 /spring-slash-character-in-url
 /java-weekly-300
 /linux/remove-text-after-x-in-file
+/hibernate-wherejointable
+/java-io-file
+/java-security-manager
+/kotlin-finding-element-in-list
+/linux/wget-parallel-downloading
+/spring-dirtiescontext
+/spring-enum-request-param
+/linux/symbolic-and-hard-links
+/spring-aws-kinesis
+/spring-exclude-filter
+/java-filewriter
+/java-weekly-301
+/spring-security-oauth-attack-redirect
