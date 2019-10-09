@@ -2906,3 +2906,5 @@
 /java-filewriter
 /java-weekly-301
 /spring-security-oauth-attack-redirect
+/java-in-2019
+/java-hashmap-advanced
