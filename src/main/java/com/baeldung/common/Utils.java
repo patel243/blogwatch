@@ -476,7 +476,7 @@ public class Utils {
             return true;
         }
 
-        return title.equals(StringUtils.join(tokens, " "));
+        return title.trim().equals(StringUtils.join(tokens, " "));
     }
 
     private static String applyCapatalization(String token, List<String> emTagValues) {
