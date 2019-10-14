@@ -59,9 +59,9 @@ public class TestUtils {
             logger.error("Got error while retrieving HTTP status code for:" + fullURL);
             logger.error("Error Message: " + e.getMessage());
             badURLs.put(fullURL, -1);
-            if (logger.isDebugEnabled()) {
+            /*if (logger.isDebugEnabled()) {
                 e.printStackTrace();
-            }
+            }*/
             return null;
         }
     }
