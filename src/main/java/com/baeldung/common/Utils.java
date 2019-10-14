@@ -546,8 +546,8 @@ public class Utils {
 
         StringBuilder resultBuilder = new StringBuilder();
         badURLs.asMap().forEach((key, value) -> {
-
             resultBuilder.append(Utils.formatRetries(key, value));
+            resultBuilder.append("\n");
         });
 
         return resultBuilder.toString();
