@@ -2859,7 +2859,6 @@
 /spring-cloud-series
 /java-weekly-296
 /spring-persistence-hibernate-and-jpa-with-a-jndi-datasource/
-/spring-data-elasticsearch-test
 /mapstruct-multiple-source-objects
 /spring-validation-message-interpolation
 /groovy-categories
@@ -2908,3 +2907,13 @@
 /spring-security-oauth-attack-redirect
 /java-in-2019
 /java-hashmap-advanced
+/java-breadth-first-search
+/java-digital-signature
+/spring-webclient-simultaneous-calls
+/linux/split-files
+/linux/common-text-search
+/jetty-reactivestreams-http-client
+/spring-batch-skip-logic
+/java-weekly-302
+/java-search-string-arraylist
+/linux/curl-wget
