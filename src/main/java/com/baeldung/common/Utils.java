@@ -530,10 +530,10 @@ public class Utils {
 
     public static StringBuilder formatRetries(String key, Collection<Integer> httpStatuses) {
         StringBuilder resultBuilder = new StringBuilder(key);
-        resultBuilder.append("   (");
+        resultBuilder.append(" (");
         int iteration = 1;
         for (Integer status : httpStatuses) {
-            resultBuilder.append(" retry " + iteration + "- " + status);
+            resultBuilder.append(" try " + iteration + "- " + status);
             resultBuilder.append(",");
             iteration++;
         }
