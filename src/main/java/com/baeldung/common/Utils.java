@@ -41,6 +41,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.rholder.retry.Retryer;
+import com.github.rholder.retry.RetryerBuilder;
+import com.github.rholder.retry.StopStrategies;
+import com.google.common.base.Predicates;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.util.concurrent.RateLimiter;
@@ -518,6 +522,35 @@ public class Utils {
             tagValues.add(matcher.group(1));
         }
         return tagValues;
+    }
+
+    public static Retryer<Boolean> getGuavaRetryer(int retries) {
+        return RetryerBuilder.<Boolean> newBuilder().retryIfResult(Predicates.<Boolean> isNull()).retryIfExceptionOfType(IOException.class).retryIfRuntimeException().withStopStrategy(StopStrategies.stopAfterAttempt(retries)).build();
+    }
+
+    public static StringBuilder formatRetries(String key, Collection<Integer> httpStatuses) {
+        StringBuilder resultBuilder = new StringBuilder(key);
+        resultBuilder.append("   (");
+        int iteration = 1;
+        for (Integer status : httpStatuses) {
+            resultBuilder.append(" retry " + iteration + "- " + status);
+            resultBuilder.append(",");
+            iteration++;
+        }
+        resultBuilder.deleteCharAt(resultBuilder.length() - 1);
+        resultBuilder.append(")");
+        return resultBuilder;
+    }
+
+    public static String http200OKTestResultBuilder(Multimap<String, Integer> badURLs) {
+
+        StringBuilder resultBuilder = new StringBuilder();
+        badURLs.asMap().forEach((key, value) -> {
+
+            resultBuilder.append(Utils.formatRetries(key, value));
+        });
+
+        return resultBuilder.toString();
     }
 
 }

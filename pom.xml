@@ -87,6 +87,12 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.github.rholder</groupId>
+            <artifactId>guava-retrying</artifactId>
+            <version>${guava-retrying.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -264,7 +270,7 @@
                                 <spring.profiles.active>headless-browser</spring.profiles.active>
                                 <target.env>win</target.env>
                                 <base.url>https://www.baeldung.com</base.url>
-                                <headless.browser.name>phantomJS</headless.browser.name>                                
+                                <headless.browser.name>phantomJS</headless.browser.name>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -327,6 +333,7 @@
         <commons-lang3.version>3.6</commons-lang3.version>
         <commons-collections.version>4.1</commons-collections.version>
         <guava.version>23.6-jre</guava.version>
+        <guava-retrying.version>2.0.0</guava-retrying.version>
         <jdom.version>2.0.2</jdom.version>
         <snakeyaml.version>1.21</snakeyaml.version>
 

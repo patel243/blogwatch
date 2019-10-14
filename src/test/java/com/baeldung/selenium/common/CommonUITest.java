@@ -9,14 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
@@ -30,8 +27,10 @@ import com.baeldung.common.vo.LinkVO;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
 import com.baeldung.utility.TestUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.rholder.retry.Retryer;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Streams;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.RestAssuredConfig;
 import com.jayway.restassured.response.Response;
@@ -43,6 +42,9 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Value("${time-out.for.200OK-test}")
     private int timeOutFor200OKTest;
+
+    @Value("${retries.for.200OK-test}")
+    private int retriesFor200OKTest;
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -58,48 +60,28 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_WEEKLY)
-    public final void givenAllArticlesURLs_whenArticleLoads_thenItReturns200OK() throws IOException {
-        List<String> badURls = new ArrayList<String>();
+    public final void givenAllURLs_whenURlLoads_thenItReturns200OK() throws IOException {
+
+        logger.info("Configured retires: {}", retriesFor200OKTest);
+        logger.info("configure timeout for REST Assured: {}", timeOutFor200OKTest);
+
+        Multimap<String, Integer> badURLs = ArrayListMultimap.create();
         RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
-        try (Stream<String> allArticlesList = Utils.fetchAllArtilcesList()) {
-            allArticlesList.forEach(URL -> {
-                TestUtils.sleep(1000);
+        Retryer<Boolean> retryer = Utils.getGuavaRetryer(retriesFor200OKTest);
+
+        try (Stream<String> alURls = Streams.concat(Utils.fetchAllArtilcesList(), Utils.fetchAllPagesList())) {
+            alURls.forEach(URL -> {
+
                 String fullURL = page.getBaseURL() + URL;
                 logger.info(fullURL);
-                int httpStatusCode = TestUtils.getHttpStatusCodeUsingRestAssured(restAssuredConfig, fullURL);
-                if (HttpStatus.SC_OK != httpStatusCode) {
-                    logger.info(httpStatusCode + " Status code received from: " + fullURL);
-                    badURls.add(fullURL);
-                }
+
+                TestUtils.hitURLUsingGuavaRetryer(restAssuredConfig, fullURL, badURLs, retryer);
 
             });
         }
 
-        if (badURls.size() > 0) {
-            fail("200OK Not received from URLs:\n" + badURls.stream().collect(Collectors.joining("\n")));
-        }
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_WEEKLY)
-    public final void givenAllPagesURLs_whenPageLoads_thenItReturns200OK() throws IOException {
-        List<String> badURls = new ArrayList<String>();
-        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
-        try (Stream<String> allArticlesList = Utils.fetchAllPagesList()) {
-            allArticlesList.forEach(URL -> {
-                TestUtils.sleep(1000);
-                String fullURL = page.getBaseURL() + URL;
-                logger.info(fullURL);
-                int httpStatusCode = TestUtils.getHttpStatusCodeUsingRestAssured(restAssuredConfig, fullURL);
-                if (HttpStatus.SC_OK != httpStatusCode) {
-                    logger.info(httpStatusCode + " Status code received from: " + fullURL);
-                    badURls.add(fullURL);
-                }
-            });
-        }
-
-        if (badURls.size() > 0) {
-            fail("200OK Not received from URLs:\n" + badURls.stream().collect(Collectors.joining("\n")));
+        if (badURLs.size() > 0) {
+            fail("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
         }
     }
 
