@@ -71,7 +71,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         try (Stream<String> alURls = Streams.concat(Utils.fetchAllArtilcesList(), Utils.fetchAllPagesList())) {
             alURls.forEach(URL -> {
-
+                TestUtils.sleep(400);
                 String fullURL = page.getBaseURL() + URL;
                 logger.info(fullURL);
 
