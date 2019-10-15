@@ -43,7 +43,7 @@ public class TestUtils {
      // @formatter:on
     }
 
-    public static Boolean pageReturns200OK(RestAssuredConfig restAssuredConfig, String fullURL, Multimap<String, Integer> badURLs) {
+    public static Boolean inspectURLHttpStatusCode(RestAssuredConfig restAssuredConfig, String fullURL, Multimap<String, Integer> badURLs) {
         try {
             int httpStatusCode = RestAssured.given().config(restAssuredConfig).head(fullURL).getStatusCode();
 
@@ -51,6 +51,10 @@ public class TestUtils {
                 if (!badURLs.get(fullURL).isEmpty()) {
                     badURLs.put(fullURL, httpStatusCode);
                 }
+                return true;
+            } else if (HttpStatus.SC_FORBIDDEN == httpStatusCode) {
+                logger.info("{} return by {}", httpStatusCode, fullURL);
+                badURLs.put(fullURL, httpStatusCode);
                 return true;
             } else {
                 logger.info(httpStatusCode + " Status code received from: " + fullURL);
@@ -93,9 +97,9 @@ public class TestUtils {
 
     public static void hitURLUsingGuavaRetryer(RestAssuredConfig restAssuredConfig, String fullURL, Multimap<String, Integer> badURLs, Retryer<Boolean> retryer) {
         try {
-            retryer.call(() -> TestUtils.pageReturns200OK(restAssuredConfig, fullURL, badURLs));
+            retryer.call(() -> TestUtils.inspectURLHttpStatusCode(restAssuredConfig, fullURL, badURLs));
         } catch (RetryException e) {
-            logger.error("Finished retries for {}", fullURL);
+            logger.error("Finished {} retries for {}", e.getNumberOfFailedAttempts(), fullURL);
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
