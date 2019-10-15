@@ -48,6 +48,9 @@ public class TestUtils {
             int httpStatusCode = RestAssured.given().config(restAssuredConfig).head(fullURL).getStatusCode();
 
             if (HttpStatus.SC_OK == httpStatusCode) {
+                if (!badURLs.get(fullURL).isEmpty()) {
+                    badURLs.put(fullURL, httpStatusCode);
+                }
                 return true;
             } else {
                 logger.info(httpStatusCode + " Status code received from: " + fullURL);
