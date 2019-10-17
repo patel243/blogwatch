@@ -31,6 +31,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     @Value("${single-url-to-run-all-tests}")
     private String singleURL;
 
+    @Value("${ignore.urls.newer.than.weeks}")
+    private int ignoreUrlsNewerThanWeeks;
+
     private ListIterator<String> allArticlesList;
     Multimap<String, String> badURLs = ArrayListMultimap.create();
 
@@ -40,7 +43,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
-        logger.info("inside loadNewWindow()");
+        logger.info("inside loadNewWindow()");        
         allTestsFlag = false;
         page.openNewWindow();
         if (StringUtils.isNotEmpty(singleURL)) {
@@ -50,6 +53,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             allArticlesList = Arrays.asList(singleURL.trim()).listIterator();
             testingSingleURL = true;
         } else {
+            logger.info("The test will ignore URls new than {} weeks", ignoreUrlsNewerThanWeeks);
             allArticlesList = Utils.fetchAllArtilcesAsListIterator();
         }
         badURLs.clear();
@@ -400,6 +404,10 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
         logger.info("Loading - " + page.getUrl());
         page.loadUrlWithThrottling();
+        if (page.isNewerThan(ignoreUrlsNewerThanWeeks) && StringUtils.isEmpty(singleURL)) {
+            logger.info("Skipping {} as it's newer than {} weeks", page.getUrl(), ignoreUrlsNewerThanWeeks);
+            loadNextURL();
+        }
 
         return true;
 

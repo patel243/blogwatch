@@ -1,5 +1,9 @@
 package com.baeldung.site;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +23,8 @@ import com.baeldung.common.vo.LinkVO;
 
 @Component
 public class SitePage extends BlogBaseDriver {
+
+    private static DateTimeFormatter publishedDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     @Override
     public void setUrl(String pageURL) {
@@ -447,6 +453,19 @@ public class SitePage extends BlogBaseDriver {
     public boolean hasBrokenCodeBlock() {
         List<WebElement> elements = this.getWebDriver().findElements(By.xpath("//pre[(contains(@class, 'brush'))]"));
         return elements.size() > 0 ? true : false;
+    }
+
+    public boolean isNewerThan(int ignoreUrlsNewerThanWeeks) {
+        try {
+            WebElement publishedDateTimeMetaTag = this.getWebDriver().findElement(By.xpath("//meta[@property = 'article:published_time']"));
+            LocalDateTime publishedDateTime = LocalDateTime.parse(publishedDateTimeMetaTag.getAttribute("content"), publishedDateTimeFormatter);
+
+            return ChronoUnit.WEEKS.between(publishedDateTime.toLocalDate(), LocalDate.now()) < ignoreUrlsNewerThanWeeks;
+
+        } catch (NoSuchElementException e) {
+            logger.error("error while retrieving published date for {}", this.getWebDriver().getCurrentUrl());
+            return false;
+        }
     }
 
 }
