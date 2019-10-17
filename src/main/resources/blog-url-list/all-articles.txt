@@ -1141,7 +1141,6 @@
 /2015-week-review-15
 /updating-your-password/
 /registration-password-strength-and-rules
-/spring-java-online-courses
 /2015-week-review-14
 /spring-rest-api-metrics
 /2015-week-review-13
