@@ -533,7 +533,7 @@ public class Utils {
         resultBuilder.append(" (");
         int iteration = 1;
         for (Integer status : httpStatuses) {
-            resultBuilder.append(" try " + iteration + "- " + status);
+            resultBuilder.append(" try " + iteration + " - " + status);
             resultBuilder.append(",");
             iteration++;
         }

@@ -2,7 +2,6 @@ package com.baeldung.site;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -10,9 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
-import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
@@ -289,7 +285,7 @@ public class SitePage extends BlogBaseDriver {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'with VAT')]")));
         } catch (Exception e) {
 
-        }        
+        }
         logger.info("currently loaded page-->" + this.getWebDriver().getCurrentUrl());
         logger.info("Page Title-->" + this.getWebDriver().getTitle());
         if (!this.getWebDriver().getTitle().toLowerCase().contains(GlobalConstants.COURSE_PAGE_TITLE_FOR_VAT_TEST.toLowerCase())) {
@@ -316,20 +312,18 @@ public class SitePage extends BlogBaseDriver {
     }
 
     public boolean geoIPProviderAPILoaded() {
-        LogEntries browserLogentries = this.getWebDriver().manage().logs().get(LogType.BROWSER);
-        // @formatter:off
-        for (LogEntry logEntry : browserLogentries) {           
-            if (StringUtils.isNotEmpty(logEntry.getMessage()) && logEntry.getLevel().equals(Level.INFO) ) {               
-                if(GlobalConstants.GEOIP_API_PROVIDER_SUCCESS_LOGS.stream()
-                            .filter(entry->logEntry.getMessage().toUpperCase().contains(entry))
-                            .count() >= 1){
-                    logger.info(logEntry.getMessage() );
-                    return true;
-                };
+        try {
+            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 60);
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("geovat-info")));
+            String geoApiMessage = element.getAttribute("innerHTML");
+            if (StringUtils.isBlank(geoApiMessage)) {
+                return false;
             }
+            logger.info(geoApiMessage);
+            return GlobalConstants.GEOIP_API_PROVIDER_SUCCESS_LOGS.stream().anyMatch(entry -> geoApiMessage.toUpperCase().contains(entry));
+        } catch (Exception e) {
+            return false;
         }
-        // @formatter:on
-        return false;
     }
 
     public boolean findMetaTagWithOGImagePointingToTheAbsolutePath() {
