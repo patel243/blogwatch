@@ -56,6 +56,9 @@ Following tags are available for running tests selectively. Refer Java docs in _
   - _bi-monthly_
   - _monthly_
 
+### Excluding a URL for tests running in bi-monthly bild
+
+We need add URLs to the follwoing file to skip a specific test - https://github.com/eugenp/blogwatch/blob/master/src/main/resources/exceptions-for-tests-hitting-all-urls.yaml
 
 ### Launch Mode
  
