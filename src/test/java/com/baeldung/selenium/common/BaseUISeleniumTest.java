@@ -28,11 +28,11 @@ public class BaseUISeleniumTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    protected SitePage page;    
-    
+    protected SitePage page;
+
     @Autowired
     protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController;
-    
+
     @Autowired
     protected RateLimiter rateLimiter;
 
@@ -45,10 +45,10 @@ public class BaseUISeleniumTest {
     public void closeWindow() {
         page.quiet();
     }
-    
+
     protected boolean shouldSkipUrl(String testName) {
         if (Utils.excludePage(page.getUrl(), GlobalProperties.properties.get(testName), true)) {
-            logger.info("URL skipped for test:" + testName + "Skipped URL:" + page.getUrl());
+            logger.info("Skipping {} for test: {}", page.getUrl(), testName);
             return true;
         }
         return false;

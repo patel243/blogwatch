@@ -43,7 +43,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     @BeforeEach
     public void loadNewWindow() throws IOException {
-        logger.info("inside loadNewWindow()");        
+        logger.info("inside loadNewWindow()");
         allTestsFlag = false;
         page.openNewWindow();
         if (StringUtils.isNotEmpty(singleURL)) {
@@ -409,6 +409,10 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             loadNextURL();
         }
 
+        if (shouldSkipUrl(GlobalConstants.givenAllLongRunningTests_whenHittingAllArticles_thenOK)) {
+            loadNextURL();
+        }
+
         return true;
 
     }
@@ -422,7 +426,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     protected boolean shouldSkipUrl(String testName) {
         if (!testingSingleURL && Utils.excludePage(page.getUrl(), GlobalProperties.properties.get(testName), true)) {
-            logger.info("URL skipped for test:" + testName + "Skipped URL:" + page.getUrl());
+            logger.info("Skipping {} for test: {}", page.getUrl(), testName);
             return true;
         }
         return false;

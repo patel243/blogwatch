@@ -136,6 +136,10 @@ public class PagesUITest extends BaseUISeleniumTest {
 
         page.loadUrlWithThrottling();
 
+        if (shouldSkipUrl(GlobalConstants.givenAllLongRunningTests_whenHittingAllArticles_thenOK)) {
+            loadNextURL();
+        }
+
         return true;
 
     }

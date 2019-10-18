@@ -61,6 +61,13 @@ givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePat
 
 givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly:
 
+givenAllLongRunningTests_whenHittingAllArticles_thenOK:
+  - /junit-5-preview
+  - /r2dbc-operations
+
+givenAllLongRunningTests_whenHittingAllPages_thenOK:
+
+
 
   
 

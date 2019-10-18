@@ -226,5 +226,7 @@ public class GlobalConstants {
     public static final String givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization = "givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization";
     public static final String givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory = "givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory";
     public static final String givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly = "givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly";;
+    public static final String givenAllLongRunningTests_whenHittingAllArticles_thenOK = "givenAllLongRunningTests_whenHittingAllArticles_thenOK";
+    public static final String givenAllLongRunningTests_whenHittingAllPages_thenOK = "givenAllLongRunningTests_whenHittingAllPages_thenOK";
 
 }
