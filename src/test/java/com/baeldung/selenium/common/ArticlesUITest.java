@@ -53,7 +53,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             allArticlesList = Arrays.asList(singleURL.trim()).listIterator();
             testingSingleURL = true;
         } else {
-            logger.info("The test will ignore URls new than {} weeks", ignoreUrlsNewerThanWeeks);
+            logger.info("The test will ignore URls newer than {} weeks", ignoreUrlsNewerThanWeeks);
             allArticlesList = Utils.fetchAllArtilcesAsListIterator();
         }
         badURLs.clear();
