@@ -328,6 +328,7 @@ public class SitePage extends BlogBaseDriver {
             logger.info(geoApiMessage);
             return GlobalConstants.GEOIP_API_PROVIDER_SUCCESS_LOGS.stream().anyMatch(entry -> geoApiMessage.toUpperCase().contains(entry));
         } catch (Exception e) {
+            logger.error("Error in geoIPProviderAPILoaded: {}", e.getMessage());
             return false;
         }
     }
