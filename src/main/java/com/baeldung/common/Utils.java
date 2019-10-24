@@ -490,7 +490,11 @@ public class Utils {
             return token.toLowerCase();
         }
 
-        if (isClassOrMethod(token) || emTagValues.contains(token)) {
+        if (token.contains("()")) {
+            token = token.substring(0, 1).toLowerCase() + token.substring(1);
+        }
+
+        if (isClassOrMethod(token) || emTagValues.contains(token) || token.equals(token.toUpperCase())) {
             return token;
         }
 
@@ -501,7 +505,7 @@ public class Utils {
         if (StringUtils.isBlank(token)) {
             return false;
         }
-        if (token.endsWith("()") || token.contains(".")) {
+        if (token.contains("()") || token.contains(".")) {
             return true;
         }
         return false;
