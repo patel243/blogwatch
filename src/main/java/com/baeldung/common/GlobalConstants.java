@@ -159,8 +159,7 @@ public class GlobalConstants {
     public static final String DRIP_SCRPT_SEARCH_STRING = "dc.src = '//tag.getdrip.com/9539554.js';";
 
     // for crawler4j
-    public static final String README_LINKS_FOLDER_PATH = "./blog-url-list/";
-    public static final String README_LINKS_FILE_NAME = "readme-files-urls.txt";
+    public static final String README_LINKS_FOLDER_PATH = "./blog-url-list/";    
     public static final String README_FILE_NAME_LOWERCASE = "readme.md";
     public static final String CRAWLER4J_STORAGE_FOLDER = "crawl/root";
 

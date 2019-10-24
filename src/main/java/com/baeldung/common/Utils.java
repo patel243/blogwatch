@@ -193,11 +193,6 @@ public class Utils {
         return new File(Utils.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getParent() + "/src/main/resources/blog-url-list/" + fileName;
     }
 
-    public static ListIterator<String> fetchGitHubModulesReadmeLinks() throws IOException {
-        File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.README_LINKS_FOLDER_PATH + GlobalConstants.README_LINKS_FILE_NAME).getPath());
-        return Files.readAllLines(Paths.get(file.getAbsolutePath())).listIterator();
-    }
-
     public static String getTheParentOfReadme(String readmeURL) {
         return readmeURL.substring(0, readmeURL.length() - 10).replace("/blob/", "/tree/"); // length of /readme.md is 10;
     }
