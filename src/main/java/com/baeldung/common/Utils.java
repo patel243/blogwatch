@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -486,10 +487,16 @@ public class Utils {
         }
 
         if (token.contains("()")) {
-            token = token.substring(0, 1).toLowerCase() + token.substring(1);
+            if (token.contains(".")) {
+                token = WordUtils.capitalize(Arrays.asList(token.split("\\.")).stream().map(WordUtils::uncapitalize).collect(Collectors.joining(".")));
+                return token;
+
+            } else {
+                return WordUtils.uncapitalize(token);
+            }
         }
 
-        if (isClassOrMethod(token) || emTagValues.contains(token) || token.equals(token.toUpperCase())) {
+        if (emTagValues.contains(token) || token.equals(token.toUpperCase()) || token.contains(".")) {
             return token;
         }
 
