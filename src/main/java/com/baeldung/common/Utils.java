@@ -486,7 +486,11 @@ public class Utils {
             return token.toLowerCase();
         }
 
-        if (token.contains("()")) {
+        if (token.equals(token.toUpperCase())) {
+            return token;
+        }
+
+        if (token.contains("(")) {
             if (token.contains(".")) {
                 token = WordUtils.capitalize(Arrays.asList(token.split("\\.")).stream().map(WordUtils::uncapitalize).collect(Collectors.joining(".")));
                 return token;
@@ -496,7 +500,7 @@ public class Utils {
             }
         }
 
-        if (emTagValues.contains(token) || token.equals(token.toUpperCase()) || token.contains(".")) {
+        if (emTagValues.contains(token) || token.contains(".")) {
             return token;
         }
 
