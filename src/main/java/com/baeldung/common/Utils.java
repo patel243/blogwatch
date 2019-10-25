@@ -486,7 +486,7 @@ public class Utils {
             return token.toLowerCase();
         }
 
-        if (token.equals(token.toUpperCase())) {
+        if (token.equals(token.toUpperCase()) || token.charAt(0) == '@') {
             return token;
         }
 
