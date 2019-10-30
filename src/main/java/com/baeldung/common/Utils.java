@@ -470,7 +470,7 @@ public class Utils {
         if (StringUtils.isBlank(title)) {
             return true;
         }
-        List<String> tokens = Collections.list(new StringTokenizer(title, " ")).parallelStream().map(token -> applyCapatalization((String) token, emTagValues)).collect(Collectors.toList());
+        List<String> tokens = Utils.titleTokenizer(title).parallelStream().map(token -> applyCapatalization((String) token, emTagValues)).collect(Collectors.toList());
 
         if (CollectionUtils.isEmpty(tokens)) {
             return true;
@@ -496,7 +496,7 @@ public class Utils {
                 return token;
 
             } else {
-                return WordUtils.uncapitalize(token);
+                return WordUtils.uncapitalize(token,'$');
             }
         }
 
@@ -561,6 +561,45 @@ public class Utils {
         });
 
         return resultBuilder.toString();
+    }
+
+    public static List<String> titleTokenizer(String title) {
+        List<String> tokens = new ArrayList<>();
+        if (StringUtils.isBlank(title)) {
+            return tokens;
+        }
+        int tokenStartIndex = 0;
+        String delimiter = findNextDelimiter(title.substring(tokenStartIndex));
+        String token;
+        while (true) {
+            if (title.substring(tokenStartIndex).indexOf(delimiter) == -1) {
+                if (delimiter == GlobalConstants.RIGHT_PARENTHESIS_FOLLOWED_BY_SPACE) {
+                    delimiter = GlobalConstants.RIGHT_PARENTHESIS;
+                }
+                if (title.substring(tokenStartIndex).indexOf(delimiter) == -1) {
+                    tokens.add(title.substring(tokenStartIndex));
+                    break;
+                }
+            }
+
+            token = title.substring(tokenStartIndex, tokenStartIndex + title.substring(tokenStartIndex).indexOf(delimiter) + delimiter.length());
+            tokenStartIndex = tokenStartIndex + token.length();
+            if (StringUtils.isNotBlank(token)) {
+                tokens.add(token.trim());
+            }
+            if (tokenStartIndex >= title.length()) {
+                break;
+            }
+            delimiter = findNextDelimiter(title.substring(tokenStartIndex));
+
+        }
+
+        return tokens;
+
+    }
+
+    private static String findNextDelimiter(String title) {
+        return Collections.list(new StringTokenizer(title, " ")).get(0).toString().contains(GlobalConstants.LEFT_PARENTHESIS) ? GlobalConstants.RIGHT_PARENTHESIS_FOLLOWED_BY_SPACE : " ";
     }
 
 }
