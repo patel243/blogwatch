@@ -496,7 +496,7 @@ public class Utils {
                 return token;
 
             } else {
-                return WordUtils.uncapitalize(token,'$');
+                return WordUtils.uncapitalize(token, '$');
             }
         }
 
@@ -599,7 +599,12 @@ public class Utils {
     }
 
     private static String findNextDelimiter(String title) {
-        return Collections.list(new StringTokenizer(title, " ")).get(0).toString().contains(GlobalConstants.LEFT_PARENTHESIS) ? GlobalConstants.RIGHT_PARENTHESIS_FOLLOWED_BY_SPACE : " ";
+        List<Object> tokens = Collections.list(new StringTokenizer(title, GlobalConstants.SPACE_DELIMITER));
+        if (CollectionUtils.isEmpty(tokens)) {
+            return GlobalConstants.SPACE_DELIMITER;
+        }
+        String firstTokenWithTheSpaceDelimiter = tokens.get(0).toString();
+        return firstTokenWithTheSpaceDelimiter.contains(GlobalConstants.LEFT_PARENTHESIS) && !firstTokenWithTheSpaceDelimiter.contains("()") ? GlobalConstants.RIGHT_PARENTHESIS_FOLLOWED_BY_SPACE : " ";
     }
 
 }
