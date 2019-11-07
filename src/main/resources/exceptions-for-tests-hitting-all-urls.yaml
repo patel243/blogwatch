@@ -43,6 +43,18 @@ givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations:
   - /thymeleaf-list/
   - /spring-security-taglibs/
 givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization:
+  - /java-linked-list-cyclicity 
+  - /java-flow-control-interview-questions 
+  - /assertj-3-6-interview 
+  - /java-memory-management-interview-questions 
+  - /java-classes-initialization-questions 
+  - /spring-security-registration-captcha 
+  - /introduction-to-autovalue  
+  - /spring-security-expressions
+  - /spring-boot-support-for-jooq 
+  - /jooq-with-spring
+  - /java-heap-dump-capture 
+  - /java-modify-xml-attribute 
 
 givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory:
   - /spring-reloading-properties/
