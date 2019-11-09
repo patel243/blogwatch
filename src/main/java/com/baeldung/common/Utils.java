@@ -500,7 +500,7 @@ public class Utils {
             }
         }
 
-        if (emTagValues.contains(token) || token.contains(".")) {
+        if (emTagValues.contains(token.trim()) || token.contains(".")) {
             return token;
         }
 
@@ -529,7 +529,7 @@ public class Utils {
         final List<String> tagValues = new ArrayList<String>();
         final Matcher matcher = TAG_REGEX.matcher(str);
         while (matcher.find()) {
-            tagValues.add(matcher.group(1));
+            tagValues.add(matcher.group(1).trim());
         }
         return tagValues;
     }
