@@ -60,6 +60,8 @@ givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization:
   - /java-algorithm-complexity
   - /java-collections-complexity
   - /hibernate-c3p0
+  - /spring-mvc-interview-questions
+  - /java-lang-math
 
 givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory:
   - /spring-reloading-properties/
