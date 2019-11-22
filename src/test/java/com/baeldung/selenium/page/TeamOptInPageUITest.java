@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class TeamOptInPageUITest extends BaseUISeleniumTest {
     @Test
     // @Tag(GlobalConstants.TAG__EVERY_30_MINUTES)
     @Tag("team-optin-popup-test")
-    @Tag(GlobalConstants.TAG_HOURLY)
+    @Disabled
     public final void givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine() throws InterruptedException, IOException {
         try {
             logger.info("Starting givenOnTheTeamOptInPage_whenTheGetAccessButtonIsClicked_thenTheOptInsPopupsWorkFine");
