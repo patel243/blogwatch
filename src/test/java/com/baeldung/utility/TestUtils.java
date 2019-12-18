@@ -15,6 +15,7 @@ import com.github.rholder.retry.Retryer;
 import com.google.common.collect.Multimap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.HttpClientConfig;
+import com.jayway.restassured.config.RedirectConfig;
 import com.jayway.restassured.config.RestAssuredConfig;
 
 public class TestUtils {
@@ -35,7 +36,7 @@ public class TestUtils {
 
     public static RestAssuredConfig getRestAssuredCustomConfig(int timeout) {
         // @formatter:off
-        return RestAssured.config()
+        return RestAssured.config().redirect(RedirectConfig.redirectConfig().followRedirects(false))
                 .httpClient(HttpClientConfig.httpClientConfig()
                         .setParam("http.connection.timeout", timeout)
                         .setParam("http.socket.timeout", timeout)
