@@ -82,3 +82,8 @@
 /coaching-faq
 /learn-spring-course
 /hiring
+/learn-spring-security-oauth-for-teams
+/learn-spring-security-oauth-course
+/learn-spring-security-for-teams-archived-for-lsso-launch
+/learn-spring-security-core-for-teams
+/learn-spring-security-core-course
