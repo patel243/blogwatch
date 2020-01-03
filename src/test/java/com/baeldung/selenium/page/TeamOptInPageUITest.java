@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.baeldung.common.GlobalConstants;
 import com.baeldung.selenium.common.BaseUISeleniumTest;
 import com.baeldung.site.TeamOptInPageDriver;
 
