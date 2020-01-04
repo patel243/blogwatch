@@ -156,7 +156,6 @@
 /rxjava-schedulers
 /n1ql-couchbase
 /kotlin-jvm-field-annotation
-/kotlin-tutorial
 /rxjava-tutorial
 /rxjava-jdbc
 /spring-security-granted-authority-vs-role
@@ -421,7 +420,7 @@
 /jdo
 /java-stacktrace-to-string
 /java-period-duration
-/angular-4-upgrade-for-spring-security-oauth/
+/rest-api-spring-oauth2-angular
 /java-copy-on-write-arraylist
 /java-jdbc
 /java-web-weekly-175
@@ -958,7 +957,6 @@
 /registration-token-cleanup
 /java-web-weekly-126
 /spring-rest-docs
-/junit-5-preview
 /jackson-xml-serialization-and-deserialization
 /java-web-weekly-125
 /spring-security-run-as-auth
@@ -1059,7 +1057,6 @@
 /spring-data-mongodb-guide
 /2015-week-review-47
 /rest-api-search-querydsl-web-in-spring-data-jpa
-/rest-api-spring-oauth2-angularjs
 /2015-week-review-46
 /rest-with-spring-intermediate-class-is-out
 /2015-week-review-45
@@ -1381,12 +1378,10 @@
 /tweeting-stackexchange-with-spring-social-part-1/
 /testing-rest-api-with-multiple-media-types
 /etags-for-rest-with-spring
-/authentication-against-a-third-party-service
 /rest-api-pagination-in-spring
-/2012/01/03/this-is-not-your-fathers-spring-a-learning-project/
-/persistence-with-spring-series/
+/persistence-with-spring-series
 /persistence-layer-with-spring-and-hibernate
-/rest-with-spring-series/
+/rest-with-spring-series
 /basic-and-digest-authentication-for-a-rest-api-with-spring-security
 /rest-api-discoverability-with-spring
 /restful-web-service-discoverability
@@ -2446,7 +2441,6 @@
 /spring-security-cors-preflight
 /hibernate-aggregate-functions
 /spring-boot-soap-web-service
-/rest-api-spring-oauth2-angular
 /jdbc-resultset
 /kotlin-delegation-pattern
 /spring-cloud-openfeign
@@ -2579,7 +2573,6 @@
 /jpa-size-length-column-differences
 /java-9-migration-issue
 /mongodb-bson
-/junits-filtering-tests
 /jpa-entities
 /java-picocli-create-command-line-program
 /maven-skipping-tests
@@ -2712,7 +2705,6 @@
 /spring-thymeleaf-template-directory
 /java-shell-sort
 /java-ee-kotlin-app
-/r2dbc-operations
 /intellij-idea-java-builders
 /spring-thymeleaf-request-parameters
 /java-string-convert-case
@@ -2796,7 +2788,7 @@
 /spring-resttemplate-post-json-test
 /stable-sorting-algorithms
 /java-xor-operator
-/linux/generating-ssh-keys
+/linux/generating-ssh-keys-in-linux
 /java-mutex
 /mesos-kubernetes-comparison
 /linux/file-append-lines
@@ -2820,7 +2812,7 @@
 /java-radix-sort
 /java-ocp-advanced-class-design
 /spring-contextannotation-contextcomponentscan
-/linux/execute-command-directories
+/linux/symbolic-and-hard-links
 /linux/loop-directories
 /apache-shiro-access-control
 /mapstruct-custom-mapper
@@ -2853,7 +2845,6 @@
 /java-counting-sort
 /linux/absolute-directory-of-file
 /java-stax
-/linux/concatenate-files
 /bazel-build-tool
 /spring-cloud-series
 /java-weekly-296
@@ -2890,7 +2881,7 @@
 /linux/copy-command-with-progress
 /spring-slash-character-in-url
 /java-weekly-300
-/linux/remove-text-after-x-in-file
+/linux/tr-manipulate-strings
 /hibernate-wherejointable
 /java-io-file
 /java-security-manager
@@ -2898,7 +2889,6 @@
 /linux/wget-parallel-downloading
 /spring-dirtiescontext
 /spring-enum-request-param
-/linux/symbolic-and-hard-links
 /spring-aws-kinesis
 /spring-exclude-filter
 /java-filewriter
@@ -2963,7 +2953,6 @@
 /rest-api-error-handling-best-practices
 /java-count-duplicate-elements-arraylist
 /linux/stream-redirections
-/linux/tr-manipulate-strings
 /spring-programmatic-transaction-management
 /java-weekly-304
 /java-weekly-307
