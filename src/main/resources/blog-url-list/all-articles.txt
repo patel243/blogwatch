@@ -2967,7 +2967,7 @@
 /java-bridge-pattern
 /intellij-debugging-java-streams
 /java-smallest-missing-integer-in-array
-/spring-data-jpa-fetchmode
+/hibernate-fetchmode
 /java-balanced-binary-tree
 /linux/jq-command-json
 /spring-boot-color-banner
