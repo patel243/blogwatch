@@ -637,7 +637,7 @@
 /spring-data-mongodb-projections-aggregations
 /java-chained-exceptions
 /java9-stream-collectors
-/kotlin
+/kotlin/
 /java-8-interview-questions
 /java-countdown-latch
 /java-web-weekly-161
