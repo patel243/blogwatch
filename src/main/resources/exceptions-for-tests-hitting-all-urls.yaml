@@ -75,6 +75,15 @@ givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv:
   - /learn-spring-security-faq/
   - /rest-with-spring-faq/
 givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists:
+  - /api-discoverability-with-spring-and-spring-hateoas-workshop
+  - /api-discoverability-with-spring-and-spring-hateoas
+  - /the-basics-of-rest-with-spring-webinar
+  - /api-security-with-spring-webinar
+  - /advanced-api-security-workshop
+  - /cqrs-and-event-sourcing-with-spring
+  - /cqrs-and-event-sourcing-implementation-with-spring-and-spring-boot-workshop
+  - /coaching-call
+  - /idiomatic-functional-programming-in-java
 
 givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath:
 
