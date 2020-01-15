@@ -130,21 +130,21 @@
 						"GA|course-rest|buy|buy_team_small",
 						"DRIP|RWSTeam|Small"
 					],
-					"linkText": "Get Access → [Small Team]"
+					"linkText": "Get Access → $699 [Small Team]"
 				},
 				{
 					"trackingCode": [
 						"GA|course-rest|buy|buy_team_medium",
 						"DRIP|RWSTeam|Medium"
 					],
-					"linkText": "Get Access → [Medium Team]"
+					"linkText": "Get Access → $1099 [Medium Team]"
 				},
 				{
 					"trackingCode": [
 						"GA|course-rest|buy|buy_team_large",
 						"DRIP|RWSTeam|Large"
 					],
-					"linkText": "Get Access → [Large Team]"
+					"linkText": "Get Access → $1949 → [Large Team]"
 				},
 				{
 					"trackingCode": [
@@ -159,7 +159,14 @@
 						"DRIP|RWSTeam|Bulk"
 					],
 					"linkText": "The Bulk Package for Teams →"
-				}
+				},
+				{
+					"trackingCode": [
+						"GA|course-rest|buy|buy_single",
+						"DRIP|RWSTeam|Single "
+					],
+					"linkText": "Single Licenses"
+				}				
 			]
 		},
 		{
@@ -170,21 +177,21 @@
 						"GA|course-lss|buy|buy_team_small",
 						"DRIP|LSSTeam|Small"
 					],
-					"linkText": "Get Access → [Small Team]"
+					"linkText": "Get Access → $947 [Small Team]"
 				},
 				{
 					"trackingCode": [
 						"GA|course-lss|buy|buy_team_medium",
 						"DRIP|LSSTeam|Medium"
 					],
-					"linkText": "Get Access → [Medium Team]"
+					"linkText": "Get Access → $1497 [Medium Team]"
 				},
 				{
 					"trackingCode": [
 						"GA|course-lss|buy|buy_team_large",
 						"DRIP|LSSTeam|Large"
 					],
-					"linkText": "Get Access → [Large Team]"
+					"linkText": "Get Access → $2647 [Large Team]"
 				},
 				{
 					"trackingCode": [
@@ -199,6 +206,13 @@
 						"DRIP|LSSTeam|Bulk"
 					],
 					"linkText": "the bulk package for teams"
+				},
+				{
+					"trackingCode": [
+						"GA|course-lss|buy|buy_single",
+						"DRIP|LSSTeam|Single"
+					],
+					"linkText": "Single Licenses"
 				}
 			]
 		}
