@@ -1,220 +1,267 @@
 {
-	"coursePages": [
-		{
-			"url": "/rest-with-spring-course",
-			"trackingList": [
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy1",
-						"DRIP|RWS|Master"
-					],
-					"linkText": "Get access for $299 →"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy2",
-						"DRIP|RWS|Certification"
-					],
-					"linkText": "Get access for $399 →"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_table_master",
-						"DRIP|RWS|Master"
-					],
-					"linkText": "Get Access → $299"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_table_cert",
-						"DRIP|RWS|Certification"
-					],
-					"linkText": "Get Access → $399"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_table_live",
-						"DRIP|RWS|Coaching"
-					],
-					"linkText": "Get Access → $599"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_lss_master",
-						"DRIP|RWS|LSS"
-					],
-					"linkText": "Learn Spring Security"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_bulk",
-						"DRIP|RWS|Bulk"
-					],
-					"linkText": "The Bulk Package →"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_team",
-						"DRIP|RWS|Team"
-					],
-					"linkText": "Here are our team licenses →"
-				}
-			]
-		},		
-		{
-			"url": "/learn-spring-security-course",
-			"trackingList": [
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy1",
-						"DRIP|LSS|Master"
-					],
-					"linkText": "Get Access → $397"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy2",
-						"DRIP|LSS|Certification"
-					],
-					"linkText": "Get Access → $497"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_table_master",
-						"DRIP|LSS|Master"
-					],
-					"linkText": "Get Access → $397 [Master Class]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_table_cert",
-						"DRIP|LSS|Certification"
-					],
-					"linkText": "Get Access → $497 [Certification Class]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_table_live",
-						"DRIP|LSS|Coaching"
-					],
-					"linkText": "Get Access → $697 [Coaching Class]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_rws_master",
-						"DRIP|LSS|RWS"
-					],
-					"linkText": "REST With Spring"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_bulk",
-						"DRIP|LSS|Bulk"
-					],
-					"linkText": "the bulk package"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_team",
-						"DRIP|LSS|Team"
-					],
-					"linkText": "Here are our team licenses"
-				}
-			]
-		},
-		{
-			"url": "/rest-with-spring-for-teams",
-			"trackingList": [
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_team_small",
-						"DRIP|RWSTeam|Small"
-					],
-					"linkText": "Get Access → $699 [Small Team]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_team_medium",
-						"DRIP|RWSTeam|Medium"
-					],
-					"linkText": "Get Access → $1099 [Medium Team]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_team_large",
-						"DRIP|RWSTeam|Large"
-					],
-					"linkText": "Get Access → $1949 → [Large Team]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_ls_team_master",
-						"DRIP|RWSTeam|LSTeam"
-					],
-					"linkText": "Learn Spring"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_team_bulk",
-						"DRIP|RWSTeam|Bulk"
-					],
-					"linkText": "The Bulk Package for Teams →"
-				},
-				{
-					"trackingCode": [
-						"GA|course-rest|buy|buy_single",
-						"DRIP|RWSTeam|Single "
-					],
-					"linkText": "Single Licenses"
-				}				
-			]
-		},
-		{
-			"url": "/learn-spring-security-for-teams",
-			"trackingList": [
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_team_small",
-						"DRIP|LSSTeam|Small"
-					],
-					"linkText": "Get Access → $947 [Small Team]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_team_medium",
-						"DRIP|LSSTeam|Medium"
-					],
-					"linkText": "Get Access → $1497 [Medium Team]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_team_large",
-						"DRIP|LSSTeam|Large"
-					],
-					"linkText": "Get Access → $2647 [Large Team]"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_rws_team_master",
-						"DRIP|LSSTeam|RWSTeam"
-					],
-					"linkText": "REST With Spring"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_team_bulk",
-						"DRIP|LSSTeam|Bulk"
-					],
-					"linkText": "the bulk package for teams"
-				},
-				{
-					"trackingCode": [
-						"GA|course-lss|buy|buy_single",
-						"DRIP|LSSTeam|Single"
-					],
-					"linkText": "Single Licenses"
-				}
-			]
-		}
-	]
+  "coursePages": [
+    {
+      "url": "/rest-with-spring-course",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy1",
+            "DRIP|RWS|Master"
+          ],
+          "linkText": "Get access for $299 →"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy2",
+            "DRIP|RWS|Certification"
+          ],
+          "linkText": "Get access for $399 →"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_table_master",
+            "DRIP|RWS|Master"
+          ],
+          "linkText": "Get Access → $299"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_table_cert",
+            "DRIP|RWS|Certification"
+          ],
+          "linkText": "Get Access → $399"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_table_live",
+            "DRIP|RWS|Coaching"
+          ],
+          "linkText": "Get Access → $599"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_lss_master",
+            "DRIP|RWS|LSS"
+          ],
+          "linkText": "Learn Spring Security"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_bulk",
+            "DRIP|RWS|Bulk"
+          ],
+          "linkText": "The Bulk Package →"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_team",
+            "DRIP|RWS|Team"
+          ],
+          "linkText": "Here are our team licenses →"
+        }
+      ]
+    },
+    {
+      "url": "/learn-spring-security-course",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy1",
+            "DRIP|LSS|Master"
+          ],
+          "linkText": "Get Access → $397"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy2",
+            "DRIP|LSS|Certification"
+          ],
+          "linkText": "Get Access → $497"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_table_master",
+            "DRIP|LSS|Master"
+          ],
+          "linkText": "Get Access → $397 [Master Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_table_cert",
+            "DRIP|LSS|Certification"
+          ],
+          "linkText": "Get Access → $497 [Certification Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_table_live",
+            "DRIP|LSS|Coaching"
+          ],
+          "linkText": "Get Access → $697 [Coaching Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_rws_master",
+            "DRIP|LSS|RWS"
+          ],
+          "linkText": "REST With Spring"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_bulk",
+            "DRIP|LSS|Bulk"
+          ],
+          "linkText": "the bulk package"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_team",
+            "DRIP|LSS|Team"
+          ],
+          "linkText": "Here are our team licenses"
+        }
+      ]
+    },
+    {
+      "url": "/rest-with-spring-for-teams",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_team_small",
+            "DRIP|RWSTeam|Small"
+          ],
+          "linkText": "Get Access → $699 [Small Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_team_medium",
+            "DRIP|RWSTeam|Medium"
+          ],
+          "linkText": "Get Access → $1099 [Medium Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_team_large",
+            "DRIP|RWSTeam|Large"
+          ],
+          "linkText": "Get Access → $1949 → [Large Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_ls_team_master",
+            "DRIP|RWSTeam|LSTeam"
+          ],
+          "linkText": "Learn Spring"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_team_bulk",
+            "DRIP|RWSTeam|Bulk"
+          ],
+          "linkText": "The Bulk Package for Teams →"
+        },
+        {
+          "trackingCode": [
+            "GA|course-rest|buy|buy_single",
+            "DRIP|RWSTeam|Single "
+          ],
+          "linkText": "Single Licenses"
+        }
+      ]
+    },
+    {
+      "url": "/learn-spring-security-for-teams",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_team_small",
+            "DRIP|LSSTeam|Small"
+          ],
+          "linkText": "Get Access → $947 [Small Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_team_medium",
+            "DRIP|LSSTeam|Medium"
+          ],
+          "linkText": "Get Access → $1497 [Medium Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_team_large",
+            "DRIP|LSSTeam|Large"
+          ],
+          "linkText": "Get Access → $2647 [Large Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_rws_team_master",
+            "DRIP|LSSTeam|RWSTeam"
+          ],
+          "linkText": "REST With Spring"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_team_bulk",
+            "DRIP|LSSTeam|Bulk"
+          ],
+          "linkText": "the bulk package for teams"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lss|buy|buy_single",
+            "DRIP|LSSTeam|Single"
+          ],
+          "linkText": "Single Licenses"
+        }
+      ]
+    },
+    {
+      "url": "/learn-spring-security-oauth-for-teams",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-lsso|buy|buy_team_small",
+            "DRIP|LSSOTeam|Small"
+          ],
+          "linkText": "Get Access → [Small Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lsso|buy|buy_team_medium",
+            "DRIP|LSSOTeam|Medium"
+          ],
+          "linkText": "Get Access → [Medium Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lsso|buy|buy_team_large",
+            "DRIP|LSSOTeam|Large"
+          ],
+          "linkText": "Get Access → [Large Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lsso|buy|buy_lssc_team_master",
+            "DRIP|LSSOTeam|LSSCTeam"
+          ],
+          "linkText": "Learn Spring Security Core"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lsso|buy|buy_lss_team_master",
+            "DRIP|LSSOTeam|LSSTeam"
+          ],
+          "linkText": "Learn Spring Security Course"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lsso|buy|buy_single",
+            "DRIP|LSSOTeam|Single"
+          ],
+          "linkText": "single licenses"
+        }
+      ]
+    }
+  ]
 }
