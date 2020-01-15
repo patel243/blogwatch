@@ -69,35 +69,35 @@
 						"GA|course-lss|buy|buy1",
 						"DRIP|LSS|Master"
 					],
-					"linkText": "Buy The Master Class"
+					"linkText": "Get Access → $397"
 				},
 				{
 					"trackingCode": [
 						"GA|course-lss|buy|buy2",
 						"DRIP|LSS|Certification"
 					],
-					"linkText": "Buy The Certification Class"
+					"linkText": "Get Access → $497"
 				},
 				{
 					"trackingCode": [
 						"GA|course-lss|buy|buy_table_master",
 						"DRIP|LSS|Master"
 					],
-					"linkText": "Purchase The Class [Master Class]"
+					"linkText": "Get Access → $397 [Master Class]"
 				},
 				{
 					"trackingCode": [
 						"GA|course-lss|buy|buy_table_cert",
 						"DRIP|LSS|Certification"
 					],
-					"linkText": "Purchase The Class [Certification Class]"
+					"linkText": "Get Access → $497 [Certification Class]"
 				},
 				{
 					"trackingCode": [
 						"GA|course-lss|buy|buy_table_live",
 						"DRIP|LSS|Coaching"
 					],
-					"linkText": "Purchase The Class [Coaching Class]"
+					"linkText": "Get Access → $697 [Coaching Class]"
 				},
 				{
 					"trackingCode": [
@@ -118,7 +118,7 @@
 						"GA|course-lss|buy|buy_team",
 						"DRIP|LSS|Team"
 					],
-					"linkText": "a team license"
+					"linkText": "Here are our team licenses"
 				}
 			]
 		},
