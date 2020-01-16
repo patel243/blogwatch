@@ -75,14 +75,19 @@ public class TestUtils {
     }
 
     public static Boolean inspectURLHttpStatusCode(RestAssuredConfig restAssuredConfig, String fullURL) {
+        try {
+            int httpStatusCode = RestAssured.given().config(restAssuredConfig).head(fullURL).getStatusCode();
 
-        int httpStatusCode = RestAssured.given().config(restAssuredConfig).head(fullURL).getStatusCode();
+            if (HttpStatus.SC_OK == httpStatusCode) {
+                return true;
+            }
 
-        if (HttpStatus.SC_OK == httpStatusCode) {
+            return false;
+        } catch (Exception e) {
+            logger.error("Got error while retrieving HTTP status code for:" + fullURL);
+            logger.error("Error Message: " + e.getMessage());
             return true;
         }
-
-        return false;
     }
 
     public static int getHttpStatusCode(String URL) {
