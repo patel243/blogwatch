@@ -95,6 +95,8 @@ givenAllLongRunningTests_whenHittingAllArticles_thenOK:
 
 givenAllLongRunningTests_whenHittingAllPages_thenOK:
 
+givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK:
+
 
 
   

@@ -190,20 +190,33 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
         String articleHeading = null;
         String articleRelativeUrl = null;
-        List<String> findLinksToTheGithubModule = null;
+        List<String> linksToTheGithubModule = null;
+        List<String> gitHubModulesLinkedOntheArticle = null;
         do {
+
+            gitHubModulesLinkedOntheArticle = page.gitHubModulesLinkedOnTheArticle();
+            
+            if (shouldSkipUrl(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
+                continue;
+            }
+            
+            if(!TestUtils.gitHubModulesReturn200OK(gitHubModulesLinkedOntheArticle)) {
+                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed());
+            }
+            
+            
             if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }
             articleHeading = page.getArticleHeading();
             articleRelativeUrl = page.getRelativeUrl();
-            findLinksToTheGithubModule = page.findLinksToTheGithubModule();
+            linksToTheGithubModule = page.findLinksToTheGithubModule(gitHubModulesLinkedOntheArticle);
 
-            if (CollectionUtils.isEmpty(findLinksToTheGithubModule)) {
+            if (CollectionUtils.isEmpty(linksToTheGithubModule)) {
                 continue;
             }
 
-            if (!TestUtils.articleLinkFoundOnTheGitHubModule(findLinksToTheGithubModule, articleRelativeUrl, page)) {
+            if (!TestUtils.articleLinkFoundOnTheGitHubModule(linksToTheGithubModule, articleRelativeUrl, page)) {
                 badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle, page.getUrlWithNewLineFeed());
             } else if (!shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch) && !page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) {
                 badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch, page.getUrlWithNewLineFeed());

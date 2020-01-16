@@ -74,6 +74,17 @@ public class TestUtils {
         }
     }
 
+    public static Boolean inspectURLHttpStatusCode(RestAssuredConfig restAssuredConfig, String fullURL) {
+
+        int httpStatusCode = RestAssured.given().config(restAssuredConfig).head(fullURL).getStatusCode();
+
+        if (HttpStatus.SC_OK == httpStatusCode) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static int getHttpStatusCode(String URL) {
         try {
             URL pageURL = new URL(URL);
@@ -105,6 +116,16 @@ public class TestUtils {
             e.printStackTrace();
         }
 
+    }
+
+    public static boolean gitHubModulesReturn200OK(List<String> gitHubModulesLinkedOntheArticle) {
+        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(1000);
+        for (String url : gitHubModulesLinkedOntheArticle) {
+            if (!inspectURLHttpStatusCode(restAssuredConfig, url)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

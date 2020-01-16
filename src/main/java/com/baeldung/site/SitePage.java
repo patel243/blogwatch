@@ -163,17 +163,35 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
-    public List<String> findLinksToTheGithubModule() {
+    public List<String> gitHubModulesLinkedOnTheArticle() {
         List<String> gitHubModuleLinks = new ArrayList<String>();
         try {
-            List<WebElement> links = this.getWebDriver().findElements(By.xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_BAELDUNG
+            List<WebElement> webElements = this.getWebDriver().findElements(By.xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_BAELDUNG
                     + "') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_EUGENP + "')]"));
+            if (CollectionUtils.isEmpty(webElements)) {
+                return gitHubModuleLinks;
+            }
+            for (WebElement element : webElements) {
+                gitHubModuleLinks.add(element.getAttribute("href"));
+            }
+        } catch (Exception e) {
+            logger.error("Error occurened while trying to extract GitHub moudles linked on the:" + this.getWebDriver().getCurrentUrl() + " error message:" + e.getMessage());
+        }
+
+        return gitHubModuleLinks;
+
+    }
+
+    public List<String> findLinksToTheGithubModule(List<String> links) {
+        List<String> gitHubModuleLinks = new ArrayList<String>();
+        try {
+
             if (CollectionUtils.isEmpty(links)) {
                 return gitHubModuleLinks;
             }
 
             // firstURL - the URL linked from the article
-            String firstURL = links.get(links.size() - 1).getAttribute("href");
+            String firstURL = links.get(links.size() - 1);
             if (StringUtils.isEmpty(firstURL)) {
                 return gitHubModuleLinks;
             }
