@@ -262,6 +262,53 @@
           "linkText": "single licenses"
         }
       ]
+    },
+    {
+      "url": "/learn-spring-security-core-for-teams",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_team_small",
+            "DRIP|LSSCTeam|Small"
+          ],
+          "linkText": "Get Access → [Small Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_team_medium",
+            "DRIP|LSSCTeam|Medium"
+          ],
+          "linkText": "Get Access → [Medium Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_team_large",
+            "DRIP|LSSCTeam|Large"
+          ],
+          "linkText": "Get Access → [Large Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_lssc_team_master",
+            "DRIP|LSSCTeam|LSSOTeam"
+          ],
+          "linkText": "Learn Spring Security OAuth"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_lss_team_master",
+            "DRIP|LSSCTeam|LSSTeam"
+          ],
+          "linkText": "Learn Spring Security Course"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_single",
+            "DRIP|LSSCTeam|Single"
+          ],
+          "linkText": "single licenses"
+        }
+      ]
     }
   ]
 }
