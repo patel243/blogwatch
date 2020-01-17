@@ -203,7 +203,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
             gitHubModuleHttpStatusCode = TestUtils.getGitHubModuleHTTPStatusCode(gitHubModulesLinkedOntheArticle);
             if (gitHubModuleHttpStatusCode != HttpStatus.SC_OK) {
-                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + "( returned: HTTP " + gitHubModuleHttpStatusCode);
+                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + " (returned: HTTP " + gitHubModuleHttpStatusCode + ")");
             }
 
             if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
