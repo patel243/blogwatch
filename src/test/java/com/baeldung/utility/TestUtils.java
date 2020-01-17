@@ -129,11 +129,17 @@ public class TestUtils {
 
         int httpStatusCode = HttpStatus.SC_OK;
         for (String url : gitHubModulesLinkedOntheArticle) {
-            httpStatusCode = RestAssured.given().config(restAssuredConfig).head(url).getStatusCode();
+            try {
+                httpStatusCode = RestAssured.given().config(restAssuredConfig).head(url).getStatusCode();
 
-            if (HttpStatus.SC_OK != httpStatusCode) {
-                logger.error(httpStatusCode + " received from: {} ", url);
-                return httpStatusCode;
+                if (HttpStatus.SC_OK != httpStatusCode) {
+                    logger.error(httpStatusCode + " received from: {} ", url);
+                    return httpStatusCode;
+                }
+            } catch (Exception e) {
+                httpStatusCode = HttpStatus.SC_OK;
+                logger.error("Got error while retrieving HTTP status code for:" + url);
+                logger.error("Error Message: " + e.getMessage());
             }
         }
         return httpStatusCode;
