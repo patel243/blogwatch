@@ -80,8 +80,8 @@ public class TestUtils {
 
             if (HttpStatus.SC_OK == httpStatusCode) {
                 return true;
-            }
-
+            }            
+            logger.error(httpStatusCode + " received from: {} ", fullURL);            
             return false;
         } catch (Exception e) {
             logger.error("Got error while retrieving HTTP status code for:" + fullURL);
