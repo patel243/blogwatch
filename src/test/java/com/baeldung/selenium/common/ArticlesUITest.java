@@ -7,6 +7,7 @@ import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -192,19 +193,19 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         String articleRelativeUrl = null;
         List<String> linksToTheGithubModule = null;
         List<String> gitHubModulesLinkedOntheArticle = null;
+        int gitHubModuleHttpStatusCode;
         do {
 
             gitHubModulesLinkedOntheArticle = page.gitHubModulesLinkedOnTheArticle();
-            
+
             if (shouldSkipUrl(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }
-            
-            if(!TestUtils.gitHubModulesReturn200OK(gitHubModulesLinkedOntheArticle)) {
-                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed());
+            gitHubModuleHttpStatusCode = TestUtils.getGitHubModuleHTTPStatusCode(gitHubModulesLinkedOntheArticle);
+            if (gitHubModuleHttpStatusCode != HttpStatus.SC_OK) {
+                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + "( returned: HTTP " + gitHubModuleHttpStatusCode);
             }
-            
-            
+
             if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }

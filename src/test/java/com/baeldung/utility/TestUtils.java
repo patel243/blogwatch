@@ -21,6 +21,8 @@ import com.jayway.restassured.config.RestAssuredConfig;
 public class TestUtils {
     protected static Logger logger = LoggerFactory.getLogger(TestUtils.class);
 
+    protected static RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(1000);
+
     public static boolean articleLinkFoundOnTheGitHubModule(List<String> gitHubModuleLinks, String articleRelativeURL, SitePage page) {
         boolean articleLinkFoundOnGitHubModule = false;
 
@@ -80,8 +82,8 @@ public class TestUtils {
 
             if (HttpStatus.SC_OK == httpStatusCode) {
                 return true;
-            }            
-            logger.error(httpStatusCode + " received from: {} ", fullURL);            
+            }
+            logger.error(httpStatusCode + " received from: {} ", fullURL);
             return false;
         } catch (Exception e) {
             logger.error("Got error while retrieving HTTP status code for:" + fullURL);
@@ -123,14 +125,18 @@ public class TestUtils {
 
     }
 
-    public static boolean gitHubModulesReturn200OK(List<String> gitHubModulesLinkedOntheArticle) {
-        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(1000);
+    public static int getGitHubModuleHTTPStatusCode(List<String> gitHubModulesLinkedOntheArticle) {
+
+        int httpStatusCode = HttpStatus.SC_OK;
         for (String url : gitHubModulesLinkedOntheArticle) {
-            if (!inspectURLHttpStatusCode(restAssuredConfig, url)) {
-                return false;
+            httpStatusCode = RestAssured.given().config(restAssuredConfig).head(url).getStatusCode();
+
+            if (HttpStatus.SC_OK != httpStatusCode) {
+                logger.error(httpStatusCode + " received from: {} ", url);
+                return httpStatusCode;
             }
         }
-        return true;
+        return httpStatusCode;
     }
 
 }
