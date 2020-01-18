@@ -202,7 +202,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
             httpStatusCodesOtherThan200OK = TestUtils.getHTTPStatusCodesOtherThan200OK(gitHubModulesLinkedOntheArticle);
             if (httpStatusCodesOtherThan200OK.size() > 0) {
-                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + " (returned HTTP status code:  " + httpStatusCodesOtherThan200OK + " )");
+                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + " ( HTTP status code received from GitHub module:  " + httpStatusCodesOtherThan200OK + " )");
             }
 
             if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
