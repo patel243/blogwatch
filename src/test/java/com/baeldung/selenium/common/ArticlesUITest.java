@@ -7,7 +7,6 @@ import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -193,7 +192,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         String articleRelativeUrl = null;
         List<String> linksToTheGithubModule = null;
         List<String> gitHubModulesLinkedOntheArticle = null;
-        int gitHubModuleHttpStatusCode;
+        List<Integer> httpStatusCodesOtherThan200OK = null;
         do {
 
             gitHubModulesLinkedOntheArticle = page.gitHubModulesLinkedOnTheArticle();
@@ -201,9 +200,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             if (shouldSkipUrl(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
                 continue;
             }
-            gitHubModuleHttpStatusCode = TestUtils.getGitHubModuleHTTPStatusCode(gitHubModulesLinkedOntheArticle);
-            if (gitHubModuleHttpStatusCode != HttpStatus.SC_OK) {
-                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + " (returned: HTTP " + gitHubModuleHttpStatusCode + ")");
+            httpStatusCodesOtherThan200OK = TestUtils.getHTTPStatusCodesOtherThan200OK(gitHubModulesLinkedOntheArticle);
+            if (httpStatusCodesOtherThan200OK.size() > 0) {
+                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + " (returned HTTP status code:  " + httpStatusCodesOtherThan200OK + " )");
             }
 
             if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {

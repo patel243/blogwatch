@@ -2,6 +2,7 @@ package com.baeldung.utility;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -125,24 +126,25 @@ public class TestUtils {
 
     }
 
-    public static int getGitHubModuleHTTPStatusCode(List<String> gitHubModulesLinkedOntheArticle) {
+    public static List<Integer> getHTTPStatusCodesOtherThan200OK(List<String> gitHubModulesLinkedOntheArticle) {
 
         int httpStatusCode = HttpStatus.SC_OK;
+        List<Integer> httpStatusCodesOtherThan200OK= new ArrayList<>();
         for (String url : gitHubModulesLinkedOntheArticle) {
             try {
                 httpStatusCode = RestAssured.given().config(restAssuredConfig).head(url).getStatusCode();
 
                 if (HttpStatus.SC_OK != httpStatusCode) {
                     logger.error(httpStatusCode + " received from: {} ", url);
-                    return httpStatusCode;
+                    httpStatusCodesOtherThan200OK.add(httpStatusCode);
                 }
             } catch (Exception e) {
                 httpStatusCode = HttpStatus.SC_OK;
                 logger.error("Got error while retrieving HTTP status code for:" + url);
                 logger.error("Error Message: " + e.getMessage());
             }
-        }
-        return httpStatusCode;
+        }        
+        return httpStatusCodesOtherThan200OK;
     }
 
 }
