@@ -309,6 +309,67 @@
           "linkText": "single licenses"
         }
       ]
+    },
+    {
+      "url": "/learn-spring-security-core-course",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy1",
+            "DRIP|LSSC|Master"
+          ],
+          "linkText": "Get access for $247 →"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy2",
+            "DRIP|LSSC|Certification"
+          ],
+          "linkText": "Get access for $347 →"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_table_master",
+            "DRIP|LSSC|Master"
+          ],
+          "linkText": "Get Access [Master Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_table_cert",
+            "DRIP|LSSC|Certification"
+          ],
+          "linkText": "Get Access [Certification Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_table_live",
+            "DRIP|LSSC|Coaching"
+          ],
+          "linkText": "Get Access [Coaching Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_lsso_master",
+            "DRIP|LSSC|LSSO"
+          ],
+          "linkText": "Learn Spring Security OAuth"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_lss_master",
+            "DRIP|LSSC|LSS"
+          ],
+          "linkText": "learn spring security course"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lssc|buy|buy_team",
+            "DRIP|LSSC|Team"
+          ],
+          "linkText": "Here are our team licenses →"
+        }
+      ]
     }
   ]
 }
