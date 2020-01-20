@@ -23,7 +23,6 @@
 /spring-5
 /java-10-overview
 /new-java-9
-/swagger-test-on-a-page/
 /consulting
 /consulting-short
 /webinar-api-security-with-spring
