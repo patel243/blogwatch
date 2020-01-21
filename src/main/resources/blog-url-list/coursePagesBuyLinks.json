@@ -431,6 +431,53 @@
           "linkText": "Here are our team licenses"
         }
       ]
+    },
+    {
+      "url": "/learn-spring-for-teams",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_team_small",
+            "DRIP|LSTeam|Small"
+          ],
+          "linkText": "Get Access → [Small Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_team_medium",
+            "DRIP|LSTeam|Medium"
+          ],
+          "linkText": "Get Access → [Medium Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_team_large",
+            "DRIP|LSTeam|Large"
+          ],
+          "linkText": "Get Access → [Large Team]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_rws_team_master",
+            "DRIP|LSTeam|RWSTeam"
+          ],
+          "linkText": "REST with spring"
+        },
+        {
+          "trackingCode": [
+            "GA|course-lsso|buy|buy_team_bulk",
+            "DRIP|LSTeam|Bulk"
+          ],
+          "linkText": "The Bulk Package for Teams"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_single",
+            "DRIP|LSTeam|Single"
+          ],
+          "linkText": "single licenses"
+        }
+      ]
     }
   ]
 }
