@@ -370,6 +370,67 @@
           "linkText": "Here are our team licenses →"
         }
       ]
+    },
+    {
+      "url": "/learn-spring-course",
+      "trackingList": [
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy1",
+            "DRIP|LS|Master"
+          ],
+          "linkText": "Buy The Master Class"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy2",
+            "DRIP|LS|Certification"
+          ],
+          "linkText": "Buy The Certification Class"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_table_master",
+            "DRIP|LS|Master"
+          ],
+          "linkText": "Purchase The Class [Master Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_table_cert",
+            "DRIP|LS|Certification"
+          ],
+          "linkText": "Purchase The Class [Certification Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_table_live",
+            "DRIP|LS|Coaching"
+          ],
+          "linkText": "Purchase The Class [Coaching Class]"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_rws_master",
+            "DRIP|LS|RWS"
+          ],
+          "linkText": "rest with spring"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_bulk",
+            "DRIP|LS|Bulk"
+          ],
+          "linkText": "the bulk package"
+        },
+        {
+          "trackingCode": [
+            "GA|course-ls|buy|buy_team",
+            "DRIP|LS|Team"
+          ],
+          "linkText": "team licenses"
+        }
+      ]
     }
   ]
 }
