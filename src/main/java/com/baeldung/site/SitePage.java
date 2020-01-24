@@ -121,11 +121,10 @@ public class SitePage extends BlogBaseDriver {
 
     public List<WebElement> findImagesPointingToInvalidEnvOnTheArticle() {
         String baseURLWithOutHttp = this.getBaseURL().substring(6);
-        return this.getWebDriver().findElements(By.xpath("//section//img[( contains(@src, 'www.') or contains(@src, 'http:') or contains(@src, 'https:') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '"
-                + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, '" + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX + "')) and not(contains(@src, '"
-                + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(0) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(1) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(2) + "')) and not(contains(@src, '"
-                + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(3) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(4) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(5) + "')) and not(contains(@src, '"
-                + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(6) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(7) + "')) and not(contains(@src, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(8) + "'))]"));
+        return this.getWebDriver()
+                .findElements(By.xpath("//section//img[( contains(@src, 'www.') or contains(@src, 'http:') or contains(@src, 'https:') ) and not(contains(@src, '" + this.getBaseURL() + "') or contains(@src, '"
+                        + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX + "') or contains(@src, '" + baseURLWithOutHttp + "')) and not(contains(@src, '" + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX + "')) "
+                        + Utils.generateXPathExcludeClauseForImages(GlobalConstants.DOMAIN_LIST_TO_EXCLUDE) + "]"));
     }
 
     public List<WebElement> findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle() {
@@ -133,10 +132,7 @@ public class SitePage extends BlogBaseDriver {
         return this.getWebDriver()
                 .findElements(By.xpath("//section//a[( contains(@href, 'www.') or contains(@href, 'http:') or contains(@href, 'https:') ) and ( contains(@href, '.jpg') or contains(@href, '.jpeg') or contains(@href, '.png')) and not(contains(@href, '"
                         + this.getBaseURL() + "') or contains(@href, '" + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITHOUT_WWW_PREFIX + "') or contains(@href, '" + baseURLWithOutHttp + "')) and not(contains(@href, '"
-                        + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(0) + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(1)
-                        + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(2) + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(3) + "')) and not(contains(@href, '"
-                        + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(4) + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(5) + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(6)
-                        + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(7) + "')) and not(contains(@href, '" + GlobalConstants.DOMAIN_LIST_TO_EXCLUDE.get(8) + "'))]"));
+                        + GlobalConstants.BAELDUNG_HOME_PAGE_URL_WITH_WWW_PREFIX + "')) " + Utils.generateXPathExcludeClauseForAnchors(GlobalConstants.DOMAIN_LIST_TO_EXCLUDE) + "]"));
     }
 
     public List<WebElement> findImagesPointingToInvalidEnvOnThePage() {

@@ -47,6 +47,7 @@ import com.github.rholder.retry.RetryerBuilder;
 import com.github.rholder.retry.StopStrategies;
 import com.google.common.base.Predicates;
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import com.google.common.util.concurrent.RateLimiter;
 
@@ -605,6 +606,24 @@ public class Utils {
         }
         String firstTokenWithTheSpaceDelimiter = tokens.get(0).toString();
         return firstTokenWithTheSpaceDelimiter.contains(GlobalConstants.LEFT_PARENTHESIS) && !firstTokenWithTheSpaceDelimiter.contains("()") ? GlobalConstants.RIGHT_PARENTHESIS_FOLLOWED_BY_SPACE : " ";
+    }
+
+    public static String generateXPathExcludeClauseForImages(ImmutableList<String> domainToExclude) {
+        StringBuilder excludeCluse = new StringBuilder();
+        for (String domain : domainToExclude) {
+            excludeCluse.append("and not(contains(@src, '" + domain + "'))");
+        }
+        System.out.println(excludeCluse.toString());
+        return excludeCluse.toString();
+    }
+
+    public static String generateXPathExcludeClauseForAnchors(ImmutableList<String> domainToExclude) {
+        StringBuilder excludeCluse = new StringBuilder();
+        for (String domain : domainToExclude) {
+            excludeCluse.append("and not(contains(@href, '" + domain + "'))");
+        }
+        System.out.println(excludeCluse.toString());
+        return excludeCluse.toString();
     }
 
 }
