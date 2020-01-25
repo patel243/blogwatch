@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +24,6 @@ import java.util.stream.Stream;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
-import org.apache.commons.text.WordUtils;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -467,70 +465,23 @@ public class Utils {
         return false;
     }
 
-    public static boolean isValidTitle(String title, List<String> emTagValues) {
-        if (StringUtils.isBlank(title)) {
-            return true;
-        }
-        List<String> tokens = Utils.titleTokenizer(title).parallelStream().map(token -> applyCapatalization((String) token, emTagValues)).collect(Collectors.toList());
-
-        if (CollectionUtils.isEmpty(tokens)) {
-            return true;
-        }
-
-        return title.trim().equals(StringUtils.join(tokens, " "));
-    }
-
-    private static String applyCapatalization(String token, List<String> emTagValues) {
-
-        String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up|with|into|over";
-        if (Pattern.matches(regex, token)) {
-            return token.toLowerCase();
-        }
-
-        if (token.equals(token.toUpperCase()) || token.charAt(0) == '@') {
-            return token;
-        }
-
-        if (token.contains("(")) {
-            if (token.contains(".")) {
-                token = WordUtils.capitalize(Arrays.asList(token.split("\\.")).stream().map(WordUtils::uncapitalize).collect(Collectors.joining(".")));
-                return token;
-
-            } else {
-                return WordUtils.uncapitalize(token, '$');
-            }
-        }
-
-        if (emTagValues.contains(token.trim()) || token.contains(".")) {
-            return token;
-        }
-
-        return WordUtils.capitalize(token);
-    }
-
-    private static boolean isClassOrMethod(String token) {
-        if (StringUtils.isBlank(token)) {
-            return false;
-        }
-        if (token.contains("()") || token.contains(".")) {
-            return true;
-        }
-        return false;
-
-    }
-
     public static String formatResultsForCapatalizationTest(String url, List<String> invalidTitles) {
         return "\n\n" + url + " \n----------------------------------------------------------------\n " + invalidTitles.stream().map(title -> title + " \n ").collect(Collectors.joining());
     }
 
-    public static List<String> getEMTagValues(final String str) {
+    public static List<String> getEMAndItalicTagValues(final String str) {
 
-        final Pattern TAG_REGEX = Pattern.compile("<em>(.+?)</em>", Pattern.DOTALL);
+        final Pattern EM_TAG_REGEX = Pattern.compile("<em>(.+?)</em>", Pattern.DOTALL);
+        final Pattern ITALIC_TAG_REGEX = Pattern.compile("<i>(.+?)</i>", Pattern.DOTALL);
 
         final List<String> tagValues = new ArrayList<String>();
-        final Matcher matcher = TAG_REGEX.matcher(str);
-        while (matcher.find()) {
-            tagValues.add(matcher.group(1).trim());
+        final Matcher emMatcher = EM_TAG_REGEX.matcher(str);
+        while (emMatcher.find()) {
+            tagValues.add(emMatcher.group(1).trim());
+        }
+        final Matcher italicMatcher = ITALIC_TAG_REGEX.matcher(str);
+        while (italicMatcher.find()) {
+            tagValues.add(italicMatcher.group(1).trim());
         }
         return tagValues;
     }

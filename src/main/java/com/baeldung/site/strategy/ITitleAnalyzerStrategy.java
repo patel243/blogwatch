@@ -11,14 +11,24 @@ public interface ITitleAnalyzerStrategy {
     boolean isTitleValid(String title, List<String> tokens, List<String> emphasizedAndItalicTokens);
 
     static List<ITitleAnalyzerStrategy> titleAnalyzerStrategies = Arrays.asList(new ITitleAnalyzerStrategy[] { articlesConjunctionsShortPrepositionsAnalyserStrategy(), javaMethodNameAnalyserStrategy(), simpleTitleAnalyserStrategy() });
-    static String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up|with|into|over";
+    static String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up|with|into|over|out";
 
     static ITitleAnalyzerStrategy articlesConjunctionsShortPrepositionsAnalyserStrategy() {
         return (title, tokens, emphasizedAndItalicTokens) -> {
+            String expectedToken = null;
+            int tokenBeingAnalysed = 1;
             for (String token : tokens) {
-                if (Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches() && !token.toLowerCase().equals(token)) {
-                    return false;
+                if (tokenBeingAnalysed == 2) {
+                    expectedToken = WordUtils.capitalize(token.toLowerCase());
+                } else {
+                    expectedToken = token.toLowerCase();
                 }
+                if (Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()) {
+                    if (!expectedToken.equals(token)) {
+                        return false;
+                    }
+                }
+                tokenBeingAnalysed++;
             }
             return true;
         };
@@ -53,7 +63,6 @@ public interface ITitleAnalyzerStrategy {
                     continue;
                 }
                 if (!WordUtils.capitalize(token).equals(token)) {
-                    System.out.println("failure caused by:" + token);
                     return false;
                 }
             }

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
 import com.baeldung.common.vo.LinkVO;
+import com.baeldung.site.strategy.ITitleAnalyzerStrategy;
 
 @Component
 public class SitePage extends BlogBaseDriver {
@@ -437,11 +438,18 @@ public class SitePage extends BlogBaseDriver {
 
     public List<String> findInvalidTitles() {
         List<String> invalidTitles = new ArrayList<>();
-        List<WebElement> titles = this.getWebDriver().findElements(By.xpath("//h2/strong | //h3/strong"));
+        List<WebElement> webElements = this.getWebDriver().findElements(By.xpath("//h2/strong | //h3/strong"));
 
-        titles.parallelStream().forEach(title -> {
-            if (!Utils.isValidTitle(title.getText(), Utils.getEMTagValues(title.getAttribute("innerHTML")))) {
-                invalidTitles.add(title.getText());
+        webElements.parallelStream().forEach(webElement -> {
+            String title = webElement.getText();
+            List<String> tokens = Utils.titleTokenizer(title);
+            List<String> emphasizedAndItalicTagValues = Utils.getEMAndItalicTagValues(webElement.getAttribute("innerHTML"));
+
+            for (ITitleAnalyzerStrategy s : ITitleAnalyzerStrategy.titleAnalyzerStrategies) {
+                if (!s.isTitleValid(title, tokens, emphasizedAndItalicTagValues)) {                   
+                    invalidTitles.add(title);
+                    continue;
+                }
             }
         });
         return invalidTitles;
