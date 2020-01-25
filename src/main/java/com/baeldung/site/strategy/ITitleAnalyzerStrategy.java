@@ -18,12 +18,12 @@ public interface ITitleAnalyzerStrategy {
             String expectedToken = null;
             int tokenBeingAnalysed = 1;
             for (String token : tokens) {
-                if (tokenBeingAnalysed == 2) {
-                    expectedToken = WordUtils.capitalize(token.toLowerCase());
-                } else {
-                    expectedToken = token.toLowerCase();
-                }
                 if (Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()) {
+                    if (tokenBeingAnalysed == 2) {
+                        expectedToken = WordUtils.capitalize(token.toLowerCase());
+                    } else {
+                        expectedToken = token.toLowerCase();
+                    }
                     if (!expectedToken.equals(token)) {
                         return false;
                     }
