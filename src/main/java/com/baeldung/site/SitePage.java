@@ -448,7 +448,7 @@ public class SitePage extends BlogBaseDriver {
             for (ITitleAnalyzerStrategy s : ITitleAnalyzerStrategy.titleAnalyzerStrategies) {
                 if (!s.isTitleValid(title, tokens, emphasizedAndItalicTagValues)) {                   
                     invalidTitles.add(title);
-                    continue;
+                    break;
                 }
             }
         });

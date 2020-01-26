@@ -11,15 +11,24 @@ public interface ITitleAnalyzerStrategy {
     boolean isTitleValid(String title, List<String> tokens, List<String> emphasizedAndItalicTokens);
 
     static List<ITitleAnalyzerStrategy> titleAnalyzerStrategies = Arrays.asList(new ITitleAnalyzerStrategy[] { articlesConjunctionsShortPrepositionsAnalyserStrategy(), javaMethodNameAnalyserStrategy(), simpleTitleAnalyserStrategy() });
-    static String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up|with|into|over|out";
+    static String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up||into|over|out";
 
     static ITitleAnalyzerStrategy articlesConjunctionsShortPrepositionsAnalyserStrategy() {
         return (title, tokens, emphasizedAndItalicTokens) -> {
             String expectedToken = null;
             int tokenBeingAnalysed = 1;
+            int firstTokenStartingWithACharacter = 1;
             for (String token : tokens) {
-                if (Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()) {
-                    if (tokenBeingAnalysed == 2) {
+                firstTokenStartingWithACharacter = 1;
+                if (emphasizedAndItalicTokens.contains(token.trim())) {
+                    tokenBeingAnalysed++;
+                    continue;
+                }
+                if (Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token.trim()).matches()) {
+                    if (Character.isDigit(Character.valueOf(title.charAt(0)))) {
+                        firstTokenStartingWithACharacter = 2;
+                    }
+                    if (tokenBeingAnalysed == firstTokenStartingWithACharacter) {
                         expectedToken = WordUtils.capitalize(token.toLowerCase());
                     } else {
                         expectedToken = token.toLowerCase();
@@ -39,6 +48,9 @@ public interface ITitleAnalyzerStrategy {
 
             for (String token : tokens) {
                 if (token.contains("(")) {
+                    if (token.toUpperCase().equals(token)) {
+                        continue;
+                    }
                     if (token.contains(".")) {
                         String expetedToken = WordUtils.capitalize(Arrays.asList(token.split("\\.")).stream().map(WordUtils::uncapitalize).collect(Collectors.joining(".")));
                         if (!expetedToken.equals(token)) {
@@ -59,7 +71,7 @@ public interface ITitleAnalyzerStrategy {
         return (title, tokens, emphasizedAndItalicTokens) -> {
 
             for (String token : tokens) {
-                if (emphasizedAndItalicTokens.contains(token.trim()) || token.contains(".") || token.equals(token.toUpperCase()) || token.charAt(0) == '@' || Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()) {
+                if (emphasizedAndItalicTokens.contains(token.trim()) || token.contains("(") || token.contains(".") || token.equals(token.toUpperCase()) || token.charAt(0) == '@' || Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()) {
                     continue;
                 }
                 if (!WordUtils.capitalize(token).equals(token)) {
