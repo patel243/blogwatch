@@ -71,7 +71,8 @@ public interface ITitleAnalyzerStrategy {
         return (title, tokens, emphasizedAndItalicTokens) -> {
 
             for (String token : tokens) {
-                if (emphasizedAndItalicTokens.contains(token.trim()) || token.contains("(") || token.contains(".") || token.equals(token.toUpperCase()) || token.charAt(0) == '@' || Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()) {
+                if (emphasizedAndItalicTokens.contains(token.trim()) || token.contains("(") || token.contains(".") || token.equals(token.toUpperCase()) || token.charAt(0) == '@' || Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()
+                        || (token.contains("-") && token.toLowerCase().equals(token))) {
                     continue;
                 }
                 if (!WordUtils.capitalize(token).equals(token)) {

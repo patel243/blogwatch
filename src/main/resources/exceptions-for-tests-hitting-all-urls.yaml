@@ -62,6 +62,16 @@ givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization:
   - /hibernate-c3p0
   - /spring-mvc-interview-questions
   - /java-lang-math
+  - /grep-in-java
+  - /java-ai
+  - /java-concurrency-interview-questions
+  - /httpclient-ssl
+  - /upload-on-s3-with-jclouds
+  - /spring-lookup
+  - /kotlin-spek
+  - /java-hash-table
+  - /big-o-notation
+  - /java-ocp-advanced-class-design
 
 givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory:
   - /spring-reloading-properties/
