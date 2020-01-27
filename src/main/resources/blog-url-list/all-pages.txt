@@ -39,15 +39,7 @@
 /baeldung-company-info
 /contact
 /thank-you
-/api-discoverability-with-spring-and-spring-hateoas-workshop/
-/api-discoverability-with-spring-and-spring-hateoas/
-/the-basics-of-rest-with-spring-webinar/
-/api-security-with-spring-webinar/
-/advanced-api-security-workshop/
-/cqrs-and-event-sourcing-with-spring/
-/cqrs-and-event-sourcing-implementation-with-spring-and-spring-boot-workshop/
 /thank-you-javarevisited
-/coaching-call/
 /java-spring-training
 /rest-course-thank-you
 /best-of
@@ -69,7 +61,6 @@
 /webinar-idiomatic-functional-programming-thank-you
 /webinar-api-discoverability-with-spring-thank-you
 /webinar-idiomatic-functional-programming-in-java
-/idiomatic-functional-programming-in-java/
 /java-conferences-august2018
 /rest-with-spring-faq
 /learn-spring-security-faq
