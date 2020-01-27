@@ -3081,3 +3081,13 @@
 /devops-overview
 /java-asynchronous-programming
 /java-generating-random-numbers-in-range
+/java-generating-barcodes-qr-codes
+/java-jpa-lazy-collections
+/java-creating-localdate-with-values
+/java-work-stealing
+/java-balanced-brackets-algorithm
+/kotlin/sequences
+/redis-list-available-keys
+/java-jsoniter
+/java-weekly-317
+/kotlin-intro
