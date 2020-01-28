@@ -54,6 +54,7 @@ Following tags are available for running tests selectively. Refer Java docs in _
   - _daily_
   - _weekly_
   - _bi-monthly_
+  - _every-three-weeks_
   - _monthly_
 
 ### Excluding a URL for tests running in the bi-monthly bild
@@ -104,8 +105,8 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 29 | **givenAPageWithTheDripScript_whenThePageLoads_thenThePageHasTheDripScrip** <br/><br/> daily <br/><br/> Verifies the Drip script on https://baeldung.com/spring-tutorial |
 | 30 | **givenOnTheCoursePage_whenThePageLoads_thenAGeoIPApiProviderWorks** <br/><br/> daily <br/><br/> This test loads http://baeldung.com/learn-spring-security-course/ and verifies that any of the following messages is logged in the browser console: </br>VAT Calc Notice: geoIP API provider is set to ipdata </br>VAT Calc Notice: geoIP API provider is set to ipinfo.io</br>VAT Calc Notice: geoIP API provider is set to ipapi.com|
 | 31 | **givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown** <br/><br/> daily <br/><br/> This test loads http://baeldung.com/learn-spring-security-course/ with EU proxy and verifies that VAT prices are available|
-| 32 | **givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule** <br/><br/> monthly <br/><br/> This test verifies that articles linked in GitHub READMEs link forward to the same GitHub module.</br> The test also documents no of articles linked from READMEs.</br> As of now, the test scans only tutorials (https://github.com/eugenp/tutorials) repo.|
-| 33 | **givenTheGitHubModule_theModuleHasANonEmptyReadme** <br/><br/> monthly <br/><br/> This test verifies that GitHub modules have non empty README. A README not linking to an article is also considered empty. As of now, the test scans only tutorials(https://github.com/eugenp/tutorials) repo.|
+| 32 | **givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule** <br/><br/> every-three-weeks <br/><br/> This test verifies that articles linked in GitHub READMEs link forward to the same GitHub module.</br> The test also documents no of articles linked from READMEs.</br> As of now, the test scans only tutorials (https://github.com/eugenp/tutorials) repo.|
+| 33 | **givenTheGitHubModule_theModuleHasANonEmptyReadme** <br/><br/> every-three-weeks <br/><br/> This test verifies that GitHub modules have non empty README. A README not linking to an article is also considered empty. As of now, the test scans only tutorials(https://github.com/eugenp/tutorials) repo.|
 | 34 | **givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath** <br/><br/> twice-a-month <br/><br/> This test verifies that image links in the og:image and twitter:image parameters are absolute. The rest runs on all the posts|
 | 35 | **givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath** <br/><br/> twice-a-month <br/><br/> This test verifies that image links in the og:image and twitter:image parameters are absolute. The test runs on all the pages|
 | 36 | **givenOnTheBaeldungRSSFeed_whenTheFirstUrlIsHit_thenItPointsToTheBaeldungSite** <br/><br/> daily <br/><br/> This test verifies that the first link in the Baeldung RSS feed ( https://www.baeldung.com/rss/ ) points to the www.baeldung.com |
