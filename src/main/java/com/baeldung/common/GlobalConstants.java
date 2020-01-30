@@ -87,11 +87,6 @@ public class GlobalConstants {
      * Tests using this tag are executed monthly on Jenkins
      */
     public static final String TAG_MONTHLY = "monthly";
-    
-    /**
-     * Tests using this tag are executed every three weeks on Jenkins
-     */
-    public static final String TAG_EVERY_THREE_WEEKS = "every-three-weeks";
 
     /**
      * Tests using this tag can be executed using on Demand genkins job.

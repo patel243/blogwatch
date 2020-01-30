@@ -24,7 +24,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Value("${file.for.javaConstructs.test}")
     private String fileForJavaConstructsTest;
 
-    @Tag(GlobalConstants.TAG_EVERY_THREE_WEEKS)
+    @Tag(GlobalConstants.TAG_MONTHLY)
     @Tag("empty-or-none-readme")
     @Test
     public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
