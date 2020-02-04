@@ -171,15 +171,45 @@ public class Utils {
         fail("\n\nFailed tests-->" + message + "\n\n");
     }
 
-    public static void triggerTestFailure(Multimap<String, String> testResutls) {
+    public static void triggerTestFailure(Multimap<String, String> testResutls, int totalFailures) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
         testResutls.asMap().forEach((key, value) -> {
             resultBuilder.append(formatResults((List<String>) value, key));
         });
-
+        resultBuilder.append(messageForTotalNoOfFailuresAtTheTestClassLevel(totalFailures));
         fail("\n\nFailed tests-->" + resultBuilder.toString());
+
+    }
+
+    public static String messageForTotalNoOfFailuresAtTheTestClassLevel(int failures) {
+
+        StringBuilder resultBuilder = new StringBuilder();
+        resultBuilder.append("\n");
+        resultBuilder.append("=====================================================");
+        resultBuilder.append("\n");
+        resultBuilder.append("Total failures upto this point = " + failures);
+        resultBuilder.append("\n");
+        resultBuilder.append("=====================================================");
+        resultBuilder.append("\n");
+
+        return resultBuilder.toString();
+
+    }
+
+    public static String messageForTotalNoOfFailures(int failures) {
+
+        StringBuilder resultBuilder = new StringBuilder();
+        resultBuilder.append("\n");
+        resultBuilder.append("=====================================================");
+        resultBuilder.append("\n");
+        resultBuilder.append("Total failures = " + failures);
+        resultBuilder.append("\n");
+        resultBuilder.append("=====================================================");
+        resultBuilder.append("\n");
+
+        return resultBuilder.toString();
 
     }
 

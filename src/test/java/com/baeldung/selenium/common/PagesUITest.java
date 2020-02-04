@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.Utils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -55,17 +56,19 @@ public class PagesUITest extends BaseUISeleniumTest {
             List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
 
             if (imgTags.size() > 0) {
+                recordMetrics(imgTags.size(), TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + " )\n");
             }
 
             if (anchorTags.size() > 0) {
+                recordMetrics(anchorTags.size(), TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv, page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n");
             }
 
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -78,12 +81,13 @@ public class PagesUITest extends BaseUISeleniumTest {
             }
 
             if (!Utils.excludePage(page.getUrl(), GlobalConstants.PAGES_THANK_YOU, false) && !Utils.excludePage(page.getUrl(), GlobalConstants.URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST, false) && !page.findMetaDescriptionTag()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -96,12 +100,13 @@ public class PagesUITest extends BaseUISeleniumTest {
             }
 
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -122,7 +127,7 @@ public class PagesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 

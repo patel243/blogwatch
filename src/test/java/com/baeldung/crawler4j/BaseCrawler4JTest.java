@@ -1,12 +1,11 @@
 package com.baeldung.crawler4j;
 
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.baeldung.common.BaseTest;
 import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.crawler4j.config.Crawler4jMainCofig;
@@ -16,16 +15,14 @@ import com.google.common.util.concurrent.RateLimiter;
 
 @ContextConfiguration(classes = { CommonConfig.class, Crawler4jMainCofig.class }, initializers = MyApplicationContextInitializer.class)
 @ExtendWith(SpringExtension.class)
-public class BaseCrawler4JTest {
+public class BaseCrawler4JTest extends BaseTest {
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());
-    
     protected RateLimiter rateLimiter = RateLimiter.create(1);
-    
+
     @Autowired
-    protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController; 
-    
+    protected TutorialsRepoCrawlerController tutorialsRepoCrawlerController;
+
     @Autowired
-    protected CodeCrawlerController codeSnippetCrawlerController;        
+    protected CodeCrawlerController codeSnippetCrawlerController;
 
 }

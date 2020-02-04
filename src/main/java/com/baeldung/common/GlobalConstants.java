@@ -135,12 +135,12 @@ public class GlobalConstants {
     // thank-you page
     public static final List<String> PAGES_THANK_YOU = Arrays.asList(new String[] { "thank-you", "thanks" });
 
-    public static final List<String> URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST = Arrays.asList(new String[] { "/start-here/", "/spring-5/", "/swagger-test-on-a-page/", "/follow/", "/baeldung-company-info/", "/contact/", "/rest-course-almost-done/" });       
+    public static final List<String> URLS_EXCLUDED_FROM_META_DESCRIPTION_TEST = Arrays.asList(new String[] { "/start-here/", "/spring-5/", "/swagger-test-on-a-page/", "/follow/", "/baeldung-company-info/", "/contact/", "/rest-course-almost-done/" });
 
     // Baeldung GitHub repos
 
     public static final String GITHUB_REPO_EUGENP = "github.com/eugenp";
-    public static final String GITHUB_REPO_BAELDUNG = "github.com/baeldung";        
+    public static final String GITHUB_REPO_BAELDUNG = "github.com/baeldung";
 
     // for Q2W3 Fixed Widget test
 
@@ -159,7 +159,7 @@ public class GlobalConstants {
     public static final String DRIP_SCRPT_SEARCH_STRING = "dc.src = '//tag.getdrip.com/9539554.js';";
 
     // for crawler4j
-    public static final String README_LINKS_FOLDER_PATH = "./blog-url-list/";    
+    public static final String README_LINKS_FOLDER_PATH = "./blog-url-list/";
     public static final String README_FILE_NAME_LOWERCASE = "readme.md";
     public static final String CRAWLER4J_STORAGE_FOLDER = "crawl/root";
 
@@ -186,7 +186,7 @@ public class GlobalConstants {
     public static final String COURSE_LSS_PAGE = "/learn-spring-security-course/";
 
     // exclude following domain for givenAllTheArticles_whenArticleLoads_thenImagesPointToCorrectEnv
-    public static final ImmutableList<String> DOMAIN_LIST_TO_EXCLUDE = ImmutableList.of("http://cdn", "s.w.org", "postimg.org", "github.com", "githubusercontent.com", "spring.io", "eclipse.org","://localhost","wikimedia.org","js.gleam.io");        
+    public static final ImmutableList<String> DOMAIN_LIST_TO_EXCLUDE = ImmutableList.of("http://cdn", "s.w.org", "postimg.org", "github.com", "githubusercontent.com", "spring.io", "eclipse.org", "://localhost", "wikimedia.org", "js.gleam.io");
 
     public static final String CONSTRUCT_TYPE_CLASS_OR_INTERFACE = "ClassOrInterface";
     public static final String CONSTRUCT_TYPE_METHOD = "Method";
@@ -201,11 +201,15 @@ public class GlobalConstants {
     //
     public static final List<String> springSubCategories = Arrays.asList("Spring Security", "Spring Boot", "Spring Cloud", "Spring Web", "Spring MVC");
     public static final String springCategoryOnTheSite = "Spring";
-    
+
     public static final String LEFT_PARENTHESIS = "(";
     public static final String RIGHT_PARENTHESIS_FOLLOWED_BY_SPACE = ") ";
     public static final String RIGHT_PARENTHESIS = ")";
     public static final String SPACE_DELIMITER = " ";
+
+    public static enum TestMetricTypes {
+        FAILED;
+    }
 
     // test names for
     public static final String givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv = "givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv";
@@ -231,7 +235,7 @@ public class GlobalConstants {
     public static final String givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory = "givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory";
     public static final String givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly = "givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly";;
     public static final String givenAllLongRunningTests_whenHittingAllArticles_thenOK = "givenAllLongRunningTests_whenHittingAllArticles_thenOK";
-    public static final String givenAllLongRunningTests_whenHittingAllPages_thenOK = "givenAllLongRunningTests_whenHittingAllPages_thenOK";    
+    public static final String givenAllLongRunningTests_whenHittingAllPages_thenOK = "givenAllLongRunningTests_whenHittingAllPages_thenOK";
     public static final String givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK = "givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK";
 
 }

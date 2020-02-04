@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.GlobalProperties;
 import com.baeldung.common.Utils;
 import com.baeldung.utility.TestUtils;
@@ -69,18 +70,18 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     public final void givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv() {
 
         log(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv);
-
         do {
             if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv)) {
                 continue;
             }
             if (page.findEmptyDivs().size() > 0) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -96,12 +97,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
 
             if (page.findShortCodesAtTheTopOfThePage().size() != 1) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -115,12 +117,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
                 continue;
             }
             if (page.findShortCodesAtTheEndOfThePage().size() != 1) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -137,12 +140,14 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
 
             if (imgTags.size() > 0) {
+                recordMetrics(imgTags.size(), TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv,
                         page.getUrlWithNewLineFeed() + " ( " + imgTags.stream().map(webElement -> webElement.getAttribute("src") + " , ").collect(Collectors.joining()) + ")\n");
             }
 
             List<WebElement> anchorTags = page.findAnchorsPointingToAnImageAndInvalidEnvOnTheArticle();
             if (anchorTags.size() > 0) {
+                recordMetrics(anchorTags.size(), TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv,
                         page.getUrlWithNewLineFeed() + " ( " + anchorTags.stream().map(webElement -> webElement.getAttribute("href") + " , ").collect(Collectors.joining()) + ")\n");
             }
@@ -150,7 +155,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -166,12 +171,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
 
             if (!page.findMetaDescriptionTag()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -202,7 +208,9 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
             httpStatusCodesOtherThan200OK = TestUtils.getHTTPStatusCodesOtherThan200OK(gitHubModulesLinkedOntheArticle);
             if (httpStatusCodesOtherThan200OK.size() > 0) {
-                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK, page.getUrlWithNewLineFeed() + " ( HTTP status code received from GitHub module:  " + httpStatusCodesOtherThan200OK + " )");
+                recordMetrics(httpStatusCodesOtherThan200OK.size(), TestMetricTypes.FAILED);
+                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK,
+                        page.getUrlWithNewLineFeed() + " ( HTTP status code received from GitHub module:  " + httpStatusCodesOtherThan200OK + " )");
             }
 
             if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
@@ -217,15 +225,17 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
 
             if (!TestUtils.articleLinkFoundOnTheGitHubModule(linksToTheGithubModule, articleRelativeUrl, page)) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle, page.getUrlWithNewLineFeed());
             } else if (!shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch) && !page.articleTitleMatchesWithTheGitHubLink(articleHeading, articleRelativeUrl)) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch, page.getUrlWithNewLineFeed());
             }
 
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -242,12 +252,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
             String authorName = page.findAuthorOfTheArticle();
             if (excludedListOfAuthors.contains(authorName.toLowerCase())) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllTheArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -263,13 +274,14 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
 
             if (!page.findMetaTagWithOGImagePointingToTheAbsolutePath() || !page.findMetaTagWithTwitterImagePointingToTheAbsolutePath()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 logger.info("og:image or twitter:image check failed for: " + page.getUrl());
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -285,12 +297,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
 
             if (page.findInvalidCharactersInTheArticle()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -308,6 +321,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             try {
                 List<String> invalidTitles = page.findInvalidTitles();
                 if (invalidTitles.size() > 0) {
+                    recordMetrics(invalidTitles.size(), TestMetricTypes.FAILED);
                     badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization, Utils.formatResultsForCapatalizationTest(page.getUrl(), invalidTitles));
                 }
             } catch (Exception e) {
@@ -316,7 +330,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -333,12 +347,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
             if (page.hasUnnecessaryLabels()) {
                 // logger.info("URL found with Spring and other more specific label:" + page.getUrlWithNewLineFeed());
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -358,12 +373,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             }
 
             if (page.hasBrokenCodeBlock()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
                 badURLs.put(GlobalConstants.givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly, page.getUrlWithNewLineFeed());
             }
         } while (loadNextURL());
 
         if (!allTestsFlag && badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
     }
 
@@ -394,7 +410,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         } while (loadNextURL());
 
         if (badURLs.size() > 0) {
-            Utils.triggerTestFailure(badURLs);
+            triggerTestFailure(badURLs);
         }
 
     }
