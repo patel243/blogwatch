@@ -2,8 +2,12 @@ givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv:
   - /jpa-composite-primary-keys/  
 givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop:
   - /spring-java-online-courses/  
-givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop:
+  - /linux/
+  - /kotlin/
+givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd:
   - /spring-java-online-courses/ 
+  - /kotlin/
+  - /linux/
 givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv:
   - /javafx/
   - /java-sms-twilio/    
