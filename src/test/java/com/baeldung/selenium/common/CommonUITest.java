@@ -3,7 +3,6 @@ package com.baeldung.selenium.common;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +20,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.Utils;
 import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.LinkVO;
@@ -81,7 +81,8 @@ public class CommonUITest extends BaseUISeleniumTest {
         }
 
         if (badURLs.size() > 0) {
-            fail("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
+            recordMetrics(badURLs.size(), TestMetricTypes.FAILED);
+            failTestWithLoggingTotalNoOfFailures("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
         }
     }
 
@@ -251,8 +252,13 @@ public class CommonUITest extends BaseUISeleniumTest {
             }
         });
 
-        Utils.logResults(articleCountByReadme, "Article count by READMEs");
-        Utils.logErrorMessageForInvalidLinksInReadmeFiles(badURLs);
+        if (badURLs.size() > 0) {
+            recordMetrics(badURLs.size(), TestMetricTypes.FAILED);
+            Utils.logResults(articleCountByReadme, "Article count by READMEs");
+
+            failTestWithLoggingTotalNoOfFailures("\nwe found issues with following READMEs" + Utils.getErrorMessageForInvalidLinksInReadmeFiles(badURLs));
+
+        }
     }
 
     @Test

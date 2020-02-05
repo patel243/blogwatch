@@ -178,12 +178,12 @@ public class Utils {
         testResutls.asMap().forEach((key, value) -> {
             resultBuilder.append(formatResults((List<String>) value, key));
         });
-        resultBuilder.append(messageForTotalNoOfFailuresAtTheTestClassLevel(totalFailures));
+        resultBuilder.append(messageForTotalNoOfFailuresAtTheTestLevel(totalFailures));
         fail("\n\nFailed tests-->" + resultBuilder.toString());
 
     }
 
-    public static String messageForTotalNoOfFailuresAtTheTestClassLevel(int failures) {
+    public static String messageForTotalNoOfFailuresAtTheTestLevel(int failures) {
 
         StringBuilder resultBuilder = new StringBuilder();
         resultBuilder.append("\n");
@@ -227,16 +227,16 @@ public class Utils {
         return readmeURL.substring(0, readmeURL.length() - 10).replace("/blob/", "/tree/"); // length of /readme.md is 10;
     }
 
-    public static void logErrorMessageForInvalidLinksInReadmeFiles(Multimap<String, LinkVO> badURLs) {
-
+    public static String getErrorMessageForInvalidLinksInReadmeFiles(Multimap<String, LinkVO> badURLs) {
+        StringBuilder testsResult = new StringBuilder();
         if (badURLs.size() > 0) {
-            String testsResult = "\n\n";
+            testsResult.append("\n\n");
             for (Map.Entry<String, Collection<LinkVO>> entry : badURLs.asMap().entrySet()) {
-                testsResult = testsResult + entry.getKey() + " \n" + entry.getValue().toString() + "\n\n";
+                testsResult.append(entry.getKey() + " \n" + entry.getValue().toString() + "\n\n");
             }
-            fail("\nwe found issues with following READMEs" + testsResult);
-        }
 
+        }
+        return testsResult.toString();
     }
 
     public static String getProxyServerIP(String proxyServerAddress) {
@@ -423,7 +423,7 @@ public class Utils {
 
     }
 
-    public static void triggerTestFailure(Multimap<String, JavaConstruct> results, String baseUrl) {
+    public static String getErrorMessageForJavaConstructsTest(Multimap<String, JavaConstruct> results, String baseUrl) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
@@ -431,7 +431,7 @@ public class Utils {
             resultBuilder.append(formatResultsForJavaConstructsTest((List<JavaConstruct>) value, key));
         });
 
-        fail("\n\nTest Results-->" + resultBuilder.toString());
+        return resultBuilder.toString();
     }
 
     private static String formatResultsForJavaConstructsTest(List<JavaConstruct> javaConstructs, String url) {

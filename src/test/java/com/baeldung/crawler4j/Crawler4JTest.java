@@ -1,7 +1,5 @@
 package com.baeldung.crawler4j;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.Utils;
 import com.baeldung.common.vo.JavaConstruct;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme;
@@ -33,8 +32,8 @@ public class Crawler4JTest extends BaseCrawler4JTest {
 
         List<String> modulesWithNoneOrEmptyReadme = Utils.getDiscoveredLinks(tutorialsRepoCrawlerController.getDiscoveredURLs());
         if (modulesWithNoneOrEmptyReadme.size() > 0) {
-            fail("\n Modules found with missing or empty READMEs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));
-
+            recordMetrics(modulesWithNoneOrEmptyReadme.size(), TestMetricTypes.FAILED);
+            failTestWithLoggingTotalNoOfFailures("\n Modules found with missing or empty READMEs \n" + modulesWithNoneOrEmptyReadme.stream().collect(Collectors.joining("\n")));
         }
     }
 
@@ -80,7 +79,8 @@ public class Crawler4JTest extends BaseCrawler4JTest {
         });
 
         if (Utils.hasArticlesWithProblems(results)) {
-            Utils.triggerTestFailure(results, codeSnippetCrawlerController.getBaseURL());
+            recordMetrics(results.size(), TestMetricTypes.FAILED);
+            failTestWithLoggingTotalNoOfFailures("\n\nTest Results-->" + Utils.getErrorMessageForJavaConstructsTest(results, codeSnippetCrawlerController.getBaseURL()));
         }
 
     }

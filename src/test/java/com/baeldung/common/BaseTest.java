@@ -1,5 +1,7 @@
 package com.baeldung.common;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.AfterAll;
@@ -31,6 +33,10 @@ public class BaseTest {
             return failedTests.get();
         }
         return -1;
+    }
+
+    protected void failTestWithLoggingTotalNoOfFailures(String fialureMessage) {
+        fail(fialureMessage + Utils.messageForTotalNoOfFailuresAtTheTestLevel(getMetrics(TestMetricTypes.FAILED)));
     }
 
     @AfterAll
