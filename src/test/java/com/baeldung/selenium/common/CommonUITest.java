@@ -81,7 +81,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         }
 
         if (badURLs.size() > 0) {
-            recordMetrics(badURLs.size(), TestMetricTypes.FAILED);
+            recordMetrics(badURLs.keySet().size(), TestMetricTypes.FAILED);
             failTestWithLoggingTotalNoOfFailures("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
         }
     }
