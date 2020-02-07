@@ -214,7 +214,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_MONTHLY)
+    @Tag(GlobalConstants.TAG_GITHUB_RELATED)
     @Tag("givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule")
     public final void givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule() throws IOException {
 

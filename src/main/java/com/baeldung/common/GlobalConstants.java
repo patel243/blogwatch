@@ -79,19 +79,13 @@ public class GlobalConstants {
     public static final String TAG_WEEKLY = "weekly";
 
     /**
-     * Tests using this tag are executed bi-monthly
-     */
-    public static final String TAG_BI_MONTHLY = "bi-monthly";
-
-    /**
-     * Tests using this tag are executed monthly on Jenkins
-     */
-    public static final String TAG_MONTHLY = "monthly";
-
-    /**
      * Tests using this tag can be executed using on Demand genkins job.
      */
     public static final String GA_TRACKING = "ga-tracking";
+
+    public static final String TAG_GITHUB_RELATED = "github-related";
+    public static final String TAG_EDITORIAL = "editorial";
+    public static final String TAG_TECHNICAL = "technical";
 
     // pages
 

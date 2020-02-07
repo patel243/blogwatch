@@ -73,6 +73,7 @@ public class PagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
+    @Tag(GlobalConstants.TAG_EDITORIAL)
     public final void givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists() throws IOException {
         do {
 
@@ -111,14 +112,13 @@ public class PagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    public final void givenAllLongRunningTests_whenHittingAllPages_thenOK() throws IOException {
+    @Tag(GlobalConstants.TAG_TECHNICAL)
+    public final void givenTestsRelatedTechnicalArea_whenHittingAllPages_thenOK() throws IOException {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
             try {
                 givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv();
-                givenAllPages_whenAPageLoads_thenTheMetaDescriptionExists();
                 givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + StringUtils.substring(e.getMessage(), 0, 100));

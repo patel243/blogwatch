@@ -189,6 +189,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
      * 4th URL - the immediate child of the parent(eugenp or Baeldung) repository 
      */
     @Test
+    @Tag(GlobalConstants.TAG_EDITORIAL)
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() {
 
         log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle);
@@ -384,25 +385,17 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_BI_MONTHLY)
-    public final void givenAllLongRunningTests_whenHittingAllArticles_thenOK() throws IOException {
+    @Tag(GlobalConstants.TAG_EDITORIAL)
+    public final void givenAllEditorialTests_whenHittingAllArticles_thenOK() throws IOException {
         allTestsFlag = true;
         do {
             loadNextUrl = false;
             try {
-                givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv();
-                givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop();
-                givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd();
-                givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv();
                 givenAllArticles_whenAnArticleLoads_thenTheMetaDescriptionExists();
                 givenAllArticles_whenAnArticleLoads_thenTheAuthorIsNotFromTheExcludedList();
-                givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
                 givenAllArticles_whenAnArticleLoads_thenTheArticleDoesNotCotainWrongQuotations();
                 givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization();
                 givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory();
-                givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly();
-                // note: this test should be called at the last because it loads a GitHub url
-                givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle();
             } catch (Exception e) {
                 logger.error("Error occurened while processing:" + page.getUrl() + " error message:" + StringUtils.substring(e.getMessage(), 0, 100));
             }
@@ -412,12 +405,30 @@ public class ArticlesUITest extends BaseUISeleniumTest {
         if (badURLs.size() > 0) {
             triggerTestFailure(badURLs);
         }
-
     }
 
     @Test
-    public final void givenAnArticle_whenAllTestsExecuted_thenOK() throws IOException {
-        givenAllLongRunningTests_whenHittingAllArticles_thenOK();
+    @Tag(GlobalConstants.TAG_TECHNICAL)
+    public final void givenAllTestsRelatedTechnicalArea_whenHittingAllArticles_thenOK() throws IOException {
+        allTestsFlag = true;
+        do {
+            loadNextUrl = false;
+            try {
+                givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv();
+                givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop();
+                givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd();
+                givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv();
+                givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
+                givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly();
+            } catch (Exception e) {
+                logger.error("Error occurened while processing:" + page.getUrl() + " error message:" + StringUtils.substring(e.getMessage(), 0, 100));
+            }
+            loadNextUrl = true;
+        } while (loadNextURL());
+
+        if (badURLs.size() > 0) {
+            triggerTestFailure(badURLs);
+        }
     }
 
     private boolean loadNextURL() {
