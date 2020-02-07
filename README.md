@@ -93,7 +93,7 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 | 17 | **givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly** <br/><br/> daily <br/><br/> Verifies tracking on the course pages. Tracking details are here - https://github.com/eugenp/blogwatch/blob/master/src/main/resources/blog-url-list/coursePagesBuyLinks.json |
 | 18 | **givenAllURLs_whenURlLoads_thenItReturns200OK** <br/><br/> weekly <br/><br/> Loops over full list of posts & pages, and verifies that 200OK is returned |
 | 19 | **givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop** <br/><br/> twice-a-month <br/><br/> Technial<br/><br/> This Test verifies that a single short code is available at the start of every post |
-| 20 | **givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd** <br/><br/> twice-a-month <br/><br/> Test verifies that a single short code is available at the start of every page |
+| 20 | **givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd** <br/><br/> twice-a-month<br/><br/> Technial <br/><br/> Test verifies that a single short code is available at the start of every page |
 | 21 | **givenAllArticles_whenAnArticleLoads_thenArticleHasNoEmptyDiv** <br/><br/> twice-a-month <br/><br/>Technial<br/><br/> This test loops over all the articles and looks for empty div in code samples. |
 | 22 | **givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv** <br/><br/> twice-a-month <br/><br/>Technial<br/><br/> Verifies that the images in the posts point to live env |
 | 23 | **givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv** <br/><br/> twice-a-month <br/><br/>Technial<br/><br/> Verifies that the images in the pages point to live env |
