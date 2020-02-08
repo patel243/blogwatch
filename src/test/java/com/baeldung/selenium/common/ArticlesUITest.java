@@ -189,7 +189,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
      * 4th URL - the immediate child of the parent(eugenp or Baeldung) repository 
      */
     @Test
-    @Tag(GlobalConstants.TAG_EDITORIAL)
+    @Tag(GlobalConstants.TAG_GITHUB_RELATED)
     public final void givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle() {
 
         log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle);
