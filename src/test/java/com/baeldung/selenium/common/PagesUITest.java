@@ -112,6 +112,25 @@ public class PagesUITest extends BaseUISeleniumTest {
     }
 
     @Test
+    public final void givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText() throws IOException {
+        do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText)) {
+                continue;
+            }
+
+            if (page.containesOverlappingText()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
+                badURLs.put(GlobalConstants.givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText, page.getUrlWithNewLineFeed());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            triggerTestFailure(badURLs);
+        }
+    }
+
+    @Test
     @Tag(GlobalConstants.TAG_TECHNICAL)
     public final void givenTestsRelatedTechnicalArea_whenHittingAllPages_thenOK() throws IOException {
         allTestsFlag = true;
@@ -120,6 +139,7 @@ public class PagesUITest extends BaseUISeleniumTest {
             try {
                 givenAllPages_whenAPageLoads_thenImagesPointToCorrectEnv();
                 givenAllPages_whenAPageLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
+                givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText();
             } catch (Exception e) {
                 logger.error("Error occurened while process:" + page.getUrl() + " error message:" + StringUtils.substring(e.getMessage(), 0, 100));
             }

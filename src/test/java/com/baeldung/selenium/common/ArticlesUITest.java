@@ -385,6 +385,25 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     @Test
+    public final void givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText() throws IOException {
+        do {
+
+            if (shouldSkipUrl(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText)) {
+                continue;
+            }
+
+            if (page.containesOverlappingText()) {
+                recordMetrics(1, TestMetricTypes.FAILED);
+                badURLs.put(GlobalConstants.givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText, page.getUrlWithNewLineFeed());
+            }
+        } while (loadNextURL());
+
+        if (!allTestsFlag && badURLs.size() > 0) {
+            triggerTestFailure(badURLs);
+        }
+    }
+
+    @Test
     @Tag(GlobalConstants.TAG_EDITORIAL)
     public final void givenAllEditorialTests_whenHittingAllArticles_thenOK() throws IOException {
         allTestsFlag = true;
@@ -420,6 +439,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
                 givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv();
                 givenAllArticles_whenAnArticleLoads_thenMetaOGImageAndTwitterImagePointToTheAbsolutePath();
                 givenAllArticles_whenAnalyzingCodeBlocks_thenCodeBlocksAreRenderedProperly();
+                givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText();
             } catch (Exception e) {
                 logger.error("Error occurened while processing:" + page.getUrl() + " error message:" + StringUtils.substring(e.getMessage(), 0, 100));
             }

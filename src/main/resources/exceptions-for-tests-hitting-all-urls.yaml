@@ -111,6 +111,10 @@ givenAllLongRunningTests_whenHittingAllPages_thenOK:
 
 givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK:
 
+givenAllPages_whenAPageLoads_thenItDoesNotContainerOverlappingText:
+
+givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText:
+
 
 
   

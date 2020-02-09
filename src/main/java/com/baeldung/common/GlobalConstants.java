@@ -231,5 +231,7 @@ public class GlobalConstants {
     public static final String givenAllLongRunningTests_whenHittingAllArticles_thenOK = "givenAllLongRunningTests_whenHittingAllArticles_thenOK";
     public static final String givenAllLongRunningTests_whenHittingAllPages_thenOK = "givenAllLongRunningTests_whenHittingAllPages_thenOK";
     public static final String givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK = "givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK";
+    public static final String givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText = "givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText";
+    public static final String givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText = "givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText";
 
 }

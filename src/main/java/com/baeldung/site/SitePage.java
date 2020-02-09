@@ -446,7 +446,7 @@ public class SitePage extends BlogBaseDriver {
             List<String> emphasizedAndItalicTagValues = Utils.getEMAndItalicTagValues(webElement.getAttribute("innerHTML"));
 
             for (ITitleAnalyzerStrategy s : ITitleAnalyzerStrategy.titleAnalyzerStrategies) {
-                if (!s.isTitleValid(title, tokens, emphasizedAndItalicTagValues)) {                   
+                if (!s.isTitleValid(title, tokens, emphasizedAndItalicTagValues)) {
                     invalidTitles.add(title);
                     break;
                 }
@@ -487,6 +487,14 @@ public class SitePage extends BlogBaseDriver {
 
         } catch (NoSuchElementException e) {
             logger.error("error while retrieving published date for {}", this.getWebDriver().getCurrentUrl());
+            return false;
+        }
+    }
+
+    public boolean containesOverlappingText() {
+        try {
+            return this.getWebDriver().findElement(By.xpath("//li//a[contains(@style,'outline: none; display: inline-block;') or contains(@style,'outline: none;display: inline-block;')]")).isEnabled();
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
