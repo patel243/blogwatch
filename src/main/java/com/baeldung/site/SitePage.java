@@ -493,7 +493,7 @@ public class SitePage extends BlogBaseDriver {
 
     public boolean containesOverlappingText() {
         try {
-            return this.getWebDriver().findElement(By.xpath("//li//a[contains(@style,'outline: none; display: inline-block;') or contains(@style,'outline: none;display: inline-block;')]")).isEnabled();
+            return this.getWebDriver().findElement(By.xpath("//li//a[contains(@style,'outline: none; display: inline-block') or contains(@style,'outline: none;display: inline-block')]")).isEnabled();
         } catch (NoSuchElementException e) {
             return false;
         }
