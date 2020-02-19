@@ -11,7 +11,8 @@ public interface ITitleAnalyzerStrategy {
     boolean isTitleValid(String title, List<String> tokens, List<String> emphasizedAndItalicTokens);
 
     static List<ITitleAnalyzerStrategy> titleAnalyzerStrategies = Arrays.asList(new ITitleAnalyzerStrategy[] { articlesConjunctionsShortPrepositionsAnalyserStrategy(), javaMethodNameAnalyserStrategy(), simpleTitleAnalyserStrategy() });
-    static String regex = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up||into|over|out";
+    static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via|from|up||into|over|out";
+    static String regexForExceptions = "with";
 
     static ITitleAnalyzerStrategy articlesConjunctionsShortPrepositionsAnalyserStrategy() {
         return (title, tokens, emphasizedAndItalicTokens) -> {
@@ -24,7 +25,7 @@ public interface ITitleAnalyzerStrategy {
                     tokenBeingAnalysed++;
                     continue;
                 }
-                if (Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token.trim()).matches()) {
+                if (Pattern.compile(regexForShortPrepositions, Pattern.CASE_INSENSITIVE).matcher(token.trim()).matches()) {
                     if (Character.isDigit(Character.valueOf(title.charAt(0)))) {
                         firstTokenStartingWithACharacter = 2;
                     }
@@ -71,8 +72,8 @@ public interface ITitleAnalyzerStrategy {
         return (title, tokens, emphasizedAndItalicTokens) -> {
 
             for (String token : tokens) {
-                if (emphasizedAndItalicTokens.contains(token.trim()) || token.contains("(") || token.contains(".") || token.equals(token.toUpperCase()) || token.charAt(0) == '@' || Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(token).matches()
-                        || (token.contains("-") && token.toLowerCase().equals(token))) {
+                if (emphasizedAndItalicTokens.contains(token.trim()) || token.contains("(") || token.contains(".") || token.equals(token.toUpperCase()) || token.charAt(0) == '@' || Pattern.compile(regexForShortPrepositions, Pattern.CASE_INSENSITIVE).matcher(token).matches()
+                        || Pattern.compile(regexForExceptions, Pattern.CASE_INSENSITIVE).matcher(token).matches() || (token.contains("-") && token.toLowerCase().equals(token))) {
                     continue;
                 }
                 if (!WordUtils.capitalize(token).equals(token)) {
