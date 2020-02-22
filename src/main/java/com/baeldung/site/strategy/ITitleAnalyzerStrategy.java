@@ -11,7 +11,7 @@ public interface ITitleAnalyzerStrategy {
     boolean isTitleValid(String title, List<String> tokens, List<String> emphasizedAndItalicTokens);
 
     static List<ITitleAnalyzerStrategy> titleAnalyzerStrategies = Arrays.asList(new ITitleAnalyzerStrategy[] { articlesConjunctionsShortPrepositionsAnalyserStrategy(), javaMethodNameAnalyserStrategy(), simpleTitleAnalyserStrategy() });
-    static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|v.?|vs.?|via|into|out";
+    static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|v.?|vs.?|via|out";
     static String regexForExceptions = "with|to|from|up";
 
     static ITitleAnalyzerStrategy articlesConjunctionsShortPrepositionsAnalyserStrategy() {
