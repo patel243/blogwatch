@@ -12,7 +12,7 @@ public interface ITitleAnalyzerStrategy {
 
     static List<ITitleAnalyzerStrategy> titleAnalyzerStrategies = Arrays.asList(new ITitleAnalyzerStrategy[] { articlesConjunctionsShortPrepositionsAnalyserStrategy(), javaMethodNameAnalyserStrategy(), simpleTitleAnalyserStrategy() });
     static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|v.?|vs.?|via|up||into|over|out";
-    static String regexForExceptions = "with|to";
+    static String regexForExceptions = "with|to|from";
 
     static ITitleAnalyzerStrategy articlesConjunctionsShortPrepositionsAnalyserStrategy() {
         return (title, tokens, emphasizedAndItalicTokens) -> {
@@ -74,8 +74,8 @@ public interface ITitleAnalyzerStrategy {
             int firstTokenIndexStartingWithACharacter = Character.isDigit(Character.valueOf(title.charAt(0))) ? 1 : 0;
             for (int j = 0; j < tokens.size(); j++) {
                 token = tokens.get(j);
-                // ignore if not first and last character
-                if ((j != firstTokenIndexStartingWithACharacter && j != tokens.size())
+                // ignore if not first and last word
+                if ((j != firstTokenIndexStartingWithACharacter && j != tokens.size()-1)
                         && (Pattern.compile(regexForExceptions, Pattern.CASE_INSENSITIVE).matcher(token).matches() || Pattern.compile(regexForShortPrepositions, Pattern.CASE_INSENSITIVE).matcher(token).matches())) {
                     continue;
                 }
