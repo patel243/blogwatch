@@ -446,6 +446,9 @@ public class SitePage extends BlogBaseDriver {
             List<String> emphasizedAndItalicTagValues = Utils.getEMAndItalicTagValues(webElement.getAttribute("innerHTML"));
 
             for (ITitleAnalyzerStrategy s : ITitleAnalyzerStrategy.titleAnalyzerStrategies) {
+                if (CollectionUtils.isEmpty(tokens)) {
+                     break;
+                }
                 if (!s.isTitleValid(title, tokens, emphasizedAndItalicTagValues)) {
                     invalidTitles.add(title);
                     break;
