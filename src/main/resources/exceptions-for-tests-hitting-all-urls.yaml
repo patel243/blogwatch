@@ -76,6 +76,8 @@ givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization:
   - /java-hash-table
   - /big-o-notation
   - /java-ocp-advanced-class-design
+  - /java-string-interview-questions
+  - /java-8-interview-questions 
 
 givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory:
   - /spring-reloading-properties/

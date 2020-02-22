@@ -11,25 +11,21 @@ public interface ITitleAnalyzerStrategy {
     boolean isTitleValid(String title, List<String> tokens, List<String> emphasizedAndItalicTokens);
 
     static List<ITitleAnalyzerStrategy> titleAnalyzerStrategies = Arrays.asList(new ITitleAnalyzerStrategy[] { articlesConjunctionsShortPrepositionsAnalyserStrategy(), javaMethodNameAnalyserStrategy(), simpleTitleAnalyserStrategy() });
-    static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|v.?|vs.?|via|up||into|over|out";
-    static String regexForExceptions = "with|to|from";
+    static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|v.?|vs.?|via|into|out";
+    static String regexForExceptions = "with|to|from|up";
 
     static ITitleAnalyzerStrategy articlesConjunctionsShortPrepositionsAnalyserStrategy() {
         return (title, tokens, emphasizedAndItalicTokens) -> {
+            String token = null;
+            int firstTokenIndexStartingWithACharacter = Character.isDigit(Character.valueOf(title.charAt(0))) ? 1 : 0;
             String expectedToken = null;
-            int tokenBeingAnalysed = 1;
-            int firstTokenStartingWithACharacter = 1;
-            for (String token : tokens) {
-                firstTokenStartingWithACharacter = 1;
+            for (int j = 0; j < tokens.size(); j++) {
+                token = tokens.get(j);
                 if (emphasizedAndItalicTokens.contains(token.trim())) {
-                    tokenBeingAnalysed++;
                     continue;
                 }
                 if (Pattern.compile(regexForShortPrepositions, Pattern.CASE_INSENSITIVE).matcher(token.trim()).matches()) {
-                    if (Character.isDigit(Character.valueOf(title.charAt(0)))) {
-                        firstTokenStartingWithACharacter = 2;
-                    }
-                    if (tokenBeingAnalysed == firstTokenStartingWithACharacter) {
+                    if (j == firstTokenIndexStartingWithACharacter || j == tokens.size() - 1) {
                         expectedToken = WordUtils.capitalize(token.toLowerCase());
                     } else {
                         expectedToken = token.toLowerCase();
@@ -38,7 +34,6 @@ public interface ITitleAnalyzerStrategy {
                         return false;
                     }
                 }
-                tokenBeingAnalysed++;
             }
             return true;
         };
@@ -74,13 +69,14 @@ public interface ITitleAnalyzerStrategy {
             int firstTokenIndexStartingWithACharacter = Character.isDigit(Character.valueOf(title.charAt(0))) ? 1 : 0;
             for (int j = 0; j < tokens.size(); j++) {
                 token = tokens.get(j);
+
                 // ignore if not first and last word
-                if ((j != firstTokenIndexStartingWithACharacter && j != tokens.size()-1)
-                        && (Pattern.compile(regexForExceptions, Pattern.CASE_INSENSITIVE).matcher(token).matches() || Pattern.compile(regexForShortPrepositions, Pattern.CASE_INSENSITIVE).matcher(token).matches())) {
+                if (j != firstTokenIndexStartingWithACharacter && j != tokens.size() - 1 && Pattern.compile(regexForExceptions, Pattern.CASE_INSENSITIVE).matcher(token).matches()) {
                     continue;
                 }
 
-                if (emphasizedAndItalicTokens.contains(token.trim()) || token.contains("(") || token.contains(".") || token.equals(token.toUpperCase()) || token.charAt(0) == '@' || (token.contains("-") && token.toLowerCase().equals(token))) {
+                if (Pattern.compile(regexForShortPrepositions, Pattern.CASE_INSENSITIVE).matcher(token).matches() || emphasizedAndItalicTokens.contains(token.trim()) || token.contains("(") || token.contains(".") || token.equals(token.toUpperCase())
+                        || token.charAt(0) == '@' || (token.contains("-") && token.toLowerCase().equals(token))) {
                     continue;
                 }
 
