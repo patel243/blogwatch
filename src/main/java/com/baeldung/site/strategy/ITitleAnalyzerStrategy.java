@@ -11,13 +11,13 @@ public interface ITitleAnalyzerStrategy {
     boolean isTitleValid(String title, List<String> tokens, List<String> emphasizedAndItalicTokens);
 
     static List<ITitleAnalyzerStrategy> titleAnalyzerStrategies = Arrays.asList(new ITitleAnalyzerStrategy[] { articlesConjunctionsShortPrepositionsAnalyserStrategy(), javaMethodNameAnalyserStrategy(), simpleTitleAnalyserStrategy() });
-    static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|v.?|vs.?|via|out";
-    static String regexForExceptions = "with|to|from|up|into";
+    static String regexForShortPrepositions = "a|an|and|as|at|but|by|en|for|in|nor|of|on|or|per|the|vs.?|via|out";
+    static String regexForExceptions = "with|to|from|up|into|v.?|REST|if";
 
     static ITitleAnalyzerStrategy articlesConjunctionsShortPrepositionsAnalyserStrategy() {
         return (title, tokens, emphasizedAndItalicTokens) -> {
             String token = null;
-            int firstTokenIndexStartingWithACharacter = Character.isDigit(Character.valueOf(title.charAt(0))) ? 1 : 0;
+            int firstTokenIndexStartingWithACharacter = Character.isDigit(Character.valueOf(title.charAt(0))) || ">".equals(String.valueOf(title.charAt(0)))? 1 : 0;
             String expectedToken = null;
             for (int j = 0; j < tokens.size(); j++) {
                 token = tokens.get(j);
@@ -66,7 +66,7 @@ public interface ITitleAnalyzerStrategy {
     static ITitleAnalyzerStrategy simpleTitleAnalyserStrategy() {
         return (title, tokens, emphasizedAndItalicTokens) -> {
             String token = null;
-            int firstTokenIndexStartingWithACharacter = Character.isDigit(Character.valueOf(title.charAt(0))) ? 1 : 0;
+            int firstTokenIndexStartingWithACharacter = Character.isDigit(Character.valueOf(title.charAt(0))) || ">".equals(String.valueOf(title.charAt(0))) ? 1 : 0;
             for (int j = 0; j < tokens.size(); j++) {
                 token = tokens.get(j);
 
