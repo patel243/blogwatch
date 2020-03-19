@@ -2,10 +2,12 @@ package com.baeldung.site;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -398,6 +400,23 @@ public class SitePage extends BlogBaseDriver {
         return firstBaeldungPageURL;
     }
 
+    public int getAgeOfTheFirstPostIntheFeed() {
+        String pageSource = this.getWebDriver().getPageSource();
+        int indexOfAtomTag = pageSource.indexOf("<atom");
+        String pubStartTag = "<pubDate>";
+        String pubClosingtTag = "</pubDate>";
+
+        String publishDate = pageSource.substring(pageSource.indexOf(pubStartTag, indexOfAtomTag) + pubStartTag.length(), pageSource.indexOf(pubClosingtTag, indexOfAtomTag));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, d MMM yyyy H:m:s Z", Locale.ENGLISH);
+
+        LocalDateTime postPublishDatTime = LocalDateTime.parse(publishDate, formatter);
+        logger.info("Published Date of the first post: {}", publishDate);
+        int postAge = Period.between(LocalDate.now(), postPublishDatTime.toLocalDate()).getDays();
+        logger.info("Age of the first post: {}", postAge);
+        return postAge;
+    }
+
     public boolean rssFeedURLPointsTotheBaeldungSite(String feedURL) {
         return feedURL.contains(GlobalConstants.BAELDUNG_HOME_PAGE_URL_WIThOUT_THE_PROTOCOL);
     }
@@ -447,7 +466,7 @@ public class SitePage extends BlogBaseDriver {
 
             for (ITitleAnalyzerStrategy s : ITitleAnalyzerStrategy.titleAnalyzerStrategies) {
                 if (CollectionUtils.isEmpty(tokens)) {
-                     break;
+                    break;
                 }
                 if (!s.isTitleValid(title, tokens, emphasizedAndItalicTagValues)) {
                     invalidTitles.add(title);

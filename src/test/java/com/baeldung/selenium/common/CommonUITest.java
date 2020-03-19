@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
@@ -45,6 +47,9 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Value("${retries.for.200OK-test}")
     private int retriesFor200OKTest;
+
+    @Value("${rss.feed.compare.days}")
+    private int rssFeedShouldNotbeOlderThanDays;
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -291,6 +296,16 @@ public class CommonUITest extends BaseUISeleniumTest {
         logger.info("Currently set feed url: " + page.getUrl());
         // assertTrue("The page linked in the RSS feed couldn't be loaded properly", page.getWebDriver().getTitle().toLowerCase().contains("baeldung)"));
         assertTrue(page.rssFeedURLPointsTotheBaeldungSite(page.getWebDriver().getCurrentUrl()), "The RSS Feed URL doesn't point to  https://baeldung.com");
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenTheBaeldungRSSFeed_whenAnalysingFeed_thenItIsUptoDate() {
+        page.setUrl(GlobalConstants.BAELDUNG_RSS_FEED_URL);
+
+        page.loadUrl();
+
+        MatcherAssert.assertThat("Baeldung RSS Feed should not be older than " + rssFeedShouldNotbeOlderThanDays + "days", page.getAgeOfTheFirstPostIntheFeed(), Matchers.lessThanOrEqualTo(rssFeedShouldNotbeOlderThanDays));
     }
 
     @Test
