@@ -33,7 +33,7 @@ public class GlobalConstants {
     public static final String NUMBER_ONE = "1";
     public static final String STRING_WITH_SINGLE_SPACE = " ";
 
-    public static final String FULL_ARCHIVE_URL = "https://www.baeldung.com/full_archive";
+    public static final ImmutableList<String> FULL_ARCHIVE_URLS = ImmutableList.of("https://www.baeldung.com/full_archive", "https://www.baeldung.com/linux/full_archive", "https://www.baeldung.com/kotlin/full_archive");
     public static final String PAGES_SITEMAP_URL = "https://www.baeldung.com/page.xml";
 
     // url files

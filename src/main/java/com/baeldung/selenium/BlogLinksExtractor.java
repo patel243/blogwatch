@@ -28,8 +28,8 @@ import com.baeldung.common.Utils;
 
 public class BlogLinksExtractor {
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());    
-   
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
     public void createPagesList() throws JDOMException, IOException {
         // webDriver.get(GlobalConstants.PAGES_SITEMAP_URL);
         // Document document = saxBuilder.build(new ByteArrayInputStream(webDriver.getPageSource().getBytes()));
@@ -70,26 +70,25 @@ public class BlogLinksExtractor {
     }
 
     public void createArticlesList(WebDriver webDriver) {
-        webDriver.get(GlobalConstants.FULL_ARCHIVE_URL);
-        List<WebElement> archiveURLElemets = webDriver.findElements(By.xpath("//ul[contains(@class, 'car-list')]//a"));
-        File file = new File(Utils.getAbsolutePathToFileInSrc(GlobalConstants.ALL_ARTICLES_FILE_NAME));
-        Path allArtilcesFilePath = Paths.get(file.getAbsolutePath());
-        // Files.write(allArtilcesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-        archiveURLElemets.forEach(anchorTag -> {
-            try {
-                String url = anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
-                if (!urlAlreadyAvailable(allArtilcesFilePath, url) && !isFlaggedArticle(url)) {
-                    logger.info("New Article found->" + url);
-                    Files.write(allArtilcesFilePath, (anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length()) + "\n").getBytes(), StandardOpenOption.APPEND);
+        for (String archive : GlobalConstants.FULL_ARCHIVE_URLS) {
+            webDriver.get(archive);
+            List<WebElement> archiveURLElemets = webDriver.findElements(By.xpath("//ul[contains(@class, 'car-list')]//a"));
+            File file = new File(Utils.getAbsolutePathToFileInSrc(GlobalConstants.ALL_ARTICLES_FILE_NAME));
+            Path allArtilcesFilePath = Paths.get(file.getAbsolutePath());
+            // Files.write(allArtilcesFilePath, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+            archiveURLElemets.forEach(anchorTag -> {
+                try {
+                    String url = anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length());
+                    if (!urlAlreadyAvailable(allArtilcesFilePath, url) && !isFlaggedArticle(url)) {
+                        logger.info("New Article found->" + url);
+                        Files.write(allArtilcesFilePath, (anchorTag.getAttribute("href").substring(GlobalConstants.BAELDUNG_HOME_PAGE_URL.length()) + "\n").getBytes(), StandardOpenOption.APPEND);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
+            });
+        }
     }
-
-    
 
     private boolean isFlaggedArticle(String url) {
         return GlobalConstants.flaggedArticles.stream().anyMatch(str -> str.equals(url + "/"));

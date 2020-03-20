@@ -16,7 +16,6 @@
 /rest-api-spring-guide
 /course-upgrade-thank-you
 /spring-microservices-guide
-/java-weekly-sponsorship
 /java-streams
 /contribution-guidelines
 /authors
