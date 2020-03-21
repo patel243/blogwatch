@@ -36,10 +36,8 @@ public class BaseTest {
     }
 
     @BeforeEach
-    public final void logTestname(TestInfo testInfo) {
-        logger.info("\n---------------------------------------------------------------------------------");
-        logger.info("Executing: {}", testInfo.getDisplayName());
-        logger.info("-----------------------------------------------------------------------------------");
+    public final void logTestname(TestInfo testInfo) {        
+        logger.info("Executing Test: {}", testInfo.getDisplayName());        
     }
 
     @AfterAll
