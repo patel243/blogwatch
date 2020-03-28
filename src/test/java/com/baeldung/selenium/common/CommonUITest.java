@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
@@ -30,6 +31,7 @@ import com.baeldung.common.vo.LinkVO;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
 import com.baeldung.utility.TestUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.rholder.retry.Retryer;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -51,6 +53,9 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Value("${rss.feed.compare.days}")
     private int rssFeedShouldNotbeOlderThanDays;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
@@ -171,7 +176,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.GA_TRACKING)
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 
-        Multimap<String, List<EventTrackingVO>> testData = Utils.getCoursePagesBuyLinksTestData();
+        Multimap<String, List<EventTrackingVO>> testData = Utils.getCoursePagesBuyLinksTestData(objectMapper);
         for (String urlKey : testData.keySet()) {
             page.setUrl(page.getBaseURL() + urlKey);
 
@@ -348,7 +353,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenURLsWithAnchorsLinkingWithinSamePage_whenAnaysingPage_thenAnHtmlElementExistsForEachAnchor() throws JsonProcessingException, IOException {
 
-        List<AnchorLinksTestDataVO> AnchorLinksTestDataVOs = Utils.getAnchorLinksTestData();
+        List<AnchorLinksTestDataVO> AnchorLinksTestDataVOs = Utils.getAnchorLinksTestData(objectMapper);
         Multimap<String, String> badURLs = ArrayListMultimap.create();
 
         for (AnchorLinksTestDataVO anchorLinksTestData : AnchorLinksTestDataVOs) {

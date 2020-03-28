@@ -95,16 +95,14 @@ public class Utils {
         return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_BUY_LINKS).getPath());
     }
 
-    public static Multimap<String, List<EventTrackingVO>> getCoursePagesBuyLinksTestData() {
+    public static Multimap<String, List<EventTrackingVO>> getCoursePagesBuyLinksTestData(ObjectMapper objectMapper) {
 
         Multimap<String, List<EventTrackingVO>> testData = ArrayListMultimap.create();
         List<EventTrackingVO> GATrackingVOs = null;
         EventTrackingVO gaTrackingVO = null;
 
         try {
-            ObjectMapper mapper = new ObjectMapper();
-
-            JsonNode pageJson = mapper.readTree(Utils.getCoursePagesBuyLinksJsonAsFile());
+            JsonNode pageJson = objectMapper.readTree(Utils.getCoursePagesBuyLinksJsonAsFile());
             for (JsonNode topNode : pageJson.get("coursePages")) {
                 String urlKey = topNode.get("url").textValue();
                 GATrackingVOs = new ArrayList<>();
@@ -615,9 +613,9 @@ public class Utils {
         return new File(Utils.class.getClassLoader().getResource("./data-for-anchor-test.json").getPath());
     }
 
-    public static List<AnchorLinksTestDataVO> getAnchorLinksTestData() throws JsonParseException, JsonMappingException, IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(Utils.getAnchorTestDataJsonAsFile(), new TypeReference<List<AnchorLinksTestDataVO>>() {
+    public static List<AnchorLinksTestDataVO> getAnchorLinksTestData(ObjectMapper objectMapper) throws JsonParseException, JsonMappingException, IOException {
+
+        return objectMapper.readValue(Utils.getAnchorTestDataJsonAsFile(), new TypeReference<List<AnchorLinksTestDataVO>>() {
         });
     }
 
