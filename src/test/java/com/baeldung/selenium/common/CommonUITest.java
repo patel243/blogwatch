@@ -345,7 +345,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    // @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenURLsWithAnchorsLinkingWithinSamePage_whenAnaysingPage_thenAnHtmlElementExistsForEachAnchor() throws JsonProcessingException, IOException {
 
         List<AnchorLinksTestDataVO> AnchorLinksTestDataVOs = Utils.getAnchorLinksTestData();
