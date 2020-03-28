@@ -4,10 +4,12 @@ givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop:
   - /spring-java-online-courses/  
   - /linux/
   - /kotlin/
+  - /cs/
 givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd:
   - /spring-java-online-courses/ 
   - /kotlin/
   - /linux/
+  - /cs/
 givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv:
   - /javafx/
   - /java-sms-twilio/    
