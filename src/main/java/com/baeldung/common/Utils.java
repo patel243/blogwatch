@@ -32,9 +32,13 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.baeldung.common.vo.AnchorLinksTestDataVO;
 import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.JavaConstruct;
 import com.baeldung.common.vo.LinkVO;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javaparser.JavaParser;
@@ -171,7 +175,7 @@ public class Utils {
         fail("\n\nFailed tests-->" + message + "\n\n");
     }
 
-    public static void triggerTestFailure(Multimap<String, String> testResutls, int totalFailures) {
+    public static void triggerTestFailure(Multimap<String, String> testResutls, String failureHeading, int totalFailures) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
@@ -179,7 +183,7 @@ public class Utils {
             resultBuilder.append(formatResults((List<String>) value, key));
         });
         resultBuilder.append(messageForTotalNoOfFailuresAtTheTestLevel(totalFailures));
-        fail("\n\nFailed tests-->" + resultBuilder.toString());
+        fail("\n\n" + failureHeading + resultBuilder.toString());
 
     }
 
@@ -605,6 +609,16 @@ public class Utils {
         }
         System.out.println(excludeCluse.toString());
         return excludeCluse.toString();
+    }
+
+    public static File getAnchorTestDataJsonAsFile() {
+        return new File(Utils.class.getClassLoader().getResource("./data-for-anchor-test.json").getPath());
+    }
+
+    public static List<AnchorLinksTestDataVO> getAnchorLinksTestData() throws JsonParseException, JsonMappingException, IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(Utils.getAnchorTestDataJsonAsFile(), new TypeReference<List<AnchorLinksTestDataVO>>() {
+        });
     }
 
 }

@@ -521,4 +521,12 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
+    public boolean findElementForAnchor(String anchorLink) {
+        try {
+            return this.getWebDriver().findElement(By.id(anchorLink.substring(1))).isEnabled();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }

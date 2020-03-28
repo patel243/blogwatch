@@ -1,0 +1,73 @@
+[
+    {
+      "url": "/rest-with-spring-course",
+      "anchorsLinks": [
+        "#table",
+        "#master-class",
+        "#certification-class"
+      ]
+    },
+    {
+      "url": "/rest-with-spring-for-teams",
+      "anchorsLinks": [
+        "#table"
+      ]
+    },
+    {
+      "url": "/learn-spring-course",
+      "anchorsLinks": [
+        "#table",
+        "#master-class",
+        "#certification-class"
+      ]
+    },
+    {
+      "url": "/learn-spring-for-teams",
+      "anchorsLinks": [
+        "#table"
+      ]
+    },
+    {
+      "url": "/learn-spring-security-course",
+      "anchorsLinks": [
+        "#table",
+        "#master-class",
+        "#certification-class"
+      ]
+    },
+    {
+      "url": "/learn-spring-security-for-teams",
+      "anchorsLinks": [
+        "#table"
+      ]
+    },
+    {
+      "url": "/learn-spring-security-oauth-course",
+      "anchorsLinks": [
+        "#table",
+        "#master-class",
+        "#certification-class"
+      ]
+    },
+    {
+      "url": "/learn-spring-security-oauth-for-teams",
+      "anchorsLinks": [
+        "#table"
+      ]
+    },
+    {
+      "url": "/learn-spring-course",
+      "anchorsLinks": [
+        "#table",
+        "#master-class",
+        "#certification-class"
+      ]
+    },
+    {
+      "url": "/learn-spring-for-teams",
+      "anchorsLinks": [
+        "#table"
+      ]
+    }
+    
+]

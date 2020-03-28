@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.Utils;
+import com.baeldung.common.vo.AnchorLinksTestDataVO;
 import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.LinkVO;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
@@ -341,6 +342,31 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         assertEquals(200, httpURLConnection.getResponseCode());
 
+    }
+
+    @Test
+    // @Tag(GlobalConstants.TAG_DAILY)
+    public final void givenURLsWithAnchorsLinkingWithinSamePage_whenAnaysingPage_thenAnHtmlElementExistsForEachAnchor() throws JsonProcessingException, IOException {
+
+        List<AnchorLinksTestDataVO> AnchorLinksTestDataVOs = Utils.getAnchorLinksTestData();
+        Multimap<String, String> badURLs = ArrayListMultimap.create();
+
+        for (AnchorLinksTestDataVO anchorLinksTestData : AnchorLinksTestDataVOs) {
+            page.setUrl(page.getBaseURL() + anchorLinksTestData.getUrl());
+
+            page.loadUrl();
+
+            for (String anchorLink : anchorLinksTestData.getAnchorsLinks()) {
+                if (!page.findElementForAnchor(anchorLink)) {
+                    badURLs.put(page.getUrl(), "\n" + anchorLink);
+                }
+
+            }
+        }
+
+        if (badURLs.size() > 0) {
+            triggerTestFailure(badURLs, "Matching HTML element not found for the following Anchor Links");
+        }
     }
 
 }

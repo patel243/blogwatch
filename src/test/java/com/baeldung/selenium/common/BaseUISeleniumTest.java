@@ -54,7 +54,12 @@ public class BaseUISeleniumTest extends BaseTest {
     }
 
     protected void triggerTestFailure(Multimap<String, String> badURLs) {
-        Utils.triggerTestFailure(badURLs, getMetrics(TestMetricTypes.FAILED));
+        Utils.triggerTestFailure(badURLs, "Failed tests-->", getMetrics(TestMetricTypes.FAILED));
+
+    }
+
+    protected void triggerTestFailure(Multimap<String, String> badURLs, String failureHeading) {
+        Utils.triggerTestFailure(badURLs, failureHeading, getMetrics(TestMetricTypes.FAILED));
 
     }
 
