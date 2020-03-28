@@ -37,6 +37,7 @@ import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.JavaConstruct;
 import com.baeldung.common.vo.LinkVO;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -95,33 +96,30 @@ public class Utils {
         return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_BUY_LINKS).getPath());
     }
 
-    public static Multimap<String, List<EventTrackingVO>> getCoursePagesBuyLinksTestData(ObjectMapper objectMapper) {
+    public static Multimap<String, List<EventTrackingVO>> getCoursePagesBuyLinksTestData(ObjectMapper objectMapper) throws JsonProcessingException, IOException {
 
         Multimap<String, List<EventTrackingVO>> testData = ArrayListMultimap.create();
         List<EventTrackingVO> GATrackingVOs = null;
         EventTrackingVO gaTrackingVO = null;
 
-        try {
-            JsonNode pageJson = objectMapper.readTree(Utils.getCoursePagesBuyLinksJsonAsFile());
-            for (JsonNode topNode : pageJson.get("coursePages")) {
-                String urlKey = topNode.get("url").textValue();
-                GATrackingVOs = new ArrayList<>();
-                for (JsonNode pageNode : topNode.get("trackingList")) {
-                    gaTrackingVO = new EventTrackingVO();
-                    List<String> trackingCodes = new ArrayList<>();
-                    for (JsonNode trackingCode : pageNode.get("trackingCode")) {
-                        trackingCodes.add(trackingCode.textValue());
-                    }
-                    gaTrackingVO.setTrackingCodes(trackingCodes);
-                    gaTrackingVO.setLinkText(pageNode.get("linkText").textValue());
-                    GATrackingVOs.add(gaTrackingVO);
+        JsonNode pageJson = objectMapper.readTree(Utils.getCoursePagesBuyLinksJsonAsFile());
+        for (JsonNode topNode : pageJson.get("coursePages")) {
+            String urlKey = topNode.get("url").textValue();
+            GATrackingVOs = new ArrayList<>();
+            for (JsonNode pageNode : topNode.get("trackingList")) {
+                gaTrackingVO = new EventTrackingVO();
+                List<String> trackingCodes = new ArrayList<>();
+                for (JsonNode trackingCode : pageNode.get("trackingCode")) {
+                    trackingCodes.add(trackingCode.textValue());
                 }
-                testData.put(urlKey, GATrackingVOs);
+                gaTrackingVO.setTrackingCodes(trackingCodes);
+                gaTrackingVO.setLinkText(pageNode.get("linkText").textValue());
+                GATrackingVOs.add(gaTrackingVO);
             }
-            return testData;
-        } catch (Exception e) {
-            return null;
+            testData.put(urlKey, GATrackingVOs);
         }
+        return testData;
+
     }
 
     public static boolean excludePage(String url, List<String> entryList, BiPredicate<String, String> p) {
