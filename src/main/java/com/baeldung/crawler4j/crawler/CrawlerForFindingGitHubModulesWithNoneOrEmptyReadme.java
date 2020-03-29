@@ -10,8 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import com.baeldung.common.GlobalConstants;
-import com.baeldung.common.GlobalProperties;
 import com.baeldung.common.Utils;
+import com.baeldung.common.YAMLProperties;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -29,10 +29,10 @@ public class CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme extends BaseCra
         String referringPageURL = referringPage.getWebURL().getURL();
         // @formatter:off
         return super.commonPredicate(pageURL, referringPageURL)               
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_CONTAINING_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.contains(anEntryIntheList))
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_CONTAINING_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.contains(anEntryIntheList))
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_EMPTY_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
-               && !Utils.excludePage(pageURL, GlobalProperties.properties.get(GlobalConstants.IGNORE_MISSING_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
+               && !Utils.excludePage(pageURL, YAMLProperties.exceptionsForEmptyReadmeTest.get(GlobalConstants.IGNORE_EMPTY_README_CONTAINING_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.contains(anEntryIntheList))
+               && !Utils.excludePage(pageURL, YAMLProperties.exceptionsForEmptyReadmeTest.get(GlobalConstants.IGNORE_MISSING_README_CONTAINING_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.contains(anEntryIntheList))
+               && !Utils.excludePage(pageURL, YAMLProperties.exceptionsForEmptyReadmeTest.get(GlobalConstants.IGNORE_EMPTY_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
+               && !Utils.excludePage(pageURL, YAMLProperties.exceptionsForEmptyReadmeTest.get(GlobalConstants.IGNORE_MISSING_README_ENDING_WITH_LIST_KEY), (theCurrentUrl, anEntryIntheList)-> theCurrentUrl.endsWith(anEntryIntheList))
                && !referringPageURL.contains(GlobalConstants.README_FILE_NAME_LOWERCASE)
                && !FILTER_ADDITIONAL_FILE_EXTENTIONS.matcher(pageURL).matches()
                && !FILTERS_ADDITIONAL_DIRECTORIES.matcher(pageURL).matches();

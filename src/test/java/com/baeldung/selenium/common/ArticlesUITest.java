@@ -18,8 +18,8 @@ import org.springframework.util.CollectionUtils;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.GlobalConstants.TestMetricTypes;
-import com.baeldung.common.GlobalProperties;
 import com.baeldung.common.Utils;
+import com.baeldung.common.YAMLProperties;
 import com.baeldung.utility.TestUtils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -485,7 +485,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
     }
 
     protected boolean shouldSkipUrl(String testName) {
-        if (!testingSingleURL && Utils.excludePage(page.getUrl(), GlobalProperties.properties.get(testName), true)) {
+        if (!testingSingleURL && Utils.excludePage(page.getUrl(), YAMLProperties.exceptionsForTestHittingAllUrls.get(testName), true)) {
             logger.info("Skipping {} for test: {}", page.getUrl(), testName);
             return true;
         }

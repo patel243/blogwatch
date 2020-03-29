@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.common.BaseTest;
 import com.baeldung.common.GlobalConstants.TestMetricTypes;
-import com.baeldung.common.GlobalProperties;
+import com.baeldung.common.YAMLProperties;
 import com.baeldung.common.Utils;
 import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
@@ -46,7 +46,7 @@ public class BaseUISeleniumTest extends BaseTest {
     }
 
     protected boolean shouldSkipUrl(String testName) {
-        if (Utils.excludePage(page.getUrl(), GlobalProperties.properties.get(testName), true)) {
+        if (Utils.excludePage(page.getUrl(), YAMLProperties.exceptionsForTestHittingAllUrls.get(testName), true)) {
             logger.info("Skipping {} for test: {}", page.getUrl(), testName);
             return true;
         }
