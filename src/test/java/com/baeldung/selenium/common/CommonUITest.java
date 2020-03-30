@@ -17,6 +17,8 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -365,13 +367,22 @@ public class CommonUITest extends BaseUISeleniumTest {
                 if (!page.findElementForAnchor(anchorLink)) {
                     badURLs.put(page.getUrl(), "\n" + anchorLink);
                 }
-
             }
         }
 
         if (badURLs.size() > 0) {
             triggerTestFailure(badURLs, "Matching HTML element not found for the following Anchor Links");
         }
+    }
+
+    @ParameterizedTest(name = " Test {0} redirects to {1}")
+    @MethodSource("com.baeldung.utility.TestUtils#redirectsTestDataProvider")
+    @Tag("redirectsTest")
+    public final void givenTheListOfRedirectedUrls_whenAUrlLoads_thenItRedirectsSuccesfully(String url, String redirectedTo) {
+
+        Response response = RestAssured.given().redirects().follow(false).get(page.getBaseURL() + url);
+
+        assertTrue(response.getHeader("Location").toLowerCase().contains(redirectedTo), url + " doesn't redirec to " + redirectedTo);
     }
 
 }
