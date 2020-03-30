@@ -12,12 +12,16 @@ public class YAMLProperties {
 
     public static Map<String, List<String>> exceptionsForEmptyReadmeTest = new HashMap<>();
     public static Map<String, List<String>> exceptionsForTestHittingAllUrls = new HashMap<>();
+    public static Map<String, String> redirectsTestData = new HashMap<>();
 
     static {
 
         Yaml yaml = new Yaml();
         InputStream ignoreListYml = YAMLProperties.class.getClassLoader().getResourceAsStream("ignore-list.yaml");
         exceptionsForEmptyReadmeTest = yaml.load(ignoreListYml);
+
+        InputStream redirectsFileStream = YAMLProperties.class.getClassLoader().getResourceAsStream("redirects.yaml");
+        redirectsTestData = yaml.load(redirectsFileStream);
 
         InputStream testExceptionUrls = YAMLProperties.class.getClassLoader().getResourceAsStream("exceptions-for-tests-hitting-all-urls.yaml");
         Map<String, List<String>> testExceptionUrlsMap = yaml.load(testExceptionUrls);

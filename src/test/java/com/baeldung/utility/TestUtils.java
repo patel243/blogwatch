@@ -5,11 +5,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Stream;
 
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.params.provider.Arguments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.baeldung.common.YAMLProperties;
 import com.baeldung.site.SitePage;
 import com.github.rholder.retry.RetryException;
 import com.github.rholder.retry.Retryer;
@@ -129,7 +132,7 @@ public class TestUtils {
     public static List<Integer> getHTTPStatusCodesOtherThan200OK(List<String> gitHubModulesLinkedOntheArticle) {
 
         int httpStatusCode = HttpStatus.SC_OK;
-        List<Integer> httpStatusCodesOtherThan200OK= new ArrayList<>();
+        List<Integer> httpStatusCodesOtherThan200OK = new ArrayList<>();
         for (String url : gitHubModulesLinkedOntheArticle) {
             try {
                 httpStatusCode = RestAssured.given().config(restAssuredConfig).head(url).getStatusCode();
@@ -143,8 +146,13 @@ public class TestUtils {
                 logger.error("Got error while retrieving HTTP status code for:" + url);
                 logger.error("Error Message: " + e.getMessage());
             }
-        }        
+        }
         return httpStatusCodesOtherThan200OK;
+    }
+
+    public static Stream<Arguments> redirectsTestDataProvider() {
+        return YAMLProperties.redirectsTestData.entrySet().stream().map(entry -> Arguments.of(entry.getKey(), entry.getValue()));
+
     }
 
 }
