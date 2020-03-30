@@ -375,7 +375,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         }
     }
 
-    @ParameterizedTest(name = " Test {0} redirects to {1}")
+    @ParameterizedTest(name = " {displayName} - Test {0} redirects to {1}")
     @MethodSource("com.baeldung.utility.TestUtils#redirectsTestDataProvider")
     @Tag("redirectsTest")
     public final void givenTheListOfRedirectedUrls_whenAUrlLoads_thenItRedirectsSuccesfully(String url, String redirectedTo) {
