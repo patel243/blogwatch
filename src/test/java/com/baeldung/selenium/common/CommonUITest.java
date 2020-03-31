@@ -378,6 +378,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     @ParameterizedTest(name = " {displayName} - Test {0} redirects to {1}")
     @MethodSource("com.baeldung.utility.TestUtils#redirectsTestDataProvider")
     @Tag("redirectsTest")
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheListOfRedirectedUrls_whenAUrlLoads_thenItRedirectsSuccesfully(String url, String redirectedTo) {
 
         Response response = RestAssured.given().redirects().follow(false).get(page.getBaseURL() + url);
