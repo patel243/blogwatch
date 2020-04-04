@@ -529,4 +529,15 @@ public class SitePage extends BlogBaseDriver {
         }
     }
 
+    public void acceptCookie() {
+        try {
+            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 10);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cn-accept-cookie"))).click();
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("cn-accept-cookie")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

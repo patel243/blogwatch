@@ -71,7 +71,7 @@ public class GlobalConstants {
     /**
      * Tests using this tag are executed daily on Jenkins with EU proxy 
      */
-    public static final String TAG_DAILY_EU_PROXY = "daily-eu-proxy";
+    public static final String TAG_DAILY_EU_PROXY = "daily-eu-proxy";       
 
     /**
      * Tests using this tag are executed weekly on Jenkins
@@ -204,6 +204,9 @@ public class GlobalConstants {
     public static enum TestMetricTypes {
         FAILED;
     }
+    
+    //contact us form
+    public static final String CONTACT_US_FORM_URL = "/contact";
 
     // test names for
     public static final String givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv = "givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv";

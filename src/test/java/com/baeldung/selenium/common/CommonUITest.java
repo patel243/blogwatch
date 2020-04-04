@@ -19,8 +19,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -384,6 +387,28 @@ public class CommonUITest extends BaseUISeleniumTest {
         Response response = RestAssured.given().redirects().follow(false).get(page.getBaseURL() + url);
 
         assertTrue(response.getHeader("Location").toLowerCase().contains(redirectedTo), url + " doesn't redirec to " + redirectedTo);
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY_HTMLUNIT)
+    public final void givenTheContactForm_whenAMessageIsSubmitted_thenItIsSentSuccessfully() throws InterruptedException {
+
+        // load contact form
+        page.setUrl(page.getBaseURL() + GlobalConstants.CONTACT_US_FORM_URL);
+        page.loadUrl();
+
+        // fill and submit form
+        page.getWebDriver().findElement(By.name("your-name")).sendKeys("Selenium Test");
+        page.getWebDriver().findElement(By.name("your-email")).sendKeys("asifanwar451@gmail.com");
+        page.getWebDriver().findElement(By.name("your-message")).sendKeys("Test message from Selenium");
+        // page.acceptCookie();
+        page.getWebDriver().findElement(By.xpath("//input[contains(@value, 'Send your message')]")).click();
+
+        // verify
+        WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Thank you for your message. It has been sent')]")));
+        logger.info("message sent successfully");
+
     }
 
 }
