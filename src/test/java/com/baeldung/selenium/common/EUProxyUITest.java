@@ -1,5 +1,6 @@
 package com.baeldung.selenium.common;
 
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -36,15 +37,15 @@ public class EUProxyUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag("vat-pricing-test")
-    @Tag(GlobalConstants.TAG_DAILY_HTMLUNIT)
+    @Tag(GlobalConstants.TAG_DAILY_EU_PROXY)
     public final void givenOnTheCoursePage_whenThePageLoadsInEUCountry_thenTheVATPricesAreShown() {
 
         try {
-            page.openNewWindowWithProxy(proxyHost, proxyServerPort, proxyUsername, proxyPasswod);
+            page.openNewWindowWithProxy(proxyHost, proxyServerPort, proxyUsername, proxyPasswod);            
 
             page.setUrl(page.getBaseURL() + GlobalConstants.COURSE_PAGE_FOR_VAT_TEST);
 
-            page.loadUrl();
+            page.loadUrl();                        
 
             assertTrue(page.vatPricesAvailableThePage(), "VAT prices not displayed in EU region. Proxy Server:" + proxyHost + ":" + proxyServerPort);
 
