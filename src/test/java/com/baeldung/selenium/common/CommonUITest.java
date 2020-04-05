@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -398,8 +399,8 @@ public class CommonUITest extends BaseUISeleniumTest {
         page.loadUrl();
 
         // fill and submit form
-        page.getWebDriver().findElement(By.name("your-name")).sendKeys("Selenium Test");
-        page.getWebDriver().findElement(By.name("your-email")).sendKeys("asifanwar451@gmail.com");
+        page.getWebDriver().findElement(By.name("your-name")).sendKeys("Selenium Test on " + LocalDate.now());
+        page.getWebDriver().findElement(By.name("your-email")).sendKeys("support@baeldung.com");
         page.getWebDriver().findElement(By.name("your-message")).sendKeys("Test message from Selenium");
         // page.acceptCookie();
         page.getWebDriver().findElement(By.xpath("//input[contains(@value, 'Send your message')]")).click();
