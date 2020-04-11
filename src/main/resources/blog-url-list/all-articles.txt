@@ -3230,8 +3230,6 @@
 /java-weekly-326
 /java-convert-pdf-to-base64
 /java-lock-stripping
-/java-read-file
-/securing-a-restful-web-service-with-spring-security
 /linux/date-command
 /spring-beanfactory-vs-applicationcontext
 /java-get-day-of-week
