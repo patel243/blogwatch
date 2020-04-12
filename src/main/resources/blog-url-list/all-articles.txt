@@ -3215,7 +3215,6 @@
 /linux/pass-command-line-arguments-bash-script
 /linux/file-manipulation
 /linux/concatenating-text-files-into-a-single-file-in-linux
-/kotlin/tutorial
 /java-testing-multithreaded
 /spring-security-clear-site-data-header
 /java-constant-string-too-long-error
