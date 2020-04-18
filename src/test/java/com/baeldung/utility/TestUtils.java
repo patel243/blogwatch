@@ -2,8 +2,9 @@ package com.baeldung.utility;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Stream;
 
@@ -25,7 +26,7 @@ import com.jayway.restassured.config.RestAssuredConfig;
 public class TestUtils {
     protected static Logger logger = LoggerFactory.getLogger(TestUtils.class);
 
-    protected static RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(1000);
+    protected static RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(3000);
 
     public static boolean articleLinkFoundOnTheGitHubModule(List<String> gitHubModuleLinks, String articleRelativeURL, SitePage page) {
         boolean articleLinkFoundOnGitHubModule = false;
@@ -129,17 +130,17 @@ public class TestUtils {
 
     }
 
-    public static List<Integer> getHTTPStatusCodesOtherThan200OK(List<String> gitHubModulesLinkedOntheArticle) {
+    public static Map<Integer, String> getHTTPStatusCodesOtherThan200OK(List<String> gitHubModulesLinkedOntheArticle) {
 
         int httpStatusCode = HttpStatus.SC_OK;
-        List<Integer> httpStatusCodesOtherThan200OK = new ArrayList<>();
+        Map<Integer, String> httpStatusCodesOtherThan200OK = new HashMap<>();
         for (String url : gitHubModulesLinkedOntheArticle) {
             try {
                 httpStatusCode = RestAssured.given().config(restAssuredConfig).head(url).getStatusCode();
 
                 if (HttpStatus.SC_OK != httpStatusCode) {
                     logger.error(httpStatusCode + " received from: {} ", url);
-                    httpStatusCodesOtherThan200OK.add(httpStatusCode);
+                    httpStatusCodesOtherThan200OK.put(httpStatusCode, url);
                 }
             } catch (Exception e) {
                 httpStatusCode = HttpStatus.SC_OK;

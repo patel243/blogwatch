@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -37,6 +38,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
     private ListIterator<String> allArticlesList;
     Multimap<String, String> badURLs = ArrayListMultimap.create();
+    Multimap<Integer, String> resultsForGitHubHttpStatusTest = ArrayListMultimap.create();
 
     boolean loadNextUrl = true;
     boolean allTestsFlag = false;
@@ -194,12 +196,13 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
         log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle);
         log(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheArticleTitleAndGitHubLinkMatch);
+        log(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK);
 
         String articleHeading = null;
         String articleRelativeUrl = null;
         List<String> linksToTheGithubModule = null;
         List<String> gitHubModulesLinkedOntheArticle = null;
-        List<Integer> httpStatusCodesOtherThan200OK = null;
+        Map<Integer, String> httpStatusCodesOtherThan200OK = null;
         do {
 
             gitHubModulesLinkedOntheArticle = page.gitHubModulesLinkedOnTheArticle();
@@ -210,8 +213,7 @@ public class ArticlesUITest extends BaseUISeleniumTest {
             httpStatusCodesOtherThan200OK = TestUtils.getHTTPStatusCodesOtherThan200OK(gitHubModulesLinkedOntheArticle);
             if (httpStatusCodesOtherThan200OK.size() > 0) {
                 recordMetrics(httpStatusCodesOtherThan200OK.size(), TestMetricTypes.FAILED);
-                badURLs.put(GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK,
-                        page.getUrlWithNewLineFeed() + " ( HTTP status code received from GitHub module:  " + httpStatusCodesOtherThan200OK + " )");
+                httpStatusCodesOtherThan200OK.forEach((key, value) -> resultsForGitHubHttpStatusTest.put(key, page.getUrl() + " --> " + value));
             }
 
             if (shouldSkipUrl(GlobalConstants.givenArticlesWithALinkToTheGitHubModule_whenTheArticleLoads_thenTheGitHubModuleLinksBackToTheArticle) || Utils.excludePage(page.getUrl(), GlobalConstants.ARTILCE_JAVA_WEEKLY, false)) {
@@ -235,8 +237,8 @@ public class ArticlesUITest extends BaseUISeleniumTest {
 
         } while (loadNextURL());
 
-        if (!allTestsFlag && badURLs.size() > 0) {
-            triggerTestFailure(badURLs);
+        if (!allTestsFlag && (badURLs.size() > 0 || resultsForGitHubHttpStatusTest.size() > 0)) {
+            triggerTestFailure(badURLs, resultsForGitHubHttpStatusTest);
         }
     }
 

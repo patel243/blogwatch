@@ -171,13 +171,20 @@ public class Utils {
         fail("\n\nFailed tests-->" + message + "\n\n");
     }
 
-    public static void triggerTestFailure(Multimap<String, String> testResutls, String failureHeading, int totalFailures) {
+    public static void triggerTestFailure(Multimap<String, String> testResutls, Multimap<Integer, String> resultsForGitHubHttpStatusTest, String failureHeading, int totalFailures) {
 
         StringBuilder resultBuilder = new StringBuilder();
 
         testResutls.asMap().forEach((key, value) -> {
             resultBuilder.append(formatResults((List<String>) value, key));
         });
+
+        if (null != resultsForGitHubHttpStatusTest) {
+
+            resultBuilder.append(formatResults(resultsForGitHubHttpStatusTest, GlobalConstants.givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK));
+
+        }
+
         resultBuilder.append(messageForTotalNoOfFailuresAtTheTestLevel(totalFailures));
         fail("\n\n" + failureHeading + resultBuilder.toString());
 
@@ -290,6 +297,33 @@ public class Utils {
         urls.forEach((url) -> {
             formatResult.append(url);
             // formatResult.append("\n");
+        });
+
+        // @formatter:off
+
+        String resutls = "\n------------------------------------------------------------------------------------\n" 
+                        + testName
+                        + "\n-------------------------------------------------------------------------------------" 
+                        + formatResult.toString() 
+                        + "\n------------------------------------------------------------------------------------\n";
+     // @formatter:on
+
+        return resutls;
+
+    }
+
+    public static String formatResults(Multimap<Integer, String> resultsForGitHubHttpStatusTest, String testName) {
+        StringBuilder formatResult = new StringBuilder();
+
+        resultsForGitHubHttpStatusTest.asMap().forEach((key, value) -> {
+            formatResult.append("\n-----------------------------------------------\n");
+            formatResult.append(key);
+            formatResult.append("\n------------------------------------------------\n");            
+            List<String> resutls = (List<String>) value;
+            resutls.forEach(result -> {
+                formatResult.append(result);
+                formatResult.append("\n");
+            });
         });
 
         // @formatter:off

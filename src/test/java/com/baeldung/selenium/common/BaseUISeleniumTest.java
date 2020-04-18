@@ -11,8 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baeldung.common.BaseTest;
 import com.baeldung.common.GlobalConstants.TestMetricTypes;
-import com.baeldung.common.YAMLProperties;
 import com.baeldung.common.Utils;
+import com.baeldung.common.YAMLProperties;
 import com.baeldung.common.config.CommonConfig;
 import com.baeldung.common.config.MyApplicationContextInitializer;
 import com.baeldung.crawler4j.config.Crawler4jMainCofig;
@@ -54,13 +54,15 @@ public class BaseUISeleniumTest extends BaseTest {
     }
 
     protected void triggerTestFailure(Multimap<String, String> badURLs) {
-        Utils.triggerTestFailure(badURLs, "Failed tests-->", getMetrics(TestMetricTypes.FAILED));
+        Utils.triggerTestFailure(badURLs, null, "Failed tests-->", getMetrics(TestMetricTypes.FAILED));
+    }
 
+    protected void triggerTestFailure(Multimap<String, String> badURLs, Multimap<Integer, String> resultsForGitHubHttpStatusTest) {
+        Utils.triggerTestFailure(badURLs, resultsForGitHubHttpStatusTest, "Failed tests-->", getMetrics(TestMetricTypes.FAILED));
     }
 
     protected void triggerTestFailure(Multimap<String, String> badURLs, String failureHeading) {
-        Utils.triggerTestFailure(badURLs, failureHeading, getMetrics(TestMetricTypes.FAILED));
-
+        Utils.triggerTestFailure(badURLs, null, failureHeading, getMetrics(TestMetricTypes.FAILED));
     }
 
 }

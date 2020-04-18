@@ -165,8 +165,8 @@ public class SitePage extends BlogBaseDriver {
     public List<String> gitHubModulesLinkedOnTheArticle() {
         List<String> gitHubModuleLinks = new ArrayList<String>();
         try {
-            List<WebElement> webElements = this.getWebDriver().findElements(By.xpath("//section//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_BAELDUNG
-                    + "') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_EUGENP + "')]"));
+            List<WebElement> webElements = this.getWebDriver().findElements(By.xpath("//section//a[(contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_BAELDUNG
+                    + "') or contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" + GlobalConstants.GITHUB_REPO_EUGENP + "') and not(ancestor::div[contains(@class,'syntaxhighlighter')] ))]"));
             if (CollectionUtils.isEmpty(webElements)) {
                 return gitHubModuleLinks;
             }
