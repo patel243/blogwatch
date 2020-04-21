@@ -4,11 +4,16 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
@@ -85,6 +90,16 @@ public final class HomePageUITest extends BaseUISeleniumTest {
     public final void givenOnTheHomePage_whenPageLoads_thenItHasOneAboutMenuInTheFooter() {
         homePageDriver.loadUrl();
         assertTrue(homePageDriver.findAboutMenuInThePageFooter().size() == 1);
+    }
+    
+    @Test
+    @Tag("screenshot-test")    
+    public final void screenShotTest() throws IOException {
+        homePageDriver.loadUrl();
+        File scrFile = ((TakesScreenshot)homePageDriver.getWebDriver()).getScreenshotAs(OutputType.FILE);
+        // Now you can do whatever you need to do with it, for example copy somewhere
+        FileUtils.copyFile(scrFile, new File("/tmp/screenshots/screenshot.png"));
+        assertTrue(homePageDriver.findCategoriesContainerInThePageFooter().isDisplayed());
     }
     
 }
