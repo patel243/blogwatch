@@ -5,11 +5,13 @@ givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheTop:
   - /linux/
   - /kotlin/
   - /cs/
+  - /scala/
 givenAllArticles_whenAnArticleLoads_thenItHasSingleShortcodeAtTheEnd:
   - /spring-java-online-courses/ 
   - /kotlin/
   - /linux/
   - /cs/
+  - /scala/
 givenAllArticles_whenAnArticleLoads_thenImagesPointToCorrectEnv:
   - /javafx/
   - /java-sms-twilio/    
