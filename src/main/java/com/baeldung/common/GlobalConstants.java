@@ -77,6 +77,8 @@ public class GlobalConstants {
      * Tests using this tag are executed weekly on Jenkins
      */
     public static final String TAG_WEEKLY = "weekly";
+    
+    public static final String TAG_SITE_SMOKE_TEST = "site-smoke-test";
 
     /**
      * Tests using this tag can be executed using on Demand genkins job.

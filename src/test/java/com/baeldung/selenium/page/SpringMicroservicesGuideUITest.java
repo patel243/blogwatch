@@ -21,6 +21,7 @@ public final class SpringMicroservicesGuideUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
     public final void givenOnTheMicroservicesGuidePage_whenOptinPopupIsLoaded_thenItContainsImages() {
         this.springMicroservicesGuidePage.loadUrl();
 

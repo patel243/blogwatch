@@ -28,6 +28,7 @@ public final class HomePageUITest extends BaseUISeleniumTest {
     
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
     public final void givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText() {
         homePageDriver.loadUrl();
         List<WebElement> javaWeeklyElements = this.homePageDriver.getAllJavaWeeklyIssueLinkElements();
@@ -48,6 +49,7 @@ public final class HomePageUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
     public final void givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu() {
         homePageDriver.loadUrl();
 
@@ -56,6 +58,7 @@ public final class HomePageUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
     public final void givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog() {
         homePageDriver.loadUrl();
 
