@@ -1001,7 +1001,6 @@
 /java-web-weekly-115
 /spring-mvc-form-tags
 /java-spring-2016-survey
-/spring-security-oauth2-refresh-token-angular-js
 /java-web-weekly-114
 /java-web-weekly-113
 /java-executor-service-tutorial
@@ -3269,8 +3268,6 @@
 /spring-mvc-return-html
 /spring-thymeleaf-css-js
 /java-weekly-327
-/java-read-file
-/securing-a-restful-web-service-with-spring-security
 /linux/traceroute-command
 /linux/terminal-output-color
 /linux/uniq-by-column
