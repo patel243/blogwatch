@@ -73,9 +73,9 @@ Set environment variable "LAUNCH_FLAG" to either _true_ or _false_ to set launch
 ### Tests
  The tests which are crossed out are disabled.
 
-| Sr. | Test Name |
-| --- | --------- |
-| 2 | **givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText** <br/><br/> daily - [blogwatch-daily-PhantomJS](http://jenkins.baeldung.com/view/site-monitor/view/site-watch/job/sites-monitor/job/site-watch/job/blogwatch-daily-PhantomJS/) <br/><br/> Verifies that the Java weekly issue links in the homepage point to correct URLs |
+| Sr. | Test Name |Target |
+| --- | --------- |--------- |
+| 2 | **givenOnTheHomePage_whenPageLoads_thenJavaWeeklyLinksMatchWithTheLinkText** <br/><br/> daily - [blogwatch-daily-PhantomJS](http://jenkins.baeldung.com/view/site-monitor/view/site-watch/job/sites-monitor/job/site-watch/job/blogwatch-daily-PhantomJS/) <br/><br/> Verifies that the Java weekly issue links in the homepage point to correct URLs | Java Site |
 | 3 | **givenOnTheHomePage_whenPageLoads_thenItContainsCategoriesInTheFooterMenu** <br/><br/> daily - [blogwatch-daily-PhantomJS](http://jenkins.baeldung.com/view/site-monitor/view/site-watch/job/sites-monitor/job/site-watch/job/blogwatch-daily-PhantomJS/) <br/><br/> Verifies that the CATEGORY menu is available in the homepage footer |
 | 4 | **givenOnTheHomePageUrlWithoutWWWPrefix_whenUrlIsHit_thenItRedirectsToWWW** <br/><br/> daily - [blogwatch-daily-PhantomJS](http://jenkins.baeldung.com/view/site-monitor/view/site-watch/job/sites-monitor/job/site-watch/job/blogwatch-daily-PhantomJS/) <br/><br/> If we hit http://baeldung.com, it should redirect to http://www.baeldung.com |
 | 5 | **givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog** <br/><br/> daily - [blogwatch-daily-PhantomJS](http://jenkins.baeldung.com/view/site-monitor/view/site-watch/job/sites-monitor/job/site-watch/job/blogwatch-daily-PhantomJS/) <br/><br/> This test looks for JS error in the browser console falling in server category |
