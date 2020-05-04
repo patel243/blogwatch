@@ -22,6 +22,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
@@ -29,6 +30,9 @@ import com.baeldung.common.Utils;
 public class BlogLinksExtractor {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
+    
+    @Value("${full.archive.urls}")
+    private String[] fullArchiveUrls;
 
     public void createPagesList() throws JDOMException, IOException {
         // webDriver.get(GlobalConstants.PAGES_SITEMAP_URL);
@@ -70,7 +74,7 @@ public class BlogLinksExtractor {
     }
 
     public void createArticlesList(WebDriver webDriver) {
-        for (String archive : GlobalConstants.FULL_ARCHIVE_URLS) {
+        for (String archive : fullArchiveUrls) {
             webDriver.get(archive);
             List<WebElement> archiveURLElemets = webDriver.findElements(By.xpath("//ul[contains(@class, 'car-list')]//a"));
             File file = new File(Utils.getAbsolutePathToFileInSrc(GlobalConstants.ALL_ARTICLES_FILE_NAME));
