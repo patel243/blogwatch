@@ -26,7 +26,7 @@ public class Crawler4JTest extends BaseCrawler4JTest {
     @Tag(GlobalConstants.TAG_GITHUB_RELATED)
     @Tag("empty-or-none-readme")
     @Test
-    public final void givenTheGitHubModule_theModuleHasANonEmptyReadme() throws IOException {
+    public final void givenAGitHubModule_whenAnalysingTheModule_thenTheModuleHasANonEmptyReadme() throws IOException {
 
         tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingGitHubModulesWithNoneOrEmptyReadme.class, Runtime.getRuntime().availableProcessors());
 

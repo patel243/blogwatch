@@ -231,9 +231,8 @@ public class CommonUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_GITHUB_RELATED)
-    @Tag("givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule")
-    public final void givenTheGitHubModuleReadme_theArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule() throws IOException {
+    @Tag(GlobalConstants.TAG_GITHUB_RELATED)    
+    public final void givenAGitHubModuleReadme_whenAnalysingTheReadme_thenTheArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule() throws IOException {
 
         tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
 
