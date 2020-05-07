@@ -232,7 +232,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_GITHUB_RELATED)    
-    public final void givenAGitHubModuleReadme_whenAnalysingTheReadme_thenTheArticlesLinkedInTheGitHubMouduleLinkForwardTotheSameGitHubModule() throws IOException {
+    public final void givenAGitHubModuleReadme_whenAnalysingTheReadme_thenLinksToAndFromGithubMatch() throws IOException {
 
         tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
 
