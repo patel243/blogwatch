@@ -1,0 +1,82 @@
+package com.baeldung.selenium.page;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
+import com.baeldung.selenium.common.BaseUISeleniumTest;
+import com.baeldung.site.OptInPageDriver;
+
+@TestInstance(Lifecycle.PER_CLASS)
+public class OptInPopupUITest extends BaseUISeleniumTest {
+    @Autowired
+    private OptInPageDriver optInPageDriver;
+
+    @Value("${team.optin.urls}")
+    private String[] optInUrls;
+    
+    @Value("${team.optin.test.retry}")
+    private int retry;
+
+    int retryCount = 0;
+
+    @BeforeEach
+    public void loadNewWindow() throws IOException {
+        page.openNewWindow();
+        retryCount = 0;
+    }
+
+    @ParameterizedTest(name = " {displayName} - Test popups on {0} ")
+    @MethodSource("optInPopusTestDataProvider")
+    @Tag("optinPopsTest")
+    public final void givenAPageWithOptins_whenThePopupsAreOpened_thenTheOptInsPopupsWorkFine(String optInPagUrl) {
+        optInPageDriver.setUrl(optInPagUrl);
+        try {
+            optInPageDriver.loadUrl();
+            Thread.sleep(5000);
+
+            optInPageDriver.clickOnGetAccessLinkforSmallTeam();
+            assertTrue(optInPageDriver.theSubmitButtonOnthePopupisDisplayed(), "Problem with opt-in pop-up for small team");
+            optInPageDriver.closePopupOnRwSTeamOptInPage();
+
+            optInPageDriver.clickOnGetAccessLinkforMediumTeam();
+            assertTrue(optInPageDriver.theSubmitButtonOnthePopupisDisplayed(), "Problem with opt-in pop-up for medium team");
+            optInPageDriver.closePopupOnRwSTeamOptInPage();
+
+            optInPageDriver.clickOnGetAccessLinkforLargeTeam();
+            assertTrue(optInPageDriver.theSubmitButtonOnthePopupisDisplayed(), "Problem with opt-in pop-up for Large team");
+            optInPageDriver.closePopupOnRwSTeamOptInPage();
+
+        } catch (Exception e) {
+            if (retry == retryCount) {
+                logger.debug(retry + " retries completed.");
+                logger.error(e.getMessage());
+                fail(e.getMessage());
+            } else {
+                retryCount++;
+                logger.error(e.getMessage());
+                givenAPageWithOptins_whenThePopupsAreOpened_thenTheOptInsPopupsWorkFine(optInPagUrl);
+
+            }
+        }
+
+    }
+
+    public Stream<Arguments> optInPopusTestDataProvider() {
+        return Arrays.stream(optInUrls).map(url -> Arguments.of(url));
+    }
+
+}
