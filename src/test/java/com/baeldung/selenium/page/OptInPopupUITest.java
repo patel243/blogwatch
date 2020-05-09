@@ -39,7 +39,7 @@ public class OptInPopupUITest extends BaseUISeleniumTest {
         retryCount = 0;
     }
 
-    @ParameterizedTest(name = " {displayName} - Test popups on {0} ")
+    @ParameterizedTest(name = " {displayName} - Test opt-in popups on {0} ")
     @MethodSource("optInPopusTestDataProvider")
     @Tag("optinPopsTest")
     public final void givenAPageWithOptins_whenThePopupsAreOpened_thenTheOptInsPopupsWorkFine(String optInPagUrl) {
@@ -49,15 +49,15 @@ public class OptInPopupUITest extends BaseUISeleniumTest {
             Thread.sleep(5000);
 
             optInPageDriver.clickOnGetAccessLinkforSmallTeam();
-            assertTrue(optInPageDriver.theSubmitButtonOnthePopupisDisplayed(), "Problem with opt-in pop-up for small team");
+            assertTrue(optInPageDriver.theFirstNameInputFieldIsDisplayed(), "Problem with opt-in pop-up for small team");
             optInPageDriver.closePopupOnRwSTeamOptInPage();
 
             optInPageDriver.clickOnGetAccessLinkforMediumTeam();
-            assertTrue(optInPageDriver.theSubmitButtonOnthePopupisDisplayed(), "Problem with opt-in pop-up for medium team");
+            assertTrue(optInPageDriver.theFirstNameInputFieldIsDisplayed(), "Problem with opt-in pop-up for medium team");
             optInPageDriver.closePopupOnRwSTeamOptInPage();
 
             optInPageDriver.clickOnGetAccessLinkforLargeTeam();
-            assertTrue(optInPageDriver.theSubmitButtonOnthePopupisDisplayed(), "Problem with opt-in pop-up for Large team");
+            assertTrue(optInPageDriver.theFirstNameInputFieldIsDisplayed(), "Problem with opt-in pop-up for Large team");
             optInPageDriver.closePopupOnRwSTeamOptInPage();
 
         } catch (Exception e) {

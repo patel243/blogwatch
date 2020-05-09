@@ -1,7 +1,15 @@
 package com.baeldung.site;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,8 +19,8 @@ import org.springframework.stereotype.Component;
 public class OptInPageDriver extends BlogBaseDriver {
 
     public void clickOnGetAccessLinkforSmallTeam() throws InterruptedException {
-        logger.info("executing clickOnGetAccessLinkforSmallTeam()");        
-        acceptCookie();   
+        logger.info("executing clickOnGetAccessLinkforSmallTeam()");
+        acceptCookie();
         Thread.sleep(5000);
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'buy_team_small')]/a")));
@@ -20,30 +28,36 @@ public class OptInPageDriver extends BlogBaseDriver {
     }
 
     public void closePopupOnRwSTeamOptInPage() {
-        logger.info("executing closePopupOnRwSTeamOptInPage()");        
-        for (WebElement element : this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'tve_ea_thrive_leads_form_close')]"))) {           
+        logger.info("executing closePopupOnRwSTeamOptInPage()");
+        for (WebElement element : this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'tve_ea_thrive_leads_form_close')]"))) {
             if (element.isDisplayed()) {
                 element.click();
                 logger.info("Popup closed");
                 break;
             }
-        }       
+        }
     }
 
-    public boolean theSubmitButtonOnthePopupisDisplayed() throws InterruptedException {                 
-        logger.info("executing theSubmitButtonOnthePopupisDisplayed()");        
-        WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
-        WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(., 'WE MIGHT BE INTERESTED')])")));
-        return button.isDisplayed();       
+    public boolean theFirstNameInputFieldIsDisplayed() throws InterruptedException, WebDriverException, IOException {
+        try {
+            // this.getWebDriver().findElements(By.id("drip-first-name")).get(0).isDisplayed();
+            logger.info("executing theFirstNameInputFieldIsDisplayed()");
+            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
+            WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("drip-first-name")));
+            return button.isDisplayed();
+        } catch (Exception e) {
+            FileUtils.copyFile(((TakesScreenshot) this.getWebDriver()).getScreenshotAs(OutputType.FILE), new File(String.format("/tmp/screenshots/screenshot%s.png", LocalDateTime.now())));
+            throw e;
+        }
     }
 
     public void clickOnGetAccessLinkforMediumTeam() throws InterruptedException {
-        logger.info("executing clickOnGetAccessLinkforMediumTeam()"); 
+        logger.info("executing clickOnGetAccessLinkforMediumTeam()");
         Thread.sleep(5000);
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'buy_team_medium')]/a")));
         button.click();
-        
+
     }
 
     public void clickOnGetAccessLinkforLargeTeam() throws InterruptedException {
@@ -51,7 +65,7 @@ public class OptInPageDriver extends BlogBaseDriver {
         Thread.sleep(5000);
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'buy_team_large')]/a")));
-        button.click();        
+        button.click();
     }
 
     public void closeChatPopupIfOpen() {
@@ -64,9 +78,9 @@ public class OptInPageDriver extends BlogBaseDriver {
             e.printStackTrace();
         }
     }
-    
+
     public void acceptCookie() {
-        try {            
+        try {
             JavascriptExecutor js = ((JavascriptExecutor) this.getWebDriver());
             js.executeScript("document.getElementById('cn-accept-cookie').click();");
             Thread.sleep(2000);
