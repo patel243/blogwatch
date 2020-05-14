@@ -16,8 +16,7 @@ public class OptInPageDriver extends BlogBaseDriver {
     public void clickOnGetAccessLinkforSmallTeam() throws InterruptedException {
         logger.info("executing clickOnGetAccessLinkforSmallTeam()");
         //acceptCookie();
-        Thread.sleep(5000);
-        logger.info("The button is displayed:{}",this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).isDisplayed());
+        Thread.sleep(5000);        
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'buy_team_small')]/a")));
         button.click();
@@ -35,8 +34,7 @@ public class OptInPageDriver extends BlogBaseDriver {
     }
 
     public boolean theFirstNameInputFieldIsDisplayed() throws InterruptedException, WebDriverException, IOException {
-
-        // this.getWebDriver().findElements(By.id("drip-first-name")).get(0).isDisplayed();
+       
         logger.info("executing theFirstNameInputFieldIsDisplayed()");
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("drip-first-name")));
