@@ -27,6 +27,8 @@ public class OptInPageDriver extends BlogBaseDriver {
         for (WebElement element : this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'tve_ea_thrive_leads_form_close')]"))) {
             if (element.isDisplayed()) {
                 element.click();
+                WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'tl-lb-target')]")));
                 logger.info("Popup closed");
                 break;
             }

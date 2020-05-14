@@ -44,8 +44,8 @@ public class headlessBrowserConfig extends browserConfig {
 
             DesiredCapabilities caps = getPhantomJSDesiredCapabilities();
             caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.116 Safari/537.36");
-            //String[] phantomArgs = new String[] { "--webdriver-loglevel=NONE" };
-            //caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, phantomArgs);
+            String[] phantomArgs = new String[] { "--webdriver-loglevel=NONE" };
+            caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, phantomArgs);
 
             webDriver = new PhantomJSDriver(caps);
         }
