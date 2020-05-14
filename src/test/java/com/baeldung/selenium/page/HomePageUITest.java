@@ -95,12 +95,13 @@ public final class HomePageUITest extends BaseUISeleniumTest {
     
     @Test
     @Tag("screenshot-test")    
-    public final void screenShotTest() throws IOException {
+    public final void screenShotTest() throws IOException, InterruptedException {
         
-        homePageDriver.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
-        homePageDriver.getWebDriver().manage().window().maximize();
+        //homePageDriver.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
+        //homePageDriver.getWebDriver().manage().window().maximize();
         
         homePageDriver.loadUrl();
+        Thread.sleep(5000);
         
         File scrFile = ((TakesScreenshot)homePageDriver.getWebDriver()).getScreenshotAs(OutputType.FILE);
         
