@@ -47,8 +47,6 @@ public class OptInPopupUITest extends BaseUISeleniumTest {
         optInPageDriver.setUrl(optInPagUrl);
         try {
             optInPageDriver.loadUrl();
-            Thread.sleep(5000);
-
             optInPageDriver.clickOnGetAccessLinkforSmallTeam();
             assertTrue(optInPageDriver.theFirstNameInputFieldIsDisplayed(), "Problem with opt-in pop-up for small team");
             optInPageDriver.closePopupOnRwSTeamOptInPage();
