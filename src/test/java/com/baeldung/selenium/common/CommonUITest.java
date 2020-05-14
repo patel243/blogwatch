@@ -389,14 +389,15 @@ public class CommonUITest extends BaseUISeleniumTest {
         assertTrue(response.getHeader("Location").toLowerCase().contains(redirectedTo), url + " doesn't redirec to " + redirectedTo);
     }
 
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY_HTMLUNIT)
+    @Test    
     public final void givenTheContactForm_whenAMessageIsSubmitted_thenItIsSentSuccessfully() throws InterruptedException {
-
+        
         // load contact form
         page.setUrl(page.getBaseURL() + GlobalConstants.CONTACT_US_FORM_URL);
         page.loadUrl();
 
+        page.acceptCookie();
+        
         // fill and submit form
         page.getWebDriver().findElement(By.name("your-name")).sendKeys("Selenium Test on " + LocalDate.now());
         page.getWebDriver().findElement(By.name("your-email")).sendKeys("support@baeldung.com");
