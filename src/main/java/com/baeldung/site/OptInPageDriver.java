@@ -17,6 +17,7 @@ public class OptInPageDriver extends BlogBaseDriver {
         logger.info("executing clickOnGetAccessLinkforSmallTeam()");
         acceptCookie();
         Thread.sleep(5000);
+        logger.info("The button is displayed:{}",this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).isDisplayed());
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'buy_team_small')]/a")));
         button.click();
@@ -26,9 +27,7 @@ public class OptInPageDriver extends BlogBaseDriver {
         logger.info("executing closePopupOnRwSTeamOptInPage()");
         for (WebElement element : this.getWebDriver().findElements(By.xpath("//div[contains(@class, 'tve_ea_thrive_leads_form_close')]"))) {
             if (element.isDisplayed()) {
-                element.click();
-                WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'tl-lb-target')]")));
+                element.click();                
                 logger.info("Popup closed");
                 break;
             }
