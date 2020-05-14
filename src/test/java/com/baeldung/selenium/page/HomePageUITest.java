@@ -97,7 +97,7 @@ public final class HomePageUITest extends BaseUISeleniumTest {
     @Tag("screenshot-test")    
     public final void screenShotTest() throws IOException, InterruptedException {
         
-        //homePageDriver.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
+        homePageDriver.getWebDriver().manage().window().setSize(new Dimension(1920, 1080));
         //homePageDriver.getWebDriver().manage().window().maximize();
         
         homePageDriver.loadUrl();
