@@ -24,6 +24,7 @@ public class GlobalConstants {
     // headless browser name
     public static final String HEADLESS_BROWSER_PHANTOMJS = "phantomJS";
     public static final String HEADLESS_BROWSER_HTMLUNIT = "HtmlUnit";
+    public static final String HEADLESS_BROWSER_CHROME = "chrome-headless";
 
     public static final String BAELDUNG_HOME_PAGE_URL = "https://www.baeldung.com";
     public static final String BAELDUNG_HOME_PAGE_URL_WITH_HTTP = "http://www.baeldung.com";

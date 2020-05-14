@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.NTCredentials;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
@@ -14,6 +16,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.Utils;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -40,6 +43,23 @@ public class headlessBrowserConfig extends browserConfig {
                     return webClient;
                 }
             };
+        } else if (GlobalConstants.HEADLESS_BROWSER_CHROME.equalsIgnoreCase(this.headlessBrowserName)) {
+            if (GlobalConstants.TARGET_ENV_WINDOWS.equalsIgnoreCase(this.getTargetEnv())) {
+                // TODO
+            } else {
+                System.setProperty("webdriver.chrome.driver", Utils.findFile("/chromedriver", this.getTargetEnv()));
+            }
+            ChromeOptions chromeOptions = new ChromeOptions();
+
+            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--no-sandbox");
+            chromeOptions.addArguments("start-maximized");
+            chromeOptions.addArguments("disable-infobars");
+            chromeOptions.addArguments("--disable-extensions");
+
+            // firefoxOptions.setHeadless(true);
+            webDriver = new ChromeDriver(chromeOptions);
+            webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         } else {
 
             DesiredCapabilities caps = getPhantomJSDesiredCapabilities();

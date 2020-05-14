@@ -650,5 +650,21 @@ public class Utils {
         return objectMapper.readValue(Utils.getAnchorTestDataJsonAsFile(), new TypeReference<List<AnchorLinksTestDataVO>>() {
         });
     }
+    
+    public static String findFile(final String filename, final String envTarget) {
+        final String paths[] = { "", "bin/" + envTarget + "/", "target/classes" }; // drivers are in bin/ directory
+        for (final String path : paths) {
+            File file = new File(path + filename);
+            if (file.exists()) {
+                if (GlobalConstants.TARGET_ENV_LINUX.equals(envTarget)) {
+                    file.setExecutable(true, false);
+                    file.setReadable(true, false);
+                    file.setWritable(true, false);
+                }
+                return path + filename;
+            }
+        }
+        return "";
+    }
 
 }
