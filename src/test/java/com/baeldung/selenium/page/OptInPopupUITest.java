@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.selenium.common.BaseUISeleniumTest;
 import com.baeldung.site.OptInPageDriver;
+import com.baeldung.utility.TestUtils;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class OptInPopupUITest extends BaseUISeleniumTest {
@@ -27,7 +28,7 @@ public class OptInPopupUITest extends BaseUISeleniumTest {
 
     @Value("${team.optin.urls}")
     private String[] optInUrls;
-    
+
     @Value("${team.optin.test.retry}")
     private int retry;
 
@@ -61,6 +62,7 @@ public class OptInPopupUITest extends BaseUISeleniumTest {
             optInPageDriver.closePopupOnRwSTeamOptInPage();
 
         } catch (Exception e) {
+            TestUtils.takeScreenShot(optInPageDriver.getWebDriver());
             if (retry == retryCount) {
                 logger.debug(retry + " retries completed.");
                 logger.error(e.getMessage());

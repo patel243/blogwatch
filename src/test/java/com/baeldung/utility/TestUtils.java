@@ -1,15 +1,21 @@
 package com.baeldung.utility;
 
+import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Stream;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.params.provider.Arguments;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -154,6 +160,15 @@ public class TestUtils {
     public static Stream<Arguments> redirectsTestDataProvider() {
         return YAMLProperties.redirectsTestData.entrySet().stream().map(entry -> Arguments.of(entry.getKey(), entry.getValue()));
 
+    }
+
+    public static void takeScreenShot(WebDriver webdriver) {
+        try {
+            FileUtils.copyFile(((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE), new File(String.format("/tmp/screenshots/screenshot%s.png", LocalDateTime.now())));
+        }catch(Exception e)
+        {
+            logger.error("Error while taking screenshot: {0}",e.getMessage());
+        }
     }
 
 }

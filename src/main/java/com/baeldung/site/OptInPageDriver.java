@@ -1,14 +1,9 @@
 package com.baeldung.site;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,16 +34,13 @@ public class OptInPageDriver extends BlogBaseDriver {
     }
 
     public boolean theFirstNameInputFieldIsDisplayed() throws InterruptedException, WebDriverException, IOException {
-        try {
-            // this.getWebDriver().findElements(By.id("drip-first-name")).get(0).isDisplayed();
-            logger.info("executing theFirstNameInputFieldIsDisplayed()");
-            WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
-            WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("drip-first-name")));
-            return button.isDisplayed();
-        } catch (Exception e) {
-            FileUtils.copyFile(((TakesScreenshot) this.getWebDriver()).getScreenshotAs(OutputType.FILE), new File(String.format("/tmp/screenshots/screenshot%s.png", LocalDateTime.now())));
-            throw e;
-        }
+
+        // this.getWebDriver().findElements(By.id("drip-first-name")).get(0).isDisplayed();
+        logger.info("executing theFirstNameInputFieldIsDisplayed()");
+        WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
+        WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("drip-first-name")));
+        return button.isDisplayed();
+
     }
 
     public void clickOnGetAccessLinkforMediumTeam() throws InterruptedException {
