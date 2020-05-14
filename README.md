@@ -36,6 +36,7 @@ Available headless browsers
 
 - _PhantomJS_ (default)
 - _HtmlUnit_
+- _chrome-headless_
 
 Headless browser can be configured using following system property
 
