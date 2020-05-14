@@ -15,7 +15,7 @@ public class OptInPageDriver extends BlogBaseDriver {
 
     public void clickOnGetAccessLinkforSmallTeam() throws InterruptedException {
         logger.info("executing clickOnGetAccessLinkforSmallTeam()");
-        acceptCookie();
+        //acceptCookie();
         Thread.sleep(5000);
         logger.info("The button is displayed:{}",this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_small')]/a")).isDisplayed());
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);

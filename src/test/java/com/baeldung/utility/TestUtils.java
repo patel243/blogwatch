@@ -167,7 +167,7 @@ public class TestUtils {
             FileUtils.copyFile(((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE), new File(String.format("/tmp/screenshots/screenshot%s.png", LocalDateTime.now())));
         }catch(Exception e)
         {
-            logger.error("Error while taking screenshot: {0}",e.getMessage());
+            logger.error("Error while taking screenshot: {}",e.getMessage());
         }
     }
 
