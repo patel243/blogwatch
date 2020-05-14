@@ -45,12 +45,10 @@ public class OptInPageDriver extends BlogBaseDriver {
 
     public void clickOnGetAccessLinkforMediumTeam() throws InterruptedException {
         logger.info("executing clickOnGetAccessLinkforMediumTeam()");
-        Thread.sleep(5000);
-        /*
+        Thread.sleep(5000);        
         WebDriverWait wait = new WebDriverWait(this.getWebDriver(), 20);
         WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'buy_team_medium')]/a")));
-        button.click();*/
-        this.getWebDriver().findElement(By.xpath("//div[contains(@class,'buy_team_medium')]/a")).click();
+        button.click();        
 
     }
 

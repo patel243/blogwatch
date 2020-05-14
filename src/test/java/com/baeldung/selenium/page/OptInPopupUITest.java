@@ -47,14 +47,14 @@ public class OptInPopupUITest extends BaseUISeleniumTest {
         optInPageDriver.setUrl(optInPagUrl);
         try {
             optInPageDriver.loadUrl();
-            Thread.sleep(5000);
-
-            optInPageDriver.clickOnGetAccessLinkforSmallTeam();
-            assertTrue(optInPageDriver.theFirstNameInputFieldIsDisplayed(), "Problem with opt-in pop-up for small team");
-            optInPageDriver.closePopupOnRwSTeamOptInPage();
+            Thread.sleep(5000);            
 
             optInPageDriver.clickOnGetAccessLinkforMediumTeam();
             assertTrue(optInPageDriver.theFirstNameInputFieldIsDisplayed(), "Problem with opt-in pop-up for medium team");
+            optInPageDriver.closePopupOnRwSTeamOptInPage();
+            
+            optInPageDriver.clickOnGetAccessLinkforSmallTeam();
+            assertTrue(optInPageDriver.theFirstNameInputFieldIsDisplayed(), "Problem with opt-in pop-up for small team");
             optInPageDriver.closePopupOnRwSTeamOptInPage();
 
             optInPageDriver.clickOnGetAccessLinkforLargeTeam();
