@@ -75,4 +75,8 @@ ignoreMissingReadmeEndingWith:
   - /spring-cloud-data-flow
   - /jhipster-5
   - /jenkins
-  
+  - /shippingcontext
+  - /mainapp
+  - /sharedkernel
+  - /ordercontext
+  - /infrastructure
