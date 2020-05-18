@@ -3286,7 +3286,6 @@
 /groovy-convert-string-to-integer
 /mockito-additionalanswers
 /java-convert-bson-to-json
-/terraform-intro
 /spring-data-jpa-custom-naming
 /java-map-with-case-insensitive-keys
 /netty-http2
