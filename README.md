@@ -5,7 +5,7 @@ This project contains UI tests for baeldung.com
 
 ### Overview
 
-The project uses Selenium framework, Crawler4J and REST Assured for UI tests . The tests can be run in GUI or headless mode. UI browser has been configured with Firefox using gecodriver and tested with Firefox 56.0 (64 bit) on Windows. Headless mode works with PhantomJS and HtmlUnit browsers.
+The project uses Selenium framework, Crawler4J, jsoup and REST Assured for UI tests . The tests can be run in GUI or headless mode. UI browser has been configured with Firefox using gecodriver and tested with Firefox 56.0 (64 bit) on Windows. Headless mode works with PhantomJS and HtmlUnit browsers.
 
 
 ### Running Tests from the IDE
