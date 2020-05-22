@@ -24,7 +24,7 @@ public class Crawler4jMainCofig {
     public CrawlConfig crawlConfig() {
         CrawlConfig crawlConfig = new CrawlConfig();
         crawlConfig.setCrawlStorageFolder(GlobalConstants.CRAWLER4J_STORAGE_FOLDER);
-        crawlConfig.setPolitenessDelay(400);
+        crawlConfig.setPolitenessDelay(1000);
         crawlConfig.setMaxDepthOfCrawling(-1);
         crawlConfig.setMaxPagesToFetch(-1);
         crawlConfig.setIncludeBinaryContentInCrawling(false);
