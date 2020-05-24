@@ -1,6 +1,7 @@
 package com.baeldung.utility;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -19,8 +20,14 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.baeldung.common.Utils;
 import com.baeldung.common.YAMLProperties;
+import com.baeldung.common.vo.FooterLinksDataVO;
 import com.baeldung.site.SitePage;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.rholder.retry.RetryException;
 import com.github.rholder.retry.Retryer;
 import com.google.common.collect.Multimap;
@@ -169,6 +176,14 @@ public class TestUtils {
         {
             logger.error("Error while taking screenshot: {}",e.getMessage());
         }
+    }
+    
+    public static Stream<Arguments> footerLinksTestDataProvider() throws JsonParseException, JsonMappingException, IOException {
+        ObjectMapper ObjectMapper = new ObjectMapper();
+        List<FooterLinksDataVO> footerLinksDataVO = ObjectMapper.readValue(Utils.getJsonResourceFile("./footer-links-test-data.json"), new TypeReference<List<FooterLinksDataVO>>() {
+        });
+        return footerLinksDataVO.stream().map(entry -> Arguments.of(entry.getUrl(), entry.getFooterLinks()));
+
     }
 
 }

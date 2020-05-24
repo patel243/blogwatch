@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
+import com.baeldung.common.vo.FooterLinksDataVO;
 import com.baeldung.common.vo.LinkVO;
 import com.baeldung.site.strategy.ITitleAnalyzerStrategy;
 
@@ -538,6 +539,15 @@ public class SitePage extends BlogBaseDriver {
             e.printStackTrace();
         }
 
+    }
+
+    public boolean anchorAndAnchorLinkAvailable(FooterLinksDataVO.link link) {
+        try {
+            WebElement element = this.getWebDriver().findElement(By.xpath("//footer//a[contains(@href,'" + link.getAnchorLink() + "')]"));
+            return element.getText().equalsIgnoreCase(link.getAnchorText());
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
 }

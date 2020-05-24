@@ -33,6 +33,7 @@ import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.Utils;
 import com.baeldung.common.vo.AnchorLinksTestDataVO;
 import com.baeldung.common.vo.EventTrackingVO;
+import com.baeldung.common.vo.FooterLinksDataVO;
 import com.baeldung.common.vo.LinkVO;
 import com.baeldung.crawler4j.crawler.CrawlerForFindingReadmeURLs;
 import com.baeldung.utility.TestUtils;
@@ -409,6 +410,21 @@ public class CommonUITest extends BaseUISeleniumTest {
         WebDriverWait wait = new WebDriverWait(page.getWebDriver(), 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Thank you for your message. It has been sent')]")));
         logger.info("message sent successfully");
+
+    }
+    
+    @ParameterizedTest(name = " {displayName} - verify footer links on {0}")
+    @MethodSource("com.baeldung.utility.TestUtils#footerLinksTestDataProvider()")
+    @Tag("footerLInks")
+    public final void givenURLsWithFooterLinks_whenAnaysingFooterLinks_thenAnchorAndAnchorLinksExist(String url, List<FooterLinksDataVO.link> footerLinks) throws JsonProcessingException, IOException {
+
+        page.setUrl(page.getBaseURL() + url);
+
+        page.loadUrl();
+
+        for (FooterLinksDataVO.link link : footerLinks) {
+            assertTrue(page.anchorAndAnchorLinkAvailable(link), String.format("Countn't find Anchor Text:%s and Anchor Link: %s, on %s", link.getAnchorText(), link.getAnchorLink(), url));
+        }
 
     }
 

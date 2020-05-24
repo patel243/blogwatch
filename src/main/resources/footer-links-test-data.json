@@ -1,0 +1,16 @@
+[
+    {
+      "url": "/java-asynchronous-programming",
+      "footerLinks": [
+        {
+            "anchorText":"Spring", 
+            "anchorLink":"/category/spring"
+          },
+          {
+            "anchorText":"REST", 
+            "anchorLink":"/category/rest"
+          }
+      ]
+    }
+]
+

@@ -666,5 +666,9 @@ public class Utils {
         }
         return "";
     }
+    
+    public static File getJsonResourceFile(String fileName) {
+        return new File(Utils.class.getClassLoader().getResource(fileName).getPath());
+    }
 
 }
