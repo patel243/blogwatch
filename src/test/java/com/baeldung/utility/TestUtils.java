@@ -172,17 +172,17 @@ public class TestUtils {
     public static void takeScreenShot(WebDriver webdriver) {
         try {
             FileUtils.copyFile(((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE), new File(String.format("/tmp/screenshots/screenshot%s.png", LocalDateTime.now())));
-        }catch(Exception e)
-        {
-            logger.error("Error while taking screenshot: {}",e.getMessage());
+        } catch (Exception e) {
+            logger.error("Error while taking screenshot: {}", e.getMessage());
         }
     }
-    
+
     public static Stream<Arguments> footerLinksTestDataProvider() throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper ObjectMapper = new ObjectMapper();
-        List<FooterLinksDataVO> footerLinksDataVO = ObjectMapper.readValue(Utils.getJsonResourceFile("./footer-links-test-data.json"), new TypeReference<List<FooterLinksDataVO>>() {
+        List<FooterLinksDataVO> footerLinksDataVOs = ObjectMapper.readValue(Utils.getJsonResourceFile("./footer-links-test-data.json"), new TypeReference<List<FooterLinksDataVO>>() {
         });
-        return footerLinksDataVO.stream().map(entry -> Arguments.of(entry.getUrl(), entry.getFooterLinks()));
+
+        return footerLinksDataVOs.stream().flatMap(testSet -> testSet.getUrls().stream().map(entry -> Arguments.of(entry, testSet.getFooterTag(), testSet.getFooterLinks())));
 
     }
 
