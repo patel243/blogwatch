@@ -232,7 +232,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     }
 
     @Test
-    @Tag(GlobalConstants.TAG_GITHUB_RELATED)    
+    @Tag(GlobalConstants.TAG_GITHUB_RELATED)
     public final void givenAGitHubModuleReadme_whenAnalysingTheReadme_thenLinksToAndFromGithubMatch() throws IOException {
 
         tutorialsRepoCrawlerController.startCrawlingWithAFreshController(CrawlerForFindingReadmeURLs.class, Runtime.getRuntime().availableProcessors());
@@ -390,15 +390,15 @@ public class CommonUITest extends BaseUISeleniumTest {
         assertTrue(response.getHeader("Location").toLowerCase().contains(redirectedTo), url + " doesn't redirec to " + redirectedTo);
     }
 
-    @Test    
+    @Test
     public final void givenTheContactForm_whenAMessageIsSubmitted_thenItIsSentSuccessfully() throws InterruptedException {
-        
+
         // load contact form
         page.setUrl(page.getBaseURL() + GlobalConstants.CONTACT_US_FORM_URL);
         page.loadUrl();
 
         page.acceptCookie();
-        
+
         // fill and submit form
         page.getWebDriver().findElement(By.name("your-name")).sendKeys("Selenium Test on " + LocalDate.now());
         page.getWebDriver().findElement(By.name("your-email")).sendKeys("support@baeldung.com");
@@ -412,18 +412,21 @@ public class CommonUITest extends BaseUISeleniumTest {
         logger.info("message sent successfully");
 
     }
-    
+
     @ParameterizedTest(name = " {displayName} - verify footer links on {0}")
     @MethodSource("com.baeldung.utility.TestUtils#footerLinksTestDataProvider()")
-    @Tag("footerLInks")
-    public final void givenURLsWithFooterLinks_whenAnaysingFooterLinks_thenAnchorAndAnchorLinksExist(String url, List<FooterLinksDataVO.link> footerLinks) throws JsonProcessingException, IOException {
+    @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
+    public final void givenURLsWithFooterLinks_whenAnaysingFooterLinks_thenAnchorAndAnchorLinksExist(String url, String footerTag, List<FooterLinksDataVO.link> footerLinks) throws JsonProcessingException, IOException {
 
         page.setUrl(page.getBaseURL() + url);
 
         page.loadUrl();
 
+        logger.info("Inspection footer links for {}", page.getBaseURL() + url);
+
         for (FooterLinksDataVO.link link : footerLinks) {
-            assertTrue(page.anchorAndAnchorLinkAvailable(link), String.format("Countn't find Anchor Text:%s and Anchor Link: %s, on %s", link.getAnchorText(), link.getAnchorLink(), url));
+
+            assertTrue(page.anchorAndAnchorLinkAvailable(footerTag, link), String.format("Countn't find Anchor Text:%s and Anchor Link: %s, on %s", link.getAnchorText(), link.getAnchorLink(), url));
         }
 
     }

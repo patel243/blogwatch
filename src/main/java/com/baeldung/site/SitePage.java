@@ -541,13 +541,22 @@ public class SitePage extends BlogBaseDriver {
 
     }
 
-    public boolean anchorAndAnchorLinkAvailable(FooterLinksDataVO.link link) {
-        try {
-            WebElement element = this.getWebDriver().findElement(By.xpath("//footer//a[contains(@href,'" + link.getAnchorLink() + "')]"));
-            return element.getText().equalsIgnoreCase(link.getAnchorText());
-        } catch (NoSuchElementException e) {
-            return false;
+    public boolean anchorAndAnchorLinkAvailable(String footerTag, FooterLinksDataVO.link link) {
+
+        // WebElement element = this.getWebDriver().findElement(By.xpath("//a[contains(@href,'" + link.getAnchorLink() + "') and (text() = '" + link.getAnchorText() + "')]"));
+        List<WebElement> elements = null;
+
+        if (StringUtils.isNotBlank(footerTag)) {
+            elements = this.getWebDriver().findElements(By.xpath("//" + footerTag + "//a[contains(@href,'" + link.getAnchorLink() + "')]"));
+        } else {
+            elements = this.getWebDriver().findElements(By.xpath("//a[contains(@href,'" + link.getAnchorLink() + "')]"));
         }
+        for (WebElement element : elements) {
+            if (link.getAnchorText().equalsIgnoreCase(element.getText()))
+                return true;
+        }
+        return false;
+
     }
 
 }

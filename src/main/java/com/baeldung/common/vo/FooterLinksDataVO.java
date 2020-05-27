@@ -3,11 +3,25 @@ package com.baeldung.common.vo;
 import java.util.List;
 
 public class FooterLinksDataVO {
-    private String url;
+    private List<String> urls;
+    private String footerTag;
     private List<link> footerLinks;
 
-    public String getUrl() {
-        return url;
+    
+    public List<String> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
+    }    
+
+    public String getFooterTag() {
+        return footerTag;
+    }
+
+    public void setFooterTag(String footerTag) {
+        this.footerTag = footerTag;
     }
 
     public List<link> getFooterLinks() {
@@ -16,11 +30,7 @@ public class FooterLinksDataVO {
 
     public void setFooterLinks(List<link> footerLinks) {
         this.footerLinks = footerLinks;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    }    
 
     public static class link {
         private String anchorText;
