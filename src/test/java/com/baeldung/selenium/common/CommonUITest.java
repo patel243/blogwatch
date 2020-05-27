@@ -422,7 +422,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         page.loadUrl();
 
-        logger.info("Inspection footer links for {}", page.getBaseURL() + url);
+        logger.info("Inspection footer links on {}", page.getBaseURL() + url);
 
         for (FooterLinksDataVO.link link : footerLinks) {
 
