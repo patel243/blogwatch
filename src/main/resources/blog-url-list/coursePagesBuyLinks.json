@@ -289,7 +289,7 @@
         },
         {
           "trackingCode": [
-            "GA|course-lssc|buy|buy_lssc_team_master",
+            "GA|course-lssc|buy|buy_lsso_team_master",
             "DRIP|LSSCTeam|LSSOTeam"
           ],
           "linkText": "Learn Spring Security OAuth"
