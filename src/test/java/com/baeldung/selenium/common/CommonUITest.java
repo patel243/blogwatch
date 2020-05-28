@@ -191,7 +191,7 @@ public class CommonUITest extends BaseUISeleniumTest {
             for (List<EventTrackingVO> eventTrackingVOs : testData.get(urlKey)) {
                 for (EventTrackingVO eventTrackingVO : eventTrackingVOs) {
                     logger.debug("Asserting: " + eventTrackingVO.getTrackingCodes() + " for on " + page.getBaseURL() + urlKey);
-                    assertTrue(page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()), "Didn't find the tracking code on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey);
+                    assertTrue(page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()), "Problem with the tracking code on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey);
                 }
                 assertTrue(page.findEventGenerationScript(), "event generation script not found on -->" + page.getBaseURL() + urlKey);
             }
