@@ -34,9 +34,15 @@ public class BaseTest {
     protected void failTestWithLoggingTotalNoOfFailures(String fialureMessage) {
         fail(fialureMessage + Utils.messageForTotalNoOfFailuresAtTheTestLevel(getMetrics(TestMetricTypes.FAILED)));
     }
+    
+    @BeforeEach
+    public final void initiateJVMHook(TestInfo testInfo) throws ClassNotFoundException {
+        Class.forName("com.baeldung.common.JVMShutdownHook");        
+    }
 
     @BeforeEach
-    public final void logTestname(TestInfo testInfo) {
+    public final void logTestname(TestInfo testInfo) throws ClassNotFoundException {
+        Class.forName("com.baeldung.common.JVMShutdownHook");
         logger.info("Executing Test: {}", testInfo.getDisplayName());
     }
 

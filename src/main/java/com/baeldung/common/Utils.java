@@ -191,18 +191,7 @@ public class Utils {
     }
 
     public static String messageForTotalNoOfFailuresAtTheTestLevel(int failures) {
-
-        StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append("\n");
-        resultBuilder.append("=====================================================");
-        resultBuilder.append("\n");
-        resultBuilder.append("Total failures upto this point = " + failures);
-        resultBuilder.append("\n");
-        resultBuilder.append("=====================================================");
-        resultBuilder.append("\n");
-
-        return resultBuilder.toString();
-
+        return messageForTotalNoOfFailures(failures);
     }
 
     public static String messageForTotalNoOfFailures(int failures) {
@@ -211,7 +200,7 @@ public class Utils {
         resultBuilder.append("\n");
         resultBuilder.append("=====================================================");
         resultBuilder.append("\n");
-        resultBuilder.append("Total failures = " + failures);
+        resultBuilder.append("Total failures upto this point = " + failures);
         resultBuilder.append("\n");
         resultBuilder.append("=====================================================");
         resultBuilder.append("\n");
