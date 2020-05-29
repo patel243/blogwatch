@@ -200,7 +200,7 @@ public class Utils {
         resultBuilder.append("\n");
         resultBuilder.append("=====================================================");
         resultBuilder.append("\n");
-        resultBuilder.append("Total failures upto this point = " + failures);
+        resultBuilder.append("Failure count upto this point = " + failures);
         resultBuilder.append("\n");
         resultBuilder.append("=====================================================");
         resultBuilder.append("\n");
