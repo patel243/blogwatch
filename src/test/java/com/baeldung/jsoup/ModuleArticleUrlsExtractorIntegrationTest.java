@@ -1,7 +1,11 @@
-package com.baeldung.tools.articles;
+package com.baeldung.jsoup;
 
-import org.junit.jupiter.api.BeforeEach;
+import com.baeldung.jsoup.config.JSoupMainConfig;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -11,13 +15,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = JSoupMainConfig.class)
 class ModuleArticleUrlsExtractorIntegrationTest {
+    @Autowired
     private ModuleArticleUrlsExtractor moduleArticleUrlsExtractor;
-
-    @BeforeEach
-    void beforeEach() {
-        moduleArticleUrlsExtractor = new ModuleArticleUrlsExtractor();
-    }
 
     @Test
     void givenReadmesForModuleUrls_whenFindArticleUrlsInModules_thenAllArticleUrlsReturned() throws Exception {
@@ -27,17 +29,17 @@ class ModuleArticleUrlsExtractorIntegrationTest {
 
     private List<URL> moduleUrls() throws Exception {
         return Arrays.asList(
-          algorithmMiscellaneousReadmeUrl(),
-          coreJavaCollectionsReadmeUrl()
+          algorithmMiscellaneousModuleUrl(),
+          coreJavaCollectionsModuleUrl()
         );
     }
 
-    private URL algorithmMiscellaneousReadmeUrl() throws Exception {
-        return new URL("https://github.com/eugenp/tutorials/tree/master/algorithms-miscellaneous-1/README.md");
+    private URL algorithmMiscellaneousModuleUrl() throws Exception {
+        return new URL("https://github.com/eugenp/tutorials/tree/master/algorithms-miscellaneous-1");
     }
 
-    private URL coreJavaCollectionsReadmeUrl() throws Exception {
-        return new URL("https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-collections-2/README.md");
+    private URL coreJavaCollectionsModuleUrl() throws Exception {
+        return new URL("https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-collections-2");
     }
 
     private HashSet<URL> expectedUrls() throws MalformedURLException {

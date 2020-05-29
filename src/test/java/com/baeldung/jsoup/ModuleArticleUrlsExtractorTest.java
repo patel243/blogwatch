@@ -1,4 +1,4 @@
-package com.baeldung.tools.articles;
+package com.baeldung.jsoup;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,8 +26,10 @@ class ModuleArticleUrlsExtractorTest {
 
     @Test
     void givenReadmesForModuleUrls_whenFindArticleUrlsInModules_thenAllArticleUrlsReturned() throws Exception {
-        willReturn(algorithmMiscellaneousReadmeDocument()).given(moduleArticleUrlsExtractor).parseDocument(algorithmMiscellaneousReadmeUrl());
-        willReturn(coreJavaCollectionsReadmeDocument()).given(moduleArticleUrlsExtractor).parseDocument(coreJavaCollectionsReadmeUrl());
+        willReturn(algorithmMiscellaneousReadmeDocument()).given(moduleArticleUrlsExtractor)
+          .parseDocument(algorithmMiscellaneousReadmeUrl());
+        willReturn(coreJavaCollectionsReadmeDocument()).given(moduleArticleUrlsExtractor)
+          .parseDocument(coreJavaCollectionsReadmeUrl());
 
         assertThat(moduleArticleUrlsExtractor.findArticleUrlsInModules(moduleUrls()))
           .containsExactlyElementsOf(expectedUrls());
@@ -38,7 +40,11 @@ class ModuleArticleUrlsExtractorTest {
     }
 
     private URL algorithmMiscellaneousReadmeUrl() throws Exception {
-        return new URL("https://github.com/eugenp/tutorials/tree/master/algorithms-miscellaneous/README.md");
+        return new URL(algorithmMiscellaneousModuleUrl().toString() + "/README.md");
+    }
+
+    private URL algorithmMiscellaneousModuleUrl() throws Exception {
+        return new URL("https://github.com/eugenp/tutorials/tree/master/algorithms-miscellaneous");
     }
 
     private Document coreJavaCollectionsReadmeDocument() throws IOException {
@@ -46,22 +52,26 @@ class ModuleArticleUrlsExtractorTest {
     }
 
     private URL coreJavaCollectionsReadmeUrl() throws Exception {
-        return new URL("https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-collections/README.md");
+        return new URL(coreJavaCollectionsModuleUrl().toString() + "/README.md");
+    }
+
+    private URL coreJavaCollectionsModuleUrl() throws Exception {
+        return new URL("https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-collections");
     }
 
     private List<URL> moduleUrls() throws Exception {
         return Arrays.asList(
-          algorithmMiscellaneousReadmeUrl(),
-          coreJavaCollectionsReadmeUrl()
+          algorithmMiscellaneousModuleUrl(),
+          coreJavaCollectionsModuleUrl()
         );
     }
 
     private HashSet<URL> expectedUrls() throws MalformedURLException {
         return new HashSet<>(Arrays.asList(
           new URL("https://www.baeldung.com/java-finite-automata"),
-          new URL("https://www.baeldung.com/java-hill-climbing-algorithm"),
+          new URL("http://www.baeldung.com/java-hill-climbing-algorithm"),
           new URL("https://www.baeldung.com/java-minimax-algorithm"),
-          new URL("https://www.baeldung.com/java-levenshtein-distance"),
+          new URL("http://www.baeldung.com/java-levenshtein-distance"),
           new URL("https://www.baeldung.com/java-kth-largest-element"),
           new URL("https://www.baeldung.com/java-collection-remove-elements"),
           new URL("https://www.baeldung.com/java-collection-filtering"),
