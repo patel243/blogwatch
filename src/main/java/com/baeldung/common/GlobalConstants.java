@@ -79,6 +79,8 @@ public class GlobalConstants {
     public static final String TAG_WEEKLY = "weekly";
     
     public static final String TAG_SITE_SMOKE_TEST = "site-smoke-test";
+    
+    public static final String TAG_SKIP_METRICS= "skip-metrics";
 
     /**
      * Tests using this tag can be executed using on Demand genkins job.

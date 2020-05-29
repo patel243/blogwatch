@@ -1,5 +1,6 @@
 package com.baeldung.selenium.common;
 
+import static com.baeldung.common.GlobalConstants.TestMetricTypes.FAILED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +19,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
@@ -29,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.TestMetricsExtension;
 import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.Utils;
 import com.baeldung.common.vo.AnchorLinksTestDataVO;
@@ -47,6 +50,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.RestAssuredConfig;
 import com.jayway.restassured.response.Response;
 
+@ExtendWith(TestMetricsExtension.class)
 public class CommonUITest extends BaseUISeleniumTest {
 
     @Value("${document-readme-having-articles-more-than}")
@@ -78,6 +82,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_WEEKLY)
+    @Tag(GlobalConstants.TAG_SKIP_METRICS)
     public final void givenAllURLs_whenURlLoads_thenItReturns200OK() throws IOException {
 
         logger.info("Configured retires: {}", retriesFor200OKTest);
@@ -99,7 +104,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         }
 
         if (badURLs.size() > 0) {
-            recordMetrics(badURLs.keySet().size(), TestMetricTypes.FAILED);
+            recordMetrics(badURLs.keySet().size(), FAILED);
             failTestWithLoggingTotalNoOfFailures("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
         }
     }
@@ -210,7 +215,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         System.out.println("File:" + srcFile);
         System.out.println(srcFile.getAbsolutePath());
     }
-
+    
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenAnArticleWithTheDripScript_whenTheArticleLoads_thenTheArticleHasTheDripScrip() {
@@ -357,6 +362,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_SKIP_METRICS)
     public final void givenURLsWithAnchorsLinkingWithinSamePage_whenAnaysingPage_thenAnHtmlElementExistsForEachAnchor() throws JsonProcessingException, IOException {
 
         List<AnchorLinksTestDataVO> AnchorLinksTestDataVOs = Utils.getAnchorLinksTestData(objectMapper);
@@ -375,6 +381,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         }
 
         if (badURLs.size() > 0) {
+            recordMetrics(badURLs.keySet().size(), FAILED);
             triggerTestFailure(badURLs, "Matching HTML element not found for the following Anchor Links");
         }
     }

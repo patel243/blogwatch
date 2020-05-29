@@ -24,7 +24,7 @@ public class BaseTest {
         }
     }
 
-    protected static int getMetrics(TestMetricTypes metricType) {
+    public static int getMetrics(TestMetricTypes metricType) {
         if (metricType.equals(TestMetricTypes.FAILED)) {
             return failedTests.get();
         }
@@ -36,8 +36,8 @@ public class BaseTest {
     }
 
     @BeforeEach
-    public final void logTestname(TestInfo testInfo) {        
-        logger.info("Executing Test: {}", testInfo.getDisplayName());        
+    public final void logTestname(TestInfo testInfo) {
+        logger.info("Executing Test: {}", testInfo.getDisplayName());
     }
 
     @AfterAll

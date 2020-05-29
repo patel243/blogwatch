@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -22,11 +23,13 @@ import org.openqa.selenium.logging.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baeldung.common.GlobalConstants;
+import com.baeldung.common.TestMetricsExtension;
 import com.baeldung.selenium.common.BaseUISeleniumTest;
 import com.baeldung.site.HomePageDriver;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
+@ExtendWith(TestMetricsExtension.class)
 public final class HomePageUITest extends BaseUISeleniumTest {
 
     @Autowired
