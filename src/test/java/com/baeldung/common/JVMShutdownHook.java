@@ -11,11 +11,11 @@ public class JVMShutdownHook {
         Thread hook = new Thread(() -> {
             StringBuilder resultBuilder = new StringBuilder();
             resultBuilder.append(System.lineSeparator());
-            resultBuilder.append("=====================================================");
+            resultBuilder.append("============================================================================");
             resultBuilder.append(System.lineSeparator());
             resultBuilder.append("Total failures = " + BaseTest.getMetrics(TestMetricTypes.FAILED));
             resultBuilder.append(System.lineSeparator());
-            resultBuilder.append("=====================================================");
+            resultBuilder.append("============================================================================");
             resultBuilder.append(System.lineSeparator());           
             logger.info(resultBuilder.toString());
         });
