@@ -423,6 +423,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     @ParameterizedTest(name = " {displayName} - verify footer links on {0}")
     @MethodSource("com.baeldung.utility.TestUtils#footerLinksTestDataProvider()")
     @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenURLsWithFooterLinks_whenAnaysingFooterLinks_thenTheAnchorTestAndAnchorLinksExist(String url, String footerTag, List<FooterLinksDataVO.link> footerLinks) throws JsonProcessingException, IOException {
 
         page.setUrl(page.getBaseURL() + url);
