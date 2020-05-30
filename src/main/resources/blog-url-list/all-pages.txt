@@ -75,3 +75,7 @@
 /learn-spring-security-for-teams-archived-for-lsso-launch
 /learn-spring-security-core-for-teams
 /learn-spring-security-core-course
+/persistence-with-spring
+/junit5-migration-guide
+/all-courses
+/job-contact
