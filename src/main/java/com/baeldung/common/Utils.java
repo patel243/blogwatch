@@ -185,7 +185,7 @@ public class Utils {
 
         }
 
-        resultBuilder.append(messageForTotalNoOfFailuresAtTheTestLevel(totalFailures));
+        //resultBuilder.append(messageForTotalNoOfFailuresAtTheTestLevel(totalFailures));
         fail("\n\n" + failureHeading + resultBuilder.toString());
 
     }

@@ -4,6 +4,7 @@ import static com.baeldung.common.GlobalConstants.TestMetricTypes.FAILED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.stream.Stream;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -105,7 +107,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         if (badURLs.size() > 0) {
             recordMetrics(badURLs.keySet().size(), FAILED);
-            failTestWithLoggingTotalNoOfFailures("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
+            fail("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
         }
     }
 
