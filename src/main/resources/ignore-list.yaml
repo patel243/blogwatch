@@ -55,6 +55,7 @@ ignoreMissingReadmeContaining:
   - /video-tutorials
   - /decoupling-pattern1/
   - /decoupling-pattern2/
+  - /quarkus-liquibase/
 ignoreMissingReadmeEndingWith:
   - /first-url/
   - /2ndurl/  
@@ -80,3 +81,28 @@ ignoreMissingReadmeEndingWith:
   - /sharedkernel
   - /ordercontext
   - /infrastructure
+  - /olingo2
+  - /usage-example
+  - /counter-maven-plugin
+  - /custom-rule
+  - /data-jpa-library
+  - /data-jpa-application
+  - /spring-security-modules
+  - /core-kotlin-modules
+  - /bazelgreeting
+  - /bazelapp
+  - /oauth2-client
+  - /oauth2-authorization-server
+  - /oauth2-resource-server
+  - /maven-unused-dependencies
+  - /spring-security-sso-ui
+  - /spring-security-sso-ui-2
+  - /spring-security-sso-auth-server
+  - /disabling-console-logback
+  - /disabling-console-log4j2
+  - /disabling-console-jul
+  - /jackson-modules
+  - /spring-boot-modules
+  - /quarkus-app
+  - /quarkus-liquibase
+  - /original
