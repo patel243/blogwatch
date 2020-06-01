@@ -26,17 +26,18 @@ class ModuleArticleUrlsExtractorIntegrationTest {
     @Autowired
     private ModuleArticleUrlsExtractor moduleArticleUrlsExtractor;
 
-    @Value("${modules.to.extract}")
-    private String modulesToExtract;
-
     @Test
-    void givenReadmesForModuleUrls_whenFindArticleUrlsInModules_thenAllArticleUrlsReturned() throws Exception {
-        List<URL> moduleToExtractUrls = Files.readAllLines(Paths.get(getClass().getClassLoader().getResource("blog-url-list").toURI()).resolve(modulesToExtract))
-          .stream()
+    void givenReadmesForModuleUrls_whenFindArticleUrlsInModules_thenAllArticleUrlsReturned() {
+        List<URL> moduleToExtractUrls = Arrays.stream(System.getProperty("modules").split(","))
+          .map(this::toAbsoluteLink)
           .map(this::toUrl)
           .collect(Collectors.toList());
 
         moduleArticleUrlsExtractor.findArticleUrlsInModules(moduleToExtractUrls).forEach(System.out::println);
+    }
+
+    private String toAbsoluteLink(String relativeModuleLink) {
+        return System.getProperty("base.url") + relativeModuleLink;
     }
 
     private URL toUrl(String moduleUrl) {
