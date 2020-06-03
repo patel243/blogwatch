@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,8 +32,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.baeldung.common.GlobalConstants;
-import com.baeldung.common.TestMetricsExtension;
 import com.baeldung.common.GlobalConstants.TestMetricTypes;
+import com.baeldung.common.TestMetricsExtension;
 import com.baeldung.common.Utils;
 import com.baeldung.common.vo.AnchorLinksTestDataVO;
 import com.baeldung.common.vo.EventTrackingVO;
