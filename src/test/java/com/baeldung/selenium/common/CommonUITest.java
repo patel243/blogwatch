@@ -81,8 +81,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         });
     }
 
-    @Test
-    @Tag(GlobalConstants.TAG_WEEKLY)
+    @Test    
     @Tag(GlobalConstants.TAG_SKIP_METRICS)
     public final void givenAllURLs_whenURlLoads_thenItReturns200OK() throws IOException {
 
