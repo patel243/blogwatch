@@ -109,8 +109,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY)
+    @Test   
     @Tag(GlobalConstants.TAG_SKIP_METRICS)
     public final void givenAllTheCoursePages_whenAUrlLoads_thenItReturns200OK() throws IOException {
 
@@ -122,7 +121,7 @@ public class CommonUITest extends BaseUISeleniumTest {
             alURls.forEach(URL -> {
                 TestUtils.sleep(400);
                 String fullURL = page.getBaseURL() + URL;
-                logger.info("Verify that 200OK received from: {}", fullURL);
+                logger.info("Verifying 200OK from: {}", fullURL);
                 TestUtils.hitURLUsingGuavaRetryer(restAssuredConfig, fullURL, badURLs, retryer);
             });
         }
