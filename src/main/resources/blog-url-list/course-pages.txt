@@ -1,0 +1,10 @@
+/rest-with-spring-course
+/learn-spring-security-course
+/rest-with-spring-for-teams
+/learn-spring-security-for-teams
+/learn-spring-security-oauth-for-teams
+/learn-spring-security-core-for-teams
+/learn-spring-security-core-course
+/learn-spring-course
+/learn-spring-for-teams
+/learn-spring-security-oauth-course

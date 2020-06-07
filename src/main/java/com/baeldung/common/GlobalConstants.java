@@ -41,6 +41,7 @@ public class GlobalConstants {
     public static final String SAMPLE_ARTICLES_FILE_NAME = "sample-articles.txt";
     public static final String ALL_PAGES_FILE_NAME = "all-pages.txt";
     public static final String SAMPLE_PAGES_FILE_NAME = "sample-pages.txt";
+    public static final String COURSE_PAGES_FILE_NAME = "course-pages.txt";
 
     public static final String BLOG_URL_LIST_RESOUCE_FOLDER_PATH = "./blog-url-list/";
 
@@ -71,16 +72,16 @@ public class GlobalConstants {
     /**
      * Tests using this tag are executed daily on Jenkins with EU proxy 
      */
-    public static final String TAG_DAILY_EU_PROXY = "daily-eu-proxy";       
+    public static final String TAG_DAILY_EU_PROXY = "daily-eu-proxy";
 
     /**
      * Tests using this tag are executed weekly on Jenkins
      */
     public static final String TAG_WEEKLY = "weekly";
-    
+
     public static final String TAG_SITE_SMOKE_TEST = "site-smoke-test";
-    
-    public static final String TAG_SKIP_METRICS= "skip-metrics";
+
+    public static final String TAG_SKIP_METRICS = "skip-metrics";
 
     /**
      * Tests using this tag can be executed using on Demand genkins job.
@@ -208,8 +209,8 @@ public class GlobalConstants {
     public static enum TestMetricTypes {
         FAILED;
     }
-    
-    //contact us form
+
+    // contact us form
     public static final String CONTACT_US_FORM_URL = "/contact";
 
     // test names for

@@ -112,6 +112,30 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_SKIP_METRICS)
+    public final void givenAllTheCoursePages_whenAUrlLoads_thenItReturns200OK() throws IOException {
+
+        Multimap<String, Integer> badURLs = ArrayListMultimap.create();
+        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
+        Retryer<Boolean> retryer = Utils.getGuavaRetryer(retriesFor200OKTest);
+
+        try (Stream<String> alURls = Utils.fetchAllCoursePages()) {
+            alURls.forEach(URL -> {
+                TestUtils.sleep(400);
+                String fullURL = page.getBaseURL() + URL;
+                logger.info("Verify that 200OK received from: {}", fullURL);
+                TestUtils.hitURLUsingGuavaRetryer(restAssuredConfig, fullURL, badURLs, retryer);
+            });
+        }
+
+        if (badURLs.size() > 0) {
+            recordMetrics(badURLs.keySet().size(), FAILED);
+            fail("200OK Not received from following course pages:\n" + Utils.http200OKTestResultBuilder(badURLs));
+        }
+    }
+
+    @Test
+    @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheArticleWithSeries_whenArticleLoads_thenPluginLoadsProperly() {
         page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_SERIES);
 
@@ -216,7 +240,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         System.out.println("File:" + srcFile);
         System.out.println(srcFile.getAbsolutePath());
     }
-    
+
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenAnArticleWithTheDripScript_whenTheArticleLoads_thenTheArticleHasTheDripScrip() {

@@ -185,7 +185,7 @@ public class Utils {
 
         }
 
-        //resultBuilder.append(messageForTotalNoOfFailuresAtTheTestLevel(totalFailures));
+        // resultBuilder.append(messageForTotalNoOfFailuresAtTheTestLevel(totalFailures));
         fail("\n\n" + failureHeading + resultBuilder.toString());
 
     }
@@ -307,7 +307,7 @@ public class Utils {
         resultsForGitHubHttpStatusTest.asMap().forEach((key, value) -> {
             formatResult.append("\n-----------------------------------------------\n");
             formatResult.append(key);
-            formatResult.append("\n------------------------------------------------\n");            
+            formatResult.append("\n------------------------------------------------\n");
             List<String> resutls = (List<String>) value;
             resutls.forEach(result -> {
                 formatResult.append(result);
@@ -639,7 +639,7 @@ public class Utils {
         return objectMapper.readValue(Utils.getAnchorTestDataJsonAsFile(), new TypeReference<List<AnchorLinksTestDataVO>>() {
         });
     }
-    
+
     public static String findFile(final String filename, final String envTarget) {
         final String paths[] = { "", "bin/" + envTarget + "/", "target/classes" }; // drivers are in bin/ directory
         for (final String path : paths) {
@@ -655,9 +655,14 @@ public class Utils {
         }
         return "";
     }
-    
+
     public static File getJsonResourceFile(String fileName) {
         return new File(Utils.class.getClassLoader().getResource(fileName).getPath());
+    }
+
+    public static Stream<String> fetchAllCoursePages() throws IOException {
+        File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_FILE_NAME).getPath());
+        return Files.lines(Paths.get(file.getAbsolutePath()));
     }
 
 }
