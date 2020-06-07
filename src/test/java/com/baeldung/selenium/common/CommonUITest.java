@@ -81,7 +81,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         });
     }
 
-    @Test    
+    @Test
     @Tag(GlobalConstants.TAG_SKIP_METRICS)
     public final void givenAllURLs_whenURlLoads_thenItReturns200OK() throws IOException {
 
@@ -109,7 +109,7 @@ public class CommonUITest extends BaseUISeleniumTest {
         }
     }
 
-    @Test   
+    @Test
     @Tag(GlobalConstants.TAG_SKIP_METRICS)
     public final void givenAllTheCoursePages_whenAUrlLoads_thenItReturns200OK() throws IOException {
 
@@ -121,14 +121,14 @@ public class CommonUITest extends BaseUISeleniumTest {
             alURls.forEach(URL -> {
                 TestUtils.sleep(400);
                 String fullURL = page.getBaseURL() + URL;
-                logger.info("Verifying 200OK from: {}", fullURL);
+                logger.info("Verifying 200OK on: {}", fullURL);
                 TestUtils.hitURLUsingGuavaRetryer(restAssuredConfig, fullURL, badURLs, retryer);
             });
         }
 
         if (badURLs.size() > 0) {
             recordMetrics(badURLs.keySet().size(), FAILED);
-            fail("200OK Not received from following course pages:\n" + Utils.http200OKTestResultBuilder(badURLs));
+            fail("200OK not received from following course pages:\n" + Utils.http200OKTestResultBuilder(badURLs));
         }
     }
 
