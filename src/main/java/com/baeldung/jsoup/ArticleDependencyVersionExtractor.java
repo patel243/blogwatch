@@ -35,7 +35,7 @@ public class ArticleDependencyVersionExtractor {
             return Jsoup.parse(article, 10000)
               .getElementsByTag("pre")
               .stream()
-              .filter(element -> element.attr("class").contains("brush: xml"))
+              .filter(this::isXmlCode)
               .map(this::xmlContent)
               .map(this::toDocument)
               .filter(Objects::nonNull)
@@ -45,6 +45,10 @@ public class ArticleDependencyVersionExtractor {
         } catch (IOException e) {
             throw new IllegalStateException("An error occurred while reading URL: " + article);
         }
+    }
+
+    private boolean isXmlCode(Element element) {
+        return element.attr("class").contains("brush: xml");
     }
 
     private String xmlContent(Element element) {

@@ -50,8 +50,10 @@ class ArticleDependenciesVersionExtractorTest {
           .collect(Collectors.toMap(
             Function.identity(),
             articleUrl -> articleDependencyVersionExtractor.extractDependencyVersion(searchedDependency, articleUrl)
-          ))
-          .forEach((article, dependencies) -> System.out.println(article + ": " + dependencies));
+          )).entrySet()
+          .stream()
+          .filter(entry -> !entry.getValue().isEmpty())
+          .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
     }
 
     private URL toUrl(String moduleUrl) {
