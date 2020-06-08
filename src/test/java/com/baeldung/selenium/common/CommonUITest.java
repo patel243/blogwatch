@@ -46,7 +46,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.rholder.retry.Retryer;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Streams;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.RestAssuredConfig;
 import com.jayway.restassured.response.Response;
@@ -66,6 +65,9 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Value("${rss.feed.compare.days}")
     private int rssFeedShouldNotbeOlderThanDays;
 
+    @Value("#{'${site.status.check.url.file.names:course-pages.txt}'.split(',')}")
+    private List<String> pageStausCheckUrlFileNames;
+
     @Autowired
     ObjectMapper objectMapper;
 
@@ -83,20 +85,21 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_SKIP_METRICS)
-    public final void givenAllURLs_whenURlLoads_thenItReturns200OK() throws IOException {
+    public final void givenAListOfUrlswhenAUrlLoads_thenItReturns200OK() throws IOException {
 
         logger.info("Configured retires: {}", retriesFor200OKTest);
         logger.info("configure timeout for REST Assured: {}", timeOutFor200OKTest);
+        logger.info("Input files:{}", pageStausCheckUrlFileNames);
 
         Multimap<String, Integer> badURLs = ArrayListMultimap.create();
         RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
         Retryer<Boolean> retryer = Utils.getGuavaRetryer(retriesFor200OKTest);
 
-        try (Stream<String> alURls = Streams.concat(Utils.fetchAllArtilcesList(), Utils.fetchAllPagesList())) {
+        try (Stream<String> alURls = Utils.fetchFilesAsList(pageStausCheckUrlFileNames)) {
             alURls.forEach(URL -> {
                 TestUtils.sleep(400);
                 String fullURL = page.getBaseURL() + URL;
-                logger.info(fullURL);
+                logger.info("Verifying 200OK on: {}", fullURL);
 
                 TestUtils.hitURLUsingGuavaRetryer(restAssuredConfig, fullURL, badURLs, retryer);
 
@@ -106,29 +109,6 @@ public class CommonUITest extends BaseUISeleniumTest {
         if (badURLs.size() > 0) {
             recordMetrics(badURLs.keySet().size(), FAILED);
             fail("200OK Not received from following URLs:\n" + Utils.http200OKTestResultBuilder(badURLs));
-        }
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_SKIP_METRICS)
-    public final void givenAllTheCoursePages_whenAUrlLoads_thenItReturns200OK() throws IOException {
-
-        Multimap<String, Integer> badURLs = ArrayListMultimap.create();
-        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(timeOutFor200OKTest);
-        Retryer<Boolean> retryer = Utils.getGuavaRetryer(retriesFor200OKTest);
-
-        try (Stream<String> alURls = Utils.fetchAllCoursePages()) {
-            alURls.forEach(URL -> {
-                TestUtils.sleep(400);
-                String fullURL = page.getBaseURL() + URL;
-                logger.info("Verifying 200OK on: {}", fullURL);
-                TestUtils.hitURLUsingGuavaRetryer(restAssuredConfig, fullURL, badURLs, retryer);
-            });
-        }
-
-        if (badURLs.size() > 0) {
-            recordMetrics(badURLs.keySet().size(), FAILED);
-            fail("200OK not received from following course pages:\n" + Utils.http200OKTestResultBuilder(badURLs));
         }
     }
 

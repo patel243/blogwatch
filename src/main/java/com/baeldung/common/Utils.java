@@ -77,6 +77,24 @@ public class Utils {
         return Files.lines(Paths.get(file.getAbsolutePath())).collect(Collectors.toList());
     }
 
+    public static Stream<String> fetchFilesAsList(List<String> fileNames) throws IOException {
+
+        File file = null;
+        Stream<String> fileStream = Stream.empty();
+        for (String fileName : fileNames) {
+            file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + fileName).getPath());
+            fileStream = Stream.concat(fileStream, Files.lines(Paths.get(file.getAbsolutePath())));
+        }
+
+        return fileStream;
+
+    }
+
+    public static Stream<String> fetchFileAsStream(String fileName) throws IOException {
+        File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + fileName).getPath());
+        return Files.lines(Paths.get(file.getAbsolutePath()));
+    }
+
     public static Stream<String> fetchAllPagesList() throws IOException {
         File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.ALL_PAGES_FILE_NAME).getPath());
         return Files.lines(Paths.get(file.getAbsolutePath()));
@@ -658,11 +676,6 @@ public class Utils {
 
     public static File getJsonResourceFile(String fileName) {
         return new File(Utils.class.getClassLoader().getResource(fileName).getPath());
-    }
-
-    public static Stream<String> fetchAllCoursePages() throws IOException {
-        File file = new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_FILE_NAME).getPath());
-        return Files.lines(Paths.get(file.getAbsolutePath()));
     }
 
 }
