@@ -85,7 +85,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     @Test
     @Tag(GlobalConstants.TAG_SKIP_METRICS)
-    public final void givenAListOfUrlswhenAUrlLoads_thenItReturns200OK() throws IOException {
+    public final void givenAListOfUrls_whenAUrlLoads_thenItReturns200OK() throws IOException {
 
         logger.info("Configured retires: {}", retriesFor200OKTest);
         logger.info("configure timeout for REST Assured: {}", timeOutFor200OKTest);
