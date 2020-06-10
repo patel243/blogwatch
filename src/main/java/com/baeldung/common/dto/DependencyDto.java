@@ -4,7 +4,11 @@ import java.util.Objects;
 
 public class DependencyDto {
     private String groupId;
-    private String artifactId;
+    private final String artifactId;
+
+    public DependencyDto(String artifactId) {
+        this.artifactId = artifactId;
+    }
 
     public DependencyDto(String groupId, String artifactId) {
         this.groupId = groupId;
@@ -17,6 +21,10 @@ public class DependencyDto {
 
     public String getArtifactId() {
         return artifactId;
+    }
+
+    public boolean sameArtifactAs(DependencyDto other) {
+        return Objects.equals(this.artifactId, other.artifactId);
     }
 
     @Override

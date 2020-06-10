@@ -1,6 +1,7 @@
 package com.baeldung.jsoup;
 
 import com.baeldung.common.dto.DependencyDto;
+import com.baeldung.common.dto.DependencyVersionDto;
 import com.baeldung.jsoup.config.JSoupMainConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,23 +21,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = JSoupMainConfig.class)
-class ArticleDependenciesVersionExtractorTest {
+class ArticleNonMatchingDependencyVersionExtractorTest {
     private final ModuleArticleUrlsExtractor moduleArticleUrlsExtractor;
-    private final ArticleDependencyVersionExtractor articleDependencyVersionExtractor;
+    private final ArticleNonMatchingDependencyVersionExtractor articleNonMatchingDependencyVersionExtractor;
     private final String searchedModules;
-    private final DependencyDto searchedDependency;
+    private final DependencyVersionDto searchedDependencyVersion;
 
     @Autowired
-    ArticleDependenciesVersionExtractorTest(
+    ArticleNonMatchingDependencyVersionExtractorTest(
       ModuleArticleUrlsExtractor moduleArticleUrlsExtractor,
-      ArticleDependencyVersionExtractor articleDependencyVersionExtractor,
+      ArticleNonMatchingDependencyVersionExtractor articleNonMatchingDependencyVersionExtractor,
       @Value("${modules:https://github.com/eugenp/tutorials/tree/master/akka-http}") String searchedModules,
-      @Value("${groupId:com.typesafe.akka}") String searchedGroupId,
-      @Value("${artifactId:akka-http-jackson_2.12}") String searchedArtifactId) {
+      @Value("${artifactId:akka-http-jackson_2.12}") String searchedArtifactId,
+      @Value("${version:10.1.12}") String searchedVersion) {
         this.moduleArticleUrlsExtractor = moduleArticleUrlsExtractor;
-        this.articleDependencyVersionExtractor = articleDependencyVersionExtractor;
+        this.articleNonMatchingDependencyVersionExtractor = articleNonMatchingDependencyVersionExtractor;
         this.searchedModules = searchedModules;
-        this.searchedDependency = new DependencyDto(searchedGroupId, searchedArtifactId);
+        this.searchedDependencyVersion = new DependencyVersionDto(new DependencyDto(searchedArtifactId), searchedVersion);
     }
 
     @Test
@@ -49,7 +50,7 @@ class ArticleDependenciesVersionExtractorTest {
           .stream()
           .collect(Collectors.toMap(
             Function.identity(),
-            articleUrl -> articleDependencyVersionExtractor.extractDependencyVersion(searchedDependency, articleUrl)
+            articleUrl -> articleNonMatchingDependencyVersionExtractor.extractNonMatchingDependencyVersions(searchedDependencyVersion, articleUrl)
           )).entrySet()
           .stream()
           .filter(entry -> !entry.getValue().isEmpty())

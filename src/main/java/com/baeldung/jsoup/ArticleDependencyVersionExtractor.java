@@ -40,7 +40,7 @@ public class ArticleDependencyVersionExtractor {
               .map(this::toDocument)
               .filter(Objects::nonNull)
               .flatMap(this::toDependencies)
-              .filter(dependencyVersion -> dependencyVersion.getModule().equals(searchedDependency))
+              .filter(dependencyVersion -> dependencyVersion.getDependency().sameArtifactAs(searchedDependency))
               .collect(Collectors.toList());
         } catch (IOException e) {
             throw new IllegalStateException("An error occurred while reading URL: " + article);
