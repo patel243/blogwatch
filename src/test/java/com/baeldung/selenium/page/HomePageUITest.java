@@ -26,8 +26,9 @@ import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.TestMetricsExtension;
 import com.baeldung.selenium.common.BaseUISeleniumTest;
 import com.baeldung.site.HomePageDriver;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 @ExtendWith(TestMetricsExtension.class)
 public final class HomePageUITest extends BaseUISeleniumTest {

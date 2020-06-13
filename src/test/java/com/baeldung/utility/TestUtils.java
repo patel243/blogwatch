@@ -31,10 +31,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.rholder.retry.RetryException;
 import com.github.rholder.retry.Retryer;
 import com.google.common.collect.Multimap;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.config.HttpClientConfig;
-import com.jayway.restassured.config.RedirectConfig;
-import com.jayway.restassured.config.RestAssuredConfig;
+
+import io.restassured.RestAssured;
+import io.restassured.config.HttpClientConfig;
+import io.restassured.config.RedirectConfig;
+import io.restassured.config.RestAssuredConfig;
 
 public class TestUtils {
     protected static Logger logger = LoggerFactory.getLogger(TestUtils.class);

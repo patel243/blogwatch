@@ -12,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.selenium.common.BaseUISeleniumTest;
 import com.baeldung.site.SpringMicroservicesGuidePage;
-import com.jayway.restassured.RestAssured;
+
+import io.restassured.RestAssured;
 
 public final class SpringMicroservicesGuideUITest extends BaseUISeleniumTest {
 

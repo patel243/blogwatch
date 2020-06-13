@@ -46,9 +46,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.rholder.retry.Retryer;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.config.RestAssuredConfig;
-import com.jayway.restassured.response.Response;
+
+import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.response.Response;
 
 @ExtendWith(TestMetricsExtension.class)
 public class CommonUITest extends BaseUISeleniumTest {
@@ -200,7 +201,7 @@ public class CommonUITest extends BaseUISeleniumTest {
                 for (EventTrackingVO eventTrackingVO : eventTrackingVOs) {
                     logger.debug("Asserting: " + eventTrackingVO.getTrackingCodes() + " for on " + page.getBaseURL() + urlKey);
                     assertTrue(page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()),
-                            "Problem with the tracking code" + eventTrackingVO.getTrackingCodes() + " on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey);
+                            "Problem with the tracking code " + eventTrackingVO.getTrackingCodes() + " on the button/link: " + eventTrackingVO.getLinkText() + "  on " + page.getBaseURL() + urlKey);
                 }
                 assertTrue(page.findEventGenerationScript(), "event generation script not found on -->" + page.getBaseURL() + urlKey);
             }
