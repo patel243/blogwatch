@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -45,7 +47,11 @@ class ArticleNonMatchingDependencyVersionExtractorTest {
           .map(this::toUrl)
           .collect(Collectors.toList());
 
-        moduleArticleUrlsExtractor.findArticleUrlsInModules(moduleToExtractUrls)
+        Set<URL> articleUrlsInModules = moduleArticleUrlsExtractor.findArticleUrlsInModules(moduleToExtractUrls);
+        System.out.println("Considered articles: ");
+        articleUrlsInModules.forEach(articleUrl -> System.out.println("- " + articleUrl));
+
+        Map<URL, List<DependencyVersionDto>> notMatchingDependenciesByArticle = articleUrlsInModules
           .stream()
           .collect(Collectors.toMap(
             Function.identity(),
@@ -53,7 +59,14 @@ class ArticleNonMatchingDependencyVersionExtractorTest {
           )).entrySet()
           .stream()
           .filter(entry -> !entry.getValue().isEmpty())
-          .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
+          .collect(Collectors.toMap(
+            Map.Entry::getKey,
+            Map.Entry::getValue
+          ));
+
+        System.out.println("Found dependencies not matching the given version:");
+        notMatchingDependenciesByArticle
+          .forEach((articleUrl, dependencies) -> System.out.println("- " + articleUrl + ": " + dependencies));
     }
 
     private URL toUrl(String moduleUrl) {
