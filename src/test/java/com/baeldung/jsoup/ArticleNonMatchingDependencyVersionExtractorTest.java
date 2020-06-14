@@ -71,6 +71,7 @@ class ArticleNonMatchingDependencyVersionExtractorTest {
         System.out.println("--------------------------------------------------------------------");
         notMatchingDependenciesByArticle
           .forEach((articleUrl, dependencies) -> System.out.println("- " + articleUrl + ": " + dependencies));
+        System.out.println("\n\n");        
     }
 
     private URL toUrl(String moduleUrl) {
