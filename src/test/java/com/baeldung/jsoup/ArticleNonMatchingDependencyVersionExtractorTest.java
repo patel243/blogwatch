@@ -48,7 +48,9 @@ class ArticleNonMatchingDependencyVersionExtractorTest {
           .collect(Collectors.toList());
 
         Set<URL> articleUrlsInModules = moduleArticleUrlsExtractor.findArticleUrlsInModules(moduleToExtractUrls);
+        System.out.println("\n\n--------------------------------------------------------------------");
         System.out.println("Considered articles: ");
+        System.out.println("--------------------------------------------------------------------");
         articleUrlsInModules.forEach(articleUrl -> System.out.println("- " + articleUrl));
 
         Map<URL, List<DependencyVersionDto>> notMatchingDependenciesByArticle = articleUrlsInModules
@@ -64,7 +66,9 @@ class ArticleNonMatchingDependencyVersionExtractorTest {
             Map.Entry::getValue
           ));
 
+        System.out.println("\n\n--------------------------------------------------------------------");
         System.out.println("Found dependencies not matching the given version:");
+        System.out.println("--------------------------------------------------------------------");
         notMatchingDependenciesByArticle
           .forEach((articleUrl, dependencies) -> System.out.println("- " + articleUrl + ": " + dependencies));
     }
