@@ -79,3 +79,4 @@
 /junit5-migration-guide
 /all-courses
 /job-contact
+/baeldung-ebooks
