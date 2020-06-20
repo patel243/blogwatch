@@ -11,17 +11,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.baeldung.common.TestMetricsExtension;
 import com.baeldung.selenium.common.BaseUISeleniumTest;
 import com.baeldung.site.OptInPageDriver;
 import com.baeldung.utility.TestUtils;
 
 @TestInstance(Lifecycle.PER_CLASS)
+@ExtendWith(TestMetricsExtension.class)
 public class OptInPopupUITest extends BaseUISeleniumTest {
     @Autowired
     private OptInPageDriver optInPageDriver;
