@@ -36,7 +36,7 @@ Available headless browsers
 
 - _PhantomJS_ (default)
 - _HtmlUnit_
-- _chrome-headless_
+- _chrome-headless(version 83.x)_
 
 Headless browser can be configured using following system property
 
