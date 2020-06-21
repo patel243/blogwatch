@@ -678,4 +678,18 @@ public class Utils {
         return new File(Utils.class.getClassLoader().getResource(fileName).getPath());
     }
 
+    public static String gaTrackingSetopResultBuilder(Multimap<String, String> badURLs) {
+        StringBuilder resultBuilder = new StringBuilder();
+
+        badURLs.asMap().forEach((key, value) -> {
+            resultBuilder.append("\n-----------------------------------------------------------------------------------------------------------\n");
+            resultBuilder.append(key);
+            resultBuilder.append("\n--------------------------------------------------------------------------------------------------------------\n");
+            resultBuilder.append(value.stream().collect(Collectors.joining("\n\n")));
+            resultBuilder.append("\n------------------------------------------------------------------------------------\n");
+        });
+
+        return resultBuilder.toString();
+    }
+
 }

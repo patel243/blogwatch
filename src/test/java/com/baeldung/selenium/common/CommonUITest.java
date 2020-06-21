@@ -190,8 +190,10 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Test
     @Tag(GlobalConstants.TAG_DAILY)
     @Tag(GlobalConstants.GA_TRACKING)
+    @Tag(GlobalConstants.TAG_SKIP_METRICS)
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 
+        Multimap<String, String> badURLs = ArrayListMultimap.create();
         Multimap<String, List<EventTrackingVO>> testData = Utils.getCoursePagesBuyLinksTestData(objectMapper);
         for (String urlKey : testData.keySet()) {
             page.setUrl(page.getBaseURL() + urlKey);
@@ -200,12 +202,20 @@ public class CommonUITest extends BaseUISeleniumTest {
             for (List<EventTrackingVO> eventTrackingVOs : testData.get(urlKey)) {
                 for (EventTrackingVO eventTrackingVO : eventTrackingVOs) {
                     logger.debug("Asserting: " + eventTrackingVO.getTrackingCodes() + " for on " + page.getBaseURL() + urlKey);
-                    assertTrue(page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes()),
-                            "Couldn't find the tracking code " + " on the button/link: " + eventTrackingVO.getLinkText() + " \nURL: " + page.getBaseURL() + urlKey +"\nTracking code: "+eventTrackingVO.getTrackingCodes());
+                    if (!page.findDivWithEventCalls(eventTrackingVO.getTrackingCodes())) {
+                        badURLs.put(page.getBaseURL() + urlKey, "Button/link: " + eventTrackingVO.getLinkText() + "\nTracking code: " + eventTrackingVO.getTrackingCodes());
+                    }
                 }
-                assertTrue(page.findEventGenerationScript(), "event generation script not found on -->" + page.getBaseURL() + urlKey);
+                if (!page.findEventGenerationScript()) {
+                    badURLs.put(page.getBaseURL() + urlKey, "event generation script not found");
+                }
             }
 
+        }
+
+        if (badURLs.size() > 0) {
+            recordMetrics(badURLs.size(), FAILED);
+            fail("Couldn't find the tracking code  on the below pages:\n" + Utils.gaTrackingSetopResultBuilder(badURLs));
         }
     }
 
