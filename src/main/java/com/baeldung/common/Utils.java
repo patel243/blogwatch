@@ -692,4 +692,15 @@ public class Utils {
         return resultBuilder.toString();
     }
 
+    public static void triggerTestFailure(String results, String failureHeading) {
+
+        StringBuilder resultBuilder = new StringBuilder();
+        resultBuilder.append("\n-----------------------------------------------------------------------------------------------------------\n");
+        resultBuilder.append(failureHeading);
+        resultBuilder.append("\n--------------------------------------------------------------------------------------------------------------\n");
+        resultBuilder.append(results);
+        fail(resultBuilder.toString());
+
+    }
+
 }

@@ -215,7 +215,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         if (badURLs.size() > 0) {
             recordMetrics(badURLs.size(), FAILED);
-            fail("Couldn't find the tracking code  on the below pages:\n" + Utils.gaTrackingSetopResultBuilder(badURLs));
+            triggerTestFailure(Utils.gaTrackingSetopResultBuilder(badURLs), "Couldn't find the tracking code  on the below pages");
         }
     }
 

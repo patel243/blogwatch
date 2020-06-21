@@ -65,4 +65,8 @@ public class BaseUISeleniumTest extends BaseTest {
         Utils.triggerTestFailure(badURLs, null, failureHeading, getMetrics(TestMetricTypes.FAILED));
     }
 
+    protected void triggerTestFailure(String results, String failureHeading) {
+        Utils.triggerTestFailure(results, failureHeading);
+    }
+
 }
