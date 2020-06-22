@@ -1,0 +1,12 @@
+givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog:
+  - /
+  - /scala
+  - /linux
+  - /cs
+givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode:
+  - /persistence-layer-with-spring-and-hibernate/
+  - /rest-with-spring-course/ 
+  - /linux/docker-compose-private-repositories
+  - /scala/classes-objects
+  - /cs/binary-search-trees
+  - /linux/fzf-command 

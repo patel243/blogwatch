@@ -108,10 +108,6 @@ public class GlobalConstants {
     public static final String BAELDUNG_FEED_FEEDBURNER_URL = "feeds.feedburner.com/baeldung";
     public static final String BAELDUNG_RSS_FEED_URL = "https://www.baeldung.com/rss/";
 
-    // for Google Analytics
-
-    public static final String ARTICLE_WITH_GOOGLE_ANALYTICS = "/persistence-layer-with-spring-and-hibernate/";
-    public static final String PAGE_WITH_GOOGLE_ANALYTICS = "/rest-with-spring-course/";
     public static final String GOOGLE_ANALYTICS_CODE_SEARCH_STRING = "https://www.google-analytics.com/analytics.js";
 
     // for testing noindex on category/tag
@@ -241,5 +237,8 @@ public class GlobalConstants {
     public static final String givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK = "givenAllArticlesLinkingToGitHubModule_whenAnArticleLoads_thenLinkedGitHubModulesReturns200OK";
     public static final String givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText = "givenAllPages_whenAPageLoads_thenItDoesNotContainOverlappingText";
     public static final String givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText = "givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText";
+
+    public static final String givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode = "givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode";
+    public static final Object givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog = "givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog";
 
 }

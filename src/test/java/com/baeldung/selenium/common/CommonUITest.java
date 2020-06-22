@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.stream.Stream;
 
 import org.hamcrest.MatcherAssert;
@@ -26,6 +27,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,20 +141,11 @@ public class CommonUITest extends BaseUISeleniumTest {
 
     }
 
-    @Test
+    @ParameterizedTest(name = " {displayName} - on {0}")
+    @MethodSource("com.baeldung.utility.TestUtils#gaCodeTestDataProvider")
     @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenTheArticleWithGoogleAnalytics_whenArticleLoads_thenArticleHasAnalyticsCode() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.ARTICLE_WITH_GOOGLE_ANALYTICS);
-
-        page.loadUrl();
-
-        assertTrue(page.getAnalyticsScriptCount() == 1, "GA script count is not equal to 1");
-    }
-
-    @Test
-    @Tag(GlobalConstants.TAG_DAILY)
-    public final void givenThePageWithGoogleAnalytics_whenPageLoads_thenPageHasAnalyticsCode() {
-        page.setUrl(page.getBaseURL() + GlobalConstants.PAGE_WITH_GOOGLE_ANALYTICS);
+    public final void givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode(String url) {
+        page.setUrl(page.getBaseURL() + url);
 
         page.loadUrl();
 
@@ -452,6 +447,22 @@ public class CommonUITest extends BaseUISeleniumTest {
             assertTrue(page.anchorAndAnchorLinkAvailable(footerTag, link), String.format("Countn't find Anchor Text:%s and Anchor Link: %s, on %s", link.getAnchorText(), link.getAnchorLink(), url));
         }
 
+    }
+
+    @ParameterizedTest(name = " {displayName} - on {0}")
+    @MethodSource("com.baeldung.utility.TestUtils#consoleLogTestDataProvider")
+    @Tag(GlobalConstants.TAG_DAILY)
+    @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
+    public final void givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog(String url) {
+        page.setUrl(page.getBaseURL() + url);
+
+        LogEntries browserLogentries = page.getWebDriver().manage().logs().get(LogType.BROWSER);
+
+        for (LogEntry logEntry : browserLogentries) {
+            if (logEntry.getLevel().equals(Level.SEVERE)) {
+                fail("Error with Severe Level-->" + logEntry.getMessage());
+            }
+        }
     }
 
 }

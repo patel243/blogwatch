@@ -20,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
 import com.baeldung.common.YAMLProperties;
 import com.baeldung.common.vo.FooterLinksDataVO;
@@ -185,6 +186,14 @@ public class TestUtils {
 
         return footerLinksDataVOs.stream().flatMap(testSet -> testSet.getUrls().stream().map(entry -> Arguments.of(entry, testSet.getFooterTag(), testSet.getFooterLinks())));
 
+    }
+
+    public static Stream<Arguments> gaCodeTestDataProvider() {
+        return YAMLProperties.multiSiteTargetUrls.get(GlobalConstants.givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode).stream().map(entry -> Arguments.of(entry));
+    }
+
+    public static Stream<Arguments> consoleLogTestDataProvider() {
+        return YAMLProperties.multiSiteTargetUrls.get(GlobalConstants.givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog).stream().map(entry -> Arguments.of(entry));
     }
 
 }
