@@ -239,6 +239,6 @@ public class GlobalConstants {
     public static final String givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText = "givenAllArticles_whenAnArticleLoads_thenItDoesNotContainOverlappingText";
 
     public static final String givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode = "givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode";
-    public static final Object givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog = "givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog";
+    public static final Object givenAPage_whenThePageLoads_thenNoSevereMessagesInTheBrowserConsoleLog = "givenAPage_whenThePageLoads_thenNoSevereMessagesInTheBrowserConsoleLog";
 
 }

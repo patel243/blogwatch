@@ -453,8 +453,10 @@ public class CommonUITest extends BaseUISeleniumTest {
     @MethodSource("com.baeldung.utility.TestUtils#consoleLogTestDataProvider")
     @Tag(GlobalConstants.TAG_DAILY)
     @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
-    public final void givenAPage_whenThePageLoads_thenNoSevereMessagesInBrowserConsoleLog(String url) {
+    public final void givenAPage_whenThePageLoads_thenNoSevereMessagesInTheBrowserConsoleLog(String url) {
         page.setUrl(page.getBaseURL() + url);
+        
+        page.loadUrl();
 
         LogEntries browserLogentries = page.getWebDriver().manage().logs().get(LogType.BROWSER);
 

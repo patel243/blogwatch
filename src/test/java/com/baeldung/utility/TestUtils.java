@@ -193,7 +193,7 @@ public class TestUtils {
     }
 
     public static Stream<Arguments> consoleLogTestDataProvider() {
-        return YAMLProperties.multiSiteTargetUrls.get(GlobalConstants.givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog).stream().map(entry -> Arguments.of(entry));
+        return YAMLProperties.multiSiteTargetUrls.get(GlobalConstants.givenAPage_whenThePageLoads_thenNoSevereMessagesInTheBrowserConsoleLog).stream().map(entry -> Arguments.of(entry));
     }
 
 }

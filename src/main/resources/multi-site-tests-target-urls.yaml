@@ -1,12 +1,17 @@
-givenOnTheHomePage_whenHomePageLoaded_thenNoSevereMessagesInBrowserLog:
+givenAPage_whenThePageLoads_thenNoSevereMessagesInTheBrowserConsoleLog:
   - /
+  - /java-too-many-open-files
   - /scala
   - /linux
   - /cs
+  - /kotlin
+  - /kotlin/lists
 givenAGoogleAnalyticsEnabledPage_whenAnalysingThePageSource_thenItHasTrackingCode:
   - /persistence-layer-with-spring-and-hibernate/
   - /rest-with-spring-course/ 
   - /linux/docker-compose-private-repositories
   - /scala/classes-objects
   - /cs/binary-search-trees
-  - /linux/fzf-command 
+  - /linux/fzf-command
+  - /kotlin/spring-security-dsl
+  - /linux/xz-compression 
