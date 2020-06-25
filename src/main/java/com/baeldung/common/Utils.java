@@ -713,4 +713,10 @@ public class Utils {
         return url;
     }
 
+    public static void printSection(String title) {
+        System.out.println("\n\n");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println(title);
+        System.out.println("--------------------------------------------------------------------");
+    }
 }
