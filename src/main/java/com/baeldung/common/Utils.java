@@ -703,4 +703,14 @@ public class Utils {
 
     }
 
+    public static String addTrailingSlasIfNotExists(String url) {
+        if (StringUtils.isBlank(url)) {
+            return url;
+        }
+        if (!url.endsWith("/")) {
+            return url + "/";
+        }
+        return url;
+    }
+
 }

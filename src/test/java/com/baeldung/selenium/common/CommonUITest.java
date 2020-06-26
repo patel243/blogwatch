@@ -404,7 +404,7 @@ public class CommonUITest extends BaseUISeleniumTest {
 
         Response response = RestAssured.given().redirects().follow(false).get(page.getBaseURL() + url);
 
-        assertTrue(response.getHeader("Location").toLowerCase().contains(redirectedTo), url + " doesn't redirec to " + redirectedTo);
+        assertTrue(Utils.addTrailingSlasIfNotExists(response.getHeader("Location").toLowerCase()).equals(Utils.addTrailingSlasIfNotExists(redirectedTo)), url + " doesn't redirec to " + redirectedTo);
     }
 
     @Test
@@ -455,7 +455,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
     public final void givenAPage_whenThePageLoads_thenNoSevereMessagesInTheBrowserConsoleLog(String url) {
         page.setUrl(page.getBaseURL() + url);
-        
+
         page.loadUrl();
 
         LogEntries browserLogentries = page.getWebDriver().manage().logs().get(LogType.BROWSER);
