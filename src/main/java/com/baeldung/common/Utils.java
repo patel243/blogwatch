@@ -16,6 +16,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.function.BiPredicate;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -713,10 +714,11 @@ public class Utils {
         return url;
     }
 
-    public static void printSection(String title) {
+    public static <T> void printItems(String title, Iterable<T> items, Function<T, String> formatter) {
         System.out.println("\n\n");
         System.out.println("--------------------------------------------------------------------");
         System.out.println(title);
         System.out.println("--------------------------------------------------------------------");
+        items.forEach(item -> System.out.println(formatter.apply(item)));
     }
 }

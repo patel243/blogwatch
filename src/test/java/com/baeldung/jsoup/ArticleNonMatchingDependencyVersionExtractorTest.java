@@ -63,12 +63,17 @@ class ArticleNonMatchingDependencyVersionExtractorTest {
             Map.Entry::getValue
           ));
 
-        Utils.printSection("Considered articles");
-        articleUrlsInModules.forEach(articleUrl -> System.out.println("- " + articleUrl));
+        Utils.printItems(
+          "Considered articles",
+          articleUrlsInModules,
+          articleUrl -> "- " + articleUrl
+        );
 
-        Utils.printSection("Found dependencies not matching the given version:");
-        notMatchingDependenciesByArticle
-          .forEach((articleUrl, dependencies) -> System.out.println("- " + articleUrl + ": " + dependencies));
+        Utils.printItems(
+          "Found dependencies not matching the given version",
+          notMatchingDependenciesByArticle.entrySet(),
+          dependenciesByArticleUrl -> "- " + dependenciesByArticleUrl.getKey() + ": " + dependenciesByArticleUrl.getValue()
+        );
     }
 
     private URL toUrl(String moduleUrl) {
