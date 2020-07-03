@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Component
@@ -38,6 +39,7 @@ public class ArticleDependencyVersionExtractor {
               .filter(this::isXmlCode)
               .map(this::xmlContent)
               .map(this::toDocument)
+              .peek(document -> {if (document == null) System.out.println("Couldn't parse some XML in this article: " + article);})
               .filter(Objects::nonNull)
               .flatMap(this::toDependencies)
               .filter(dependencyVersion -> dependencyVersion.getDependency().sameArtifactAs(searchedDependency))
@@ -73,24 +75,33 @@ public class ArticleDependencyVersionExtractor {
             DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
             return documentBuilder.parse(new InputSource(new StringReader(xmlString)));
         } catch (ParserConfigurationException | SAXException | IOException e) {
-            LOGGER.error("An error occurred while reading the XML", e);
             return null;
         }
     }
 
     private Stream<DependencyVersionDto> toDependencies(Document document) {
-        List<DependencyVersionDto> modules = new ArrayList<>();
-        NodeList dependencyNodes = document.getElementsByTagName("dependency");
-        for (int node = 0; node < dependencyNodes.getLength(); node++) {
-            modules.add(new DependencyVersionDto(
-              new DependencyDto(
-                extractGroupId(dependencyNodes.item(node)),
-                extractArtifactId(dependencyNodes.item(node))
-              ),
-              extractVersion(dependencyNodes.item(node))
-            ));
-        }
-        return modules.stream();
+        return Stream.concat(
+          extractDependenciesFromTag(document, "dependency"),
+          extractDependenciesFromTag(document, "parent")
+        );
+    }
+
+    private Stream<DependencyVersionDto> extractDependenciesFromTag(Document document, String tag) {
+        NodeList tagNodes = document.getElementsByTagName(tag);
+        return IntStream
+          .range(0, tagNodes.getLength())
+          .mapToObj(tagNodes::item)
+          .map(this::extractDependency);
+    }
+
+    private DependencyVersionDto extractDependency(Node node) {
+        return new DependencyVersionDto(
+          new DependencyDto(
+            extractGroupId(node),
+            extractArtifactId(node)
+          ),
+          extractVersion(node)
+        );
     }
 
     private String extractGroupId(Node dependencyNode) {
