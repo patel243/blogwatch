@@ -179,9 +179,9 @@ public class TestUtils {
         }
     }
 
-    public static Stream<Arguments> footerLinksTestDataProvider() throws JsonParseException, JsonMappingException, IOException {
+    public static Stream<Arguments> pagesAnchorLinksTestDataProvider() throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper ObjectMapper = new ObjectMapper();
-        List<FooterLinksDataVO> footerLinksDataVOs = ObjectMapper.readValue(Utils.getJsonResourceFile("./footer-links-test-data.json"), new TypeReference<List<FooterLinksDataVO>>() {
+        List<FooterLinksDataVO> footerLinksDataVOs = ObjectMapper.readValue(Utils.getJsonResourceFile("./page-anchor-links-test-data.json"), new TypeReference<List<FooterLinksDataVO>>() {
         });
 
         return footerLinksDataVOs.stream().flatMap(testSet -> testSet.getUrls().stream().map(entry -> Arguments.of(entry, testSet.getFooterTag(), testSet.getFooterLinks())));
