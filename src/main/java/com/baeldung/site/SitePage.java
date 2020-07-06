@@ -508,7 +508,7 @@ public class SitePage extends BlogBaseDriver {
 
             return ChronoUnit.WEEKS.between(publishedDateTime.toLocalDate(), LocalDate.now()) < ignoreUrlsNewerThanWeeks;
 
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             logger.error("error while retrieving published date for {}", this.getWebDriver().getCurrentUrl());
             return false;
         }
