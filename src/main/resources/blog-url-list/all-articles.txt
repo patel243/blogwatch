@@ -3345,8 +3345,6 @@
 /java-soap-web-service
 /jpa-query-unrelated-entities
 /ops/terraform-intro
-/java-read-file
-/securing-a-restful-web-service-with-spring-security
 /linux/linux-files-series
 /kotlin/fold-vs-reduce
 /scala/lagom-play-akka-actors
