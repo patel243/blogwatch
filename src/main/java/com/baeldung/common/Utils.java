@@ -111,17 +111,17 @@ public class Utils {
         return Files.readAllLines(Paths.get(file.getAbsolutePath())).listIterator();
     }
 
-    public static File getCoursePagesBuyLinksJsonAsFile() {
-        return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_BUY_LINKS).getPath());
+    public static File getCoursePagesGATrackingJsonAsFile() {
+        return new File(Utils.class.getClassLoader().getResource(GlobalConstants.BLOG_URL_LIST_RESOUCE_FOLDER_PATH + GlobalConstants.COURSE_PAGES_GA_TRACKINGS).getPath());
     }
 
-    public static Multimap<String, List<EventTrackingVO>> getCoursePagesBuyLinksTestData(ObjectMapper objectMapper) throws JsonProcessingException, IOException {
+    public static Multimap<String, List<EventTrackingVO>> getCoursePagesGATrackingTestData(ObjectMapper objectMapper) throws JsonProcessingException, IOException {
 
         Multimap<String, List<EventTrackingVO>> testData = ArrayListMultimap.create();
         List<EventTrackingVO> GATrackingVOs = null;
         EventTrackingVO gaTrackingVO = null;
 
-        JsonNode pageJson = objectMapper.readTree(Utils.getCoursePagesBuyLinksJsonAsFile());
+        JsonNode pageJson = objectMapper.readTree(Utils.getCoursePagesGATrackingJsonAsFile());
         for (JsonNode topNode : pageJson.get("coursePages")) {
             String urlKey = topNode.get("url").textValue();
             GATrackingVOs = new ArrayList<>();

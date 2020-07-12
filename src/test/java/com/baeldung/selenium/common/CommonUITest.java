@@ -189,7 +189,7 @@ public class CommonUITest extends BaseUISeleniumTest {
     public final void givenOnTheCoursePage_whenPageLoads_thenTrackingIsSetupCorrectly() throws JsonProcessingException, IOException {
 
         Multimap<String, String> badURLs = ArrayListMultimap.create();
-        Multimap<String, List<EventTrackingVO>> testData = Utils.getCoursePagesBuyLinksTestData(objectMapper);
+        Multimap<String, List<EventTrackingVO>> testData = Utils.getCoursePagesGATrackingTestData(objectMapper);
         for (String urlKey : testData.keySet()) {
             page.setUrl(page.getBaseURL() + urlKey);
 
