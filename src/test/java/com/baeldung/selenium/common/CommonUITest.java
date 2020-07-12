@@ -40,6 +40,7 @@ import com.baeldung.common.GlobalConstants.TestMetricTypes;
 import com.baeldung.common.TestMetricsExtension;
 import com.baeldung.common.Utils;
 import com.baeldung.common.vo.AnchorLinksTestDataVO;
+import com.baeldung.common.vo.CourseBuyLinksVO.PurchaseLink;
 import com.baeldung.common.vo.EventTrackingVO;
 import com.baeldung.common.vo.FooterLinksDataVO;
 import com.baeldung.common.vo.LinkVO;
@@ -465,6 +466,28 @@ public class CommonUITest extends BaseUISeleniumTest {
                 fail("Error with Severe Level-->" + logEntry.getMessage());
             }
         }
+    }
+
+    @ParameterizedTest(name = " {displayName} - verify purchase links on {0}")
+    @MethodSource("com.baeldung.utility.TestUtils#pagesPurchaseLinksTestDataProvider()")
+    //@Tag(GlobalConstants.TAG_SITE_SMOKE_TEST)
+    //@Tag(GlobalConstants.TAG_DAILY)
+    public final void givenOnTheCoursePage_whenAnaysingThePage_thenThePurchaseLinksAreSetupCorrectly(String courseUrl, List<PurchaseLink> purchaseLinks) throws JsonProcessingException, IOException {
+
+        String fullURL = page.getBaseURL() + courseUrl;
+
+        page.setUrl(fullURL);
+
+        page.loadUrl();
+
+        RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(5000);
+        
+        for (PurchaseLink link : purchaseLinks) {
+
+            assertTrue(page.anchorAndAnchorLinkAvailable(link), String.format("Countn't find Purchse link with anchor Text:%s and anchor Link: %s, on %s", link.getAnchorText(), link.getAnchorLink(), fullURL));            
+            assertTrue(TestUtils.veirfyRedirect(restAssuredConfig, link.getAnchorLink(), link.getRedirectedTo()), link.getAnchorText() + " (" + link.getAnchorLink() + ") on " + fullURL + " doesn't redirec to " + link.getRedirectedTo());
+        }
+
     }
 
 }

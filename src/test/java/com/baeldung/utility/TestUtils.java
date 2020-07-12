@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
 import com.baeldung.common.YAMLProperties;
+import com.baeldung.common.vo.CourseBuyLinksVO;
 import com.baeldung.common.vo.FooterLinksDataVO;
 import com.baeldung.site.SitePage;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -42,6 +43,8 @@ public class TestUtils {
     protected static Logger logger = LoggerFactory.getLogger(TestUtils.class);
 
     protected static RestAssuredConfig restAssuredConfig = TestUtils.getRestAssuredCustomConfig(3000);
+
+    private static ObjectMapper ObjectMapper = new ObjectMapper();
 
     public static boolean articleLinkFoundOnTheGitHubModule(List<String> gitHubModuleLinks, String articleRelativeURL, SitePage page) {
         boolean articleLinkFoundOnGitHubModule = false;
@@ -180,7 +183,7 @@ public class TestUtils {
     }
 
     public static Stream<Arguments> pagesAnchorLinksTestDataProvider() throws JsonParseException, JsonMappingException, IOException {
-        ObjectMapper ObjectMapper = new ObjectMapper();
+
         List<FooterLinksDataVO> footerLinksDataVOs = ObjectMapper.readValue(Utils.getJsonResourceFile("./page-anchor-links-test-data.json"), new TypeReference<List<FooterLinksDataVO>>() {
         });
 
@@ -194,6 +197,25 @@ public class TestUtils {
 
     public static Stream<Arguments> consoleLogTestDataProvider() {
         return YAMLProperties.multiSiteTargetUrls.get(GlobalConstants.givenAPage_whenThePageLoads_thenNoSevereMessagesInTheBrowserConsoleLog).stream().map(entry -> Arguments.of(entry));
+    }
+
+    public static Stream<Arguments> pagesPurchaseLinksTestDataProvider() throws JsonParseException, JsonMappingException, IOException {
+
+        List<CourseBuyLinksVO> courseBuyLinksVOs = ObjectMapper.readValue(Utils.getJsonResourceFile("./course-pages-purchase-links-test-data.json"), new TypeReference<List<CourseBuyLinksVO>>() {
+        });
+
+        return courseBuyLinksVOs.stream().map(entry -> Arguments.of(entry.getCourseUrl(), entry.getPurchaseLinks()));
+
+    }
+
+    public static boolean veirfyRedirect(RestAssuredConfig restAssuredConfig, String link, String exprectRedirectTo) {
+        try {
+            return RestAssured.given().config(restAssuredConfig).get(link).getHeader("Location").toLowerCase().contains(exprectRedirectTo);
+        } catch (Exception e) {
+            logger.error("Error while verifying redirect. Error Message: {}", e.getMessage());
+        }
+        
+        return true;
     }
 
 }

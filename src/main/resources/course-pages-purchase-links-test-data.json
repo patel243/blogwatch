@@ -1,0 +1,68 @@
+[
+  {
+    "courseUrl": "/rest-with-spring-course",
+    "purchaseLinks": [
+      {
+        "anchorText": "Get access for $299 →",
+        "anchorLink": "https://courses.baeldung.com/purchase?product_id=784056",
+        "redirectedTo": "https://sso.teachable.com/secure/22136/checkout/784056/rest-with-spring-the-master-class"
+      },
+      {
+        "anchorText": "Get access for $399 →",
+        "anchorLink": "https://courses.baeldung.com/purchase?product_id=784057",
+        "redirectedTo": "https://sso.teachable.com/secure/22136/checkout/784057/rest-with-spring-the-certification-class"
+      },
+      {
+        "anchorText": "Get Access → $299",
+        "anchorLink": "https://courses.baeldung.com/purchase?product_id=784056",
+        "redirectedTo": "https://sso.teachable.com/secure/22136/checkout/784056/rest-with-spring-the-master-class"
+      },
+      {
+        "anchorText": "Get Access → $399",
+        "anchorLink": "https://courses.baeldung.com/purchase?product_id=784057",
+        "redirectedTo": "https://sso.teachable.com/secure/22136/checkout/784057/rest-with-spring-the-certification-class"
+      },
+      {
+        "anchorText": "Get Access → $599",
+        "anchorLink": "https://courses.baeldung.com/purchase?product_id=784058",
+        "redirectedTo": "https://sso.teachable.com/secure/22136/checkout/784058/rest-with-spring-live-class"
+      }
+    ]
+  },
+  {
+    "courseUrl": "/rest-with-spring-for-teams",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-course",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-for-teams",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-security-course",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-security-for-teams",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-security-oauth-course",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-security-oauth-for-teams",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-security-core-course",
+    "purchaseLinks": []
+  },
+  {
+    "courseUrl": "/learn-spring-security-core-for-teams",
+    "purchaseLinks": []
+  }
+]
