@@ -564,7 +564,6 @@
 /reactor-core
 /register-servlet
 /apache-solrj
-/spring-security-stormpath
 /java-9-process-api
 /spring-security-redirect-login
 /java-9-repl
