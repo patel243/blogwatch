@@ -3408,7 +3408,6 @@
 /java-invoke-dynamic
 /java-univocity-parsers
 /spring-rest-docs-vs-openapi
-/spring-persistence-hibernate-and-jpa-with-a-jndi-datasource-2
 /java-queue-linkedblocking-concurrentlinked
 /java-exchanger
 /cqrs-event-sourcing-java
@@ -3553,7 +3552,6 @@
 /java-mapstruct-mapping-collections
 /java-undeclaredthrowableexception
 /java-weekly-340
-/swagger-2-documentation-for-spring-rest-api-bael-5516
 /sso-spring-security-oauth2-legacy
 /java-jvm-array-length
 /spring-yaml-inject-map
