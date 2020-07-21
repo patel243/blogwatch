@@ -402,10 +402,13 @@ public class CommonUITest extends BaseUISeleniumTest {
     @Tag("redirectsTest")
     @Tag(GlobalConstants.TAG_DAILY)
     public final void givenTheListOfRedirectedUrls_whenAUrlLoads_thenItRedirectsSuccesfully(String url, String redirectedTo) {
+        String fullUrl = url;
+        if(!url.contains("http://")) {
+            fullUrl = page.getBaseURL() + url;
+        }
+        Response response = RestAssured.given().redirects().follow(false).get(fullUrl);
 
-        Response response = RestAssured.given().redirects().follow(false).get(page.getBaseURL() + url);
-
-        assertTrue(Utils.addTrailingSlasIfNotExists(response.getHeader("Location").toLowerCase()).equals(Utils.addTrailingSlasIfNotExists(redirectedTo)), url + " doesn't redirec to " + redirectedTo);
+        assertTrue(Utils.addTrailingSlasIfNotExists(response.getHeader("Location").toLowerCase()).equals(Utils.addTrailingSlasIfNotExists(redirectedTo.toLowerCase())), url + " doesn't redirec to " + redirectedTo);
     }
 
     @Test
