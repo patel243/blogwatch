@@ -90,6 +90,7 @@ givenAllArticles_whenAnArticleLoads_thenTheArticleHasProperTitleCapitalization:
   - /jni
   - /find-java-home
   - /java-application-remote-debugging  
+  - /java-cannot-find-symbol-error
 
 givenAllArticles_whenAnalyzingCategories_thenTheArticleDoesNotContainUnnecessaryCategory:
   - /spring-reloading-properties/
