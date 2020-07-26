@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.baeldung.common.GlobalConstants;
 import com.baeldung.common.Utils;
+import com.baeldung.common.vo.CourseBuyLinksVO.PurchaseLink;
 import com.baeldung.common.vo.FooterLinksDataVO;
 import com.baeldung.common.vo.LinkVO;
 import com.baeldung.site.strategy.ITitleAnalyzerStrategy;
@@ -508,7 +509,7 @@ public class SitePage extends BlogBaseDriver {
 
             return ChronoUnit.WEEKS.between(publishedDateTime.toLocalDate(), LocalDate.now()) < ignoreUrlsNewerThanWeeks;
 
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             logger.error("error while retrieving published date for {}", this.getWebDriver().getCurrentUrl());
             return false;
         }
@@ -541,16 +542,30 @@ public class SitePage extends BlogBaseDriver {
 
     }
 
-    public boolean anchorAndAnchorLinkAvailable(String footerTag, FooterLinksDataVO.link link) {
+    public boolean anchorAndAnchorLinkAvailable(String tag, FooterLinksDataVO.link link) {
 
         // WebElement element = this.getWebDriver().findElement(By.xpath("//a[contains(@href,'" + link.getAnchorLink() + "') and (text() = '" + link.getAnchorText() + "')]"));
         List<WebElement> elements = null;
 
-        if (StringUtils.isNotBlank(footerTag)) {
-            elements = this.getWebDriver().findElements(By.xpath("//" + footerTag + "//a[contains(@href,'" + link.getAnchorLink() + "')]"));
+        if (StringUtils.isNotBlank(tag)) {
+            elements = this.getWebDriver().findElements(By.xpath("//" + tag + "//a[contains(@href,'" + link.getAnchorLink() + "')]"));
         } else {
             elements = this.getWebDriver().findElements(By.xpath("//a[contains(@href,'" + link.getAnchorLink() + "')]"));
         }
+        for (WebElement element : elements) {
+            if (link.getAnchorText().equalsIgnoreCase(element.getText()))
+                return true;
+        }
+        return false;
+
+    }
+    
+    public boolean anchorAndAnchorLinkAvailable(PurchaseLink link) {
+        
+        List<WebElement> elements = null;
+        
+        elements = this.getWebDriver().findElements(By.xpath("//a[contains(@href,'" + link.getAnchorLink() + "')]"));
+        
         for (WebElement element : elements) {
             if (link.getAnchorText().equalsIgnoreCase(element.getText()))
                 return true;
